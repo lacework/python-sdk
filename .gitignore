@@ -1,0 +1,24 @@
+# Local Files
+local/
+
+# Environment Variables
+.env
+
+# Virtual Environments
+.venv/
+venv/
+
+# Test artifacts
+.cache/
+.pytest_cache/
+
+# Byte-compiled / optimized files
+*.py[cod]
+
+# Build artifacts
+dist/
+docs/_build/
+.DS_Store
+
+# Code editors
+.vscode
