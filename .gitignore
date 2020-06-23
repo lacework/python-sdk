@@ -18,6 +18,7 @@ venv/
 # Build artifacts
 dist/
 docs/_build/
+*.egg-info/
 .DS_Store
 
 # Code editors

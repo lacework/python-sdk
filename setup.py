@@ -1,15 +1,15 @@
-from distutils.core import setup
+from setuptools import find_packages, setup
 
 setup(
-    name='lacework-sdk',
-    packages=['lacework-sdk'],
-    version='0.1',
+    name='laceworksdk',
+    packages=find_packages(include=["laceworksdk", "laceworksdk.*"]),
+    version='0.1.1',
     license='MIT',
     description='Community-developed Python SDK for the Lacework APIs',
     author='Alan Nix',
     author_email='alan.nix@lacework.net',
     url='https://github.com/alannix-lw/lacework-python-sdk',
-    download_url='https://pypi.python.org/pypi/lacework-sdk',
+    download_url='https://pypi.python.org/pypi/laceworksdk',
     keywords=['lacework', 'api', 'sdk', 'python', 'api'],
     install_requires=[
         'requests',

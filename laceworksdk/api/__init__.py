@@ -14,8 +14,6 @@ class LaceworkClient(object):
     Lacework API wrapper for Python.
     """
 
-    _sdk_version = "0.1"
-
     def __init__(self,
                  api_key=None,
                  api_secret=None,
