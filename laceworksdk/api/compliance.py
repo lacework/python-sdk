@@ -29,8 +29,9 @@ class ComplianceAPI(object):
 
     def get_latest_aws_report(self,
                               aws_account_id,
-                              file_format="json",
-                              report_type=None):
+                              file_format=None,
+                              report_type=None,
+                              pdf_path=None):
         """
         A method to get the latest compiance report for an AWS account.
 
@@ -38,6 +39,7 @@ class ComplianceAPI(object):
         :param file_format: A string representing the desired file format. ("pdf" or "json")
         :param report_type: A string representing the desired report type.
             ("AWS_CIS_S3", "NIST_800-53_Rev4", "ISO_2700", "HIPAA", "SOC", or "PCI")
+        :param pdf_path: An absolute path for writing PDF compliance reports
 
         :return response json
         """
@@ -54,15 +56,22 @@ class ComplianceAPI(object):
 
         response = self._session.get(api_uri)
 
-        logger.debug(json.dumps(response.json(), indent=2))
+        #logger.debug(json.dumps(response.json(), indent=2))
 
-        return response.json()
+        if file_format == "json":
+            logger.debug(json.dumps(response.json(), indent=2))
+            return response.json()
+        elif file_format == "pdf":
+            logger.debug('creating pdf at {}'.format(pdf_path))
+            with open(pdf_path, 'wb') as f:
+                f.write(response.content)
 
     def get_latest_azure_report(self,
                                 azure_tenant_id,
                                 azure_subscription_id,
-                                file_format="json",
-                                report_type=None):
+                                file_format=None,
+                                report_type=None,
+                                pdf_path=None):
         """
         A method to get the latest compiance report for an Azure tenant.
 
@@ -71,6 +80,7 @@ class ComplianceAPI(object):
         :param file_format: A string representing the desired file format. ("pdf" or "json")
         :param report_type: A string representing the desired report type.
             ("AZURE_CIS", "AZURE_SOC", or "AZURE_PCI")
+        :param pdf_path: An absolute path for writing PDF compliance reports
 
         :return response json
         """
@@ -87,15 +97,22 @@ class ComplianceAPI(object):
 
         response = self._session.get(api_uri)
 
-        logger.debug(json.dumps(response.json(), indent=2))
+        #logger.debug(json.dumps(response.json(), indent=2))
 
-        return response.json()
+        if file_format == "json":
+            logger.debug(json.dumps(response.json(), indent=2))
+            return response.json()
+        elif file_format == "pdf":
+            logger.debug('creating pdf at {}'.format(pdf_path))
+            with open(pdf_path, 'wb') as f:
+                f.write(response.content)
 
     def get_latest_gcp_report(self,
                               gcp_organization_id,
                               gcp_project_id,
-                              file_format="json",
-                              report_type=None):
+                              file_format=None,
+                              report_type=None,
+                              pdf_path=None):
         """
         A method to get the latest compiance report for a Google Cloud organization.
 
@@ -104,6 +121,7 @@ class ComplianceAPI(object):
         :param file_format: A string representing the desired file format. ("pdf" or "json")
         :param report_type: A string representing the desired report type.
             ("GCP_CIS", "GCP_SOC", or "GCP_PCI")
+        :param pdf_path: An absolute path for writing PDF compliance reports
 
         :return response json
         """
@@ -121,8 +139,15 @@ class ComplianceAPI(object):
         response = self._session.get(api_uri)
 
         logger.debug(json.dumps(response.json(), indent=2))
+        
+        if file_format == "json":
+            logger.debug(json.dumps(response.json(), indent=2))
+            return response.json()
+        elif file_format == "pdf":
+            logger.debug('creating pdf at {}'.format(pdf_path))
+            with open(pdf_path, 'wb') as f:
+                f.write(response.content)
 
-        return response.json()
 
     def list_azure_subscriptions(self, azure_tenant_id):
         """
