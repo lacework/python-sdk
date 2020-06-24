@@ -36,12 +36,12 @@ class EventsAPI(object):
         :return response json
         """
 
+        logger.info("Getting Event Details from Lacework...")
+
         # Build the Event Details request URI
         api_uri = f"/api/v1/external/events/GetEventDetails?EVENT_ID={event_id}"
 
         response = self._session.get(api_uri)
-
-        logger.debug(json.dumps(response.json(), indent=2))
 
         return response.json()
 
@@ -55,11 +55,11 @@ class EventsAPI(object):
         :return response json
         """
 
+        logger.info("Getting Events within date range from Lacework...")
+
         # Build the Event Details request URI
         api_uri = f"/api/v1/external/events/GetEventsForDateRange?START_TIME={start_time}&END_TIME={end_time}"
 
         response = self._session.get(api_uri)
-
-        logger.debug(json.dumps(response.json(), indent=2))
 
         return response.json()

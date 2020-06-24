@@ -36,11 +36,11 @@ class DownloadFileAPI(object):
         :return response json
         """
 
+        logger.info("Getting AWS CloudFormation from Lacework...")
+
         # Build the Download File request URI
         api_uri = f"/api/v1/external/files/templates/{file}"
 
         response = self._session.get(api_uri)
-
-        logger.debug(json.dumps(response.json(), indent=2))
 
         return response.json()

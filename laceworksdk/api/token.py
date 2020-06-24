@@ -42,8 +42,6 @@ class TokenAPI(object):
         # GET to retreieve the enabled API credentials
         response = self._session.get(api_uri)
 
-        logger.debug(json.dumps(response.json(), indent=2))
-
         return response.json()
 
     def create(self, token_alias=None, token_enabled=False, token_description=None):
@@ -78,8 +76,6 @@ class TokenAPI(object):
         # POST to create an API credential
         response = self._session.post(api_uri, data=data)
 
-        logger.debug(json.dumps(response.json(), indent=2))
-
         return response.json()
 
     def get_token(self, access_token):
@@ -98,8 +94,6 @@ class TokenAPI(object):
 
         # GET to retreieve the API credential
         response = self._session.get(api_uri)
-
-        logger.debug(json.dumps(response.json(), indent=2))
 
         return response.json()
 
@@ -135,7 +129,5 @@ class TokenAPI(object):
 
         # PUT to update an API credential
         response = self._session.put(api_uri, data=data)
-
-        logger.debug(json.dumps(response.json(), indent=2))
 
         return response.json()

@@ -1,11 +1,19 @@
 from setuptools import find_packages, setup
 
+# read the contents of README.md file
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 setup(
     name='laceworksdk',
     packages=find_packages(include=["laceworksdk", "laceworksdk.*"]),
-    version='0.1.2',
+    version='0.1.3',
     license='MIT',
     description='Community-developed Python SDK for the Lacework APIs',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     author='Alan Nix',
     author_email='alan.nix@lacework.net',
     url='https://github.com/alannix-lw/lacework-python-sdk',

@@ -11,7 +11,8 @@ from datetime import datetime, timedelta, timezone
 
 from laceworksdk.config import (
     DEFAULT_BASE_DOMAIN,
-    DEFAULT_ACCESS_TOKEN_EXPIRATION
+    DEFAULT_ACCESS_TOKEN_EXPIRATION,
+    DEFAULT_SUCCESS_RESPONSE_CODE
 )
 from laceworksdk.exceptions import ApiError
 from requests.adapters import HTTPAdapter
@@ -64,6 +65,29 @@ class HttpSession(object):
             self._access_token_expiry = datetime.now(timezone.utc) + timedelta(seconds=DEFAULT_ACCESS_TOKEN_EXPIRATION)
             self._access_token = response.json()["data"][0]["token"]
 
+    def _check_response_code(self, response, expected_response_code):
+        """
+        Check the requests.response.status_code to make sure it's on that we expected.
+        """
+        if response.status_code == expected_response_code:
+            pass
+        else:
+            raise ApiError(response)
+
+    def _print_debug_logging(self, response):
+        """
+        Print the debug logging, based on the returned content type.
+        """
+
+        # If it's supposed to be a JSON response, parse and log, otherwise, log the raw text
+        if "application/json" in response.headers.get("Content-Type", "").lower():
+            try:
+                logger.debug(json.dumps(response.json(), indent=2))
+            except ValueError:
+                logger.warning("Error parsing JSON response body")
+        else:
+            logger.debug(response.text)
+
     def _get_access_token(self):
         """
         A method to fetch a new access token from Lacework.
@@ -90,7 +114,8 @@ class HttpSession(object):
         try:
             response = self._session.post(uri, json=data, headers=headers)
 
-            logger.debug(response)
+            self._print_debug_logging(response)
+
         except Exception:
             raise ApiError(response)
 
@@ -124,12 +149,13 @@ class HttpSession(object):
 
         logger.info(f"GET request to URI: {uri}")
 
-        try:
-            response = self._session.get(uri, headers=self._get_request_headers())
+        # Perform a GET request
+        response = self._session.get(uri, headers=self._get_request_headers())
 
-            logger.debug(response)
-        except Exception:
-            raise ApiError(response)
+        # Validate the response
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+
+        self._print_debug_logging(response)
 
         return response
 
@@ -150,12 +176,13 @@ class HttpSession(object):
 
         logger.info(f"POST request to URI: {uri}")
 
-        try:
-            response = self._session.post(uri, params=param, json=data, headers=self._get_request_headers())
+        # Perform a POST request
+        response = self._session.post(uri, params=param, json=data, headers=self._get_request_headers())
 
-            logger.debug(response)
-        except Exception:
-            raise ApiError(response)
+        # Validate the response
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+
+        self._print_debug_logging(response)
 
         return response
 
@@ -176,12 +203,13 @@ class HttpSession(object):
 
         logger.info(f"PUT request to URI: {uri}")
 
-        try:
-            response = self._session.put(uri, params=param, json=data, headers=self._get_request_headers())
+        # Perform a PUT request
+        response = self._session.put(uri, params=param, json=data, headers=self._get_request_headers())
 
-            logger.debug(response)
-        except Exception:
-            raise ApiError(response)
+        # Validate the response
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+
+        self._print_debug_logging(response)
 
         return response
 
@@ -200,11 +228,12 @@ class HttpSession(object):
 
         logger.info(f"DELETE request to URI: {uri}")
 
-        try:
-            response = self._session.delete(uri, headers=self._get_request_headers())
+        # Perform a DELETE request
+        response = self._session.delete(uri, headers=self._get_request_headers())
 
-            logger.debug(response)
-        except Exception:
-            raise ApiError(response)
+        # Validate the response
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+
+        self._print_debug_logging(response)
 
         return response

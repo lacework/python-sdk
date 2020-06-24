@@ -18,6 +18,3 @@ class TestLaceworkSDK:
         # Lacework Exceptions
         assert hasattr(laceworksdk, "ApiError")
         assert hasattr(laceworksdk, "laceworksdkException")
-
-        # Lacework Models
-        # assert hasattr(laceworksdk, "events")
