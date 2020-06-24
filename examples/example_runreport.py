@@ -6,12 +6,12 @@ import logging
 import os
 import random
 
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 from laceworksdk import LaceworkClient
 
 logging.basicConfig(level=logging.DEBUG)
 
-#load_dotenv()
+load_dotenv()
 
 if __name__ == "__main__":
 
