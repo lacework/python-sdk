@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 setup(
     name='laceworksdk',
     packages=find_packages(include=["laceworksdk", "laceworksdk.*"]),
-    version='0.1.1',
+    version='0.1.2',
     license='MIT',
     description='Community-developed Python SDK for the Lacework APIs',
     author='Alan Nix',

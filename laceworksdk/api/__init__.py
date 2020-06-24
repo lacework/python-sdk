@@ -4,6 +4,8 @@ Lacework API wrappers.
 """
 
 from laceworksdk.http_session import HttpSession
+from .compliance import ComplianceAPI
+from .download_file import DownloadFileAPI
 from .events import EventsAPI
 from .token import TokenAPI
 from .vulnerability import VulnerabilityAPI
@@ -37,6 +39,8 @@ class LaceworkClient(object):
         )
 
         # API Wrappers
+        self.compliance = ComplianceAPI(self._session)
         self.events = EventsAPI(self._session)
+        self.files = DownloadFileAPI(self._session)
         self.tokens = TokenAPI(self._session)
         self.vulnerabilties = VulnerabilityAPI(self._session)

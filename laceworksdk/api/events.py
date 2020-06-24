@@ -18,9 +18,9 @@ class EventsAPI(object):
         """
         Initializes the EventsAPI object.
 
-        :param session: An instance of the HttpSession class
+        :param session: An instance of the HttpSession class.
 
-        :return EventsAPI object.
+        :return EventsAPI object
         """
 
         super(EventsAPI, self).__init__()
@@ -49,8 +49,8 @@ class EventsAPI(object):
         """
         A method to get Events for the specified time range.
 
-        :param start_time: a "%Y-%m-%dT%H:%M:%S%z" structured timestamp to begin from
-        :param end_time: a "%Y-%m-%dT%H:%M:%S%z" structured timestamp to end at
+        :param start_time: A "%Y-%m-%dT%H:%M:%S%z" structured timestamp to begin from.
+        :param end_time: A "%Y-%m-%dT%H:%M:%S%z" structured timestamp to end at.
 
         :return response json
         """

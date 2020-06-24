@@ -59,11 +59,17 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 
 ## Implemented APIs
 
-- [ ] Compliance API
+- [x] Compliance API
 - [ ] Custom Compliance Config API
-- [ ] Download File API
+- [x] Download File API
 - [x] Events API
 - [ ] Integrations API
 - [ ] Run Reports API
 - [x] Token API
 - [x] Vulnerability API
+
+## To-Do
+
+- Implement remaining API classes
+- Improve Exception handling
+- Write approriate tests
