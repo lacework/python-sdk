@@ -48,7 +48,7 @@ class ApiError(laceworksdkException):
             except ValueError:
                 logger.warning("Error parsing JSON response body")
 
-        self.message = self.details.get("message") if self.details else None
+        self.message = self.details["data"].get("message") if self.details else None
         """The error message from the parsed API response."""
 
         super(ApiError, self).__init__(

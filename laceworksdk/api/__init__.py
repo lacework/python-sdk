@@ -7,6 +7,7 @@ from laceworksdk.http_session import HttpSession
 from .compliance import ComplianceAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
+from .integrations import IntegrationsAPI
 from .run_reports import RunReportsAPI
 from .token import TokenAPI
 from .vulnerability import VulnerabilityAPI
@@ -43,6 +44,7 @@ class LaceworkClient(object):
         self.compliance = ComplianceAPI(self._session)
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
+        self.integrations = IntegrationsAPI(self._session)
         self.run_reports = RunReportsAPI(self._session)
         self.tokens = TokenAPI(self._session)
         self.vulnerabilties = VulnerabilityAPI(self._session)

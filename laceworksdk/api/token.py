@@ -44,13 +44,16 @@ class TokenAPI(object):
 
         return response.json()
 
-    def create(self, token_alias=None, token_enabled=False, token_description=None):
+    def create(self,
+               token_alias=None,
+               token_enabled=False,
+               token_description=None):
         """
         A method to create a new set of API credentials.
 
-        :param token_alias: a string representing the alias for the credentials
-        :param token_enalbed: a boolean representing whether the credentials should be enabled
-        :param token_description: a string representing a description for the credentials
+        :param token_alias: A string representing the alias for the credentials.
+        :param token_enabled: A boolean representing whether the credentials should be enabled.
+        :param token_description: A string representing a description for the credentials.
 
         :return response json
         """
@@ -82,7 +85,7 @@ class TokenAPI(object):
         """
         A method to get details about an API credential.
 
-        :param access_token: a string representing the access token to get
+        :param access_token: A string representing the access token to get.
 
         :return response json
         """
@@ -97,14 +100,18 @@ class TokenAPI(object):
 
         return response.json()
 
-    def update_token(self, access_token, token_alias=None, token_enabled=False, token_description=None):
+    def update_token(self,
+                     access_token,
+                     token_alias=None,
+                     token_enabled=False,
+                     token_description=None):
         """
         A method to update the details about an API credential.
 
-        :param access_token: a string representing the access token to update
-        :param token_alias: a string representing the alias for the credentials
-        :param token_enalbed: a boolean representing whether the credentials should be enabled
-        :param token_description: a string representing a description for the credentials
+        :param access_token: A string representing the access token to update.
+        :param token_alias: A string representing the alias for the credentials.
+        :param token_enalbed: A boolean representing whether the credentials should be enabled.
+        :param token_description: A string representing a description for the credentials.
 
         :return response json
         """

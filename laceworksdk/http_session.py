@@ -159,6 +159,33 @@ class HttpSession(object):
 
         return response
 
+    def patch(self, uri, data=None, param=None):
+        """
+        :param uri: uri to send the HTTP POST request to
+        :param data: json object containing the data
+        :param param: python object containing the parameters
+
+        :return: response json
+
+        :raises: ApiError if unable to get a connection
+        """
+
+        self._check_access_token()
+
+        uri = f"{self._base_url}{uri}"
+
+        logger.info(f"PATCH request to URI: {uri}")
+
+        # Perform a PATCH request
+        response = self._session.patch(uri, params=param, json=data, headers=self._get_request_headers())
+
+        # Validate the response
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+
+        self._print_debug_logging(response)
+
+        return response
+
     def post(self, uri, data=None, param=None):
         """
         :param uri: uri to send the HTTP POST request to

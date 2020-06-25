@@ -43,7 +43,7 @@ To generate/retrieve an API Key/Secret, do the following:
 
 ## Installation
 
-Installing and upgrading webexteamssdk is easy:
+Installing and upgrading laceworksdk is easy:
 
 **Install via PIP**
 
@@ -63,7 +63,7 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 - [ ] Custom Compliance Config API
 - [x] Download File API
 - [x] Events API
-- [ ] Integrations API
+- [x] Integrations API
 - [x] Run Reports API
 - [x] Token API
 - [x] Vulnerability API
@@ -71,5 +71,4 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 ## To-Do
 
 - Implement remaining API classes
-- Improve Exception handling
 - Write approriate tests
