@@ -60,7 +60,7 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 ## Implemented APIs
 
 - [x] Compliance API
-- [ ] Custom Compliance Config API
+- [x] Custom Compliance Config API
 - [x] Download File API
 - [x] Events API
 - [x] Integrations API
@@ -70,5 +70,4 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 
 ## To-Do
 
-- Implement remaining API classes
 - Write approriate tests

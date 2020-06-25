@@ -5,6 +5,7 @@ Lacework API wrappers.
 
 from laceworksdk.http_session import HttpSession
 from .compliance import ComplianceAPI
+from .custom_compliance_config import CustomComplianceConfigAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
 from .integrations import IntegrationsAPI
@@ -42,6 +43,7 @@ class LaceworkClient(object):
 
         # API Wrappers
         self.compliance = ComplianceAPI(self._session)
+        self.compliance.config = CustomComplianceConfigAPI(self._session)
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
