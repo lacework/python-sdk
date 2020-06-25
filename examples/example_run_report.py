@@ -23,14 +23,10 @@ if __name__ == "__main__":
     # Run Report API
 
     # Run compliance report on an AWS Account
-    lacework_client.runreports.run_aws_report(aws_account_id="123456789")
+    lacework_client.run_reports.aws(aws_account_id="123456789")
 
     # Run compliance report on an Azure Tenant Account
-    lacework_client.runreports.run_azure_report(azure_tenant_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
-
+    lacework_client.run_reports.azure(azure_tenant_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
 
     # Run compliance report on a GCP Project
-
-    lacework_client.runreports.run_gcp_report(gcp_project_id="example-project-id")
-
-    
+    lacework_client.run_reports.gcp(gcp_project_id="example-project-id")
