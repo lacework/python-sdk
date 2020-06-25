@@ -64,7 +64,7 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 - [x] Download File API
 - [x] Events API
 - [ ] Integrations API
-- [ ] Run Reports API
+- [x] Run Reports API
 - [x] Token API
 - [x] Vulnerability API
 
