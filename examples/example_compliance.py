@@ -5,7 +5,6 @@ Example script showing how to use the LaceworkClient class.
 
 import logging
 import os
-import random
 
 from dotenv import load_dotenv
 from laceworksdk import LaceworkClient

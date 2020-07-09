@@ -8,6 +8,7 @@ import os
 import random
 import time
 
+from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 from laceworksdk import LaceworkClient
 
@@ -21,6 +22,12 @@ if __name__ == "__main__":
     lacework_client = LaceworkClient(api_key=os.getenv("LACEWORK_API_KEY"),
                                      api_secret=os.getenv("LACEWORK_API_SECRET"),
                                      instance=os.getenv("LACEWORK_INSTANCE"))
+
+    # Build start/end times
+    current_time = datetime.now(timezone.utc)
+    start_time = current_time - timedelta(days=6)
+    start_time = start_time.strftime("%Y-%m-%dT%H:%M:%S%z")
+    end_time = current_time.strftime("%Y-%m-%dT%H:%M:%S%z")
 
     # Vulnerability API
 
@@ -36,6 +43,9 @@ if __name__ == "__main__":
     host_vulnerabilities_machine_id = lacework_client.vulnerabilties.get_host_vulnerabilities_by_machine_id("1")
 
     # Containers
+
+    # Get container evaluations for the specified time range
+    container_evaluations = lacework_client.vulnerabilties.get_container_evaluations_by_date(start_time=start_time, end_time=end_time)
 
     # Get container vulnerabilities for the specified image digest
     container_vulnerabilities = lacework_client.vulnerabilties.get_container_vulnerabilities(image_digest="sha256:123")

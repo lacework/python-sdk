@@ -7,7 +7,7 @@ import logging
 import os
 import random
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 from laceworksdk import LaceworkClient
 
@@ -23,7 +23,7 @@ if __name__ == "__main__":
                                      instance=os.getenv("LACEWORK_INSTANCE"))
 
     # Build start/end times
-    current_time = datetime.now()
+    current_time = datetime.now(timezone.utc)
     start_time = current_time - timedelta(days=1)
     start_time = start_time.strftime("%Y-%m-%dT%H:%M:%S%z")
     end_time = current_time.strftime("%Y-%m-%dT%H:%M:%S%z")
