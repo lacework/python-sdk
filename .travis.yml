@@ -6,4 +6,4 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - pytest -m "not runreports"
+  - pytest -m "not ci_exempt"

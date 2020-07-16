@@ -14,7 +14,7 @@ def test_run_reports_api_object_creation(api):
     assert isinstance(api.run_reports, RunReportsAPI)
 
 
-@pytest.mark.runreports
+@pytest.mark.ci_exempt
 def test_run_reports_api_aws(api):
     aws_integrations = api.integrations.get_by_type("AWS_CFG")
 
@@ -26,7 +26,7 @@ def test_run_reports_api_aws(api):
             return
 
 
-@pytest.mark.runreports
+@pytest.mark.ci_exempt
 def test_run_reports_api_gcp(api):
     gcp_integrations = api.integrations.get_by_type("GCP_CFG")
 
@@ -38,7 +38,7 @@ def test_run_reports_api_gcp(api):
             return
 
 
-@pytest.mark.runreports
+@pytest.mark.ci_exempt
 def test_run_reports_api_integration(api):
     integrations = api.integrations.get_by_type("AZURE_CFG")
 
