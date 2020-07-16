@@ -1,5 +1,7 @@
 # Lacework Python SDK
 
+[![Build Status](https://travis-ci.org/alannix-lw/lacework-python-sdk.svg?branch=master)](https://travis-ci.org/alannix-lw/lacework-python-sdk)
+
 **laceworksdk** is a community developed Python library for interacting with the Lacework APIs.
 
 The purpose of this library is to simplify the common tasks required for interacting with the Lacework API, and allow

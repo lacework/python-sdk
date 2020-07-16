@@ -9,7 +9,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
     name='laceworksdk',
     packages=find_packages(include=["laceworksdk", "laceworksdk.*"]),
-    version='0.9.1',
+    version='0.9.2',
     license='MIT',
     description='Community-developed Python SDK for the Lacework APIs',
     long_description=long_description,
@@ -23,7 +23,7 @@ setup(
         'requests',
     ],
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
