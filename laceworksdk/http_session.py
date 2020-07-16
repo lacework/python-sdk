@@ -12,7 +12,7 @@ from datetime import datetime, timedelta, timezone
 from laceworksdk.config import (
     DEFAULT_BASE_DOMAIN,
     DEFAULT_ACCESS_TOKEN_EXPIRATION,
-    DEFAULT_SUCCESS_RESPONSE_CODE
+    DEFAULT_SUCCESS_RESPONSE_CODES
 )
 from laceworksdk.exceptions import ApiError
 from requests.adapters import HTTPAdapter
@@ -65,11 +65,11 @@ class HttpSession(object):
             self._access_token_expiry = datetime.now(timezone.utc) + timedelta(seconds=DEFAULT_ACCESS_TOKEN_EXPIRATION)
             self._access_token = response.json()["data"][0]["token"]
 
-    def _check_response_code(self, response, expected_response_code):
+    def _check_response_code(self, response, expected_response_codes):
         """
         Check the requests.response.status_code to make sure it's on that we expected.
         """
-        if response.status_code == expected_response_code:
+        if response.status_code in expected_response_codes:
             pass
         else:
             raise ApiError(response)
@@ -153,7 +153,7 @@ class HttpSession(object):
         response = self._session.get(uri, headers=self._get_request_headers())
 
         # Validate the response
-        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
         self._print_debug_logging(response)
 
@@ -175,12 +175,13 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"PATCH request to URI: {uri}")
+        logger.info(f"PATCH request data:\n{data}")
 
         # Perform a PATCH request
         response = self._session.patch(uri, params=param, json=data, headers=self._get_request_headers())
 
         # Validate the response
-        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
         self._print_debug_logging(response)
 
@@ -202,12 +203,13 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"POST request to URI: {uri}")
+        logger.info(f"POST request data:\n{data}")
 
         # Perform a POST request
         response = self._session.post(uri, params=param, json=data, headers=self._get_request_headers())
 
         # Validate the response
-        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
         self._print_debug_logging(response)
 
@@ -229,12 +231,13 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"PUT request to URI: {uri}")
+        logger.info(f"PUT request data:\n{data}")
 
         # Perform a PUT request
         response = self._session.put(uri, params=param, json=data, headers=self._get_request_headers())
 
         # Validate the response
-        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
         self._print_debug_logging(response)
 
@@ -259,7 +262,7 @@ class HttpSession(object):
         response = self._session.delete(uri, headers=self._get_request_headers())
 
         # Validate the response
-        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODE)
+        self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
         self._print_debug_logging(response)
 

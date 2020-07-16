@@ -35,12 +35,15 @@ class ComplianceAPI(object):
         if file_format is "json":
             return response.json()
         else:
-            logger.info(f"Creating PDF at {pdf_path}")
+            if pdf_path:
+                logger.info(f"Creating PDF at {pdf_path}")
 
-            with open(pdf_path, 'wb') as f:
-                f.write(response.content)
+                with open(pdf_path, 'wb') as f:
+                    f.write(response.content)
 
-            return response.content
+                return response.content
+            else:
+                logger.error("A path must be provided when requesting a PDF formatted compliance report.")
 
     def get_latest_aws_report(self,
                               aws_account_id,
@@ -176,7 +179,7 @@ class ComplianceAPI(object):
         logger.info("Getting list of GCP Projects from Lacework...")
 
         # Build the Compliance list subscription request URI
-        api_uri = "/api/v1/external/compliance/azure/ListSubscriptionsForTenant?" \
+        api_uri = "/api/v1/external/compliance/gcp/ListProjectsForOrganization?" \
                   f"GCP_ORG_ID={gcp_organization_id}"
 
         response = self._session.get(api_uri)
