@@ -31,7 +31,8 @@ class DownloadFileAPI(object):
         """
         A method to get the AWS CloudFormation template of the specified type.
 
-        :param file: a string representing which template to download. ("aws-config" or "aws-cloudtrail")
+        :param file: a string representing which template to download.
+            ("aws-config" or "aws-cloudtrail")
 
         :return response json
         """

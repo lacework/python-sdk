@@ -33,7 +33,8 @@ class IntegrationsAPI(object):
 
         :param name: A string representing the integration name.
         :param type: A string representing the integration type.
-        :param enabled: An integer representing whether the integration is enabled. (0 or 1)
+        :param enabled: An integer representing whether the integration is enabled.
+            (0 or 1)
         :param data: A JSON object matching the schema for the specified type.
 
         :return response json
