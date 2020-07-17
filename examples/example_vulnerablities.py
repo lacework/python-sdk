@@ -37,7 +37,7 @@ if __name__ == "__main__":
     host_vulnerabilities = lacework_client.vulnerabilties.get_host_vulnerabilities()
 
     # Get host vulnerabilities for the specified CVE
-    host_vulnerabilities_cve = lacework_client.vulnerabilties.get_host_vulnerabilities(random.choice(host_vulnerabilities["data"])["cve_id"])
+    host_vulnerabilities_cve = lacework_client.vulnerabilties.get_host_vulnerabilities_by_cve(random.choice(host_vulnerabilities["data"])["cve_id"])
 
     # Get host vulnerabilities for the specified machine ID
     host_vulnerabilities_machine_id = lacework_client.vulnerabilties.get_host_vulnerabilities_by_machine_id("1")
