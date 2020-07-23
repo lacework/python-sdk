@@ -8,6 +8,8 @@ install:
 script:
 - pytest -m "not ci_exempt"
 deploy:
+  on:
+    branch: master
   provider: pypi
   skip_existing: true
   username: "__token__"
