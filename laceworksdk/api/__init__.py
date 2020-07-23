@@ -49,4 +49,4 @@ class LaceworkClient(object):
         self.integrations = IntegrationsAPI(self._session)
         self.run_reports = RunReportsAPI(self._session)
         self.tokens = TokenAPI(self._session)
-        self.vulnerabilties = VulnerabilityAPI(self._session)
+        self.vulnerabilities = VulnerabilityAPI(self._session)

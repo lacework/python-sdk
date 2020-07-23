@@ -34,30 +34,30 @@ if __name__ == "__main__":
     # Host
 
     # Get host vulnerabilities for the previous 24 hours
-    host_vulnerabilities = lacework_client.vulnerabilties.get_host_vulnerabilities()
+    host_vulnerabilities = lacework_client.vulnerabilities.get_host_vulnerabilities()
 
     # Get host vulnerabilities for the specified CVE
-    host_vulnerabilities_cve = lacework_client.vulnerabilties.get_host_vulnerabilities_by_cve(random.choice(host_vulnerabilities["data"])["cve_id"])
+    host_vulnerabilities_cve = lacework_client.vulnerabilities.get_host_vulnerabilities_by_cve(random.choice(host_vulnerabilities["data"])["cve_id"])
 
     # Get host vulnerabilities for the specified machine ID
-    host_vulnerabilities_machine_id = lacework_client.vulnerabilties.get_host_vulnerabilities_by_machine_id("1")
+    host_vulnerabilities_machine_id = lacework_client.vulnerabilities.get_host_vulnerabilities_by_machine_id("1")
 
     # Containers
 
     # Get container evaluations for the specified time range
-    container_evaluations = lacework_client.vulnerabilties.get_container_evaluations_by_date(start_time=start_time, end_time=end_time)
+    container_evaluations = lacework_client.vulnerabilities.get_container_evaluations_by_date(start_time=start_time, end_time=end_time)
 
     # Get container vulnerabilities for the specified image digest
-    container_vulnerabilities = lacework_client.vulnerabilties.get_container_vulnerabilities(image_digest="sha256:123")
+    container_vulnerabilities = lacework_client.vulnerabilities.get_container_vulnerabilities(image_digest="sha256:123")
 
     # Initiate a container scan for the specified repo and tag
-    container_vulnerability_scan = lacework_client.vulnerabilties.initiate_container_scan("index.docker.io", "foo/bar", "latest")
+    container_vulnerability_scan = lacework_client.vulnerabilities.initiate_container_scan("index.docker.io", "foo/bar", "latest")
 
     # Loop/wait for the container vulnerability scan to finish
     while True:
 
         # Get the scan status
-        container_vulnerability_scan_status = lacework_client.vulnerabilties.get_container_scan_status(container_vulnerability_scan["data"]["RequestId"])
+        container_vulnerability_scan_status = lacework_client.vulnerabilities.get_container_scan_status(container_vulnerability_scan["data"]["RequestId"])
 
         # Wait for the scan to finish, then break
         if "Status" in container_vulnerability_scan_status["data"].keys():

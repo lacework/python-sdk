@@ -18,9 +18,9 @@ lw = LaceworkClient(api_key="API KEY",
 
 events = lw.events.get_for_date_range(start_time=start_time, end_time=end_time)
 
-host_vulns = lw.vulnerabilties.get_host_vulnerabilities()
+host_vulns = lw.vulnerabilities.get_host_vulnerabilities()
 
-container_vulns = lw.vulnerabilties.get_container_vulnerabilities(image_digest="sha256:123")
+container_vulns = lw.vulnerabilities.get_container_vulnerabilities(image_digest="sha256:123")
 
 ```
 
