@@ -69,7 +69,3 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 - [x] Run Reports API
 - [x] Token API
 - [x] Vulnerability API
-
-## To-Do
-
-- Write approriate tests
