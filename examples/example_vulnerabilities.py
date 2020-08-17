@@ -45,7 +45,7 @@ if __name__ == "__main__":
     # Containers
 
     # Get container evaluations for the specified time range
-    container_evaluations = lacework_client.vulnerabilities.get_container_evaluations_by_date(start_time=start_time, end_time=end_time)
+    container_evaluations = lacework_client.vulnerabilities.get_container_assessments_by_date(start_time=start_time, end_time=end_time)
 
     # Get container vulnerabilities for the specified image digest
     container_vulnerabilities = lacework_client.vulnerabilities.get_container_vulnerabilities(image_digest="sha256:123")
