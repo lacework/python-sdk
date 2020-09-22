@@ -5,7 +5,6 @@ HttpSession class for package HTTP functions.
 
 import json
 import logging
-import pkg_resources
 import requests
 
 from datetime import datetime, timedelta, timezone
@@ -19,6 +18,8 @@ from laceworksdk.exceptions import ApiError
 from requests.adapters import HTTPAdapter
 
 logger = logging.getLogger(__name__)
+
+version = "0.9.6"
 
 
 class HttpSession(object):
@@ -100,9 +101,6 @@ class HttpSession(object):
 
         uri = f"{self._base_url}/api/v1/access/tokens"
 
-        # Get the current laceworksdk version
-        version = pkg_resources.require("laceworksdk")[0].version
-
         # Build the access token request headers
         headers = {
             "X-LW-UAKS": self._api_secret,
@@ -130,9 +128,6 @@ class HttpSession(object):
         """
         A method to build the HTTP request headers for Lacework.
         """
-
-        # Get the current laceworksdk version
-        version = pkg_resources.require("laceworksdk")[0].version
 
         # Build the request headers
         headers = {
