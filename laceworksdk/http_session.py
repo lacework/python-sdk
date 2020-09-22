@@ -5,6 +5,7 @@ HttpSession class for package HTTP functions.
 
 import json
 import logging
+import pkg_resources
 import requests
 
 from datetime import datetime, timedelta, timezone
@@ -99,10 +100,14 @@ class HttpSession(object):
 
         uri = f"{self._base_url}/api/v1/access/tokens"
 
+        # Get the current laceworksdk version
+        version = pkg_resources.require("laceworksdk")[0].version
+
         # Build the access token request headers
         headers = {
             "X-LW-UAKS": self._api_secret,
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "User-Agent": f"'laceworksdk' Python Client/{version}"
         }
 
         # Build the access token request data
@@ -126,9 +131,13 @@ class HttpSession(object):
         A method to build the HTTP request headers for Lacework.
         """
 
+        # Get the current laceworksdk version
+        version = pkg_resources.require("laceworksdk")[0].version
+
         # Build the request headers
         headers = {
-            "Authorization": self._access_token
+            "Authorization": self._access_token,
+            "User-Agent": f"'laceworksdk' Python Client/{version}"
         }
 
         return headers
