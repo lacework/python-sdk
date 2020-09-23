@@ -19,7 +19,7 @@ from requests.adapters import HTTPAdapter
 
 logger = logging.getLogger(__name__)
 
-version = "0.9.7"
+version = "0.9.8"
 
 
 class HttpSession(object):
@@ -116,6 +116,9 @@ class HttpSession(object):
 
         try:
             response = self._session.post(uri, json=data, headers=headers)
+
+            # Validate the response
+            self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
             self._print_debug_logging(response)
 
