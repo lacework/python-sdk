@@ -19,7 +19,7 @@ from requests.adapters import HTTPAdapter
 
 logger = logging.getLogger(__name__)
 
-version = "0.9.6"
+version = "0.9.7"
 
 
 class HttpSession(object):
@@ -105,7 +105,7 @@ class HttpSession(object):
         headers = {
             "X-LW-UAKS": self._api_secret,
             "Content-Type": "application/json",
-            "User-Agent": f"'laceworksdk' Python Client/{version}"
+            "User-Agent": f"laceworksdk-python-client/{version}"
         }
 
         # Build the access token request data
@@ -132,7 +132,7 @@ class HttpSession(object):
         # Build the request headers
         headers = {
             "Authorization": self._access_token,
-            "User-Agent": f"'laceworksdk' Python Client/{version}"
+            "User-Agent": f"laceworksdk-python-client/{version}"
         }
 
         return headers
