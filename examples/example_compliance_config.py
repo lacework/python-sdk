@@ -16,9 +16,9 @@ load_dotenv()
 if __name__ == "__main__":
 
     # Use enviroment variables to instantiate a LaceworkClient instance
-    lacework_client = LaceworkClient(api_key=os.getenv("LACEWORK_API_KEY"),
-                                     api_secret=os.getenv("LACEWORK_API_SECRET"),
-                                     instance=os.getenv("LACEWORK_INSTANCE"))
+    lacework_client = LaceworkClient(api_key=os.getenv("LW_API_KEY"),
+                                     api_secret=os.getenv("LW_API_SECRET"),
+                                     account=os.getenv("LW_ACCOUNT"))
 
     # Custom Compliance Config API
 

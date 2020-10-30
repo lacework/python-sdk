@@ -3,15 +3,8 @@ python:
 - '3.6'
 - '3.7'
 - '3.8'
+- '3.9'
 install:
 - pip install -r requirements.txt
 script:
 - pytest -m "not ci_exempt"
-deploy:
-  on:
-    branch: master
-  provider: pypi
-  skip_existing: true
-  username: "__token__"
-  password:
-    secure: elUVF8eM62pndd9HgRVvEaCwHUxHm48enZx9HxQloup3Mqvfcn8kESyG+ValoO7rrOJHfehPYkbnlLid/64+IXbVEjsbmbls9wab/ok5wkxTYXz/UWPxrFFkcOrql2O1/oDnCO/CWOMxjLdh3IcK9xyLOgvso9i5Fk6qnCnEuclxBD7wC+qEj0qrIBphbB05UgQz0kL75tpbm1wvP8Rce740e4QdowWZZGMCKVEaC6KcvZzeQsNXGlHvObXHSZ5Ku+rspmNIUPdWQG+7l/cVnXo9QG2q+2rys8sHUKwVtzlR9HsZ7Qr5gDMsgthJccOEV7AlDhxTgjIfArSPp0CgiUeLr/tIbupJL6PYdclX3bXo7Ai60T8PwDqAX3qBeuTTD2c8PUd1Mbse9iOOjBZJsduN8jggoDT37GIEOo0fmO3QQRVwGqEN+S4YQbEZ/bUNaSjmyx3kFM4rNaSphT6IBgYQ6CeTTth7iiLnIzxdj26NRDGYw8sVIyfFw5YdtD/dOP8pFvt2HpP3F7BSIQ6srI64tRPUGu/yRevc9IeaeirS12p8YRZv6vsns6SIbwJ09OKi8PDSywNKKNvdWT4KS6g+0u0Kpwxoroh+vllCZiKVRVSuSqym3Er3T4PqJHjIqaPmwFmXyf2xBN6gD83xKS3MTmi8aXPTjycKNuAST+o=
