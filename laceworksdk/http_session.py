@@ -30,13 +30,13 @@ class HttpSession(object):
     _access_token = None
     _access_token_expiry = None
 
-    def __init__(self, api_key, api_secret, instance):
+    def __init__(self, account, api_key, api_secret):
         """
         Initializes the HttpSession object.
 
+        :param account: a Lacework Account name
         :param api_key: a Lacework API Key
         :param api_secret: a Lacework API Secret
-        :param instance: a Lacework instance name
 
         :return HttpSession object.
         """
@@ -49,7 +49,7 @@ class HttpSession(object):
         # Set the base parameters
         self._api_key = api_key
         self._api_secret = api_secret
-        self._base_url = f"https://{instance}.{DEFAULT_BASE_DOMAIN}"
+        self._base_url = f"https://{account}.{DEFAULT_BASE_DOMAIN}"
 
         # Get an access token
         self._check_access_token()

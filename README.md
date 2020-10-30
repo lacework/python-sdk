@@ -1,6 +1,6 @@
 # Lacework Python SDK
 
-[![Build Status](https://travis-ci.org/alannix-lw/lacework-python-sdk.svg?branch=master)](https://travis-ci.org/alannix-lw/lacework-python-sdk)
+[![Build Status](https://travis-ci.org/alannix-lw/python-sdk.svg?branch=master)](https://travis-ci.org/alannix-lw/python-sdk)
 
 **laceworksdk** is a community developed Python library for interacting with the Lacework APIs.
 
@@ -12,36 +12,45 @@ fetch events, fetch host vulnerabilities, and fetch container vulnerabilities - 
 ```
 from laceworksdk import LaceworkClient
 
-lw = LaceworkClient(api_key="API KEY",
-                    api_secret="API SECRET",
-                    instance="INSTANCE")
+lw = LaceworkClient(account="ACCOUNT",
+                    api_key="API KEY",
+                    api_secret="API SECRET")
 
 events = lw.events.get_for_date_range(start_time=start_time, end_time=end_time)
 
 host_vulns = lw.vulnerabilities.get_host_vulnerabilities()
 
 container_vulns = lw.vulnerabilities.get_container_vulnerabilities(image_digest="sha256:123")
-
 ```
 
 ## Requirements
 
 - Python 3.6 or higher
 - Lacework API Credentials
+  - Account Name
   - API Key
   - API Secret
-  - Instance Name
 
 ## How-To
 
 The following data points are required to instantiate a LaceworkClient instance:
-   - api_key: The API Key that was generated from the Lacework UI/API.
-   - api_secret: The API Secret that was generated from the Lacework UI/API.
-   - instance: Your Lacework instance name. (`xxxxx`.lacework.net)
+   - `account`: Your Lacework account sub-domain. (`xxxxx`.lacework.net)
+   - `api_key`: The API Key that was generated from the Lacework UI/API.
+   - `api_secret`: The API Secret that was generated from the Lacework UI/API.
 
-To generate/retrieve an API Key/Secret, do the following:
-   - In the Lacework web interface, go to Settings -> API Keys
-   - Create a new API Key, or download information for an existing one.
+To generate an API Key and Secret, do the following:
+   1. In the Lacework web interface, go to Settings -> API Keys
+   2. Create a new API Key, or download information for an existing one.
+
+### Environment Variables
+
+The `account`, `api_key`, and `api_secret` can also be set using environment variables.
+
+| Environment Variable | Description |
+|----------------------|-------------|
+|`LW_ACCOUNT`|Lacework account sub-domain (i.e. `xxxxx`.lacework.net)|
+|`LW_API_KEY`|Lacework API Access Key|
+|`LW_API_SECRET`|Lacework API Access Secret|
 
 ## Installation
 

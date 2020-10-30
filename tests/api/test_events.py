@@ -25,6 +25,14 @@ def test_events_api_object_creation(api):
     assert isinstance(api.events, EventsAPI)
 
 
+def test_events_api_old_object_creation(api_old):
+    assert isinstance(api_old.events, EventsAPI)
+
+
+def test_events_api_env_object_creation(api_env):
+    assert isinstance(api_env.events, EventsAPI)
+
+
 def test_events_api_get_for_date_range(api):
     response = api.events.get_for_date_range(start_time=start_time, end_time=end_time)
     assert 'data' in response.keys()

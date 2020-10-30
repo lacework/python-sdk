@@ -3,6 +3,9 @@
 Lacework API wrappers.
 """
 
+import os
+
+from dotenv import load_dotenv
 from laceworksdk.http_session import HttpSession
 from .compliance import ComplianceAPI
 from .custom_compliance_config import CustomComplianceConfigAPI
@@ -13,6 +16,14 @@ from .run_reports import RunReportsAPI
 from .token import TokenAPI
 from .vulnerability import VulnerabilityAPI
 
+from laceworksdk.config import (
+    LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE,
+    LACEWORK_API_KEY_ENVIRONMENT_VARIABLE,
+    LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE,
+)
+
+load_dotenv()
+
 
 class LaceworkClient(object):
     """
@@ -20,6 +31,7 @@ class LaceworkClient(object):
     """
 
     def __init__(self,
+                 account=None,
                  api_key=None,
                  api_secret=None,
                  instance=None):
@@ -29,16 +41,16 @@ class LaceworkClient(object):
         :return LaceworkClient object.
         """
 
-        # Set object params
-        self._api_key = api_key
-        self._api_secret = api_secret
-        self._instance = instance
+        # Attempt to use Environment Variables
+        self._account = account or instance or os.getenv(LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE)
+        self._api_key = api_key or os.getenv(LACEWORK_API_KEY_ENVIRONMENT_VARIABLE)
+        self._api_secret = api_secret or os.getenv(LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE)
 
         # Create an HttpSession instance
         self._session = HttpSession(
+            self._account,
             self._api_key,
-            self._api_secret,
-            self._instance
+            self._api_secret
         )
 
         # API Wrappers

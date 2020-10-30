@@ -17,21 +17,33 @@ load_dotenv()
 
 @pytest.fixture(scope="session")
 def api_key():
-    return os.getenv("LACEWORK_API_KEY")
+    return os.getenv("LW_API_KEY")
 
 
 @pytest.fixture(scope="session")
 def api_secret():
-    return os.getenv("LACEWORK_API_SECRET")
+    return os.getenv("LW_API_SECRET")
 
 
 @pytest.fixture(scope="session")
-def instance():
-    return os.getenv("LACEWORK_INSTANCE")
+def account():
+    return os.getenv("LW_ACCOUNT")
 
 
 @pytest.fixture(scope="session")
-def api(api_key, api_secret, instance):
+def api_old(api_key, api_secret, account):
     return laceworksdk.LaceworkClient(api_key=api_key,
                                       api_secret=api_secret,
-                                      instance=instance)
+                                      instance=account)
+
+
+@pytest.fixture(scope="session")
+def api(account, api_key, api_secret):
+    return laceworksdk.LaceworkClient(account=account,
+                                      api_key=api_key,
+                                      api_secret=api_secret)
+
+
+@pytest.fixture(scope="session")
+def api_env():
+    return laceworksdk.LaceworkClient()
