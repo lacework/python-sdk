@@ -1,15 +1,25 @@
+import os
+
 from setuptools import find_packages, setup
 
-# read the contents of README.md file
-from os import path
-this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+
+PACKAGE_NAME = "laceworksdk"
+
+project_root = os.path.abspath(os.path.dirname(__file__))
+
+# Read the contents of README.md file
+with open(os.path.join(project_root, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
+
+# Read the version from version.py file
+version = {}
+with open(os.path.join(project_root, PACKAGE_NAME, 'version.py'), encoding='utf-8') as f:
+    exec(f.read(), version)
 
 setup(
     name='laceworksdk',
     packages=find_packages(include=["laceworksdk", "laceworksdk.*"]),
-    version='0.9.9',
+    version=version['__version__'],
     license='MIT',
     description='Community-developed Python SDK for the Lacework APIs',
     long_description=long_description,

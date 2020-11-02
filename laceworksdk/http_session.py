@@ -9,6 +9,7 @@ import requests
 
 from datetime import datetime, timedelta, timezone
 
+from laceworksdk import __version__
 from laceworksdk.config import (
     DEFAULT_BASE_DOMAIN,
     DEFAULT_ACCESS_TOKEN_EXPIRATION,
@@ -18,8 +19,6 @@ from laceworksdk.exceptions import ApiError
 from requests.adapters import HTTPAdapter
 
 logger = logging.getLogger(__name__)
-
-version = "0.9.8"
 
 
 class HttpSession(object):
@@ -105,7 +104,7 @@ class HttpSession(object):
         headers = {
             "X-LW-UAKS": self._api_secret,
             "Content-Type": "application/json",
-            "User-Agent": f"laceworksdk-python-client/{version}"
+            "User-Agent": f"laceworksdk-python-client/{__version__}"
         }
 
         # Build the access token request data
@@ -135,7 +134,7 @@ class HttpSession(object):
         # Build the request headers
         headers = {
             "Authorization": self._access_token,
-            "User-Agent": f"laceworksdk-python-client/{version}"
+            "User-Agent": f"laceworksdk-python-client/{__version__}"
         }
 
         return headers

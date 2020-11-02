@@ -3,6 +3,8 @@
 Community-developed Python SDK for interacting with Lacework APIs.
 """
 
+from .version import __version__
+
 import logging
 
 from .api import LaceworkClient
