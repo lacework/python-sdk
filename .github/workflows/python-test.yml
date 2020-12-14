@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.5", "3.6", "3.7", "3.8"]
+        python-version: ["3.6", "3.7", "3.8", "3.9"]
 
     steps:
       - uses: actions/checkout@v2
@@ -33,3 +33,7 @@ jobs:
       - name: Test with pytest
         run: |
           pytest -m "not ci_exempt"
+        env:
+          LW_ACCOUNT: ${{ secrets.LW_ACCOUNT }}
+          LW_API_KEY: ${{ secrets.LW_API_KEY }}
+          LW_API_SECRET: ${{ secrets.LW_API_SECRET }}
