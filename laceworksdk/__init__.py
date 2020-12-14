@@ -3,12 +3,12 @@
 Community-developed Python SDK for interacting with Lacework APIs.
 """
 
-from .version import __version__
+from .version import __version__  # noqa: F401
 
 import logging
 
-from .api import LaceworkClient
-from .exceptions import ApiError, laceworksdkException
+from .api import LaceworkClient  # noqa: F401
+from .exceptions import ApiError, laceworksdkException  # noqa: F401
 
 # Initialize Package Logging
 logger = logging.getLogger(__name__)

@@ -3,7 +3,6 @@
 Lacework Integrations API wrapper.
 """
 
-import json
 import logging
 
 logger = logging.getLogger(__name__)
@@ -43,7 +42,7 @@ class IntegrationsAPI(object):
         logger.info("Creating cloud integration in Lacework...")
 
         # Build the Host Vulnerabilities request URI
-        api_uri = f"/api/v1/external/integrations"
+        api_uri = "/api/v1/external/integrations"
 
         data = {
             "NAME": name,
@@ -66,7 +65,7 @@ class IntegrationsAPI(object):
         logger.info("Getting cloud integrations from Lacework...")
 
         # Build the Integrations request URI
-        api_uri = f"/api/v1/external/integrations"
+        api_uri = "/api/v1/external/integrations"
 
         response = self._session.get(api_uri)
 

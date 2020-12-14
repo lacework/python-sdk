@@ -3,7 +3,6 @@
 Lacework Custom Compliance Config API wrapper.
 """
 
-import json
 import logging
 
 logger = logging.getLogger(__name__)
@@ -37,7 +36,7 @@ class CustomComplianceConfigAPI(object):
         logger.info("Getting custom compliance settings from Lacework...")
 
         # Build the Run Report request URI
-        api_uri = f"/api/v1/external/CustomComplianceConfig"
+        api_uri = "/api/v1/external/CustomComplianceConfig"
 
         response = self._session.get(api_uri)
 
@@ -55,7 +54,7 @@ class CustomComplianceConfigAPI(object):
         logger.info("Setting custom compliance settings in Lacework...")
 
         # Build the Run Report request URI
-        api_uri = f"/api/v1/external/CustomComplianceConfig"
+        api_uri = "/api/v1/external/CustomComplianceConfig"
 
         response = self._session.post(api_uri, data=data)
 

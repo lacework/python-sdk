@@ -3,7 +3,6 @@
 Lacework Token API wrapper.
 """
 
-import json
 import logging
 
 logger = logging.getLogger(__name__)
@@ -37,7 +36,7 @@ class TokenAPI(object):
         logger.info("Getting enabled API credentials from Lacework...")
 
         # Build the Token API URI
-        api_uri = f"/api/v1/external/tokens"
+        api_uri = "/api/v1/external/tokens"
 
         # GET to retreieve the enabled API credentials
         response = self._session.get(api_uri)
@@ -74,7 +73,7 @@ class TokenAPI(object):
             data["PROPS"]["DESCRIPTION"]: token_description
 
         # Build the Token API URI
-        api_uri = f"/api/v1/external/tokens"
+        api_uri = "/api/v1/external/tokens"
 
         # POST to create an API credential
         response = self._session.post(api_uri, data=data)

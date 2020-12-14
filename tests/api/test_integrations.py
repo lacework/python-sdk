@@ -5,8 +5,6 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 
 import random
 
-import pytest
-
 from laceworksdk.api.integrations import IntegrationsAPI
 
 

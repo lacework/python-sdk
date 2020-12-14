@@ -3,7 +3,6 @@
 Lacework Compliance API wrapper.
 """
 
-import json
 import logging
 
 logger = logging.getLogger(__name__)
@@ -32,7 +31,7 @@ class ComplianceAPI(object):
         A method to either return JSON or write a file.
         """
 
-        if file_format is "json":
+        if file_format == "json":
             return response.json()
         else:
             if pdf_path:

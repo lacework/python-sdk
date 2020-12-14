@@ -5,8 +5,6 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 
 import random
 
-import pytest
-
 from datetime import datetime, timedelta, timezone
 
 from laceworksdk.api.events import EventsAPI

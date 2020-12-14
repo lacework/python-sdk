@@ -3,8 +3,6 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-import pytest
-
 pytest_plugins = [
     'tests.test_laceworksdk',
     'tests.api',

@@ -11,6 +11,7 @@ venv/
 # Test artifacts
 .cache/
 .pytest_cache/
+example.py
 
 # Byte-compiled / optimized files
 *.py[cod]

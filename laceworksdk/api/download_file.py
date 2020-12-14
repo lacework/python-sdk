@@ -3,7 +3,6 @@
 Lacework Download File API wrapper.
 """
 
-import json
 import logging
 
 logger = logging.getLogger(__name__)

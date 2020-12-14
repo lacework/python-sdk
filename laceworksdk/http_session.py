@@ -16,7 +16,6 @@ from laceworksdk.config import (
     DEFAULT_SUCCESS_RESPONSE_CODES
 )
 from laceworksdk.exceptions import ApiError
-from requests.adapters import HTTPAdapter
 
 logger = logging.getLogger(__name__)
 
