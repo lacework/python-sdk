@@ -3,7 +3,7 @@
 Community-developed Python SDK for interacting with Lacework APIs.
 """
 
-from .version import __version__  # noqa: F401
+from .version import version  # noqa: F401
 
 import logging
 

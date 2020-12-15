@@ -24,3 +24,6 @@ docs/_build/
 
 # Code editors
 .vscode
+
+# Package Sepcific
+laceworksdk/version.py
