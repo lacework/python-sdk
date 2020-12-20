@@ -63,8 +63,11 @@ class HttpSession(object):
 
             response = self._get_access_token()
 
+            # Parse and restructure the returned date (necessary for Python 3.6)
+            expiry_date = response.json()["expiresAt"].replace('Z', '+0000')
+
             # Update the access token and expiration
-            self._access_token_expiry = datetime.strptime(response.json()["expiresAt"], "%Y-%m-%dT%H:%M:%S.%f%z")
+            self._access_token_expiry = datetime.strptime(expiry_date, "%Y-%m-%dT%H:%M:%S.%f%z")
             self._access_token = response.json()["token"]
 
     def _check_response_code(self, response, expected_response_codes):
