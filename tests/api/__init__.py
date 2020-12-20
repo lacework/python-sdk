@@ -31,15 +31,22 @@ def account():
 
 
 @pytest.fixture(scope="session")
-def api_old(api_key, api_secret, account):
-    return laceworksdk.LaceworkClient(api_key=api_key,
-                                      api_secret=api_secret,
-                                      instance=account)
+def subaccount():
+    return os.getenv("LW_SUBACCOUNT")
 
 
 @pytest.fixture(scope="session")
-def api(account, api_key, api_secret):
+def api_old(account, subaccount, api_key, api_secret):
+    return laceworksdk.LaceworkClient(instance=account,
+                                      subaccount=subaccount,
+                                      api_key=api_key,
+                                      api_secret=api_secret)
+
+
+@pytest.fixture(scope="session")
+def api(account, subaccount, api_key, api_secret):
     return laceworksdk.LaceworkClient(account=account,
+                                      subaccount=subaccount,
                                       api_key=api_key,
                                       api_secret=api_secret)
 

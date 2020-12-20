@@ -34,7 +34,9 @@ container_vulns = lw.vulnerabilities.get_container_vulnerabilities(image_digest=
 ## How-To
 
 The following data points are required to instantiate a LaceworkClient instance:
-   - `account`: Your Lacework account sub-domain. (`xxxxx`.lacework.net)
+   - `account`: The Lacework account/organization domain. (`xxxxx`.lacework.net)
+   - `subaccount`: (Optional) The Lacework sub-account domain. (`xxxxx`.lacework.net)
+      - This is only used if leveraging the Manage@Scale organization feature of Lacework
    - `api_key`: The API Key that was generated from the Lacework UI/API.
    - `api_secret`: The API Secret that was generated from the Lacework UI/API.
 
@@ -44,17 +46,18 @@ To generate an API Key and Secret, do the following:
 
 ### Environment Variables
 
-The `account`, `api_key`, and `api_secret` can also be set using environment variables.
+The `account`, `subaccount`, `api_key`, and `api_secret` can also be set using environment variables.
 
-| Environment Variable | Description |
-|----------------------|-------------|
-|`LW_ACCOUNT`|Lacework account sub-domain (i.e. `xxxxx`.lacework.net)|
-|`LW_API_KEY`|Lacework API Access Key|
-|`LW_API_SECRET`|Lacework API Access Secret|
+| Environment Variable | Description | Required |
+|----------------------|-------------|:--------:|
+|`LW_ACCOUNT`|Lacework account/organization domain (i.e. `xxxxx`.lacework.net)|Y|
+|`LW_SUBACCOUNT`|Lacework sub-account domain (i.e. `xxxxx`.lacework.net)|N|
+|`LW_API_KEY`|Lacework API Access Key|Y|
+|`LW_API_SECRET`|Lacework API Access Secret|Y|
 
 ## Installation
 
-Installing and upgrading laceworksdk is easy:
+Installing and upgrading `laceworksdk` is easy:
 
 **Install via PIP**
 
@@ -70,6 +73,8 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 
 ## Implemented APIs
 
+### API v1
+
 - [x] Compliance API
 - [x] Custom Compliance Config API
 - [x] Download File API
@@ -78,3 +83,10 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 - [x] Run Reports API
 - [x] Token API
 - [x] Vulnerability API
+
+### API v2
+
+- [x] Access Tokens
+- [x] Alert Channels
+- [x] Audit Logs
+- [x] CloudTrail

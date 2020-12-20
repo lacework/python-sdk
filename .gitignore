@@ -19,6 +19,7 @@ example.py
 # Build artifacts
 dist/
 docs/_build/
+.eggs
 *.egg-info/
 .DS_Store
 

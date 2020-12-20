@@ -7,7 +7,7 @@ import json
 import logging
 import requests
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 from laceworksdk import version
 from laceworksdk.config import (
@@ -28,11 +28,12 @@ class HttpSession(object):
     _access_token = None
     _access_token_expiry = None
 
-    def __init__(self, account, api_key, api_secret):
+    def __init__(self, account, subaccount, api_key, api_secret):
         """
         Initializes the HttpSession object.
 
         :param account: a Lacework Account name
+        :param subaccount: a Lacework Sub-account name
         :param api_key: a Lacework API Key
         :param api_secret: a Lacework API Secret
 
@@ -48,6 +49,7 @@ class HttpSession(object):
         self._api_key = api_key
         self._api_secret = api_secret
         self._base_url = f"https://{account}.{DEFAULT_BASE_DOMAIN}"
+        self._subaccount = subaccount
 
         # Get an access token
         self._check_access_token()
@@ -62,8 +64,8 @@ class HttpSession(object):
             response = self._get_access_token()
 
             # Update the access token and expiration
-            self._access_token_expiry = datetime.now(timezone.utc) + timedelta(seconds=DEFAULT_ACCESS_TOKEN_EXPIRATION)
-            self._access_token = response.json()["data"][0]["token"]
+            self._access_token_expiry = datetime.strptime(response.json()["expiresAt"], "%Y-%m-%dT%H:%M:%S.%f%z")
+            self._access_token = response.json()["token"]
 
     def _check_response_code(self, response, expected_response_codes):
         """
@@ -97,7 +99,7 @@ class HttpSession(object):
 
         logger.info("Creating Access Token in Lacework...")
 
-        uri = f"{self._base_url}/api/v1/access/tokens"
+        uri = f"{self._base_url}/api/v2/access/tokens"
 
         # Build the access token request headers
         headers = {
@@ -109,7 +111,7 @@ class HttpSession(object):
         # Build the access token request data
         data = {
             "keyId": self._api_key,
-            "expiry_Time": DEFAULT_ACCESS_TOKEN_EXPIRATION
+            "expiryTime": DEFAULT_ACCESS_TOKEN_EXPIRATION
         }
 
         try:
@@ -125,23 +127,29 @@ class HttpSession(object):
 
         return response
 
-    def _get_request_headers(self):
+    def _get_request_headers(self, org_access=False):
         """
         A method to build the HTTP request headers for Lacework.
+
+        :param org_access: boolean representing whether the request should be performed at the Organization level
         """
 
         # Build the request headers
         headers = {
             "Authorization": self._access_token,
+            "Org-Access": "true" if org_access else "false",
             "User-Agent": f"laceworksdk-python-client/{version}"
         }
 
+        if self._subaccount:
+            headers["Account-Name"] = self._subaccount
+
         return headers
 
-    def get(self, uri):
+    def get(self, uri, org=False):
         """
         :param uri: uri to send the HTTP GET request to
-        :param headers: python object containing the header information
+        :param org: boolean representing whether the request should be performed at the Organization level
 
         :return: response json
 
@@ -155,7 +163,7 @@ class HttpSession(object):
         logger.info(f"GET request to URI: {uri}")
 
         # Perform a GET request
-        response = self._session.get(uri, headers=self._get_request_headers())
+        response = self._session.get(uri, headers=self._get_request_headers(org_access=org))
 
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
@@ -164,9 +172,10 @@ class HttpSession(object):
 
         return response
 
-    def patch(self, uri, data=None, param=None):
+    def patch(self, uri, org=False, data=None, param=None):
         """
         :param uri: uri to send the HTTP POST request to
+        :param org: boolean representing whether the request should be performed at the Organization level
         :param data: json object containing the data
         :param param: python object containing the parameters
 
@@ -183,7 +192,7 @@ class HttpSession(object):
         logger.info(f"PATCH request data:\n{data}")
 
         # Perform a PATCH request
-        response = self._session.patch(uri, params=param, json=data, headers=self._get_request_headers())
+        response = self._session.patch(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))
 
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
@@ -192,9 +201,10 @@ class HttpSession(object):
 
         return response
 
-    def post(self, uri, data=None, param=None):
+    def post(self, uri, org=False, data=None, param=None):
         """
         :param uri: uri to send the HTTP POST request to
+        :param org: boolean representing whether the request should be performed at the Organization level
         :param data: json object containing the data
         :param param: python object containing the parameters
 
@@ -211,7 +221,7 @@ class HttpSession(object):
         logger.info(f"POST request data:\n{data}")
 
         # Perform a POST request
-        response = self._session.post(uri, params=param, json=data, headers=self._get_request_headers())
+        response = self._session.post(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))
 
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
@@ -220,9 +230,10 @@ class HttpSession(object):
 
         return response
 
-    def put(self, uri, data=None, param=None):
+    def put(self, uri, org=False, data=None, param=None):
         """
         :param uri: uri to send the HTTP POST request to
+        :param org: boolean representing whether the request should be performed at the Organization level
         :param data: json object containing the data
         :param param: python object containing the parameters
 
@@ -239,7 +250,7 @@ class HttpSession(object):
         logger.info(f"PUT request data:\n{data}")
 
         # Perform a PUT request
-        response = self._session.put(uri, params=param, json=data, headers=self._get_request_headers())
+        response = self._session.put(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))
 
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
@@ -248,9 +259,10 @@ class HttpSession(object):
 
         return response
 
-    def delete(self, uri):
+    def delete(self, uri, org=False):
         """
         :param uri: uri to send the http DELETE request to
+        :param org: boolean representing whether the request should be performed at the Organization level
 
         :response: reponse json
 
@@ -264,7 +276,7 @@ class HttpSession(object):
         logger.info(f"DELETE request to URI: {uri}")
 
         # Perform a DELETE request
-        response = self._session.delete(uri, headers=self._get_request_headers())
+        response = self._session.delete(uri, headers=self._get_request_headers(org_access=org))
 
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
