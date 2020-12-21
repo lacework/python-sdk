@@ -26,3 +26,15 @@ def test_token_api_get_token(api):
         response = api.tokens.get_token(random.choice(enabled_tokens["data"])["ACCESS_TOKEN"])
         assert response["ok"]
         assert len(response["data"]) == 1
+
+
+def test_token_api_update(api):
+    enabled_tokens = api.tokens.get()
+
+    if len(enabled_tokens["data"]):
+        access_token = random.choice(enabled_tokens["data"])["ACCESS_TOKEN"]
+        token_enabled = True
+        response = api.tokens.update(access_token, enabled=token_enabled)
+        assert response["ok"]
+        assert len(response["data"]) == 1
+        assert bool(response["data"][0]["TOKEN_ENABLED"]) == token_enabled

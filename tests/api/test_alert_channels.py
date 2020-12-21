@@ -98,6 +98,4 @@ def test_alert_channels_api_update(api):
 def test_alert_channels_api_delete(api):
     response = api.alert_channels.delete(INTEGRATION_GUID)
 
-    print(response)
-
     assert response.status_code == 204

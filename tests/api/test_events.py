@@ -31,14 +31,21 @@ def test_events_api_env_object_creation(api_env):
     assert isinstance(api_env.events, EventsAPI)
 
 
+def test_events_api_get(api):
+    response = api.events.get(start_time=start_time, end_time=end_time)
+    assert 'data' in response.keys()
+
+
 def test_events_api_get_for_date_range(api):
     response = api.events.get_for_date_range(start_time=start_time, end_time=end_time)
     assert 'data' in response.keys()
 
 
 def test_events_api_get_details(api):
-    events = api.events.get_for_date_range(start_time=start_time, end_time=end_time)
+    events = api.events.get(start_time=start_time, end_time=end_time)
 
     if len(events["data"]):
-        response = api.events.get_details(random.choice(events["data"])["EVENT_ID"])
+        event_id = random.choice(events["data"])["EVENT_ID"]
+        response = api.events.get(id=event_id)
         assert len(response['data']) == 1
+        assert response["data"][0]["EVENT_ID"] == event_id
