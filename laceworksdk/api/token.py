@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Lacework Access Token API wrapper.
+Lacework Agent Access Token API wrapper.
 """
 
 import logging
@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 class TokenAPI(object):
     """
-    Lacework Access Token API.
+    Lacework Agent Access Token API.
     """
 
     def __init__(self, session):
@@ -31,16 +31,16 @@ class TokenAPI(object):
                enabled=True,
                description=None):
         """
-        A method to create a new access token.
+        A method to create a new agent access token.
 
-        :param alias: A string representing the alias for the token.
-        :param enabled: A boolean representing whether the token should be enabled.
-        :param description: A string representing a description for the token.
+        :param alias: A string representing the alias for the agent access token.
+        :param enabled: A boolean representing whether the agent access token should be enabled.
+        :param description: A string representing a description for the agent access token.
 
         :return response json
         """
 
-        logger.info("Creating access token in Lacework...")
+        logger.info("Creating agent access token in Lacework...")
 
         data = {}
 
@@ -60,12 +60,12 @@ class TokenAPI(object):
 
     def get(self, access_token=None):
         """
-        A method to get a list of enabled access tokens.
+        A method to get a list of enabled agent access tokens.
 
         :return response json
         """
 
-        logger.info("Getting access tokens from Lacework...")
+        logger.info("Getting agent access tokens from Lacework...")
 
         # Build the Token API URI
         api_uri = "/api/v1/external/tokens"
@@ -79,7 +79,7 @@ class TokenAPI(object):
 
     def get_enabled(self):
         """
-        A method to get a list of enabled access tokens.
+        A method to get a list of enabled agent access tokens.
 
         :return response json
         """
@@ -90,9 +90,9 @@ class TokenAPI(object):
 
     def get_token(self, access_token):
         """
-        A method to get details about an access token.
+        A method to get details about an agent access token.
 
-        :param access_token: A string representing the access token to get.
+        :param access_token: A string representing the agent access token to get.
 
         :return response json
         """
@@ -107,17 +107,17 @@ class TokenAPI(object):
                enabled=True,
                description=None):
         """
-        A method to update the details about an access token.
+        A method to update the details about an agent access token.
 
-        :param access_token: A string representing the access token to update.
-        :param alias: A string representing the alias for the access token.
-        :param enabled: A boolean representing whether the access token should be enabled.
-        :param description: A string representing a description for the access token.
+        :param access_token: A string representing the agent access token to update.
+        :param alias: A string representing the alias for the agent access token.
+        :param enabled: A boolean representing whether the agent access token should be enabled.
+        :param description: A string representing a description for the agent access token.
 
         :return response json
         """
 
-        logger.info("Updating access token details in Lacework...")
+        logger.info("Updating agent access token details in Lacework...")
 
         data = {}
 
@@ -141,12 +141,12 @@ class TokenAPI(object):
                      token_enabled=False,
                      token_description=None):
         """
-        A method to update the details about an access token.
+        A method to update the details about an agent access token.
 
-        :param access_token: A string representing the access token to update.
-        :param token_alias: A string representing the alias for the access token.
-        :param token_enalbed: A boolean representing whether the access token should be enabled.
-        :param token_description: A string representing a description for the access token.
+        :param access_token: A string representing the agent access token to update.
+        :param token_alias: A string representing the alias for the agent access token.
+        :param token_enalbed: A boolean representing whether the agent access token should be enabled.
+        :param token_description: A string representing a description for the agent access token.
 
         :return response json
         """
