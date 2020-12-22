@@ -4,10 +4,12 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 """
 
 import random
+import string
 
 from laceworksdk.api.integrations import IntegrationsAPI
 
 INTEGRATION_GUID = None
+RANDOM_TEXT = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
 
 # Tests
@@ -43,11 +45,11 @@ def test_integrations_api_get_schema(api):
 
 def test_integrations_api_create(api):
     response = api.integrations.create(
-        name="Slack Test",
+        name=f"Slack Test {RANDOM_TEXT}",
         type="SLACK_CHANNEL",
         enabled=True,
         data={
-            "SLACK_URL": "https://hooks.slack.com/services/TEST/WEBHOOK"
+            "SLACK_URL": f"https://hooks.slack.com/services/TEST/WEBHOOK/{RANDOM_TEXT}"
         }
     )
 
@@ -58,54 +60,55 @@ def test_integrations_api_create(api):
 
 
 def test_integrations_api_update(api):
-    new_name = "Slack Test Updated"
-    new_enabled = False
+    if INTEGRATION_GUID:
+        new_name = f"Slack Test {RANDOM_TEXT} Updated"
+        new_enabled = False
 
-    response = api.integrations.update(
-        INTEGRATION_GUID,
-        name=new_name,
-        enabled=new_enabled
-    )
+        response = api.integrations.update(
+            INTEGRATION_GUID,
+            name=new_name,
+            enabled=new_enabled
+        )
 
-    assert 'data' in response.keys()
-    assert response["data"][0]["NAME"] == new_name
-    assert response["data"][0]["ENABLED"] == int(new_enabled)
+        assert 'data' in response.keys()
+        assert response["data"][0]["NAME"] == new_name
+        assert response["data"][0]["ENABLED"] == int(new_enabled)
 
 
 def test_integrations_api_update_by_id(api):
-    new_name = "Slack Test Updated 2"
-    new_enabled = True
+    if INTEGRATION_GUID:
+        new_name = f"Slack Test {RANDOM_TEXT} Updated 2"
+        new_enabled = True
 
-    response = api.integrations.update_by_id(
-        INTEGRATION_GUID,
-        name=new_name,
-        type="SLACK_CHANNEL",
-        enabled=new_enabled,
-        data={
-            "SLACK_URL": "https://hooks.slack.com/services/TEST/WEBHOOK"
-        }
-    )
+        response = api.integrations.update_by_id(
+            INTEGRATION_GUID,
+            name=new_name,
+            type="SLACK_CHANNEL",
+            enabled=new_enabled,
+            data={
+                "SLACK_URL": f"https://hooks.slack.com/services/TEST/WEBHOOK/{RANDOM_TEXT}"
+            }
+        )
 
-    assert 'data' in response.keys()
-    assert response["data"][0]["NAME"] == new_name
-    assert response["data"][0]["ENABLED"] == int(new_enabled)
+        assert 'data' in response.keys()
+        assert response["data"][0]["NAME"] == new_name
+        assert response["data"][0]["ENABLED"] == int(new_enabled)
 
 
 def test_integrations_api_update_status(api):
-    new_enabled = False
+    if INTEGRATION_GUID:
+        new_enabled = False
 
-    response = api.integrations.update_status(
-        INTEGRATION_GUID,
-        enabled=new_enabled
-    )
+        response = api.integrations.update_status(
+            INTEGRATION_GUID,
+            enabled=new_enabled
+        )
 
-    assert 'data' in response.keys()
-    assert response["data"][0]["ENABLED"] == int(new_enabled)
+        assert 'data' in response.keys()
+        assert response["data"][0]["ENABLED"] == int(new_enabled)
 
 
 def test_integrations_api_delete(api):
-    response = api.integrations.delete(INTEGRATION_GUID)
-
-    print(response)
-
-    assert response["ok"]
+    if INTEGRATION_GUID:
+        response = api.integrations.delete(INTEGRATION_GUID)
+        assert response["ok"]

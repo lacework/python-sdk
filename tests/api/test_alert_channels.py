@@ -4,10 +4,12 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 """
 
 import random
+import string
 
 from laceworksdk.api.alert_channels import AlertChannelsAPI
 
 INTEGRATION_GUID = None
+RANDOM_TEXT = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
 
 # Tests
@@ -50,11 +52,11 @@ def test_alert_channels_api_get_by_guid(api):
 
 def test_alert_channels_api_create(api):
     response = api.alert_channels.create(
-        name="Slack Test",
+        name=f"Slack Test {RANDOM_TEXT}",
         type="SlackChannel",
         enabled=1,
         data={
-            "slackUrl": "https://hooks.slack.com/services/TEST/WEBHOOK"
+            "slackUrl": f"https://hooks.slack.com/services/TEST/WEBHOOK/{RANDOM_TEXT}"
         }
     )
 
@@ -81,21 +83,22 @@ def test_alert_channels_api_search(api):
 
 
 def test_alert_channels_api_update(api):
-    new_name = "Slack Test Updated"
-    new_enabled = False
+    if INTEGRATION_GUID:
+        new_name = f"Slack Test {RANDOM_TEXT} Updated"
+        new_enabled = False
 
-    response = api.alert_channels.update(
-        INTEGRATION_GUID,
-        name=new_name,
-        enabled=new_enabled
-    )
+        response = api.alert_channels.update(
+            INTEGRATION_GUID,
+            name=new_name,
+            enabled=new_enabled
+        )
 
-    assert 'data' in response.keys()
-    assert response["data"][0]["name"] == new_name
-    assert response["data"][0]["enabled"] == int(new_enabled)
+        assert 'data' in response.keys()
+        assert response["data"][0]["name"] == new_name
+        assert response["data"][0]["enabled"] == int(new_enabled)
 
 
 def test_alert_channels_api_delete(api):
-    response = api.alert_channels.delete(INTEGRATION_GUID)
-
-    assert response.status_code == 204
+    if INTEGRATION_GUID:
+        response = api.alert_channels.delete(INTEGRATION_GUID)
+        assert response.status_code == 204
