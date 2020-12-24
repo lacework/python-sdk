@@ -79,7 +79,7 @@ class HttpSession(object):
         else:
             raise ApiError(response)
 
-    def _print_debug_logging(self, response):
+    def _print_debug_response(self, response):
         """
         Print the debug logging, based on the returned content type.
         """
@@ -123,7 +123,7 @@ class HttpSession(object):
             # Validate the response
             self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
-            self._print_debug_logging(response)
+            self._print_debug_response(response)
 
         except Exception:
             raise ApiError(response)
@@ -138,14 +138,16 @@ class HttpSession(object):
         """
 
         # Build the request headers
-        headers = {
-            "Authorization": self._access_token,
-            "Org-Access": "true" if org_access else "false",
-            "User-Agent": f"laceworksdk-python-client/{version}"
-        }
+        headers = self._session.headers
+
+        headers["Authorization"] = self._access_token
+        headers["Org-Access"] = "true" if org_access else "false"
+        headers["User-Agent"] = f"laceworksdk-python-client/{version}"
 
         if self._subaccount:
             headers["Account-Name"] = self._subaccount
+
+        logger.debug("Request headers: \n" + json.dumps(dict(headers), indent=2))
 
         return headers
 
@@ -171,7 +173,7 @@ class HttpSession(object):
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
-        self._print_debug_logging(response)
+        self._print_debug_response(response)
 
         return response
 
@@ -200,7 +202,7 @@ class HttpSession(object):
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
-        self._print_debug_logging(response)
+        self._print_debug_response(response)
 
         return response
 
@@ -229,7 +231,7 @@ class HttpSession(object):
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
-        self._print_debug_logging(response)
+        self._print_debug_response(response)
 
         return response
 
@@ -258,7 +260,7 @@ class HttpSession(object):
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
-        self._print_debug_logging(response)
+        self._print_debug_response(response)
 
         return response
 
@@ -284,6 +286,6 @@ class HttpSession(object):
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
 
-        self._print_debug_logging(response)
+        self._print_debug_response(response)
 
         return response

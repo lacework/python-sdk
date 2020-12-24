@@ -3,12 +3,15 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
+import logging
 import os
 
 import laceworksdk
 import pytest
 
 from dotenv import load_dotenv
+
+logging.basicConfig(level=logging.DEBUG)
 
 load_dotenv()
 
