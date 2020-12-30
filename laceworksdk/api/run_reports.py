@@ -25,6 +25,25 @@ class RunReportsAPI(object):
 
         self._session = session
 
+    def run_report(self, type, account_id):
+        """
+        A method to initiate a compliance assessment.
+
+        :param type: A string representing the type of compliance assessment to initiate.
+        :param account_id: A string representing the account identifier for which to initiate a compliance assessment.
+
+        :return response json
+        """
+
+        logger.info(f"Initiating '{type}' compliance assessment in Lacework...")
+
+        # Build the Run Report request URI
+        api_uri = f"/api/v1/external/runReport/{type}/{account_id}"
+
+        response = self._session.post(api_uri)
+
+        return response.json()
+
     def aws(self, aws_account_id):
         """
         A method to initiate a compliance assessment for an AWS account.
@@ -34,14 +53,7 @@ class RunReportsAPI(object):
         :return response json
         """
 
-        logger.info("Initiating AWS compliance assessment in Lacework...")
-
-        # Build the Run Report request URI
-        api_uri = f"/api/v1/external/runReport/aws/{aws_account_id}"
-
-        response = self._session.post(api_uri)
-
-        return response.json()
+        return self.run_report('aws', aws_account_id)
 
     def azure(self, azure_tenant_id):
         """
@@ -52,14 +64,7 @@ class RunReportsAPI(object):
         :return response json
         """
 
-        logger.info("Initiating Azure compliance assessment in Lacework...")
-
-        # Build the Run Report request URI
-        api_uri = f"/api/v1/external/runReport/azure/{azure_tenant_id}"
-
-        response = self._session.post(api_uri)
-
-        return response.json()
+        return self.run_report('azure', azure_tenant_id)
 
     def gcp(self, gcp_project_id):
         """
@@ -70,14 +75,7 @@ class RunReportsAPI(object):
         :return response json
         """
 
-        logger.info("Initiating GCP compliance assessment in Lacework...")
-
-        # Build the Run Report request URI
-        api_uri = f"/api/v1/external/runReport/gcp/{gcp_project_id}"
-
-        response = self._session.post(api_uri)
-
-        return response.json()
+        return self.run_report('gcp', gcp_project_id)
 
     def integration(self, integration_guid):
         """
@@ -88,11 +86,4 @@ class RunReportsAPI(object):
         :return response json
         """
 
-        logger.info("Initiating compliance assessment for a Lacework integration ID...")
-
-        # Build the Run Report request URI
-        api_uri = f"/api/v1/external/runReport/integration/{integration_guid}"
-
-        response = self._session.post(api_uri)
-
-        return response.json()
+        return self.run_report('integration', integration_guid)

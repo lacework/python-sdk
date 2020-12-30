@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Lacework Token API wrapper.
+Lacework Agent Access Token API wrapper.
 """
 
 import logging
@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 class TokenAPI(object):
     """
-    Lacework Token API.
+    Lacework Agent Access Token API.
     """
 
     def __init__(self, session):
@@ -26,76 +26,112 @@ class TokenAPI(object):
 
         self._session = session
 
-    def get_enabled(self):
-        """
-        A method to get a list of enabled API credentials.
-
-        :return response json
-        """
-
-        logger.info("Getting enabled API credentials from Lacework...")
-
-        # Build the Token API URI
-        api_uri = "/api/v1/external/tokens"
-
-        # GET to retreieve the enabled API credentials
-        response = self._session.get(api_uri)
-
-        return response.json()
-
     def create(self,
-               token_alias=None,
-               token_enabled=False,
-               token_description=None):
+               alias=None,
+               enabled=True,
+               description=None):
         """
-        A method to create a new set of API credentials.
+        A method to create a new agent access token.
 
-        :param token_alias: A string representing the alias for the credentials.
-        :param token_enabled: A boolean representing whether the credentials should be enabled.
-        :param token_description: A string representing a description for the credentials.
+        :param alias: A string representing the alias for the agent access token.
+        :param enabled: A boolean representing whether the agent access token should be enabled.
+        :param description: A string representing a description for the agent access token.
 
         :return response json
         """
 
-        logger.info("Creating API credential in Lacework...")
+        logger.info("Creating agent access token in Lacework...")
 
         data = {}
 
-        if token_alias:
-            data["TOKEN_ALIAS"] = token_alias
-
-        if token_enabled:
-            data["TOKEN_ENABLED"] = 1
-        else:
-            data["TOKEN_ENABLED"] = 0
-
-        if token_description:
-            data["PROPS"]["DESCRIPTION"]: token_description
+        if alias:
+            data["TOKEN_ALIAS"] = alias
+        if enabled is not None:
+            data["TOKEN_ENABLED"] = int(bool(enabled))
+        if description:
+            data["PROPS"]["DESCRIPTION"]: description
 
         # Build the Token API URI
         api_uri = "/api/v1/external/tokens"
 
-        # POST to create an API credential
         response = self._session.post(api_uri, data=data)
 
         return response.json()
 
-    def get_token(self, access_token):
+    def get(self, access_token=None):
         """
-        A method to get details about an API credential.
-
-        :param access_token: A string representing the access token to get.
+        A method to get a list of enabled agent access tokens.
 
         :return response json
         """
 
-        logger.info("Getting API credential details from Lacework...")
+        logger.info("Getting agent access tokens from Lacework...")
+
+        # Build the Token API URI
+        api_uri = "/api/v1/external/tokens"
+
+        if access_token:
+            api_uri += f"/{access_token}"
+
+        response = self._session.get(api_uri)
+
+        return response.json()
+
+    def get_enabled(self):
+        """
+        A method to get a list of enabled agent access tokens.
+
+        :return response json
+        """
+
+        logger.warning("The 'get_enabled' function may be deprecated shortly, please consider switching to 'get'.")
+
+        return self.get()
+
+    def get_token(self, access_token):
+        """
+        A method to get details about an agent access token.
+
+        :param access_token: A string representing the agent access token to get.
+
+        :return response json
+        """
+
+        logger.warning("The 'get_enabled' function may be deprecated shortly, please consider switching to 'get'.")
+
+        return self.get(access_token=access_token)
+
+    def update(self,
+               access_token,
+               alias=None,
+               enabled=True,
+               description=None):
+        """
+        A method to update the details about an agent access token.
+
+        :param access_token: A string representing the agent access token to update.
+        :param alias: A string representing the alias for the agent access token.
+        :param enabled: A boolean representing whether the agent access token should be enabled.
+        :param description: A string representing a description for the agent access token.
+
+        :return response json
+        """
+
+        logger.info("Updating agent access token details in Lacework...")
+
+        data = {}
+
+        if alias:
+            data["TOKEN_ALIAS"] = alias
+        if enabled is not None:
+            data["TOKEN_ENABLED"] = int(bool(enabled))
+        if description:
+            data["PROPS"]["DESCRIPTION"]: description
 
         # Build the Token API URI
         api_uri = f"/api/v1/external/tokens/{access_token}"
 
-        # GET to retreieve the API credential
-        response = self._session.get(api_uri)
+        response = self._session.put(api_uri, data=data)
 
         return response.json()
 
@@ -105,35 +141,19 @@ class TokenAPI(object):
                      token_enabled=False,
                      token_description=None):
         """
-        A method to update the details about an API credential.
+        A method to update the details about an agent access token.
 
-        :param access_token: A string representing the access token to update.
-        :param token_alias: A string representing the alias for the credentials.
-        :param token_enalbed: A boolean representing whether the credentials should be enabled.
-        :param token_description: A string representing a description for the credentials.
+        :param access_token: A string representing the agent access token to update.
+        :param token_alias: A string representing the alias for the agent access token.
+        :param token_enalbed: A boolean representing whether the agent access token should be enabled.
+        :param token_description: A string representing a description for the agent access token.
 
         :return response json
         """
 
-        logger.info("Updating API credential details in Lacework...")
+        logger.warning("The 'update_token' function may be deprecated shortly, please consider switching to 'update'.")
 
-        data = {}
-
-        if token_alias:
-            data["TOKEN_ALIAS"] = token_alias
-
-        if token_enabled:
-            data["TOKEN_ENABLED"] = 1
-        else:
-            data["TOKEN_ENABLED"] = 0
-
-        if token_description:
-            data["PROPS"]["DESCRIPTION"]: token_description
-
-        # Build the Token API URI
-        api_uri = f"/api/v1/external/tokens/{access_token}"
-
-        # PUT to update an API credential
-        response = self._session.put(api_uri, data=data)
-
-        return response.json()
+        return self.update(access_token=access_token,
+                           alias=token_alias,
+                           enabled=token_enabled,
+                           description=token_description)

@@ -1,6 +1,9 @@
-name: Python Test
+name: Run Python Tests/Linting
 
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: "0 8 * * *"
 
 jobs:
   build:
