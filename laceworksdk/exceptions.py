@@ -48,10 +48,11 @@ class ApiError(laceworksdkException):
             except ValueError:
                 logger.warning("Error parsing JSON response body")
 
-        if 'data' in self.details.keys():
-            self.message = self.details["data"].get("message")
-        elif 'message' in self.details.keys():
-            self.message = self.details["message"]
+        if self.details:
+            if 'data' in self.details.keys():
+                self.message = self.details["data"].get("message")
+            elif 'message' in self.details.keys():
+                self.message = self.details["message"]
         else:
             self.message = None
         """The error message from the parsed API response."""

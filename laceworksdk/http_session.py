@@ -8,6 +8,8 @@ import logging
 import requests
 
 from datetime import datetime, timezone
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 from laceworksdk import version
 from laceworksdk.config import (
@@ -43,7 +45,7 @@ class HttpSession(object):
         super(HttpSession, self).__init__()
 
         # Create a requests session
-        self._session = requests.Session()
+        self._session = self._retry_session()
 
         # Set the base parameters
         self._api_key = api_key
@@ -53,6 +55,36 @@ class HttpSession(object):
 
         # Get an access token
         self._check_access_token()
+
+    def _retry_session(self,
+                       retries=3,
+                       backoff_factor=0.3,
+                       status_forcelist=(500, 502, 504)):
+        """
+        A method to set up automatic retries on HTTP requests that fail.
+        """
+
+        # Create a new requests session
+        session = requests.Session()
+
+        # Establish the retry criteria
+        retry = Retry(
+            total=retries,
+            read=retries,
+            connect=retries,
+            status=retries,
+            backoff_factor=backoff_factor,
+            status_forcelist=status_forcelist,
+        )
+
+        # Build the adapter with the retry criteria
+        adapter = HTTPAdapter(max_retries=retry)
+
+        # Bind the adapter to HTTP/HTTPS calls
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+
+        return session
 
     def _check_access_token(self):
         """
