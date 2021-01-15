@@ -22,7 +22,7 @@ setup(
     author_email='alan.nix@lacework.net',
     use_scm_version={'write_to': 'laceworksdk/version.py'},
     setup_requires=['setuptools_scm'],
-    url='https://github.com/alannix-lw/python-sdk',
+    url='https://github.com/lacework/python-sdk',
     download_url='https://pypi.python.org/pypi/laceworksdk',
     keywords=['lacework', 'api', 'sdk', 'python', 'api'],
     install_requires=[
