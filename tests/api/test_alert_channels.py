@@ -47,7 +47,7 @@ def test_alert_channels_api_get_by_guid(api):
         response = api.alert_channels.get_by_guid(guid=alert_channel_guid)
 
         assert 'data' in response.keys()
-        assert response["data"][0]["intgGuid"] == alert_channel_guid
+        assert response["data"]["intgGuid"] == alert_channel_guid
 
 
 def test_alert_channels_api_create(api):
@@ -63,7 +63,7 @@ def test_alert_channels_api_create(api):
     assert 'data' in response.keys()
 
     global INTEGRATION_GUID
-    INTEGRATION_GUID = response["data"][0]["intgGuid"]
+    INTEGRATION_GUID = response["data"]["intgGuid"]
 
 
 def test_alert_channels_api_search(api):
@@ -94,8 +94,8 @@ def test_alert_channels_api_update(api):
         )
 
         assert 'data' in response.keys()
-        assert response["data"][0]["name"] == new_name
-        assert response["data"][0]["enabled"] == int(new_enabled)
+        assert response["data"]["name"] == new_name
+        assert response["data"]["enabled"] == int(new_enabled)
 
 
 def test_alert_channels_api_delete(api):
