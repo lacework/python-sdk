@@ -7,7 +7,9 @@ import os
 
 from dotenv import load_dotenv
 from laceworksdk.http_session import HttpSession
+from .agent_access_tokens import AgentAccessTokensAPI
 from .alert_channels import AlertChannelsAPI
+from .alert_rules import AlertRulesAPI
 from .audit_logs import AuditLogsAPI
 from .cloudtrail import CloudTrailAPI
 from .compliance import ComplianceAPI
@@ -15,6 +17,7 @@ from .custom_compliance_config import CustomComplianceConfigAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
 from .integrations import IntegrationsAPI
+from .resource_groups import ResourceGroupsAPI
 from .run_reports import RunReportsAPI
 from .schemas import SchemasAPI
 from .token import TokenAPI
@@ -62,7 +65,9 @@ class LaceworkClient(object):
         )
 
         # API Wrappers
+        self.agent_access_tokens = AgentAccessTokensAPI(self._session)
         self.alert_channels = AlertChannelsAPI(self._session)
+        self.alert_rules = AlertRulesAPI(self._session)
         self.audit_logs = AuditLogsAPI(self._session)
         self.cloudtrail = CloudTrailAPI(self._session)
         self.compliance = ComplianceAPI(self._session)
@@ -70,6 +75,7 @@ class LaceworkClient(object):
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
+        self.resource_groups = ResourceGroupsAPI(self._session)
         self.run_reports = RunReportsAPI(self._session)
         self.schemas = SchemasAPI(self._session)
         self.tokens = TokenAPI(self._session)

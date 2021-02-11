@@ -87,6 +87,12 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 ### API v2
 
 - [x] Access Tokens
+- [x] Agent Access Tokens
 - [x] Alert Channels
+- [x] Alert Rules
 - [x] Audit Logs
 - [x] CloudTrail
+- [] Contract Info
+- [] Report Rules
+- [x] Resource Groups
+- [] Team Members

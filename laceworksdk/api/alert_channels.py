@@ -32,7 +32,7 @@ class AlertChannelsAPI(object):
 
         :param name: A string representing the alert channel name.
         :param type: A string representing the alert channel type.
-        :param enabled: An integer representing whether the integration is enabled.
+        :param enabled: An integer representing whether the alert channel is enabled.
             (0 or 1)
         :param data: A JSON object matching the schema for the specified type.
         :param org: A boolean representing whether the request should be performed
@@ -135,7 +135,7 @@ class AlertChannelsAPI(object):
         :param guid: A string representing the alert channel GUID.
         :param name: A string representing the alert channel name.
         :param type: A string representing the alert channel type.
-        :param enabled: An integer representing whether the integration is enabled.
+        :param enabled: An integer representing whether the alert channel is enabled.
             (0 or 1)
         :param data: A JSON object matching the schema for the specified type.
         :param org: A boolean representing whether the request should be performed

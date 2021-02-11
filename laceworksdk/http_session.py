@@ -226,7 +226,7 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"PATCH request to URI: {uri}")
-        logger.info(f"PATCH request data:\n{data}")
+        logger.debug("PATCH request data:\n" + json.dumps(dict(data), indent=2))
 
         # Perform a PATCH request
         response = self._session.patch(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))
@@ -255,7 +255,7 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"POST request to URI: {uri}")
-        logger.info(f"POST request data:\n{data}")
+        logger.debug("POST request data:\n" + json.dumps(dict(data), indent=2))
 
         # Perform a POST request
         response = self._session.post(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))
@@ -284,7 +284,7 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"PUT request to URI: {uri}")
-        logger.info(f"PUT request data:\n{data}")
+        logger.debug("PUT request data:\n" + json.dumps(dict(data), indent=2))
 
         # Perform a PUT request
         response = self._session.put(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))
