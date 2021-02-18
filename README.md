@@ -92,7 +92,7 @@ Are you looking for some sample scripts?  Check out the [examples](examples/) fo
 - [x] Alert Rules
 - [x] Audit Logs
 - [x] CloudTrail
-- [] Contract Info
+- [x] Contract Info
 - [] Report Rules
 - [x] Resource Groups
 - [] Team Members

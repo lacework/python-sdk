@@ -12,6 +12,7 @@ pytest_plugins = [
     'tests.api.test_audit_logs',
     'tests.api.test_cloudtrail',
     'tests.api.test_compliance',
+    'tests.api.test_contract_info',
     'tests.api.test_custom_compliance_config',
     'tests.api.test_download_file',
     'tests.api.test_events',

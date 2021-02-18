@@ -13,6 +13,7 @@ from .alert_rules import AlertRulesAPI
 from .audit_logs import AuditLogsAPI
 from .cloudtrail import CloudTrailAPI
 from .compliance import ComplianceAPI
+from .contract_info import ContractInfoAPI
 from .custom_compliance_config import CustomComplianceConfigAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
@@ -72,6 +73,7 @@ class LaceworkClient(object):
         self.cloudtrail = CloudTrailAPI(self._session)
         self.compliance = ComplianceAPI(self._session)
         self.compliance.config = CustomComplianceConfigAPI(self._session)
+        self.contract_info = ContractInfoAPI(self._session)
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
