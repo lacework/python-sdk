@@ -15,6 +15,7 @@ end_time = current_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 # Tests
 
+
 def test_contract_info_api_object_creation(api):
     assert isinstance(api.contract_info, ContractInfoAPI)
 
@@ -25,9 +26,9 @@ def test_contract_info_api_env_object_creation(api_env):
 
 def test_contract_info_api_get(api):
     response = api.contract_info.get()
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_contract_info_api_get_by_date(api):
     response = api.contract_info.get(start_time=start_time, end_time=end_time)
-    assert 'data' in response.keys()
+    assert "data" in response.keys()

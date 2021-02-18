@@ -10,7 +10,7 @@ from laceworksdk.api.agent_access_tokens import AgentAccessTokensAPI
 
 AGENT_ACCESS_TOKEN_ID = None
 AGENT_ACCESS_TOKEN_ALIAS = None
-RANDOM_TEXT = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
 
 # Tests
@@ -25,7 +25,7 @@ def test_agent_access_tokens_api_env_object_creation(api_env):
 
 def test_agent_access_tokens_api_get(api):
     response = api.agent_access_tokens.get()
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_agent_access_tokens_api_get_by_id(api):
@@ -42,7 +42,7 @@ def test_agent_access_tokens_api_get_by_id(api):
 
         response = api.agent_access_tokens.get_by_id(id=AGENT_ACCESS_TOKEN_ID)
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
 
 
 def test_agent_access_tokens_api_search(api):
@@ -63,7 +63,7 @@ def test_agent_access_tokens_api_search(api):
             }
         )
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
 
     assert AGENT_ACCESS_TOKEN_ID is not None
 
@@ -85,7 +85,7 @@ def test_agent_access_tokens_api_update(api):
             alias=AGENT_ACCESS_TOKEN_ALIAS
         )
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
         assert response["data"]["tokenAlias"] == AGENT_ACCESS_TOKEN_ALIAS
 
     assert AGENT_ACCESS_TOKEN_ID is not None

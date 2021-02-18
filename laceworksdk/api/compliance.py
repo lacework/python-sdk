@@ -37,7 +37,7 @@ class ComplianceAPI(object):
             if pdf_path:
                 logger.info(f"Creating PDF at {pdf_path}")
 
-                with open(pdf_path, 'wb') as f:
+                with open(pdf_path, "wb") as f:
                     f.write(response.content)
 
                 return response.content

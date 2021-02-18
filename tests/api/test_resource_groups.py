@@ -9,7 +9,7 @@ import string
 from laceworksdk.api.resource_groups import ResourceGroupsAPI
 
 RESOURCE_GROUP_GUID = None
-RANDOM_TEXT = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
 
 # Tests
@@ -24,7 +24,7 @@ def test_resource_groups_api_env_object_creation(api_env):
 
 def test_resource_groups_api_get(api):
     response = api.resource_groups.get()
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_resource_groups_api_get_by_guid(api):
@@ -35,15 +35,11 @@ def test_resource_groups_api_get_by_guid(api):
 
         response = api.resource_groups.get_by_guid(guid=resource_group_guid)
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
         assert response["data"]["resourceGuid"] == resource_group_guid
 
 
 def test_resource_groups_api_create(api):
-
-    response = api.alert_channels.get_by_type(type="SlackChannel")
-    alert_channel_guid = random.choice(response["data"])["intgGuid"]
-
     response = api.resource_groups.create(
         name="AWS Test",
         type="AWS",
@@ -54,7 +50,7 @@ def test_resource_groups_api_create(api):
         }
     )
 
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
     global RESOURCE_GROUP_GUID
     RESOURCE_GROUP_GUID = response["data"]["resourceGuid"]
@@ -73,7 +69,7 @@ def test_resource_groups_api_search(api):
             "resourceGuid"
         ]
     })
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_resource_groups_api_update(api):
@@ -90,7 +86,7 @@ def test_resource_groups_api_update(api):
             }
         )
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
 
     assert RESOURCE_GROUP_GUID is not None
 

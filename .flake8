@@ -1,9 +1,11 @@
 [flake8]
+inline-quotes = double
 max-line-length = 100
 ignore =
     # E501 module level import not at top of file
     E501,
 exclude =
+    .eggs/,
     .git/,
     .idea/,
     .venv/,
@@ -12,3 +14,4 @@ exclude =
     dist/,
     venv/,
     example.py,
+    **/version.py

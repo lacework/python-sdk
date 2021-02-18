@@ -26,12 +26,12 @@ def test_audit_logs_api_env_object_creation(api_env):
 
 def test_audit_logs_api_get(api):
     response = api.audit_logs.get()
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_audit_logs_api_get_by_date(api):
     response = api.audit_logs.get(start_time=start_time, end_time=end_time)
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_audit_logs_api_search(api):
@@ -53,4 +53,4 @@ def test_audit_logs_api_search(api):
             "userName"
         ]
     })
-    assert 'data' in response.keys()
+    assert "data" in response.keys()

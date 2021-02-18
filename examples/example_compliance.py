@@ -26,7 +26,7 @@ if __name__ == "__main__":
     lacework_client.compliance.get_latest_aws_report(aws_account_id="123456789", file_format="json")
 
     # Get latest compliance report in PDF format for AWS account
-    lacework_client.compliance.get_latest_aws_report(aws_account_id="123456789", file_format="pdf", pdf_path='<PATH_TO_PDF_OUTPUT>')
+    lacework_client.compliance.get_latest_aws_report(aws_account_id="123456789", file_format="pdf", pdf_path="<PATH_TO_PDF_OUTPUT>")
 
     # Get a list of subscriptions for an Azure Tenant
     lacework_client.compliance.list_azure_subscriptions("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")

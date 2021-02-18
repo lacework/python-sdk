@@ -3,7 +3,6 @@
 Lacework Contract Info API wrapper.
 """
 
-import json
 import logging
 
 logger = logging.getLogger(__name__)

@@ -53,7 +53,7 @@ class RunReportsAPI(object):
         :return response json
         """
 
-        return self.run_report('aws', aws_account_id)
+        return self.run_report("aws", aws_account_id)
 
     def azure(self, azure_tenant_id):
         """
@@ -64,7 +64,7 @@ class RunReportsAPI(object):
         :return response json
         """
 
-        return self.run_report('azure', azure_tenant_id)
+        return self.run_report("azure", azure_tenant_id)
 
     def gcp(self, gcp_project_id):
         """
@@ -75,7 +75,7 @@ class RunReportsAPI(object):
         :return response json
         """
 
-        return self.run_report('gcp', gcp_project_id)
+        return self.run_report("gcp", gcp_project_id)
 
     def integration(self, integration_guid):
         """
@@ -86,4 +86,4 @@ class RunReportsAPI(object):
         :return response json
         """
 
-        return self.run_report('integration', integration_guid)
+        return self.run_report("integration", integration_guid)

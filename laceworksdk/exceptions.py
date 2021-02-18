@@ -49,9 +49,9 @@ class ApiError(laceworksdkException):
                 logger.warning("Error parsing JSON response body")
 
         if self.details:
-            if 'data' in self.details.keys():
+            if "data" in self.details.keys():
                 self.message = self.details["data"].get("message")
-            elif 'message' in self.details.keys():
+            elif "message" in self.details.keys():
                 self.message = self.details["message"]
         else:
             self.message = None

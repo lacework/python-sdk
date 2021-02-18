@@ -81,8 +81,8 @@ class HttpSession(object):
         adapter = HTTPAdapter(max_retries=retry)
 
         # Bind the adapter to HTTP/HTTPS calls
-        session.mount('http://', adapter)
-        session.mount('https://', adapter)
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
 
         return session
 
@@ -96,7 +96,7 @@ class HttpSession(object):
             response = self._get_access_token()
 
             # Parse and restructure the returned date (necessary for Python 3.6)
-            expiry_date = response.json()["expiresAt"].replace('Z', '+0000')
+            expiry_date = response.json()["expiresAt"].replace("Z", "+0000")
 
             # Update the access token and expiration
             self._access_token_expiry = datetime.strptime(expiry_date, "%Y-%m-%dT%H:%M:%S.%f%z")

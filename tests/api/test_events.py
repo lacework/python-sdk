@@ -33,12 +33,12 @@ def test_events_api_env_object_creation(api_env):
 
 def test_events_api_get(api):
     response = api.events.get(start_time=start_time, end_time=end_time)
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_events_api_get_for_date_range(api):
     response = api.events.get_for_date_range(start_time=start_time, end_time=end_time)
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_events_api_get_details(api):
@@ -47,5 +47,5 @@ def test_events_api_get_details(api):
     if len(events["data"]):
         event_id = random.choice(events["data"])["EVENT_ID"]
         response = api.events.get(id=event_id)
-        assert len(response['data']) == 1
+        assert len(response["data"]) == 1
         assert response["data"][0]["EVENT_ID"] == event_id
