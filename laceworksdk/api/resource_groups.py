@@ -26,7 +26,12 @@ class ResourceGroupsAPI(object):
 
         self._session = session
 
-    def create(self, name, type, enabled, props, org=False):
+    def create(self,
+               name,
+               type,
+               enabled,
+               props,
+               org=False):
         """
         A method to create a new resource group.
 
@@ -57,7 +62,9 @@ class ResourceGroupsAPI(object):
 
         return response.json()
 
-    def get(self, guid=None, org=False):
+    def get(self,
+            guid=None,
+            org=False):
         """
         A method to get all resource groups.
 
@@ -80,7 +87,9 @@ class ResourceGroupsAPI(object):
 
         return response.json()
 
-    def get_by_guid(self, guid, org=False):
+    def get_by_guid(self,
+                    guid,
+                    org=False):
         """
         A method to get all resource groups.
 
@@ -93,11 +102,13 @@ class ResourceGroupsAPI(object):
 
         return self.get(guid=guid, org=org)
 
-    def search(self, query_data=None, org=False):
+    def search(self,
+               query_data=None,
+               org=False):
         """
         A method to search resource groups.
 
-        :param query_data: A dictionary containing the necessary search parameters
+        :param query_data: A dictionary containing the desired search parameters.
             (filters, returns)
 
         :return response json
@@ -112,7 +123,13 @@ class ResourceGroupsAPI(object):
 
         return response.json()
 
-    def update(self, guid, name, type, enabled, props, org=False):
+    def update(self,
+               guid,
+               name=None,
+               type=None,
+               enabled=None,
+               props=None,
+               org=False):
         """
         A method to update an resource group.
 
@@ -133,14 +150,18 @@ class ResourceGroupsAPI(object):
         # Build the Resource Groups request URI
         api_uri = f"/api/v2/ResourceGroups/{guid}"
 
-        data = {
-            "resourceName": name,
-            "resourceType": type,
-            "enabled": int(bool(enabled)),
-            "props": props
-        }
+        tmp_data = {}
 
-        response = self._session.patch(api_uri, org=org, data=data)
+        if name:
+            tmp_data["resourceName"] = name
+        if type:
+            tmp_data["resourceType"] = type
+        if enabled is not None:
+            tmp_data["enabled"] = int(bool(enabled))
+        if props:
+            tmp_data["props"] = props
+
+        response = self._session.patch(api_uri, org=org, data=tmp_data)
 
         return response.json()
 

@@ -26,7 +26,10 @@ class EventsAPI(object):
 
         self._session = session
 
-    def get(self, id=None, start_time=None, end_time=None):
+    def get(self,
+            id=None,
+            start_time=None,
+            end_time=None):
         """
         A method to get Event details
 
@@ -52,7 +55,8 @@ class EventsAPI(object):
 
         return response.json()
 
-    def get_details(self, event_id):
+    def get_details(self,
+                    event_id):
         """
         A method to get the Event Details for the specified Event ID.
 
@@ -65,7 +69,9 @@ class EventsAPI(object):
 
         return self.get(id=event_id)
 
-    def get_for_date_range(self, start_time, end_time):
+    def get_for_date_range(self,
+                           start_time,
+                           end_time):
         """
         A method to get Events for the specified time range.
 

@@ -26,7 +26,10 @@ class AgentAccessTokensAPI(object):
 
         self._session = session
 
-    def create(self, alias, enabled=True, org=False):
+    def create(self,
+               alias,
+               enabled=True,
+               org=False):
         """
         A method to create a new agent access token.
 
@@ -53,7 +56,9 @@ class AgentAccessTokensAPI(object):
 
         return response.json()
 
-    def get(self, id=None, org=False):
+    def get(self,
+            id=None,
+            org=False):
         """
         A method to get agent access tokens.
 
@@ -76,7 +81,9 @@ class AgentAccessTokensAPI(object):
 
         return response.json()
 
-    def get_by_id(self, id, org=False):
+    def get_by_id(self,
+                  id,
+                  org=False):
         """
         A method to get an agent access token by ID.
 
@@ -89,11 +96,13 @@ class AgentAccessTokensAPI(object):
 
         return self.get(id=id, org=org)
 
-    def search(self, query_data=None, org=False):
+    def search(self,
+               query_data=None,
+               org=False):
         """
         A method to search agent access tokens.
 
-        :param query_data: A dictionary containing the necessary search parameters
+        :param query_data: A dictionary containing the desired search parameters.
             (filters, returns)
 
         :return response json
@@ -108,7 +117,11 @@ class AgentAccessTokensAPI(object):
 
         return response.json()
 
-    def update(self, id, alias=None, enabled=None, org=False):
+    def update(self,
+               id,
+               alias=None,
+               enabled=None,
+               org=False):
         """
         A method to update an agent access token.
 

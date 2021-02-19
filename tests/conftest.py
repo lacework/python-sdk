@@ -20,6 +20,7 @@ pytest_plugins = [
     "tests.api.test_resource_groups",
     "tests.api.test_run_reports",
     "tests.api.test_schemas",
+    "tests.api.test_team_members",
     "tests.api.test_token",
     "tests.api.test_vulnerability",
 ]

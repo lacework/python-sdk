@@ -26,7 +26,8 @@ class DownloadFileAPI(object):
 
         self._session = session
 
-    def get(self, file=None):
+    def get(self,
+            file):
         """
         A method to get the AWS CloudFormation template of the specified type.
 

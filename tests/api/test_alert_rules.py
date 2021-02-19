@@ -83,7 +83,7 @@ def test_alert_rules_api_create(api):
             "eventCategory": ["Compliance"],
             "severity": [1, 2, 3]
         },
-        intgGuidList=[alert_channel_guid]
+        intg_guid_list=[alert_channel_guid]
     )
 
     assert "data" in response.keys()
@@ -109,18 +109,13 @@ def test_alert_rules_api_search(api):
 
 
 def test_alert_rules_api_update(api):
-    response = api.alert_rules.get_by_guid(guid=ALERT_RULE_GUID)
-
-    filters = response["data"]["filters"]
-    filters["name"] = f"Test Alert Rule {RANDOM_TEXT} (Updated)"
-    filters["enabled"] = 0
-
-    print(filters)
-
     if ALERT_RULE_GUID:
         response = api.alert_rules.update(
             ALERT_RULE_GUID,
-            filters=filters
+            filters={
+                "name": f"Test Alert Rule {RANDOM_TEXT} (Updated)",
+                "enabled": False
+            }
         )
 
         assert "data" in response.keys()

@@ -26,7 +26,10 @@ class CloudTrailAPI(object):
 
         self._session = session
 
-    def get(self, start_time=None, end_time=None, org=False):
+    def get(self,
+            start_time=None,
+            end_time=None,
+            org=False):
         """
         A method to get CloudTrail details.
 
@@ -50,12 +53,16 @@ class CloudTrailAPI(object):
 
         return response.json()
 
-    def search(self, query_data=None, org=False):
+    def search(self,
+               query_data=None,
+               org=False):
         """
         A method to search CloudTrail details.
 
         :param query_data: A dictionary containing the necessary search parameters
             (timeFilter, filters, returns)
+        :param org: A boolean representing whether the request should be performed
+            at the Organization level
 
         :return response json
         """

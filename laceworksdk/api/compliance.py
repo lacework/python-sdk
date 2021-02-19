@@ -26,7 +26,10 @@ class ComplianceAPI(object):
 
         self._session = session
 
-    def _return_or_write(self, file_format, pdf_path, response):
+    def _return_or_write(self,
+                         file_format,
+                         pdf_path,
+                         response):
         """
         A method to either return JSON or write a file.
         """
@@ -147,7 +150,8 @@ class ComplianceAPI(object):
 
         return self._return_or_write(file_format, pdf_path, response)
 
-    def list_azure_subscriptions(self, azure_tenant_id):
+    def list_azure_subscriptions(self,
+                                 azure_tenant_id):
         """
         A method to list the subscriptions in an Azure account.
 
@@ -166,7 +170,8 @@ class ComplianceAPI(object):
 
         return response.json()
 
-    def list_gcp_projects(self, gcp_organization_id):
+    def list_gcp_projects(self,
+                          gcp_organization_id):
         """
         A method to list the projects in a Google Cloud organization.
 

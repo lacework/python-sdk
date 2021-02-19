@@ -21,6 +21,7 @@ from .integrations import IntegrationsAPI
 from .resource_groups import ResourceGroupsAPI
 from .run_reports import RunReportsAPI
 from .schemas import SchemasAPI
+from .team_members import TeamMembersAPI
 from .token import TokenAPI
 from .vulnerability import VulnerabilityAPI
 
@@ -80,5 +81,6 @@ class LaceworkClient(object):
         self.resource_groups = ResourceGroupsAPI(self._session)
         self.run_reports = RunReportsAPI(self._session)
         self.schemas = SchemasAPI(self._session)
+        self.team_members = TeamMembersAPI(self._session)
         self.tokens = TokenAPI(self._session)
         self.vulnerabilities = VulnerabilityAPI(self._session)

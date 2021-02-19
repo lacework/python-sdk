@@ -25,7 +25,9 @@ class RunReportsAPI(object):
 
         self._session = session
 
-    def run_report(self, type, account_id):
+    def run_report(self,
+                   type,
+                   account_id):
         """
         A method to initiate a compliance assessment.
 
@@ -44,7 +46,8 @@ class RunReportsAPI(object):
 
         return response.json()
 
-    def aws(self, aws_account_id):
+    def aws(self,
+            aws_account_id):
         """
         A method to initiate a compliance assessment for an AWS account.
 
@@ -55,7 +58,8 @@ class RunReportsAPI(object):
 
         return self.run_report("aws", aws_account_id)
 
-    def azure(self, azure_tenant_id):
+    def azure(self,
+              azure_tenant_id):
         """
         A method to initiate a compliance assessment for an Azure tenant.
 
@@ -66,7 +70,8 @@ class RunReportsAPI(object):
 
         return self.run_report("azure", azure_tenant_id)
 
-    def gcp(self, gcp_project_id):
+    def gcp(self,
+            gcp_project_id):
         """
         A method to initiate a compliance assessment for a GCP project.
 
@@ -77,7 +82,8 @@ class RunReportsAPI(object):
 
         return self.run_report("gcp", gcp_project_id)
 
-    def integration(self, integration_guid):
+    def integration(self,
+                    integration_guid):
         """
         A method to run a compliance report based on a Lacework integration GUID.
 

@@ -23,7 +23,6 @@ def test_run_reports_api_aws(api):
             aws_account_id = integration["DATA"]["AWS_ACCOUNT_ID"]
             response = api.run_reports.aws(aws_account_id)
             assert response
-            return
 
 
 @pytest.mark.ci_exempt
@@ -35,7 +34,6 @@ def test_run_reports_api_gcp(api):
             gcp_project_id = integration["DATA"]["ID"]
             response = api.run_reports.gcp(gcp_project_id)
             assert response
-            return
 
 
 @pytest.mark.ci_exempt
@@ -47,4 +45,3 @@ def test_run_reports_api_integration(api):
             integration_id = integration["INTG_GUID"]
             response = api.run_reports.integration(integration_id)
             assert response
-            return

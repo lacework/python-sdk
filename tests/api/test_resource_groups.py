@@ -78,7 +78,6 @@ def test_resource_groups_api_update(api):
         response = api.resource_groups.update(
             RESOURCE_GROUP_GUID,
             name="AWS Test (Updated)",
-            type="AWS",
             enabled=0,
             props={
                 "description": f"Test Description {RANDOM_TEXT} (Updated)",

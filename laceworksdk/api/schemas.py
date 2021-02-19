@@ -26,7 +26,9 @@ class SchemasAPI(object):
 
         self._session = session
 
-    def get(self, type=None, subtype=None):
+    def get(self,
+            type=None,
+            subtype=None):
         """
         A method to list all schema types, or fetch a specific schema
 
@@ -47,7 +49,9 @@ class SchemasAPI(object):
 
         return response.json()
 
-    def get_by_subtype(self, type, subtype):
+    def get_by_subtype(self,
+                       type,
+                       subtype):
         """
         A method to fetch a specific subtype schema
 

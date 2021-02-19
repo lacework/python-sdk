@@ -26,7 +26,11 @@ class AlertRulesAPI(object):
 
         self._session = session
 
-    def create(self, type, filters, intgGuidList, org=False):
+    def create(self,
+               type,
+               filters,
+               intg_guid_list,
+               org=False):
         """
         A method to create a new alert rule.
 
@@ -44,7 +48,7 @@ class AlertRulesAPI(object):
                     "File", "Machine", "User")
                 :param severity: A list of alert severities to define for the alert rule.
                     (1, 2, 3, 4, 5)
-        :param intgGuidList: A list of integration GUIDs representing the alert channels to use.
+        :param intg_guid_list: A list of integration GUIDs representing the alert channels to use.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
@@ -58,8 +62,8 @@ class AlertRulesAPI(object):
 
         data = {
             "type": type,
-            "filters": filters,
-            "intgGuidList": intgGuidList
+            "filters": self._build_filters(filters),
+            "intgGuidList": intg_guid_list
         }
 
         response = self._session.post(api_uri, org=org, data=data)
@@ -121,7 +125,7 @@ class AlertRulesAPI(object):
 
         return response.json()
 
-    def update(self, guid, type=None, filters=None, intgGuidList=None, org=False):
+    def update(self, guid, type=None, filters=None, intg_guid_list=None, org=False):
         """
         A method to update an alert rule.
 
@@ -140,7 +144,7 @@ class AlertRulesAPI(object):
                     "File", "Machine", "User")
                 :param severity: A list of alert severities to define for the alert rule.
                     (1, 2, 3, 4, 5)
-        :param intgGuidList: A list of integration GUIDs representing the alert channels to use.
+        :param intg_guid_list: A list of integration GUIDs representing the alert channels to use.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
@@ -157,9 +161,9 @@ class AlertRulesAPI(object):
         if type:
             tmp_data["type"] = type
         if filters:
-            tmp_data["filters"] = filters
-        if intgGuidList:
-            tmp_data["intgGuidList"] = intgGuidList
+            tmp_data["filters"] = self._build_filters(filters)
+        if intg_guid_list:
+            tmp_data["intgGuidList"] = intg_guid_list
 
         response = self._session.patch(api_uri, org=org, data=tmp_data)
 
@@ -187,3 +191,27 @@ class AlertRulesAPI(object):
             return response
         else:
             return response.json()
+
+    def _build_filters(self, filters):
+        """
+        A method to properly structure the filters object.
+        """
+
+        keys = filters.keys()
+
+        response = {}
+
+        if "name" in keys:
+            response["name"] = filters["name"]
+        if "description" in keys:
+            response["description"] = filters["description"]
+        if "enabled" in keys:
+            response["enabled"] = int(bool(filters["enabled"]))
+        if "resource_groups" in keys:
+            response["resourceGroups"] = filters["resourceGroups"]
+        if "event_category" in keys:
+            response["eventCategory"] = filters["eventCategory"]
+        if "severity" in keys:
+            response["severity"] = filters["severity"]
+
+        return response

@@ -26,7 +26,10 @@ class ContractInfoAPI(object):
 
         self._session = session
 
-    def get(self, start_time=None, end_time=None, org=False):
+    def get(self,
+            start_time=None,
+            end_time=None,
+            org=False):
         """
         A method to get contract info.
 
