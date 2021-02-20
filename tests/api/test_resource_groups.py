@@ -41,7 +41,7 @@ def test_resource_groups_api_get_by_guid(api):
 
 def test_resource_groups_api_create(api):
     response = api.resource_groups.create(
-        name="AWS Test",
+        name=f"AWS Test {RANDOM_TEXT}",
         type="AWS",
         enabled=True,
         props={
@@ -77,7 +77,7 @@ def test_resource_groups_api_update(api):
 
         response = api.resource_groups.update(
             RESOURCE_GROUP_GUID,
-            name="AWS Test (Updated)",
+            name=f"AWS Test {RANDOM_TEXT} (Updated)",
             enabled=0,
             props={
                 "description": f"Test Description {RANDOM_TEXT} (Updated)",
