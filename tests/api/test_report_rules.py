@@ -27,18 +27,6 @@ def test_report_rules_api_get(api):
     assert "data" in response.keys()
 
 
-def test_report_rules_api_get_by_guid(api):
-    response = api.report_rules.get()
-
-    if len(response) > 0:
-        report_rule_guid = random.choice(response["data"])["mcGuid"]
-
-        response = api.report_rules.get_by_guid(guid=report_rule_guid)
-
-        assert "data" in response.keys()
-        assert response["data"]["mcGuid"] == report_rule_guid
-
-
 def test_report_rules_api_create(api):
 
     response = api.alert_channels.search(
@@ -95,6 +83,15 @@ def test_report_rules_api_create(api):
     REPORT_RULE_GUID = response["data"]["mcGuid"]
 
 
+def test_report_rules_api_get_by_guid(api):
+    assert REPORT_RULE_GUID is not None
+    if REPORT_RULE_GUID:
+        response = api.report_rules.get_by_guid(guid=REPORT_RULE_GUID)
+
+        assert "data" in response.keys()
+        assert response["data"]["mcGuid"] == REPORT_RULE_GUID
+
+
 def test_report_rules_api_search(api):
     response = api.report_rules.search(query_data={
         "filters": [
@@ -112,6 +109,7 @@ def test_report_rules_api_search(api):
 
 
 def test_report_rules_api_update(api):
+    assert REPORT_RULE_GUID is not None
     if REPORT_RULE_GUID:
         response = api.report_rules.update(
             REPORT_RULE_GUID,
@@ -123,12 +121,9 @@ def test_report_rules_api_update(api):
 
         assert "data" in response.keys()
 
-    assert REPORT_RULE_GUID is not None
-
 
 def test_report_rules_api_delete(api):
+    assert REPORT_RULE_GUID is not None
     if REPORT_RULE_GUID:
         response = api.report_rules.delete(REPORT_RULE_GUID)
         assert response.status_code == 204
-
-    assert REPORT_RULE_GUID is not None

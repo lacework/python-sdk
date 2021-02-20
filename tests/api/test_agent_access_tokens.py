@@ -46,6 +46,7 @@ def test_agent_access_tokens_api_get_by_id(api):
 
 
 def test_agent_access_tokens_api_search(api):
+    assert AGENT_ACCESS_TOKEN_ID is not None
     if AGENT_ACCESS_TOKEN_ID:
 
         response = api.agent_access_tokens.search(
@@ -65,10 +66,9 @@ def test_agent_access_tokens_api_search(api):
 
         assert "data" in response.keys()
 
-    assert AGENT_ACCESS_TOKEN_ID is not None
-
 
 def test_agent_access_tokens_api_update(api):
+    assert AGENT_ACCESS_TOKEN_ID is not None
     if AGENT_ACCESS_TOKEN_ID:
 
         new_alias = f"{AGENT_ACCESS_TOKEN_ALIAS} {RANDOM_TEXT}"
@@ -87,5 +87,3 @@ def test_agent_access_tokens_api_update(api):
 
         assert "data" in response.keys()
         assert response["data"]["tokenAlias"] == AGENT_ACCESS_TOKEN_ALIAS
-
-    assert AGENT_ACCESS_TOKEN_ID is not None

@@ -27,18 +27,6 @@ def test_team_members_api_get(api):
     assert "data" in response.keys()
 
 
-def test_team_members_api_get_by_guid(api):
-    response = api.team_members.get()
-
-    if len(response) > 0:
-        team_member_guid = random.choice(response["data"])["userGuid"]
-
-        response = api.team_members.get_by_guid(guid=team_member_guid)
-
-        assert "data" in response.keys()
-        assert response["data"]["userGuid"] == team_member_guid
-
-
 def test_team_members_api_create(api):
     response = api.team_members.create(
         username=f"{RANDOM_TEXT}@lacework.net",
@@ -55,6 +43,15 @@ def test_team_members_api_create(api):
 
     global TEAM_MEMBER_GUID
     TEAM_MEMBER_GUID = response["data"]["userGuid"]
+
+
+def test_team_members_api_get_by_guid(api):
+    assert TEAM_MEMBER_GUID is not None
+    if TEAM_MEMBER_GUID:
+        response = api.team_members.get_by_guid(guid=TEAM_MEMBER_GUID)
+
+        assert "data" in response.keys()
+        assert response["data"]["userGuid"] == TEAM_MEMBER_GUID
 
 
 def test_team_members_api_search(api):
@@ -75,6 +72,7 @@ def test_team_members_api_search(api):
 
 
 def test_team_members_api_update(api):
+    assert TEAM_MEMBER_GUID is not None
     if TEAM_MEMBER_GUID:
         response = api.team_members.update(
             TEAM_MEMBER_GUID,
@@ -83,12 +81,9 @@ def test_team_members_api_update(api):
 
         assert "data" in response.keys()
 
-    assert TEAM_MEMBER_GUID is not None
-
 
 def test_team_members_api_delete(api):
+    assert TEAM_MEMBER_GUID is not None
     if TEAM_MEMBER_GUID:
         response = api.team_members.delete(TEAM_MEMBER_GUID)
         assert response.status_code == 204
-
-    assert TEAM_MEMBER_GUID is not None

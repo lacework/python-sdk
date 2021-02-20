@@ -27,18 +27,6 @@ def test_alert_rules_api_get(api):
     assert "data" in response.keys()
 
 
-def test_alert_rules_api_get_by_guid(api):
-    response = api.alert_rules.get()
-
-    if len(response) > 0:
-        alert_rule_guid = random.choice(response["data"])["mcGuid"]
-
-        response = api.alert_rules.get_by_guid(guid=alert_rule_guid)
-
-        assert "data" in response.keys()
-        assert response["data"]["mcGuid"] == alert_rule_guid
-
-
 def test_alert_rules_api_create(api):
 
     response = api.alert_channels.search(
@@ -92,6 +80,15 @@ def test_alert_rules_api_create(api):
     ALERT_RULE_GUID = response["data"]["mcGuid"]
 
 
+def test_alert_rules_api_get_by_guid(api):
+    assert ALERT_RULE_GUID is not None
+    if ALERT_RULE_GUID:
+        response = api.alert_rules.get_by_guid(guid=ALERT_RULE_GUID)
+
+        assert "data" in response.keys()
+        assert response["data"]["mcGuid"] == ALERT_RULE_GUID
+
+
 def test_alert_rules_api_search(api):
     response = api.alert_rules.search(query_data={
         "filters": [
@@ -109,6 +106,7 @@ def test_alert_rules_api_search(api):
 
 
 def test_alert_rules_api_update(api):
+    assert ALERT_RULE_GUID is not None
     if ALERT_RULE_GUID:
         response = api.alert_rules.update(
             ALERT_RULE_GUID,
@@ -120,12 +118,9 @@ def test_alert_rules_api_update(api):
 
         assert "data" in response.keys()
 
-    assert ALERT_RULE_GUID is not None
-
 
 def test_alert_rules_api_delete(api):
+    assert ALERT_RULE_GUID is not None
     if ALERT_RULE_GUID:
         response = api.alert_rules.delete(ALERT_RULE_GUID)
         assert response.status_code == 204
-
-    assert ALERT_RULE_GUID is not None
