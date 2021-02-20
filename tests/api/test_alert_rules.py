@@ -47,7 +47,7 @@ def test_alert_rules_api_create(api):
                 {
                     "expression": "eq",
                     "field": "type",
-                    "value": "SlackChannel"
+                    "value": "EmailUser"
                 }
             ],
             "returns": [
@@ -55,7 +55,7 @@ def test_alert_rules_api_create(api):
             ]
         }
     )
-    alert_channel_guid = random.choice(response["data"])["intgGuid"]
+    alert_channel_guid = response["data"][0]["intgGuid"]
 
     response = api.resource_groups.search(
         query_data={
@@ -71,7 +71,7 @@ def test_alert_rules_api_create(api):
             ]
         }
     )
-    resource_group_guid = random.choice(response["data"])["resourceGuid"]
+    resource_group_guid = response["data"][0]["resourceGuid"]
 
     response = api.alert_rules.create(
         type="Event",
