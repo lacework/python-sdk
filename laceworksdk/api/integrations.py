@@ -210,7 +210,7 @@ class IntegrationsAPI(object):
         """
         A method to delete the specified cloud integration.
 
-        :param id: A string representing the Lacework integration GUID.
+        :param guid: A string representing the Lacework integration GUID.
 
         :return response json
         """

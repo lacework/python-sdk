@@ -132,7 +132,7 @@ class TeamMembersAPI(object):
         """
         A method to update a team member.
 
-        :param guid: A string representing the team member ID.
+        :param guid: A string representing the team member GUID.
         :param username: A string representing the email address of the user.
         :param props: An object containing team member configuration
             obj:

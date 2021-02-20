@@ -18,6 +18,7 @@ from .custom_compliance_config import CustomComplianceConfigAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
 from .integrations import IntegrationsAPI
+from .report_rules import ReportRulesAPI
 from .resource_groups import ResourceGroupsAPI
 from .run_reports import RunReportsAPI
 from .schemas import SchemasAPI
@@ -78,6 +79,7 @@ class LaceworkClient(object):
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
+        self.report_rules = ReportRulesAPI(self._session)
         self.resource_groups = ResourceGroupsAPI(self._session)
         self.run_reports = RunReportsAPI(self._session)
         self.schemas = SchemasAPI(self._session)

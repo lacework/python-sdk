@@ -17,6 +17,7 @@ pytest_plugins = [
     "tests.api.test_download_file",
     "tests.api.test_events",
     "tests.api.test_integrations",
+    "tests.api.test_report_rules",
     "tests.api.test_resource_groups",
     "tests.api.test_run_reports",
     "tests.api.test_schemas",

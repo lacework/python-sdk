@@ -70,7 +70,9 @@ class AlertRulesAPI(object):
 
         return response.json()
 
-    def get(self, guid=None, org=False):
+    def get(self,
+            guid=None,
+            org=False):
         """
         A method to get alert rules.
 
@@ -93,7 +95,9 @@ class AlertRulesAPI(object):
 
         return response.json()
 
-    def get_by_guid(self, guid, org=False):
+    def get_by_guid(self,
+                    guid,
+                    org=False):
         """
         A method to get an alert rule by GUID.
 
@@ -106,11 +110,13 @@ class AlertRulesAPI(object):
 
         return self.get(guid=guid, org=org)
 
-    def search(self, query_data=None, org=False):
+    def search(self,
+               query_data=None,
+               org=False):
         """
         A method to search alert rules.
 
-        :param query_data: A dictionary containing the necessary search parameters
+        :param query_data: A dictionary containing the desired search parameters.
             (filters, returns)
 
         :return response json
@@ -125,11 +131,16 @@ class AlertRulesAPI(object):
 
         return response.json()
 
-    def update(self, guid, type=None, filters=None, intg_guid_list=None, org=False):
+    def update(self,
+               guid,
+               type=None,
+               filters=None,
+               intg_guid_list=None,
+               org=False):
         """
         A method to update an alert rule.
 
-        :param id: A string representing the alert rule ID.
+        :param guid: A string representing the alert rule GUID.
         :param type: A string representing the type of the alert rule.
             ('Event')
         :param filters: A filter object for the alert rule configuration.
@@ -169,7 +180,9 @@ class AlertRulesAPI(object):
 
         return response.json()
 
-    def delete(self, guid, org=False):
+    def delete(self,
+               guid,
+               org=False):
         """
         A method to delete an alert rule.
 
@@ -192,7 +205,8 @@ class AlertRulesAPI(object):
         else:
             return response.json()
 
-    def _build_filters(self, filters):
+    def _build_filters(self,
+                       filters):
         """
         A method to properly structure the filters object.
         """
@@ -207,9 +221,9 @@ class AlertRulesAPI(object):
             response["description"] = filters["description"]
         if "enabled" in keys:
             response["enabled"] = int(bool(filters["enabled"]))
-        if "resource_groups" in keys:
+        if "resourceGroups" in keys:
             response["resourceGroups"] = filters["resourceGroups"]
-        if "event_category" in keys:
+        if "eventCategory" in keys:
             response["eventCategory"] = filters["eventCategory"]
         if "severity" in keys:
             response["severity"] = filters["severity"]

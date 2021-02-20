@@ -95,6 +95,6 @@ Are you looking for some sample scripts? Check out the [examples](examples/) fol
 - [x] Audit Logs
 - [x] CloudTrail
 - [x] Contract Info
-- [] Report Rules
+- [x] Report Rules
 - [x] Resource Groups
 - [x] Team Members
