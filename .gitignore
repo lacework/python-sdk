@@ -1,4 +1,5 @@
 # Local Files
+build/
 local/
 
 # Environment Variables

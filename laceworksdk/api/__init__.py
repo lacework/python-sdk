@@ -31,6 +31,7 @@ from laceworksdk.config import (
     LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE,
     LACEWORK_API_KEY_ENVIRONMENT_VARIABLE,
     LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE,
+    LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE
 )
 
 load_dotenv()
@@ -46,7 +47,8 @@ class LaceworkClient(object):
                  subaccount=None,
                  api_key=None,
                  api_secret=None,
-                 instance=None):
+                 instance=None,
+                 base_domain=None):
         """
         Initializes the Lacework Client object.
 
@@ -58,13 +60,15 @@ class LaceworkClient(object):
         self._subaccount = subaccount or os.getenv(LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE)
         self._api_key = api_key or os.getenv(LACEWORK_API_KEY_ENVIRONMENT_VARIABLE)
         self._api_secret = api_secret or os.getenv(LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE)
+        self._base_domain = base_domain or os.getenv(LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE)
 
         # Create an HttpSession instance
         self._session = HttpSession(
             self._account,
             self._subaccount,
             self._api_key,
-            self._api_secret
+            self._api_secret,
+            self._base_domain
         )
 
         # API Wrappers
