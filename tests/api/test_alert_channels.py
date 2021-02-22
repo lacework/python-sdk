@@ -9,7 +9,7 @@ import string
 from laceworksdk.api.alert_channels import AlertChannelsAPI
 
 INTEGRATION_GUID = None
-RANDOM_TEXT = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
 
 # Tests
@@ -24,7 +24,7 @@ def test_alert_channels_api_env_object_creation(api_env):
 
 def test_alert_channels_api_get(api):
     response = api.alert_channels.get()
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_alert_channels_api_get_by_type(api):
@@ -35,19 +35,7 @@ def test_alert_channels_api_get_by_type(api):
 
         response = api.alert_channels.get_by_type(type=alert_channel_type)
 
-        assert 'data' in response.keys()
-
-
-def test_alert_channels_api_get_by_guid(api):
-    response = api.alert_channels.get()
-
-    if len(response) > 0:
-        alert_channel_guid = random.choice(response["data"])["intgGuid"]
-
-        response = api.alert_channels.get_by_guid(guid=alert_channel_guid)
-
-        assert 'data' in response.keys()
-        assert response["data"]["intgGuid"] == alert_channel_guid
+        assert "data" in response.keys()
 
 
 def test_alert_channels_api_create(api):
@@ -60,10 +48,19 @@ def test_alert_channels_api_create(api):
         }
     )
 
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
     global INTEGRATION_GUID
     INTEGRATION_GUID = response["data"]["intgGuid"]
+
+
+def test_alert_channels_api_get_by_guid(api):
+    assert INTEGRATION_GUID is not None
+    if INTEGRATION_GUID:
+        response = api.alert_channels.get_by_guid(guid=INTEGRATION_GUID)
+
+        assert "data" in response.keys()
+        assert response["data"]["intgGuid"] == INTEGRATION_GUID
 
 
 def test_alert_channels_api_search(api):
@@ -79,10 +76,11 @@ def test_alert_channels_api_search(api):
             "intgGuid"
         ]
     })
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_alert_channels_api_update(api):
+    assert INTEGRATION_GUID is not None
     if INTEGRATION_GUID:
         new_name = f"Slack Test {RANDOM_TEXT} Updated"
         new_enabled = False
@@ -93,12 +91,13 @@ def test_alert_channels_api_update(api):
             enabled=new_enabled
         )
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
         assert response["data"]["name"] == new_name
         assert response["data"]["enabled"] == int(new_enabled)
 
 
 def test_alert_channels_api_delete(api):
+    assert INTEGRATION_GUID is not None
     if INTEGRATION_GUID:
         response = api.alert_channels.delete(INTEGRATION_GUID)
         assert response.status_code == 204

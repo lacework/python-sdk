@@ -26,13 +26,18 @@ class AlertChannelsAPI(object):
 
         self._session = session
 
-    def create(self, name, type, enabled, data, org=False):
+    def create(self,
+               name,
+               type,
+               enabled,
+               data,
+               org=False):
         """
         A method to create a new alert channel.
 
         :param name: A string representing the alert channel name.
         :param type: A string representing the alert channel type.
-        :param enabled: An integer representing whether the integration is enabled.
+        :param enabled: An integer representing whether the alert channel is enabled.
             (0 or 1)
         :param data: A JSON object matching the schema for the specified type.
         :param org: A boolean representing whether the request should be performed
@@ -57,7 +62,10 @@ class AlertChannelsAPI(object):
 
         return response.json()
 
-    def get(self, guid=None, type=None, org=False):
+    def get(self,
+            guid=None,
+            type=None,
+            org=False):
         """
         A method to get all alert channels.
 
@@ -83,7 +91,9 @@ class AlertChannelsAPI(object):
 
         return response.json()
 
-    def get_by_type(self, type, org=False):
+    def get_by_type(self,
+                    type,
+                    org=False):
         """
         A method to get all alert channels by type.
 
@@ -96,7 +106,9 @@ class AlertChannelsAPI(object):
 
         return self.get(type=type, org=org)
 
-    def get_by_guid(self, guid, org=False):
+    def get_by_guid(self,
+                    guid,
+                    org=False):
         """
         A method to get all alert channels.
 
@@ -109,11 +121,13 @@ class AlertChannelsAPI(object):
 
         return self.get(guid=guid, org=org)
 
-    def search(self, query_data=None, org=False):
+    def search(self,
+               query_data=None,
+               org=False):
         """
         A method to search alert channels.
 
-        :param query_data: A dictionary containing the necessary search parameters
+        :param query_data: A dictionary containing the desired search parameters.
             (filters, returns)
 
         :return response json
@@ -128,14 +142,20 @@ class AlertChannelsAPI(object):
 
         return response.json()
 
-    def update(self, guid, name=None, type=None, enabled=None, data=None, org=False):
+    def update(self,
+               guid,
+               name=None,
+               type=None,
+               enabled=None,
+               data=None,
+               org=False):
         """
         A method to update an alert channel.
 
         :param guid: A string representing the alert channel GUID.
         :param name: A string representing the alert channel name.
         :param type: A string representing the alert channel type.
-        :param enabled: An integer representing whether the integration is enabled.
+        :param enabled: An integer representing whether the alert channel is enabled.
             (0 or 1)
         :param data: A JSON object matching the schema for the specified type.
         :param org: A boolean representing whether the request should be performed
@@ -164,7 +184,9 @@ class AlertChannelsAPI(object):
 
         return response.json()
 
-    def delete(self, guid, org=False):
+    def delete(self,
+               guid,
+               org=False):
         """
         A method to delete an alert channel.
 

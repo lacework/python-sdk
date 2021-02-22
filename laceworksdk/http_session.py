@@ -81,8 +81,8 @@ class HttpSession(object):
         adapter = HTTPAdapter(max_retries=retry)
 
         # Bind the adapter to HTTP/HTTPS calls
-        session.mount('http://', adapter)
-        session.mount('https://', adapter)
+        session.mount("http://", adapter)
+        session.mount("https://", adapter)
 
         return session
 
@@ -96,7 +96,7 @@ class HttpSession(object):
             response = self._get_access_token()
 
             # Parse and restructure the returned date (necessary for Python 3.6)
-            expiry_date = response.json()["expiresAt"].replace('Z', '+0000')
+            expiry_date = response.json()["expiresAt"].replace("Z", "+0000")
 
             # Update the access token and expiration
             self._access_token_expiry = datetime.strptime(expiry_date, "%Y-%m-%dT%H:%M:%S.%f%z")
@@ -226,7 +226,7 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"PATCH request to URI: {uri}")
-        logger.info(f"PATCH request data:\n{data}")
+        logger.debug(f"PATCH request data:\n{data}")
 
         # Perform a PATCH request
         response = self._session.patch(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))
@@ -255,7 +255,7 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"POST request to URI: {uri}")
-        logger.info(f"POST request data:\n{data}")
+        logger.debug(f"POST request data:\n{data}")
 
         # Perform a POST request
         response = self._session.post(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))
@@ -284,7 +284,7 @@ class HttpSession(object):
         uri = f"{self._base_url}{uri}"
 
         logger.info(f"PUT request to URI: {uri}")
-        logger.info(f"PUT request data:\n{data}")
+        logger.debug(f"PUT request data:\n{data}")
 
         # Perform a PUT request
         response = self._session.put(uri, params=param, json=data, headers=self._get_request_headers(org_access=org))

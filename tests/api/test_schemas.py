@@ -28,7 +28,11 @@ def test_schemas_api_get_type_schema(api):
         response = api.schemas.get(type=schema_type)
 
         if type(response) is dict:
-            assert 'oneOf' in response.keys()
+            if "oneOf" in response.keys():
+                for schema in response["oneOf"]:
+                    assert "properties" in schema.keys()
+            else:
+                assert "properties" in response.keys()
         elif type(response) is list:
             assert len(response) > 0
 
@@ -37,6 +41,9 @@ def test_schemas_api_get_subtype_schema(api):
     type = "AlertChannels"
     response = api.schemas.get(type=type)
 
-    for subtype in response["oneOf"][0]["properties"]["type"]["enum"]:
+    for subtype_schema in response["oneOf"]:
+
+        subtype = subtype_schema["properties"]["type"]["enum"][0]
+
         response = api.schemas.get_by_subtype(type=type, subtype=subtype)
-        assert 'required' in response.keys()
+        assert "properties" in response.keys()

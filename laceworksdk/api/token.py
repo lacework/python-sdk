@@ -58,7 +58,8 @@ class TokenAPI(object):
 
         return response.json()
 
-    def get(self, access_token=None):
+    def get(self,
+            access_token=None):
         """
         A method to get a list of enabled agent access tokens.
 
@@ -88,7 +89,8 @@ class TokenAPI(object):
 
         return self.get()
 
-    def get_token(self, access_token):
+    def get_token(self,
+                  access_token):
         """
         A method to get details about an agent access token.
 

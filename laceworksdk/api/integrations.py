@@ -26,7 +26,11 @@ class IntegrationsAPI(object):
 
         self._session = session
 
-    def create(self, name, type, enabled, data):
+    def create(self,
+               name,
+               type,
+               enabled,
+               data):
         """
         A method to create a new cloud integration.
 
@@ -55,7 +59,10 @@ class IntegrationsAPI(object):
 
         return response.json()
 
-    def get(self, guid=None, schema=None, type=None):
+    def get(self,
+            guid=None,
+            schema=None,
+            type=None):
         """
         A generic method to get cloud integrations.
 
@@ -93,7 +100,8 @@ class IntegrationsAPI(object):
 
         return self.get()
 
-    def get_by_id(self, id):
+    def get_by_id(self,
+                  id):
         """
         A method to get the specified cloud integration.
 
@@ -106,7 +114,8 @@ class IntegrationsAPI(object):
 
         return self.get(guid=id)
 
-    def get_by_type(self, type):
+    def get_by_type(self,
+                    type):
         """
         A method to get the specified cloud integration.
 
@@ -119,7 +128,12 @@ class IntegrationsAPI(object):
 
         return self.get(type=type)
 
-    def update(self, guid, name=None, type=None, enabled=None, data=None):
+    def update(self,
+               guid,
+               name=None,
+               type=None,
+               enabled=None,
+               data=None):
         """
         A method to update the specified cloud integration.
 
@@ -153,7 +167,12 @@ class IntegrationsAPI(object):
 
         return response.json()
 
-    def update_by_id(self, id, name, type, enabled, data):
+    def update_by_id(self,
+                     id,
+                     name=None,
+                     type=None,
+                     enabled=None,
+                     data=None):
         """
         A method to update the specified cloud integration.
 
@@ -170,7 +189,9 @@ class IntegrationsAPI(object):
 
         return self.update(guid=id, name=name, type=type, enabled=enabled, data=data)
 
-    def update_status(self, id, enabled):
+    def update_status(self,
+                      id,
+                      enabled):
         """
         A method to update the status of a specified cloud integration.
 
@@ -184,11 +205,12 @@ class IntegrationsAPI(object):
 
         return self.update(guid=id, enabled=enabled)
 
-    def delete(self, guid):
+    def delete(self,
+               guid):
         """
         A method to delete the specified cloud integration.
 
-        :param id: A string representing the Lacework integration GUID.
+        :param guid: A string representing the Lacework integration GUID.
 
         :return response json
         """
@@ -202,7 +224,8 @@ class IntegrationsAPI(object):
 
         return response.json()
 
-    def delete_by_id(self, id):
+    def delete_by_id(self,
+                     id):
         """
         A method to delete the specified cloud integration.
 

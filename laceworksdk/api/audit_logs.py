@@ -26,7 +26,10 @@ class AuditLogsAPI(object):
 
         self._session = session
 
-    def get(self, start_time=None, end_time=None, org=False):
+    def get(self,
+            start_time=None,
+            end_time=None,
+            org=False):
         """
         A method to get audit logs.
 
@@ -50,7 +53,9 @@ class AuditLogsAPI(object):
 
         return response.json()
 
-    def search(self, query_data=None, org=False):
+    def search(self,
+               query_data=None,
+               org=False):
         """
         A method to search audit logs.
 

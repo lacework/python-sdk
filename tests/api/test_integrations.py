@@ -9,7 +9,7 @@ import string
 from laceworksdk.api.integrations import IntegrationsAPI
 
 INTEGRATION_GUID = None
-RANDOM_TEXT = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
 
 # Tests
@@ -30,7 +30,7 @@ def test_integrations_api_get_by_id(api):
         integration_id = random.choice(integrations["data"])["INTG_GUID"]
         response = api.integrations.get_by_id(id=integration_id)
         assert response["ok"]
-        assert len(response['data']) == 1
+        assert len(response["data"]) == 1
 
 
 def test_integrations_api_get_by_type(api):
@@ -53,7 +53,7 @@ def test_integrations_api_create(api):
         }
     )
 
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
     global INTEGRATION_GUID
     INTEGRATION_GUID = response["data"][0]["INTG_GUID"]
@@ -70,7 +70,7 @@ def test_integrations_api_update(api):
             enabled=new_enabled
         )
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
         assert response["data"][0]["NAME"] == new_name
         assert response["data"][0]["ENABLED"] == int(new_enabled)
 
@@ -90,7 +90,7 @@ def test_integrations_api_update_by_id(api):
             }
         )
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
         assert response["data"][0]["NAME"] == new_name
         assert response["data"][0]["ENABLED"] == int(new_enabled)
 
@@ -104,7 +104,7 @@ def test_integrations_api_update_status(api):
             enabled=new_enabled
         )
 
-        assert 'data' in response.keys()
+        assert "data" in response.keys()
         assert response["data"][0]["ENABLED"] == int(new_enabled)
 
 

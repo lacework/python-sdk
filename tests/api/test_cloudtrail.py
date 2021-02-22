@@ -26,12 +26,12 @@ def test_cloud_trail_api_env_object_creation(api_env):
 
 def test_cloud_trail_api_get(api):
     response = api.cloudtrail.get()
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_cloud_trail_api_get_by_date(api):
     response = api.cloudtrail.get(start_time=start_time, end_time=end_time)
-    assert 'data' in response.keys()
+    assert "data" in response.keys()
 
 
 def test_cloud_trail_api_search(api):
@@ -52,4 +52,4 @@ def test_cloud_trail_api_search(api):
             "eventActor"
         ]
     })
-    assert 'data' in response.keys()
+    assert "data" in response.keys()

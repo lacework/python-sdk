@@ -42,7 +42,8 @@ class CustomComplianceConfigAPI(object):
 
         return response.json()
 
-    def set(self, data):
+    def set(self,
+            data):
         """
         A method to set the custom compliance settings in Lacework.
 
