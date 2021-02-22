@@ -104,7 +104,7 @@ class HttpSession(object):
 
     def _check_response_code(self, response, expected_response_codes):
         """
-        Check the requests.response.status_code to make sure it's on that we expected.
+        Check the requests.response.status_code to make sure it's one that we expected.
         """
         if response.status_code in expected_response_codes:
             pass

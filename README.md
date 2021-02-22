@@ -1,6 +1,6 @@
 # Lacework Python SDK
 
-![Build Status](https://github.com/lacework/python-sdk/workflows/Python%20Test/badge.svg)
+![Build Status](https://github.com/lacework/python-sdk/actions/workflows/python-test.yml/badge.svg)
 
 **laceworksdk** is a community developed Python library for interacting with the Lacework APIs.
 
