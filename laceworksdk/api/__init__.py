@@ -16,11 +16,14 @@ from .cloud_accounts import CloudAccountsAPI
 from .cloud_activities import CloudActivitiesAPI
 from .compliance import ComplianceAPI
 from .container_registries import ContainerRegistriesAPI
+from .content_repository import ContentRepository
 from .contract_info import ContractInfoAPI
 from .custom_compliance_config import CustomComplianceConfigAPI
+from .custom_policies import CustomPoliciesAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
 from .integrations import IntegrationsAPI
+from .lql_queries import LQLQueriesAPI
 from .recommendations import RecommendationsAPI
 from .report_rules import ReportRulesAPI
 from .resource_groups import ResourceGroupsAPI
@@ -91,6 +94,8 @@ class LaceworkClient(object):
         self.contract_info = ContractInfoAPI(self._session)
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
+        self.custom_policies = CustomPoliciesAPI(self._session)
+        self.lql_queries = LQLQueriesAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
         self.recommendations = RecommendationsAPI(self._session)
         self.report_rules = ReportRulesAPI(self._session)
@@ -102,3 +107,9 @@ class LaceworkClient(object):
         self.tokens = TokenAPI(self._session)
         self.user_profile = UserProfileAPI(self._session)
         self.vulnerabilities = VulnerabilityAPI(self._session)
+
+
+class LaceworkContentRepository(ContentRepository):
+
+    def __init__(self, session, config_file_path=None, uri=None, token=None):
+        super().__init__(session, config_file_path, uri, token)
