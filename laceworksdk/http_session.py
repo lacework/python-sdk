@@ -174,7 +174,7 @@ class HttpSession(object):
         # Build the request headers
         headers = self._session.headers
 
-        headers["Authorization"] = self._access_token
+        headers["Authorization"] = f"Bearer {self._access_token}"
         headers["Org-Access"] = "true" if org_access else "false"
         headers["User-Agent"] = f"laceworksdk-python-client/{version}"
 
