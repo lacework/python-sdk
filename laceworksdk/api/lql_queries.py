@@ -17,9 +17,11 @@ class LQLQueriesAPI(object):
         """
         Initializes the LQLQueriesAPI object.
 
-        :param session: An instance of the HttpSession class.
+        Parameters:
+        session (HttpSession): An instance of the HttpSession class.
 
-        :return LQLQueriesAPI object
+        Returns:
+        LQLQueriesAPI object
         """
         super(LQLQueriesAPI, self).__init__()
 
