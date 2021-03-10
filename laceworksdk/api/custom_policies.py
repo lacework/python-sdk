@@ -72,34 +72,39 @@ class CustomPoliciesAPI(object):
 
         return response.json()
 
-    def disable(self, policy_id):
+    def disable(self, policy_id, alert_enabled=None):
         """
         Disable a Custom Policy
 
         Parameters:
         policy_id (str): Custom Policy ID
+        alert_enabled (bool): What to set for alert_enabled. Defaults to None (unchanged).
 
         Return:
         response (dict): requests json() object
         """
         policy_json = {'enabled': False}
+        if alert_enabled in [True, False]:
+            policy_json['alert_enabled'] = alert_enabled
 
-        return self.update(policy_id, policy_json)
+        return self.update(policy_json, policy_id=policy_id)
 
-    def enable(self, policy_id, alert=False):
+    def enable(self, policy_id, alert_enabled=None):
         """
         Enable a Custom Policy
 
         Parameters:
         policy_id (str): Custom Policy ID
-        alert (bool): Whether or not to also enable alerting. Defaults to False.
+        alert_enabled (bool): What to set for alert_enabled. Defaults to None (unchanged).
 
         Return:
         response (dict): requests json() object
         """
-        policy_json = {'enabled': True, 'alert_enabled': alert is True}
+        policy_json = {'enabled': True}
+        if alert_enabled in [True, False]:
+            policy_json['alert_enabled'] = alert_enabled
 
-        return self.update(policy_id, policy_json)
+        return self.update(policy_json, policy_id=policy_id)
 
     def get(self, policy_id=None):
         """

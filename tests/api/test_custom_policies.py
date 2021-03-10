@@ -80,6 +80,36 @@ class TestCustomPolicies():
         assert request.cls.created_policy_id == policy_json['policy_id']
         # assert not any([x for x in list(data) if 'rule' in x])
 
+    def test_enable_disable(self, api):
+        # enable
+        response = api.custom_policies.enable(self.created_policy_id)
+        data = response['data'][0]
+
+        assert data['enabled'] is True
+        assert data['alert_enabled'] is False
+
+        # enable alert
+        response = api.custom_policies.enable(self.created_policy_id, alert_enabled=True)
+        data = response['data'][0]
+        
+        assert data['enabled'] is True
+        assert data['alert_enabled'] is True
+
+        # disable
+        response = api.custom_policies.disable(self.created_policy_id)
+        data = response['data'][0]
+        data = response['data'][0]
+
+        assert data['enabled'] is False
+        assert data['alert_enabled'] is True
+
+        # disable alert
+        response = api.custom_policies.disable(self.created_policy_id, alert_enabled=False)
+        data = response['data'][0]
+
+        assert data['enabled'] is False
+        assert data['alert_enabled'] is False
+
     def test_get(self, api):
         response = api.custom_policies.get()
         data = response['data']
@@ -87,12 +117,12 @@ class TestCustomPolicies():
         assert data
         # assert not any([x for x in list(data[0]) if 'rule' in x])
 
-    def test_get_id(self, request, api, custom_policy):
+    def test_get_id(self, request, api):
         response = api.custom_policies.get(policy_id=self.created_policy_id)
 
         assert len(response['data']) == 1
 
-    def test_update(self, api, custom_policy):
+    def test_update(self, api):
         policy_json = {'description': 'My New Description'}
 
         response = api.custom_policies.update(policy_json, self.created_policy_id)
@@ -103,7 +133,7 @@ class TestCustomPolicies():
         assert data['description'] == policy_json['description']
         # assert not any([x for x in list(data) if 'rule' in x])
 
-    def test_delete(self, api, custom_policy):
+    def test_delete(self, api):
         response = api.custom_policies.delete(self.created_policy_id)
 
         assert response['message']['ruleDeleted'] == self.created_policy_id
