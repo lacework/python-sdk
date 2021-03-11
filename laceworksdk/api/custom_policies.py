@@ -23,8 +23,8 @@ class CustomPoliciesAPI(object):
         """
         super(CustomPoliciesAPI, self).__init__()
 
-        self.custom_policies_base_uri = '/api/v1/external/lqlRules'
-        self.custom_policies_identifier_key = 'RULE_ID'
+        self.custom_policies_base_uri = '/api/v1/external/lqlPolicies'
+        self.custom_policies_identifier_key = 'POLICY_ID'
         self._session = session
 
     def create(self, policy_json, smart=False):

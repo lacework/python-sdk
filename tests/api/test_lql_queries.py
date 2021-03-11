@@ -4,8 +4,6 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 """
 import calendar
 import json
-import pytest
-import random
 import time
 
 from datetime import datetime
@@ -14,29 +12,6 @@ from laceworksdk.api.lql_queries import LQLQueriesAPI
 
 end_time = calendar.timegm(time.gmtime())
 start_time = end_time - 86400
-
-LQL_QUERY = (
-    '{query_id}(CloudTrailRawEvents e) {{\n'
-    '    SELECT INSERT_ID\n'
-    '    LIMIT 10\n'
-    '}}'
-)
-
-
-@pytest.fixture(scope='session')
-def lql_query(api):
-    query_id = f'MyLQL{random.randint(0, 1000000)}'
-    query_json = {
-        'QUERY_TEXT': LQL_QUERY.format(query_id=query_id)
-    }
-
-    yield query_id, query_json
-
-    # teardown
-    try:
-        api.lql_queries.delete(query_id)
-    except Exception:
-        pass
 
 
 def test_lql_queries_api_object_creation(api):
@@ -47,17 +22,15 @@ def test_lql_queries_api_env_object_creation(api_env):
     assert isinstance(api_env.lql_queries, LQLQueriesAPI)
 
 
-def test_create(api, lql_query):
-    unused_query_id, query_json = lql_query
+def test_create(api, create_lql_query):
+    unused_rand, unused_query_id, query_json, response = create_lql_query
     print(json.dumps(query_json, indent=4))
-
-    response = api.lql_queries.create(query_json)
 
     assert 'data' in response
 
 
-def test_compile(api, lql_query):
-    unused_query_id, query_json = lql_query
+def test_compile(api, construct_lql_query):
+    unused_rand, unused_query_id, query_json = construct_lql_query
     print(json.dumps(query_json, indent=4))
 
     response = api.lql_queries.compile(query_json)
@@ -83,17 +56,16 @@ def test_get(api):
     assert response['data']
 
 
-def test_get_id(api, lql_query):
-    query_id, unused_query_json = lql_query
-    print(query_id)
+def test_get_id(api, create_lql_query):
+    unused_rand, query_id, unused_query_json, unused_response = create_lql_query
 
     response = api.lql_queries.get(query_id=query_id)
 
     assert len(response['data']) == 1
 
 
-def test_run(api, lql_query):
-    unused_query_id, query_json = lql_query
+def test_run(api, construct_lql_query):
+    unused_rand, unused_query_id, query_json = construct_lql_query
     print(json.dumps(query_json, indent=4))
 
     response = api.lql_queries.run(
@@ -105,8 +77,8 @@ def test_run(api, lql_query):
     assert response['data']
 
 
-def test_update(api, lql_query):
-    query_id, query_json = lql_query
+def test_update(api, create_lql_query):
+    unused_rand, query_id, query_json, unused_response = create_lql_query
 
     query_json['QUERY_TEXT'] = query_json['QUERY_TEXT'].replace('LIMIT 10', 'LIMIT 11')
 
@@ -117,9 +89,8 @@ def test_update(api, lql_query):
     assert response['message']['lqlUpdated'] == query_id
 
 
-def test_delete(api, lql_query):
-    query_id, unused_query_json = lql_query
-    print(query_id)
+def test_delete(api, create_lql_query):
+    unused_rand, query_id, unused_query_json, unused_response = create_lql_query
 
     response = api.lql_queries.delete(query_id)
 
