@@ -111,5 +111,5 @@ class LaceworkClient(object):
 
 class LaceworkContentRepository(ContentRepository):
 
-    def __init__(self, session, config_file_path=None, uri=None, token=None):
-        super().__init__(session, config_file_path, uri, token)
+    def __init__(self, config_file_path=None, typ=None, uri=None, ref=None, token=None):
+        super().__init__(config_file_path, typ, uri, ref, token)
