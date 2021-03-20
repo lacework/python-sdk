@@ -151,6 +151,8 @@ class HttpSession(object):
             "expiryTime": DEFAULT_ACCESS_TOKEN_EXPIRATION
         }
 
+        response = None
+
         try:
             response = self._session.post(uri, json=data, headers=headers)
 
@@ -160,7 +162,11 @@ class HttpSession(object):
             self._print_debug_response(response)
 
         except Exception:
-            raise ApiError(response)
+            if response:
+                raise ApiError(response)
+
+            logger.error("Call to _get_access_token() returned no response.")
+            raise
 
         return response
 
