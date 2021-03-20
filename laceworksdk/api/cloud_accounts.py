@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Lacework Alert Channels API wrapper.
+Lacework Cloud Accounts API wrapper.
 """
 
 import logging
@@ -8,21 +8,21 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class AlertChannelsAPI(object):
+class CloudAccountsAPI(object):
     """
-    Lacework Alert Channels API.
+    Lacework Cloud Accounts API.
     """
 
     def __init__(self, session):
         """
-        Initializes the AlertChannelsAPI object.
+        Initializes the CloudAccountsAPI object.
 
         :param session: An instance of the HttpSession class
 
-        :return AlertChannelsAPI object.
+        :return CloudAccountsAPI object.
         """
 
-        super(AlertChannelsAPI, self).__init__()
+        super(CloudAccountsAPI, self).__init__()
 
         self._session = session
 
@@ -33,11 +33,11 @@ class AlertChannelsAPI(object):
                data,
                org=False):
         """
-        A method to create a new alert channel.
+        A method to create a new cloud account.
 
-        :param name: A string representing the alert channel name.
-        :param type: A string representing the alert channel type.
-        :param enabled: A boolean/integer representing whether the alert channel is enabled.
+        :param name: A string representing the cloud account name.
+        :param type: A string representing the cloud account type.
+        :param enabled: A boolean/integer representing whether the cloud account is enabled.
             (0 or 1)
         :param data: A JSON object matching the schema for the specified type.
         :param org: A boolean representing whether the request should be performed
@@ -46,10 +46,10 @@ class AlertChannelsAPI(object):
         :return response json
         """
 
-        logger.info("Creating alert channel in Lacework...")
+        logger.info("Creating cloud account in Lacework...")
 
-        # Build the Alert Channels request URI
-        api_uri = "/api/v2/AlertChannels"
+        # Build the Cloud Accounts request URI
+        api_uri = "/api/v2/CloudAccounts"
 
         data = {
             "name": name,
@@ -67,25 +67,25 @@ class AlertChannelsAPI(object):
             type=None,
             org=False):
         """
-        A method to get all alert channels.
+        A method to get all cloud accounts.
 
-        :param guid: A string representing the alert channel GUID.
-        :param type: A string representing the alert channel type.
+        :param guid: A string representing the cloud account GUID.
+        :param type: A string representing the cloud account type.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
         :return response json
         """
 
-        logger.info("Getting alert channel info from Lacework...")
+        logger.info("Getting cloud account info from Lacework...")
 
-        # Build the Alert Channels request URI
+        # Build the Cloud Accounts request URI
         if guid:
-            api_uri = f"/api/v2/AlertChannels/{guid}"
+            api_uri = f"/api/v2/CloudAccounts/{guid}"
         elif type:
-            api_uri = f"/api/v2/AlertChannels/{type}"
+            api_uri = f"/api/v2/CloudAccounts/{type}"
         else:
-            api_uri = "/api/v2/AlertChannels"
+            api_uri = "/api/v2/CloudAccounts"
 
         response = self._session.get(api_uri, org=org)
 
@@ -95,9 +95,9 @@ class AlertChannelsAPI(object):
                     type,
                     org=False):
         """
-        A method to get all alert channels by type.
+        A method to get all cloud accounts by type.
 
-        :param type: A string representing the alert channel type.
+        :param type: A string representing the cloud account type.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
@@ -110,9 +110,9 @@ class AlertChannelsAPI(object):
                     guid,
                     org=False):
         """
-        A method to get all alert channels.
+        A method to get all cloud accounts.
 
-        :param guid: A string representing the alert channel GUID.
+        :param guid: A string representing the cloud account GUID.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
@@ -125,7 +125,7 @@ class AlertChannelsAPI(object):
                query_data=None,
                org=False):
         """
-        A method to search alert channels.
+        A method to search cloud accounts.
 
         :param query_data: A dictionary containing the desired search parameters.
             (filters, returns)
@@ -133,10 +133,10 @@ class AlertChannelsAPI(object):
         :return response json
         """
 
-        logger.info("Searching alert channels from Lacework...")
+        logger.info("Searching cloud accounts from Lacework...")
 
-        # Build the Alert Channels request URI
-        api_uri = "/api/v2/AlertChannels/search"
+        # Build the Cloud Accounts request URI
+        api_uri = "/api/v2/CloudAccounts/search"
 
         response = self._session.post(api_uri, data=query_data, org=org)
 
@@ -150,12 +150,12 @@ class AlertChannelsAPI(object):
                data=None,
                org=False):
         """
-        A method to update an alert channel.
+        A method to update an cloud account.
 
-        :param guid: A string representing the alert channel GUID.
-        :param name: A string representing the alert channel name.
-        :param type: A string representing the alert channel type.
-        :param enabled: A boolean/integer representing whether the alert channel is enabled.
+        :param guid: A string representing the cloud account GUID.
+        :param name: A string representing the cloud account name.
+        :param type: A string representing the cloud account type.
+        :param enabled: A boolean/integer representing whether the cloud account is enabled.
             (0 or 1)
         :param data: A JSON object matching the schema for the specified type.
         :param org: A boolean representing whether the request should be performed
@@ -164,10 +164,10 @@ class AlertChannelsAPI(object):
         :return response json
         """
 
-        logger.info("Updating alert channel in Lacework...")
+        logger.info("Updating cloud account in Lacework...")
 
-        # Build the Alert Channels request URI
-        api_uri = f"/api/v2/AlertChannels/{guid}"
+        # Build the Cloud Accounts request URI
+        api_uri = f"/api/v2/CloudAccounts/{guid}"
 
         tmp_data = {}
 
@@ -188,19 +188,19 @@ class AlertChannelsAPI(object):
                guid,
                org=False):
         """
-        A method to delete an alert channel.
+        A method to delete an cloud account.
 
-        :param guid: A string representing the alert channel GUID.
+        :param guid: A string representing the cloud account GUID.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
         :return response json
         """
 
-        logger.info("Deleting alert channel in Lacework...")
+        logger.info("Deleting cloud account in Lacework...")
 
-        # Build the Alert Channels request URI
-        api_uri = f"/api/v2/AlertChannels/{guid}"
+        # Build the Cloud Accounts request URI
+        api_uri = f"/api/v2/CloudAccounts/{guid}"
 
         response = self._session.delete(api_uri, org=org)
 
