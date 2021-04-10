@@ -44,7 +44,7 @@ def test_container_registries_api_create(api):
         type="ContVulnCfg",
         enabled=1,
         data={
-            "registryType": "REMOTE_SCANNER"
+            "registryType": "INLINE_SCANNER"
         }
     )
 
