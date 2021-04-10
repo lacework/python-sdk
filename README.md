@@ -77,6 +77,7 @@ Are you looking for some sample scripts? Check out the [examples](examples/) fol
 
 ### API v1
 
+- [x] Account API
 - [x] Compliance API
 - [x] Custom Compliance Config API
 - [x] Download File API

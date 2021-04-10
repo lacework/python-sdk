@@ -7,6 +7,7 @@ import os
 
 from dotenv import load_dotenv
 from laceworksdk.http_session import HttpSession
+from .account import AccountAPI
 from .agent_access_tokens import AgentAccessTokensAPI
 from .alert_channels import AlertChannelsAPI
 from .alert_rules import AlertRulesAPI
@@ -75,6 +76,7 @@ class LaceworkClient(object):
         )
 
         # API Wrappers
+        self.account = AccountAPI(self._session)
         self.agent_access_tokens = AgentAccessTokensAPI(self._session)
         self.alert_channels = AlertChannelsAPI(self._session)
         self.alert_rules = AlertRulesAPI(self._session)
