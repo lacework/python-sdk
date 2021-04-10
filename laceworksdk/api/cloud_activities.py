@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Lacework CloudTrail API wrapper.
+Lacework CloudActivities API wrapper.
 """
 
 import logging
@@ -8,21 +8,21 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class CloudTrailAPI(object):
+class CloudActivitiesAPI(object):
     """
-    Lacework CloudTrail API.
+    Lacework CloudActivities API.
     """
 
     def __init__(self, session):
         """
-        Initializes the CloudTrailAPI object.
+        Initializes the CloudActivitiesAPI object.
 
         :param session: An instance of the HttpSession class
 
-        :return CloudTrailAPI object.
+        :return CloudActivitiesAPI object.
         """
 
-        super(CloudTrailAPI, self).__init__()
+        super(CloudActivitiesAPI, self).__init__()
 
         self._session = session
 
@@ -31,7 +31,7 @@ class CloudTrailAPI(object):
             end_time=None,
             org=False):
         """
-        A method to get CloudTrail details.
+        A method to get CloudActivities details.
 
         :param start_time: A "%Y-%m-%dT%H:%M:%SZ" structured timestamp to begin from.
         :param end_time: A "%Y-%m-%dT%H:%M:%S%Z" structured timestamp to end at.
@@ -41,10 +41,10 @@ class CloudTrailAPI(object):
         :return response json
         """
 
-        logger.info("Getting CloudTrail details from Lacework...")
+        logger.info("Getting CloudActivities details from Lacework...")
 
-        # Build the CloudTrail request URI
-        api_uri = "/api/v2/CloudTrail"
+        # Build the CloudActivities request URI
+        api_uri = "/api/v2/CloudActivities"
 
         if start_time and end_time:
             api_uri += f"?startTime={start_time}&endTime={end_time}"
@@ -57,7 +57,7 @@ class CloudTrailAPI(object):
                query_data=None,
                org=False):
         """
-        A method to search CloudTrail details.
+        A method to search CloudActivities details.
 
         :param query_data: A dictionary containing the necessary search parameters
             (timeFilter, filters, returns)
@@ -67,10 +67,10 @@ class CloudTrailAPI(object):
         :return response json
         """
 
-        logger.info("Searching CloudTrail details from Lacework...")
+        logger.info("Searching CloudActivities details from Lacework...")
 
-        # Build the CloudTrail request URI
-        api_uri = "/api/v2/CloudTrail/search"
+        # Build the CloudActivities request URI
+        api_uri = "/api/v2/CloudActivities/search"
 
         response = self._session.post(api_uri, data=query_data, org=org)
 

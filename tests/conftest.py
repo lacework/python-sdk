@@ -11,7 +11,7 @@ pytest_plugins = [
     "tests.api.test_alert_rules",
     "tests.api.test_audit_logs",
     "tests.api.test_cloud_accounts",
-    "tests.api.test_cloudtrail",
+    "tests.api.test_cloud_activities",
     "tests.api.test_compliance",
     "tests.api.test_container_registries",
     "tests.api.test_contract_info",

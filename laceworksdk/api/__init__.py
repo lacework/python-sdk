@@ -12,7 +12,7 @@ from .alert_channels import AlertChannelsAPI
 from .alert_rules import AlertRulesAPI
 from .audit_logs import AuditLogsAPI
 from .cloud_accounts import CloudAccountsAPI
-from .cloudtrail import CloudTrailAPI
+from .cloud_activities import CloudActivitiesAPI
 from .compliance import ComplianceAPI
 from .container_registries import ContainerRegistriesAPI
 from .contract_info import ContractInfoAPI
@@ -80,7 +80,7 @@ class LaceworkClient(object):
         self.alert_rules = AlertRulesAPI(self._session)
         self.audit_logs = AuditLogsAPI(self._session)
         self.cloud_accounts = CloudAccountsAPI(self._session)
-        self.cloudtrail = CloudTrailAPI(self._session)
+        self.cloud_activities = CloudActivitiesAPI(self._session)
         self.compliance = ComplianceAPI(self._session)
         self.compliance.config = CustomComplianceConfigAPI(self._session)
         self.container_registries = ContainerRegistriesAPI(self._session)
