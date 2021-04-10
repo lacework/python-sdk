@@ -93,8 +93,12 @@ Are you looking for some sample scripts? Check out the [examples](examples/) fol
 - [x] Alert Channels
 - [x] Alert Rules
 - [x] Audit Logs
-- [x] CloudTrail
+- [x] Cloud Accounts
+- [x] Cloud Activities
+- [x] Container Registries
 - [x] Contract Info
 - [x] Report Rules
 - [x] Resource Groups
+- [x] Schemas
 - [x] Team Members
+- [x] User Profile
