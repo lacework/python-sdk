@@ -19,4 +19,4 @@ def test_account_api_env_object_creation(api_env):
 def test_account_api_get_org_info(api):
     response = api.account.get_org_info()
     assert "orgAccount" in response.keys()
-    assert "orgAccountName" in response.keys()
+    assert "orgAccountUrl" in response.keys()
