@@ -83,7 +83,9 @@ Are you looking for some sample scripts? Check out the [examples](examples/) fol
 - [x] Download File API
 - [x] Events API
 - [x] Integrations API
+- [x] Recommendations API
 - [x] Run Reports API
+- [x] Suppressions API
 - [x] Token API
 - [x] Vulnerability API
 
