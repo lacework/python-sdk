@@ -8,7 +8,7 @@ import string
 
 from laceworksdk.api.report_rules import ReportRulesAPI
 
-ALERT_RULE_GUID = None
+REPORT_RULE_GUID = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
 

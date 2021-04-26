@@ -21,10 +21,12 @@ from .custom_compliance_config import CustomComplianceConfigAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
 from .integrations import IntegrationsAPI
+from .recommendations import RecommendationsAPI
 from .report_rules import ReportRulesAPI
 from .resource_groups import ResourceGroupsAPI
 from .run_reports import RunReportsAPI
 from .schemas import SchemasAPI
+from .suppressions import SuppressionsAPI
 from .team_members import TeamMembersAPI
 from .token import TokenAPI
 from .user_profile import UserProfileAPI
@@ -90,10 +92,12 @@ class LaceworkClient(object):
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
+        self.recommendations = RecommendationsAPI(self._session)
         self.report_rules = ReportRulesAPI(self._session)
         self.resource_groups = ResourceGroupsAPI(self._session)
         self.run_reports = RunReportsAPI(self._session)
         self.schemas = SchemasAPI(self._session)
+        self.suppressions = SuppressionsAPI(self._session)
         self.team_members = TeamMembersAPI(self._session)
         self.tokens = TokenAPI(self._session)
         self.user_profile = UserProfileAPI(self._session)

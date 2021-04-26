@@ -304,7 +304,7 @@ class HttpSession(object):
 
         return response
 
-    def delete(self, uri, org=False):
+    def delete(self, uri, data=None, org=False):
         """
         :param uri: uri to send the http DELETE request to
         :param org: boolean representing whether the request should be performed at the Organization level
@@ -321,7 +321,7 @@ class HttpSession(object):
         logger.info(f"DELETE request to URI: {uri}")
 
         # Perform a DELETE request
-        response = self._session.delete(uri, headers=self._get_request_headers(org_access=org))
+        response = self._session.delete(uri, json=data, headers=self._get_request_headers(org_access=org))
 
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
