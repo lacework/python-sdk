@@ -96,9 +96,9 @@ def test_report_rules_api_search(api):
     response = api.report_rules.search(query_data={
         "filters": [
             {
-                "expression": "eq",
-                "field": "type",
-                "value": "Report"
+                "expression": "ilike",
+                "field": "filters.name",
+                "value": "test%"
             }
         ],
         "returns": [
