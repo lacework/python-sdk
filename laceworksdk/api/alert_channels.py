@@ -208,3 +208,28 @@ class AlertChannelsAPI(object):
             return response
         else:
             return response.json()
+
+    def test(self,
+             guid,
+             org=False):
+        """
+        A method to test an alert channel.
+
+        :param guid: A string representing the alert channel GUID.
+        :param org: A boolean representing whether the request should be performed
+            at the Organization level
+
+        :return response json
+        """
+
+        logger.info("Testing alert channel in Lacework...")
+
+        # Build the Alert Channels request URI
+        api_uri = f"/api/v2/AlertChannels/{guid}/test"
+
+        response = self._session.post(api_uri, org=org)
+
+        if response.status_code == 204:
+            return response
+        else:
+            return response.json()

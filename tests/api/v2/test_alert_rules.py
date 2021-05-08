@@ -93,9 +93,9 @@ def test_alert_rules_api_search(api):
     response = api.alert_rules.search(query_data={
         "filters": [
             {
-                "expression": "eq",
-                "field": "type",
-                "value": "Event"
+                "expression": "ilike",
+                "field": "filters.name",
+                "value": "test%"
             }
         ],
         "returns": [

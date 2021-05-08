@@ -79,6 +79,26 @@ def test_alert_channels_api_search(api):
     assert "data" in response.keys()
 
 
+def test_alert_channels_api_test(api):
+    response = api.alert_channels.search(query_data={
+        "filters": [
+            {
+                "expression": "ilike",
+                "field": "name",
+                "value": "default email"
+            }
+        ],
+        "returns": [
+            "intgGuid"
+        ]
+    })
+    default_email_guid = response["data"][0]["intgGuid"]
+
+    if default_email_guid:
+        response = api.alert_channels.test(guid=default_email_guid)
+        assert response.status_code == 204
+
+
 def test_alert_channels_api_update(api):
     assert INTEGRATION_GUID is not None
     if INTEGRATION_GUID:
