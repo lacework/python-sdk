@@ -19,11 +19,11 @@ from .container_registries import ContainerRegistriesAPI
 from .content_repository import ContentRepository
 from .contract_info import ContractInfoAPI
 from .custom_compliance_config import CustomComplianceConfigAPI
-from .custom_policies import CustomPoliciesAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
 from .integrations import IntegrationsAPI
-from .lql_queries import LQLQueriesAPI
+from .lql_policies import LqlPoliciesAPI
+from .lql_queries import LqlQueriesAPI
 from .recommendations import RecommendationsAPI
 from .report_rules import ReportRulesAPI
 from .resource_groups import ResourceGroupsAPI
@@ -94,9 +94,9 @@ class LaceworkClient(object):
         self.contract_info = ContractInfoAPI(self._session)
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
-        self.custom_policies = CustomPoliciesAPI(self._session)
-        self.lql_queries = LQLQueriesAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
+        self.lql_policies = LqlPoliciesAPI(self._session)
+        self.lql_queries = LqlQueriesAPI(self._session)
         self.recommendations = RecommendationsAPI(self._session)
         self.report_rules = ReportRulesAPI(self._session)
         self.resource_groups = ResourceGroupsAPI(self._session)

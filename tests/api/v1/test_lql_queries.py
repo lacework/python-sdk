@@ -2,24 +2,25 @@
 """
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
+
 import calendar
 import json
 import time
 
 from datetime import datetime
 
-from laceworksdk.api.lql_queries import LQLQueriesAPI
+from laceworksdk.api.lql_queries import LqlQueriesAPI
 
 end_time = calendar.timegm(time.gmtime())
 start_time = end_time - 86400
 
 
 def test_lql_queries_api_object_creation(api):
-    assert isinstance(api.lql_queries, LQLQueriesAPI)
+    assert isinstance(api.lql_queries, LqlQueriesAPI)
 
 
 def test_lql_queries_api_env_object_creation(api_env):
-    assert isinstance(api_env.lql_queries, LQLQueriesAPI)
+    assert isinstance(api_env.lql_queries, LqlQueriesAPI)
 
 
 def test_create(api, create_lql_query):

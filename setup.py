@@ -26,6 +26,7 @@ setup(
     download_url="https://pypi.python.org/pypi/laceworksdk",
     keywords=["lacework", "api", "sdk", "python", "api"],
     install_requires=[
+        "pygithub",
         "python-dotenv",
         "requests",
     ],

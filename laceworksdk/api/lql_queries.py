@@ -8,7 +8,7 @@ from laceworksdk.exceptions import ApiError
 logger = logging.getLogger(__name__)
 
 
-class LQLQueriesAPI(object):
+class LqlQueriesAPI(object):
     """
     Lacework LQL Query API.
     """
@@ -23,7 +23,7 @@ class LQLQueriesAPI(object):
         Returns:
         LQLQueriesAPI object
         """
-        super(LQLQueriesAPI, self).__init__()
+        super(LqlQueriesAPI, self).__init__()
 
         self.lql_queries_base_uri = '/api/v1/external/lql'
         self.lql_queries_identifier_key = 'LQL_ID'
