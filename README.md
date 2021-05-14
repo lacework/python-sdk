@@ -105,3 +105,15 @@ Are you looking for some sample scripts? Check out the [examples](examples/) fol
 - [x] Schemas
 - [x] Team Members
 - [x] User Profile
+
+### Contributing
+
+To install/configure the necessary requirements for contributing to this project, simply create a virtual environment, install `requirements.txt` and `requirements-dev.txt`, and set up a version file using the commands below:
+
+```sh
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+python setup.py --version
+```
