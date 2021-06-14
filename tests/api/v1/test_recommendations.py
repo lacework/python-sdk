@@ -3,6 +3,8 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
+import pytest
+
 from laceworksdk.api.recommendations import RecommendationsAPI
 
 
@@ -26,6 +28,7 @@ def test_recommendations_api_get_gcp(api):
     assert response["ok"]
 
 
+@pytest.mark.ci_exempt
 def test_recommendations_api_update_aws(api):
     data = {
         "LW_S3_1": "disable"
