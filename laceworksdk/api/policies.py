@@ -36,7 +36,7 @@ class PoliciesAPI(object):
                evaluator_id,
                limit=None,
                eval_frequency=None,
-               policy_ui={},
+               policy_ui=None,
                org=False):
         """
         A method to create a new Lacework Query Language (LQL) policy.
@@ -67,6 +67,9 @@ class PoliciesAPI(object):
         # Build the Policies request URI
         api_uri = "/api/v2/Policies"
 
+        if policy_ui is None:
+            policy_ui = {}
+
         data = {
             "policyType": policy_type,
             "queryId": query_id,
@@ -81,7 +84,7 @@ class PoliciesAPI(object):
             "evaluatorId": evaluator_id
         }
 
-        if limit:
+        if isinstance(limit, int) and limit >= 0:
             data["limit"] = limit
         if eval_frequency:
             data["evalFrequency"] = eval_frequency
@@ -194,7 +197,7 @@ class PoliciesAPI(object):
             data["alertEnabled"] = bool(alert_enabled)
         if alert_profile:
             data["alertProfile"] = alert_profile
-        if limit:
+        if isinstance(limit, int) and limit >= 0:
             data["limit"] = limit
         if eval_frequency:
             data["evalFrequency"] = eval_frequency
