@@ -1,6 +1,7 @@
 # Lacework Python SDK
 
 ![Build Status](https://github.com/lacework/python-sdk/actions/workflows/python-test.yml/badge.svg)
+[![Downloads](https://pepy.tech/badge/laceworksdk)](https://pepy.tech/project/laceworksdk)
 
 **laceworksdk** is a community developed Python library for interacting with the Lacework APIs.
 
@@ -100,6 +101,8 @@ Are you looking for some sample scripts? Check out the [examples](examples/) fol
 - [x] Cloud Activities
 - [x] Container Registries
 - [x] Contract Info
+- [x] Policies
+- [x] Queries
 - [x] Report Rules
 - [x] Resource Groups
 - [x] Schemas

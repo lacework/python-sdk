@@ -121,7 +121,10 @@ class HttpSession(object):
         # If it's supposed to be a JSON response, parse and log, otherwise, log the raw text
         if "application/json" in response.headers.get("Content-Type", "").lower():
             try:
-                logger.debug(json.dumps(response.json(), indent=2))
+                if response.status_code != 204:
+                    logger.debug(json.dumps(response.json(), indent=2))
+                else:
+                    logger.debug("204 No Content Returned")
             except ValueError:
                 logger.warning("Error parsing JSON response body")
         else:
