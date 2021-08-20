@@ -129,7 +129,10 @@ class AlertRulesAPI(object):
 
         response = self._session.post(api_uri, data=query_data, org=org)
 
-        return response.json()
+        if response.status_code == 204:
+            return {"data": []}
+        else:
+            return response.json()
 
     def update(self,
                guid,
