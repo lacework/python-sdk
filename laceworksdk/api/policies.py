@@ -36,7 +36,6 @@ class PoliciesAPI(object):
                evaluator_id,
                limit=None,
                eval_frequency=None,
-               policy_ui=None,
                org=False):
         """
         A method to create a new Lacework Query Language (LQL) policy.
@@ -55,7 +54,6 @@ class PoliciesAPI(object):
         :param limit: An integer representing the number of results to return.
         :param eval_frequency: A string representing the frequency in which to evaluate the policy.
             ("Hourly", "Daily")
-        :param policy_ui: A dictionary which specifies the policyUi domain and subdomain.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
@@ -67,9 +65,6 @@ class PoliciesAPI(object):
         # Build the Policies request URI
         api_uri = "/api/v2/Policies"
 
-        if policy_ui is None:
-            policy_ui = {}
-
         data = {
             "policyType": policy_type,
             "queryId": query_id,
@@ -80,7 +75,6 @@ class PoliciesAPI(object):
             "severity": severity,
             "alertEnabled": int(bool(alert_enabled)),
             "alertProfile": alert_profile,
-            "policyUi": policy_ui,
             "evaluatorId": evaluator_id
         }
 
@@ -146,7 +140,6 @@ class PoliciesAPI(object):
                alert_profile=None,
                limit=None,
                eval_frequency=None,
-               policy_ui=None,
                org=False):
         """
         A method to update a Lacework Query Language (LQL) policy.
@@ -165,7 +158,6 @@ class PoliciesAPI(object):
         :param limit: An integer representing the number of results to return.
         :param eval_frequency: A string representing the frequency in which to evaluate the policy.
             ("Hourly", "Daily")
-        :param policy_ui: A dictionary which specifies the policyUi domain and subdomain.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
@@ -201,8 +193,6 @@ class PoliciesAPI(object):
             data["limit"] = limit
         if eval_frequency:
             data["evalFrequency"] = eval_frequency
-        if policy_ui:
-            data["policyUi"] = policy_ui
 
         response = self._session.patch(api_uri, org=org, data=data)
 

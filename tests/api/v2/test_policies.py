@@ -17,7 +17,7 @@ start_time = start_time.strftime("%Y-%m-%dT%H:%M:%S.000Z")
 end_time = current_time.strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
 POLICY_ID = None
-RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase) for _ in range(8))
+RANDOM_TEXT = "".join(random.choices(string.ascii_uppercase, k=8))
 
 # Tests
 
