@@ -30,7 +30,6 @@ setup(
         'python-dotenv',
         'requests',
         'laceworksdk',
-        'configparser',
         'pandas'
     ],
     classifiers=[

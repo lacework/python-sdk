@@ -28,6 +28,7 @@ setup(
     install_requires=[
         "python-dotenv",
         "requests",
+        "configparser",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
