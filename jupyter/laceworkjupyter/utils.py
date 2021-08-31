@@ -1,4 +1,5 @@
 import datetime
+import functools
 import logging
 
 import pandas as pd
@@ -13,6 +14,7 @@ def dataframe_decorator(function):
     """
     A decorator used to convert Lacework JSON API output into a dataframe.
     """
+    @functools.wraps(function)
     def get_output(*args, **kwargs):
         data = function(*args, **kwargs)
 

@@ -1,11 +1,11 @@
-import configparser
 import logging
 import os
 
+import configparser
+from laceworksdk import LaceworkClient
+
 from . import config
 from . import utils
-
-from laceworksdk import LaceworkClient
 
 
 logger = logging.getLogger('lacework_sdk.jupyter.client')
