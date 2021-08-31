@@ -2,6 +2,8 @@ import os
 
 from setuptools import find_packages, setup
 
+from laceworkjupyter import version
+
 
 PACKAGE_NAME = 'laceworkjupyter'
 
@@ -20,8 +22,7 @@ setup(
     long_description_content_type='text/markdown',
     author='Kristinn Gudjonsson',
     author_email='kristinn.gudjonsson@lacework.net',
-    use_scm_version={'write_to': 'laceworkjupyter/version.py'},
-    setup_requires=['setuptools_scm'],
+    version=version.get_version(),
     url='https://github.com/lacework/python-sdk',
     download_url='https://pypi.python.org/pypi/laceworkjupyter',
     keywords=['lacework', 'api', 'sdk', 'python', 'api', 'jupyter', 'notebook'],
