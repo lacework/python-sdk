@@ -37,9 +37,10 @@ def test_policies_api_get(api):
 
 def test_policies_api_create(api):
     queries = api.queries.get()
+    queries = list(filter(lambda elem: elem["owner"] == "Lacework", queries["data"]))
 
     if len(queries) > 0:
-        query = random.choice(queries["data"])
+        query = random.choice(queries)
 
         response = api.policies.create(
             policy_type="Violation",
