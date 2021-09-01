@@ -49,7 +49,8 @@ To generate an API Key and Secret, do the following:
 
 ### Environment Variables
 
-The `account`, `subaccount`, `api_key`, and `api_secret` can also be set using environment variables.
+The `account`, `subaccount`, `api_key`, and `api_secret` can also be set using environment variables or
+saved in ~/.lacework.toml configuration file (same file as the Lacework CLI uses).
 
 | Environment Variable | Description                                                      | Required |
 | -------------------- | ---------------------------------------------------------------- | :------: |
