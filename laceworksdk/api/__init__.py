@@ -42,6 +42,7 @@ from laceworksdk.config import (
     LACEWORK_API_KEY_ENVIRONMENT_VARIABLE,
     LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE,
     LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE,
+    LACEWORK_API_CONFIG_SECTION_ENVIRONMENT_VARIABLE,
     LACEWORK_CLI_CONFIG_RELATIVE_PATH
 )
 
@@ -72,27 +73,30 @@ class LaceworkClient(object):
         """
 
         # Attempt to use Environment Variables
-        self._account = account or instance or os.getenv(LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE)
-        self._subaccount = subaccount or os.getenv(LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE)
-        self._api_key = api_key or os.getenv(LACEWORK_API_KEY_ENVIRONMENT_VARIABLE)
-        self._api_secret = api_secret or os.getenv(LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE)
-        self._base_domain = base_domain or os.getenv(LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE)
-        print(f'API KEY: {self._api_key}')
+        self._account = account or instance or os.getenv(
+            LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE)
+        self._subaccount = subaccount or os.getenv(
+            LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE)
+        self._api_key = api_key or os.getenv(
+            LACEWORK_API_KEY_ENVIRONMENT_VARIABLE)
+        self._api_secret = api_secret or os.getenv(
+            LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE)
+        self._base_domain = base_domain or os.getenv(
+            LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE)
 
         config_file_path = os.path.join(
             os.path.expanduser('~'), LACEWORK_CLI_CONFIG_RELATIVE_PATH)
 
         if os.path.isfile(config_file_path):
-            print('we got a config file')
+            config_section = os.getenv(
+                LACEWORK_API_CONFIG_SECTION_ENVIRONMENT_VARIABLE, 'default')
             config_obj = configparser.ConfigParser()
             config_obj.read([config_file_path])
-            if config_obj.has_section('default'):
-                config_section = config_obj['default']
+            if config_obj.has_section(config_section):
+                config_section = config_obj[config_section]
                 api_key = config_section.get('api_key', '').strip('""')
-                print(f'API KEY READ IS: {api_key}')
                 if not self._api_key and api_key:
                     self._api_key = api_key
-                    print('WE SET THE API KEY')
 
                 api_secret = config_section.get('api_secret', '').strip('""')
                 if not self._api_secret and api_secret:
@@ -101,6 +105,10 @@ class LaceworkClient(object):
                 account = config_section.get('account', '').strip('""')
                 if not self._account and account:
                     self._account = account
+
+                subaccount = config_section.get('subaccount', '').strip('""')
+                if not self.sub_account and subaccount:
+                    self._subaccount = subaccount
 
         # Create an HttpSession instance
         self._session = HttpSession(
