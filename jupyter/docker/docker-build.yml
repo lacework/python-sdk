@@ -4,7 +4,7 @@ services:
     container_name: lacebook
     build:
       context: ../../
-      dockerfile: ./jupyter/docker/build/Dockerfile
+      dockerfile: ./jupyter/docker/docker_build/Dockerfile
     ports:
       - 127.0.0.1:8899:8899
     restart: on-failure
