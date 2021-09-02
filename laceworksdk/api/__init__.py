@@ -107,7 +107,7 @@ class LaceworkClient(object):
                     self._account = account
 
                 subaccount = config_section.get('subaccount', '').strip('""')
-                if not self.sub_account and subaccount:
+                if not self._subaccount and subaccount:
                     self._subaccount = subaccount
 
         # Create an HttpSession instance

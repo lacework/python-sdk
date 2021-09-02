@@ -1,0 +1,56 @@
+{
+  "snippets": [
+    {
+      "name": "Get a new client",
+      "code" : [
+        "client = LaceworkJupyterHelper()"
+      ]
+    },
+    {
+      "name": "Generate a Date Picker for start/end times",
+      "code" : [
+        "import ipydatetime",
+        "import ipywidgets as widgets",
+        "import pytz",
+        "",
+        "start_time_form = ipydatetime.DatetimePicker(tzinfo=pytz.utc)",
+        "end_time_form = ipydatetime.DatetimePicker(tzinfo=pytz.utc)",
+        "start_label = widgets.Label(",
+        "    value='Start Time:',",
+        ")",
+        "end_label = widgets.Label(",
+        "    value='End Time:')",
+        "button = widgets.Button(description='Set Time')",
+        "",
+        "date_grid = widgets.TwoByTwoLayout(",
+        "    top_left=start,",
+        "    top_right=start_time_form,",
+        "    bottom_left=end,",
+        "    bottom_right=end_time_form,",
+        "    justify_items='right',",
+        "    width='300px',",
+        "    align_items='center',",
+        "    grid_gap='10px')",
+        "",
+        "display(date_grid)",
+        "display(button)",
+        "",
+        "start_time = ''",
+        "end_time = ''",
+        "",
+        "def _click_function(_):",
+        "    ip = get_ipython()",
+        "    ip.push({",
+        "        'start_time': start_time_form.value.strftime('%Y-%m-%dT%H:%M:%S'),",
+        "        'end_time': end_time_form.value.strftime('%Y-%m-%dT%H:%M:%S')",
+        "    })",
+        "    display(Markdown(",
+        "            'Results are stored in **start_time** and **end_time**'))",
+        "    display(Markdown(",
+        "            'You can now use these two variables in functions.'))",
+        "",
+        "button.on_click(_click_function)"
+      ]
+    }
+  ]
+}
