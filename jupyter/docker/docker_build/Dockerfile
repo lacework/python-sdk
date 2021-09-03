@@ -22,6 +22,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ENV JUPYTER_PORT=8899
 
 COPY --chown=1000:1000 jupyter/docker/docker_build/00-import.py /home/lacework/.ipython/profile_default/startup/00-import.py
+COPY --chown=1000:1000 jupyter/docker/docker_build/10-functions.py /home/lacework/.ipython/profile_default/startup/10-functions.py
 COPY --chown=1000:1000 . /home/lacework/code
 COPY --chown=1000:1000 jupyter/docker/docker_build/jupyter_notebook_config.py /home/lacework/.jupyter/jupyter_notebook_config.py
 COPY --chown=1000:1000 jupyter/docker/docker_build/logo.png /home/lacework/.jupyter/custom/logo.png
@@ -31,7 +32,7 @@ COPY --chown=1000:1000 jupyter/docker/docker_build/lacework /home/lacework/lacen
 
 RUN pip install --upgrade pip setuptools wheel && \
     pip install --upgrade ipywidgets jupyter_contrib_nbextensions jupyter_http_over_ws ipydatetime && \
-    pip install --upgrade scikit-learn matplotlib python-evtx Evtx timesketch_import_client && \
+    pip install --upgrade scikit-learn matplotlib python-evtx Evtx timesketch_import_client snowflake-connector-python && \
     pip install --upgrade ipyaggrid keras nbformat numpy pandas pyparsing qgrid ruamel.yaml sklearn && \
     pip install --upgrade tensorflow tqdm traitlets xmltodict ds4n6-lib picatrix timesketch_api_client && \
     cd /home/lacework/code && pip install -e . && \

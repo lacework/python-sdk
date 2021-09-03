@@ -7,6 +7,8 @@ import numpy as np
 from laceworkjupyter import LaceworkJupyterHelper
 from laceworkjupyter import utils
 
+import snowflake.connector
+
 # Import forensic tools designed for notebooks.
 from picatrix import notebook_init
 import ds4n6_lib as ds
