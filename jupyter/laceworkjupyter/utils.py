@@ -1,5 +1,6 @@
 import datetime
 import functools
+import itertools
 import logging
 
 import pandas as pd
@@ -30,15 +31,20 @@ def dataframe_decorator(function):
     return get_output
 
 
-def flatten_json_output(json_data, pre_key=''):
+def flatten_json_output(json_data, pre_key='', lists_to_rows=False):
     """
-    Flatten and return a dict from a Lacework JSON structure.
+    Flatten and yield dict objects from a Lacework JSON structure.
 
     :param dict json_data: A JSON dict object.
     :param str pre_key: Optional string with the key path into the JSON object.
-    :return: A dict with all elements of the JSON structure flattened.
+    :param lists_to_rows bool: Determines whether values in lists get expanded
+            into column_1, column_2, ..., column_2 or if it gets expanded
+            into multiple rows (defaults to column_N, set to True to expand
+            to rows).
+    :yields: A dict with all elements of the JSON structure flattened.
     """
     flattened_data = {}
+    data_to_list = {}
 
     for key, value in json_data.items():
         if pre_key:
@@ -47,39 +53,74 @@ def flatten_json_output(json_data, pre_key=''):
             use_key = key
 
         if isinstance(value, dict):
-            new_dict = flatten_json_output(value, pre_key=use_key)
-            flattened_data.update(new_dict)
+            new_dicts = flatten_json_output(
+                value, pre_key=use_key, lists_to_rows=lists_to_rows)
+            for new_dict in new_dicts:
+                flattened_data.update(new_dict)
 
         elif isinstance(value, list):
             count = 1
             for list_value in value:
-                if isinstance(list_value, dict):
-                    new_dict = flatten_json_output(
-                        list_value, pre_key=f'{use_key}_{count}')
-                    flattened_data.update(new_dict)
+                if lists_to_rows:
+                    list_key = use_key
                 else:
-                    flattened_data[f'{use_key}_{count}'] = list_value
+                    list_key = f'{use_key}_{count}'
+
+                if isinstance(list_value, dict):
+                    new_dicts = flatten_json_output(
+                        list_value, pre_key=list_key,
+                        lists_to_rows=lists_to_rows)
+
+                    for new_dict in new_dicts:
+                        if lists_to_rows:
+                            data_to_list.setdefault(list_key, [])
+                            data_to_list[list_key].append(new_dict)
+                        else:
+                            flattened_data.update(new_dict)
+                else:
+                    flattened_data[list_key] = list_value
                 count += 1
 
         else:
             flattened_data[use_key] = value
 
-    return flattened_data
+    if lists_to_rows:
+        if data_to_list:
+            keys, values = zip(*data_to_list.items())
+            expanded_dicts = [
+                dict(zip(keys, v)) for v in itertools.product(*values)]
+
+            for expanded_dict in expanded_dicts:
+                new_dict = flattened_data.copy()
+                for dict_value in expanded_dict.values():
+                    new_dict.update(dict_value)
+                yield new_dict
+        else:
+            yield flattened_data
+
+    else:
+        yield flattened_data
 
 
-def flatten_data_frame(data_frame):
+def flatten_data_frame(data_frame, lists_to_rows=False):
     """
     Flatten a DataFrame that contains nested dicts in columns.
 
     Be careful using this function on a larger data frames since this
     is a slow flattening process.
 
-    :param DataFrame data_frame: The data frame to flatten.
+    :param DataFrame DataFrame: The data frame to flatten.
+    :param lists_to_rows bool: Determines whether values in lists get expanded
+            into column_1, column_2, ..., column_2 or if it gets expanded
+            into multiple rows (defaults to column_N, set to True to expand
+            to rows).
     :return: A DataFrame that is flattened.
     """
     rows = []
     for _, row in data_frame.iterrows():
-        rows.append(flatten_json_output(row.to_dict()))
+        new_rows = flatten_json_output(
+            row.to_dict(), lists_to_rows=lists_to_rows)
+        rows.extend(list(new_rows))
 
     return pd.DataFrame(rows)
 

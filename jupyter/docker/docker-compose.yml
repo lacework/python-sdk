@@ -2,11 +2,10 @@ version: '3'
 services:
   lacebook:
     container_name: lacebook
-    image: docker.io/kiddinn/lacebook:latest
+    image: docker.io/lacework/lacebook:latest
     ports:
       - 127.0.0.1:8899:8899
     restart: on-failure
     volumes:
-      - ../../:/usr/local/src/python-sdk/:ro
       - $HOME/.lacework.toml:/home/lacework/.lacework.toml
       - /tmp/:/usr/local/src/lacedata/
