@@ -34,13 +34,13 @@ class LaceworkJupyterHelper:
     def __init__(
             self, api_key=None, api_secret=None, account=None,
             subaccount=None, instance=None, base_domain=None,
-            config_section=None):
+            profile=None):
 
         self.sdk = LaceworkClient(
             api_key=api_key, api_secret=api_secret,
             account=account, subaccount=subaccount,
             instance=instance, base_domain=base_domain,
-            config_section=config_section)
+            profile=profile)
 
         wrappers = [w for w in dir(self.sdk) if not w.startswith('_')]
         for wrapper in wrappers:

@@ -1,6 +1,5 @@
 # Lacework Jupyter Helper
 
-[![Open In Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lacework/python-sdk/master?urlpath=%2Fjupyter%2F/notebooks%2F)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lacework/python-sdk/blob/master/jupyter/notebooks/colab_sample.ipynb)
 
 **laceworkjupyter** is a community developed Python library for interacting with the Lacework APIs in a
