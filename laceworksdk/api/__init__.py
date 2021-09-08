@@ -60,7 +60,8 @@ class LaceworkClient(object):
                  api_key=None,
                  api_secret=None,
                  instance=None,
-                 base_domain=None):
+                 base_domain=None,
+                 config_section=None):
         """
         Initializes the Lacework Client object.
 
@@ -88,7 +89,7 @@ class LaceworkClient(object):
             os.path.expanduser('~'), LACEWORK_CLI_CONFIG_RELATIVE_PATH)
 
         if os.path.isfile(config_file_path):
-            config_section = os.getenv(
+            config_section = config_section or os.getenv(
                 LACEWORK_API_CONFIG_SECTION_ENVIRONMENT_VARIABLE, 'default')
             config_obj = configparser.ConfigParser()
             config_obj.read([config_file_path])
