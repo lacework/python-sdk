@@ -16,18 +16,18 @@ RUN python3 -m venv $VIRTUAL_ENV && \
     mkdir -p .ipython/profile_default/startup/ && \
     mkdir -p /home/lacework/.jupyter && \
     mkdir -p /home/lacework/.local/share/jupyter/nbextensions/snippets/ && \
-    mkdir -p /home/lacework/.jupyter/custom
+    mkdir -p /home/lacework/.jupyter/custom && \
+    cd /home/lacework && git clone https://github.com/lacework/python-sdk.git && mv python-sdk code
 
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ENV JUPYTER_PORT=8899
 
-COPY --chown=1000:1000 jupyter/docker/docker_build/00-import.py /home/lacework/.ipython/profile_default/startup/00-import.py
-COPY --chown=1000:1000 jupyter/docker/docker_build/10-functions.py /home/lacework/.ipython/profile_default/startup/10-functions.py
-COPY --chown=1000:1000 . /home/lacework/code
-COPY --chown=1000:1000 jupyter/docker/docker_build/jupyter_notebook_config.py /home/lacework/.jupyter/jupyter_notebook_config.py
-COPY --chown=1000:1000 jupyter/docker/docker_build/logo.png /home/lacework/.jupyter/custom/logo.png
-COPY --chown=1000:1000 jupyter/docker/docker_build/custom.css /home/lacework/.jupyter/custom/custom.css
-COPY --chown=1000:1000 jupyter/docker/docker_build/lacework /home/lacework/lacenv/share/jupyter/nbextensions/lacework
+COPY --chown=1000:1000 docker/docker_build/00-import.py /home/lacework/.ipython/profile_default/startup/00-import.py
+COPY --chown=1000:1000 docker/docker_build/10-functions.py /home/lacework/.ipython/profile_default/startup/10-functions.py
+COPY --chown=1000:1000 docker/docker_build/jupyter_notebook_config.py /home/lacework/.jupyter/jupyter_notebook_config.py
+COPY --chown=1000:1000 docker/docker_build/logo.png /home/lacework/.jupyter/custom/logo.png
+COPY --chown=1000:1000 docker/docker_build/custom.css /home/lacework/.jupyter/custom/custom.css
+COPY --chown=1000:1000 docker/docker_build/lacework /home/lacework/lacenv/share/jupyter/nbextensions/lacework
 
 
 RUN pip install --upgrade pip setuptools wheel && \
@@ -47,7 +47,7 @@ RUN pip install --upgrade pip setuptools wheel && \
     jupyter nbextension install --user --py ipydatetime && \
     jupyter nbextension enable --user --py ipydatetime
 
-COPY --chown=1000:1000 jupyter/docker/docker_build/snippets.json /home/lacework/.local/share/jupyter/nbextensions/snippets/snippets.json
+COPY --chown=1000:1000 docker/docker_build/snippets.json /home/lacework/.local/share/jupyter/nbextensions/snippets/snippets.json
 
 WORKDIR /usr/local/src/lacedata/
 EXPOSE 8899
