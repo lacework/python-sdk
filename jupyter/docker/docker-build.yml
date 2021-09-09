@@ -3,8 +3,8 @@ services:
   lacebook:
     container_name: lacebook
     build:
-      context: ../../
-      dockerfile: ./jupyter/docker/docker_build/Dockerfile
+      context: ../
+      dockerfile: ./docker/docker_build/Dockerfile
     ports:
       - 127.0.0.1:8899:8899
     restart: on-failure
