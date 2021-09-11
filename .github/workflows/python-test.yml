@@ -47,3 +47,4 @@ jobs:
           LW_SUBACCOUNT: ${{ secrets.LW_SUBACCOUNT }}
           LW_API_KEY: ${{ secrets.LW_API_KEY }}
           LW_API_SECRET: ${{ secrets.LW_API_SECRET }}
+          LW_BASE_DOMAIN: ${{ secrets.LW_BASE_DOMAIN }}
