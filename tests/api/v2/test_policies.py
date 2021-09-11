@@ -3,6 +3,7 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
+import pytest
 import random
 import string
 
@@ -35,6 +36,7 @@ def test_policies_api_get(api):
     assert "data" in response.keys()
 
 
+@pytest.mark.flaky(reruns=3)
 def test_policies_api_create(api):
     queries = api.queries.get()
     queries = list(filter(lambda elem: elem["owner"] == "Lacework", queries["data"]))
