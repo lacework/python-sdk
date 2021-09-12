@@ -28,13 +28,18 @@ def test_schemas_api_get_type_schema(api):
         response = api.schemas.get(type=schema_type)
 
         if type(response) is dict:
-            if "oneOf" in response.keys():
-                for schema in response["oneOf"]:
-                    assert "properties" in schema.keys()
+            if len(response) > 0:
+                if "oneOf" in response.keys():
+                    for schema in response["oneOf"]:
+                        assert "properties" in schema.keys()
+                else:
+                    assert "properties" in response.keys()
             else:
-                assert "properties" in response.keys()
+                assert True
         elif type(response) is list:
-            assert len(response) > 0
+            assert True
+        else:
+            assert False
 
 
 def test_schemas_api_get_subtype_schema(api):
