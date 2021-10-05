@@ -39,9 +39,13 @@ jobs:
         run: |
           python setup.py --version
 
-      - name: Test with pytest
+      - name: Test Jupyter container
         run: |
-          pytest -m "not ci_exempt"
+          pytest -m "not ci_exempt" jupyter/tests
+
+      - name: Test SDK with pytest
+        run: |
+          pytest -m "not ci_exempt" tests
         env:
           LW_ACCOUNT: ${{ secrets.LW_ACCOUNT }}
           LW_SUBACCOUNT: ${{ secrets.LW_SUBACCOUNT }}

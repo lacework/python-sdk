@@ -6,7 +6,7 @@ RUN groupadd --gid 1000 lacegroup && \
     mkdir -p /usr/local/src/lacedata/ && \
     chmod 777 /usr/local/src/lacedata/ && \
     echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
-    apt-get update && apt-get install -y --no-install-recommends git
+    apt-get update && apt-get install -y --no-install-recommends git dnsutils whois
 
 USER lacework
 WORKDIR /home/lacework
@@ -33,7 +33,7 @@ COPY --chown=1000:1000 docker/docker_build/lacework /home/lacework/lacenv/share/
 RUN pip install --upgrade pip setuptools wheel && \
     pip install --upgrade ipywidgets jupyter_contrib_nbextensions jupyter_http_over_ws ipydatetime && \
     pip install --upgrade scikit-learn matplotlib python-evtx Evtx timesketch_import_client snowflake-connector-python && \
-    pip install --upgrade ipyaggrid keras nbformat numpy pandas pyparsing qgrid ruamel.yaml sklearn && \
+    pip install --upgrade ipyaggrid keras nbformat numpy pandas pyparsing qgrid ruamel.yaml sklearn pyarrow==3.0.0 && \
     pip install --upgrade tensorflow tqdm traitlets xmltodict ds4n6-lib picatrix timesketch_api_client && \
     cd /home/lacework/code && pip install -e . && \
     cd /home/lacework/code/jupyter && pip install -e . && \
