@@ -172,4 +172,4 @@ def parse_date_offset(offset_string):
     start_time_object = end_time_object - time_delta
     start_time = start_time_object.isoformat()
 
-    return start_time, end_time
+    return f'{start_time}Z', f'{end_time}Z'
