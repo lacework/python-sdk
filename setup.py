@@ -27,6 +27,7 @@ setup(
     keywords=["lacework", "api", "sdk", "python", "api"],
     install_requires=[
         "python-dotenv",
+        "bleach",
         "requests",
         "configparser",
     ],
