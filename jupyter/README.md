@@ -50,6 +50,26 @@ $ docker-compose pull
 $ docker-compose up -d
 ```
 
+The other option is to create a file called `docker-compose.yml` with the content of:
+
+```
+version: '3'
+services:
+  lacebook:
+    container_name: lacebook
+    image: docker.io/lacework/lacebook:latest
+    ports:
+      - 127.0.0.1:8899:8899
+    restart: on-failure
+    volumes:
+      - $HOME/.lacework.toml:/home/lacework/.lacework.toml
+      - /$HOME/data/:/usr/local/src/lacedata/
+```
+
+(*if you use this docker compose file you will either need to create the folder $HOME/data that is
+readable and writeable by a user with the UID/GID 1000:1000. or change the line to point to a folder
+with that permission*)
+
 This will start up a lacebook container which starts a Jupyter container listening on port 8899.
 To access the lacebook container visit http://localhost:8899. When prompted for a password
 use `lacework`.
@@ -75,3 +95,5 @@ and enter the backend URL: `http://localhost:8899/?token=lacework`
 ## How-To
 
 More to come here.
+
+One way to start exploring is to run this [Colab notebook](https://colab.research.google.com/github/lacework/python-sdk/blob/master/jupyter/notebooks/colab_sample.ipynb)

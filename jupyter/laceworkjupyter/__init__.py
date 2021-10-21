@@ -4,7 +4,8 @@ import os
 from laceworksdk import LaceworkClient
 
 from . import config
-from . import utils
+from . import decorators
+from . import plugins
 
 
 logger = logging.getLogger('lacework_sdk.jupyter.client')
@@ -15,11 +16,22 @@ class APIWrapper:
     API Wrapper class that takes an API wrapper and decorates functions.
     """
 
-    def __init__(self, api_wrapper):
+    def __init__(self, api_wrapper, wrapper_name):
         self._api_wrapper = api_wrapper
+        self._api_name = wrapper_name
+
         for func_name in [f for f in dir(api_wrapper) if not f.startswith('_')]:
             func = getattr(api_wrapper, func_name)
-            setattr(self, func_name, utils.dataframe_decorator(func))
+
+            decorator_plugin = plugins.PLUGINS.get(
+                f"{self._api_name}.{func_name}")
+            if decorator_plugin:
+                setattr(
+                    self,
+                    func_name,
+                    decorators.plugin_decorator(func, decorator_plugin))
+            else:
+                setattr(self, func_name, decorators.dataframe_decorator(func))
 
 
 class LaceworkJupyterHelper:
@@ -45,7 +57,7 @@ class LaceworkJupyterHelper:
         wrappers = [w for w in dir(self.sdk) if not w.startswith('_')]
         for wrapper in wrappers:
             wrapper_object = getattr(self.sdk, wrapper)
-            api_wrapper = APIWrapper(wrapper_object)
+            api_wrapper = APIWrapper(wrapper_object, wrapper_name=wrapper)
             setattr(self, wrapper, api_wrapper)
 
     def __enter__(self):
