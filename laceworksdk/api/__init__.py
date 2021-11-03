@@ -20,7 +20,7 @@ from .compliance import ComplianceAPI
 from .container_registries import ContainerRegistriesAPI
 from .contract_info import ContractInfoAPI
 from .custom_compliance_config import CustomComplianceConfigAPI
-from .datasource import DataSourceAPI
+from .datasources import DatasourcesAPI
 from .download_file import DownloadFileAPI
 from .events import EventsAPI
 from .integrations import IntegrationsAPI
@@ -133,7 +133,7 @@ class LaceworkClient(object):
         self.compliance.config = CustomComplianceConfigAPI(self._session)
         self.container_registries = ContainerRegistriesAPI(self._session)
         self.contract_info = ContractInfoAPI(self._session)
-        self.datasource = DataSourceAPI(self._session)
+        self.datasources = DatasourcesAPI(self._session)
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
