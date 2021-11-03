@@ -24,16 +24,18 @@ class QueriesAPI(object):
         self._session = session
 
     def create(self,
-               evaluator_id,
                query_id,
                query_text,
+               evaluator_id="",
                org=False):
         """
         A method to create a new Lacework Query Language (LQL) query.
 
-        :param evaluator_id: A string representing the evaluator in which the policy is to be run.
         :param query_id: A string representing the LQL query ID.
         :param query_text: A string representing the LQL query text.
+        :param evaluator_id: A string representing the evaluator in which the
+                policy is to be run. This is an optional parameter, with the
+                default behaviour of omitting the value while sending the API call.
         :param org: A boolean representing whether the request should be performed
             at the Organization level
 
@@ -46,10 +48,11 @@ class QueriesAPI(object):
         api_uri = "/api/v2/Queries"
 
         data = {
-            "evaluatorId": evaluator_id,
             "queryId": query_id,
             "queryText": query_text
         }
+        if evaluator_id:
+            data["evaluatorId"] = evaluator_id
 
         response = self._session.post(api_uri, org=org, data=data)
 
@@ -160,16 +163,18 @@ class QueriesAPI(object):
         return self.execute(query_id=query_id, arguments=arguments, org=org)
 
     def validate(self,
-                 evaluator_id,
                  query_text,
+                 evaluator_id="",
                  org=False):
         """
         A method to validate a Lacework Query Language (LQL) query.
 
-        :param evaluator_id: A string representing the evaluator in which the policy is to be run.
         :param query_text: A string representing the LQL query text.
-        :param org: A boolean representing whether the request should be performed
-            at the Organization level
+        :param evaluator_id: A string representing the evaluator in which the
+                policy is to be run. Optional parameter, defaults to omitting
+                the evaluator from the validation request.
+        :param org: A boolean representing whether the request should be
+            performed at the Organization level
 
         :return response json
         """
@@ -180,9 +185,10 @@ class QueriesAPI(object):
         api_uri = "/api/v2/Queries/validate"
 
         data = {
-            "evaluatorId": evaluator_id,
             "queryText": query_text
         }
+        if evaluator_id:
+            data["evaluatorId"] = evaluator_id
 
         response = self._session.post(api_uri, org=org, data=data)
 
