@@ -127,9 +127,10 @@ class QueriesAPI(object):
             api_uri = "/api/v2/Queries/execute"
 
             data["query"] = {
-                "evaluatorId": evaluator_id,
                 "queryText": query_text
             }
+            if evaluator_id:
+                data["query"]["evaluatorId"] = evaluator_id
 
         for key, value in arguments.items():
             data["arguments"].append({
