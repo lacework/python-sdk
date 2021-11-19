@@ -41,7 +41,7 @@ class LaceworkContext:
         """
         self._cache[key] = value
 
-    def get(key, default_value=None):
+    def get(self, key, default_value=None):
         """
         Get a value from the cache.
 
