@@ -57,6 +57,43 @@ def _run_query(query, arguments, evaluator=None, ctx=None):
         evaluator_id=evaluator, query_text=query, arguments=arguments)
 
 
+def _get_help_frame(parameters):
+    """
+    Returns a dataframe with the parameters for the query function.
+
+    :param list parameters: A list of dictionaries with the required extra
+        parameters the function requries.
+    :return: A dataframe with all the parameters listed.
+    """
+    for parameter in parameters:
+        parameter["required"] = True
+        parameter["note"] = "For replacing values in the query itself."
+
+    parameters.append({
+        "name": "days",
+        "type": "int",
+        "required": False,
+        "note": (
+            "Number of days to search back in time, end day is now. "
+            "Required to either provide days or both start and end time.")
+    })
+
+    parameters.append({
+        "name": "start_time",
+        "type": "str",
+        "required": False,
+        "note": "Start time expressed as an ISO formatted string."
+    })
+    parameters.append({
+        "name": "end_time",
+        "type": "str",
+        "required": False,
+        "note": "End time expressed as an ISO formatted string."
+    })
+
+    return pd.DataFrame(parameters)
+
+
 def _query_function(query_dict):
     """
     Generates a function to query LQL from a query dictionary.
@@ -91,7 +128,7 @@ def _query_function(query_dict):
 
         params = query_dict.get("params", [])
         if help:
-            return pd.DataFrame(params)
+            return _get_help_frame(params)
 
         if not days and not (start_time and end_time):
             raise ValueError(
