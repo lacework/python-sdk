@@ -31,7 +31,7 @@ def dataframe_decorator(function):
     return get_output
 
 
-def flatten_json_output(json_data, pre_key='', lists_to_rows=False):
+def flatten_json_output(json_data, pre_key='', lists_to_rows=False):  # noqa: C901
     """
     Flatten and yield dict objects from a Lacework JSON structure.
 
@@ -125,7 +125,7 @@ def flatten_data_frame(data_frame, lists_to_rows=False):
     return pd.DataFrame(rows)
 
 
-def parse_date_offset(offset_string):
+def parse_date_offset(offset_string):  # noqa: C901
     """
     Parse date offset string and return a start and end time.
 

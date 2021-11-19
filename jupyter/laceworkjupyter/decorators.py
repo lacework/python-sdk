@@ -14,7 +14,11 @@ def dataframe_decorator(function):
         data = function(*args, **kwargs)
 
         if isinstance(data, dict):
-            df = pd.DataFrame(data.get('data', []))
+            data_items = data.get('data', [])
+            if isinstance(data_items, dict):
+                data_items = [data_items]
+
+            df = pd.DataFrame(data_items)
             if 'SEVERITY' in df:
                 df['SEVERITY'] = df.SEVERITY.apply(
                     lambda x: config.SEVERITY_DICT.get(x, x))
@@ -35,3 +39,16 @@ def plugin_decorator(function, output_plugin):
         return output_plugin(data)
 
     return get_output
+
+
+def feature_decorator(function, ctx=None):
+    """
+    A decorator that adds a context to a function call.
+    """
+    @functools.wraps(function)
+    def wrapper(*args, **kwargs):
+        if ctx:
+            kwargs['ctx'] = ctx
+        return function(*args, **kwargs)
+
+    return wrapper
