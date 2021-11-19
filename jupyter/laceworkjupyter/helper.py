@@ -8,7 +8,7 @@ from . import decorators
 from . import plugins
 
 
-logger = logging.getLogger('lacework_sdk.jupyter.helper')
+logger = logging.getLogger("lacework_sdk.jupyter.helper")
 
 
 class APIWrapper:
@@ -20,7 +20,7 @@ class APIWrapper:
         self._api_wrapper = api_wrapper
         self._api_name = wrapper_name
 
-        for func_name in [f for f in dir(api_wrapper) if not f.startswith('_')]:
+        for func_name in [f for f in dir(api_wrapper) if not f.startswith("_")]:
             func = getattr(api_wrapper, func_name)
 
             decorator_plugin = plugins.PLUGINS.get(
@@ -54,7 +54,7 @@ class LaceworkJupyterClient:
             instance=instance, base_domain=base_domain,
             profile=profile)
 
-        wrappers = [w for w in dir(self.sdk) if not w.startswith('_')]
+        wrappers = [w for w in dir(self.sdk) if not w.startswith("_")]
         for wrapper in wrappers:
             wrapper_object = getattr(self.sdk, wrapper)
             api_wrapper = APIWrapper(wrapper_object, wrapper_name=wrapper)

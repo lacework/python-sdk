@@ -23,12 +23,34 @@ class LaceworkContext:
         self.client = None
 
     def set_client(self, client):
+        """
+        Set the Lacework client inside the context.
+
+        :param obj client: The client, instance of LaceworkJupyterClient.
+        """
         self.client = client
 
     def add(self, key, value):
+        """
+        Add an entry into the context's cache.
+
+        If the key already exists, the value in the cache is overwritten.
+
+        :param str key: The key, or name used to store the value in the cache.
+        :param obj value: The value, which can be any object.
+        """
         self._cache[key] = value
 
     def get(key, default_value=None):
+        """
+        Get a value from the cache.
+
+        :param str key: The key, or name used to store the value in the cache.
+        :param obj default_value: The default value that is returned if the
+            cache key is not stored in the cache. Defaults to None.
+        :return: The value in the cache, and if not found returns the default
+            value.
+        """
         return self._cache.get(key, default_value)
 
 

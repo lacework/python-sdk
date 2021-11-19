@@ -8,7 +8,7 @@ import laceworkjupyter
 from laceworkjupyter import utils
 
 # Keeping for legacy reasons.
-from laceworkjupyter.helper import LaceworkJupyterClient LaceworkJupyterHelper
+from laceworkjupyter.helper import LaceworkJupyterClient as LaceworkJupyterHelper
 
 import snowflake.connector
 

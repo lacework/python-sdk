@@ -1,4 +1,6 @@
-"""Provides a quick access to predefined LQL queries."""
+"""
+Provides a quick access to predefined LQL queries.
+"""
 import os
 
 import yaml
@@ -10,7 +12,8 @@ from laceworkjupyter import utils
 
 
 def _get_arguments(days=0, start_time="", end_time=""):
-    """Returns an argument dict for LQL queries.
+    """
+    Returns an argument dict for LQL queries.
 
     :param int days: Optional number of days from today.
     :param str start_time: Start date in an ISO format.
@@ -33,7 +36,8 @@ def _get_arguments(days=0, start_time="", end_time=""):
 
 
 def _run_query(query, arguments, evaluator=None, ctx=None):
-    """Runs a LQL query and returns a dataframe with the results.
+    """
+    Runs a LQL query and returns a dataframe with the results.
 
     :param str query: The LQL query to run.
     :param dict arguments: A dict containing the arguments to send to the LQL
@@ -54,7 +58,8 @@ def _run_query(query, arguments, evaluator=None, ctx=None):
 
 
 def _query_function(query_dict):
-    """Generates a function to query LQL from a query dictionary.
+    """
+    Generates a function to query LQL from a query dictionary.
 
     :param dict query_dict: A dictionary that contains the query as well
         as additional parameters.
@@ -64,7 +69,8 @@ def _query_function(query_dict):
     def wrapper(
             days=0, start_time="", end_time="", ctx=None,
             help=False, **kwargs):
-        """Query LQL and return back a DataFrame with the discovered content.
+        """
+        Query LQL and return back a DataFrame with the discovered content.
 
         :param int days: Number of days to query back in time.
         :param str start_time: ISO formatted timestamp of the start time of
@@ -83,7 +89,7 @@ def _query_function(query_dict):
         if not query:
             raise ValueError("There is no query defined.")
 
-        params = query_dict.get('params', [])
+        params = query_dict.get("params", [])
         if help:
             return pd.DataFrame(params)
 
@@ -96,7 +102,6 @@ def _query_function(query_dict):
         for parameter in params:
             # TODO: Add type checking.
             param_name = parameter.get("name", "__not_exists__")
-            # TOOD: Add to docstring.
             if param_name not in kwargs:
                 raise ValueError(
                     "Unable to run, missing parameter: {0:s}".format(
@@ -120,12 +125,12 @@ def _query_function(query_dict):
 
 
 query_feature_directory = os.path.dirname(__file__)
-query_yaml_path = os.path.join(query_feature_directory, 'query.yaml')
+query_yaml_path = os.path.join(query_feature_directory, "query.yaml")
 
 if os.path.isfile(query_yaml_path):
-    with open(query_yaml_path, 'r') as fh:
+    with open(query_yaml_path, "r") as fh:
         data = yaml.safe_load(fh)
-        for query_dict in data.get('queries', []):
+        for query_dict in data.get("queries", []):
             name = query_dict.get("name", "")
             function_name = f"query_{name}"
             function_fn = _query_function(query_dict)
