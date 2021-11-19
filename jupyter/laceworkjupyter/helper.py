@@ -1,9 +1,7 @@
 import logging
-import os
 
 from laceworksdk import LaceworkClient
 
-from . import config
 from . import decorators
 from . import plugins
 

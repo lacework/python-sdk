@@ -127,7 +127,7 @@ class PoliciesAPI(object):
 
         return self.get(policy_id=policy_id, org=org)
 
-    def update(self,
+    def update(self,  # noqa: C901
                policy_id,
                policy_type=None,
                query_id=None,

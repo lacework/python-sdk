@@ -2,12 +2,12 @@
 import logging
 
 from . import decorators
-from . import features
+from . import features  # noqa: F401
 from . import manager
 
 # TODO: Remove this, kept for maintaining backward compatability
 # for the original design. Will be removed after a grace period.
-from .helper import LaceworkJupyterClient as LaceworkJupyterHelper
+from .helper import LaceworkJupyterClient as LaceworkJupyterHelper  # noqa: F401
 
 
 logger = logging.getLogger('lacework_sdk.jupyter.client')

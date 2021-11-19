@@ -39,5 +39,3 @@ class LaceworkManager:
         """
         for feature_fn, feature_name in cls._features.items():
             yield (feature_name, feature_fn)
-
-

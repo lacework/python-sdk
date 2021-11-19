@@ -6,7 +6,6 @@ import os
 import yaml
 import pandas as pd
 
-from laceworkjupyter import helper
 from laceworkjupyter import manager
 from laceworkjupyter import utils
 
