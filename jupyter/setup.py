@@ -26,6 +26,7 @@ setup(
     url='https://github.com/lacework/python-sdk',
     download_url='https://pypi.python.org/pypi/laceworkjupyter',
     keywords=['lacework', 'api', 'sdk', 'python', 'api', 'jupyter', 'notebook'],
+    include_package_data=True,
     install_requires=[
         'python-dotenv',
         'requests',
