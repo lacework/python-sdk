@@ -3,7 +3,7 @@
     {
       "name": "Get a new client",
       "code" : [
-        "client = LaceworkJupyterHelper()"
+        "client = lw.get_client()"
       ]
     },
     {
