@@ -15,9 +15,9 @@ def get_client(
     """
 
     client = helper.LaceworkJupyterClient(
-        api_key=None, api_secret=None, account=None,
-        subaccount=None, instance=None, base_domain=None,
-        profile=None)
+        api_key=api_key, api_secret=api_secret, account=account,
+        subaccount=subaccount, instance=instance, base_domain=base_domain,
+        profile=profile)
 
     ctx.set_client(client)
     return client
