@@ -64,11 +64,12 @@ def _get_help_frame(parameters):
         parameters the function requries.
     :return: A dataframe with all the parameters listed.
     """
-    for parameter in parameters:
+    new_list = parameters.copy()
+    for parameter in new_list:
         parameter["required"] = True
         parameter["note"] = "For replacing values in the query itself."
 
-    parameters.append({
+    new_list.append({
         "name": "days",
         "type": "int",
         "required": False,
@@ -77,20 +78,20 @@ def _get_help_frame(parameters):
             "Required to either provide days or both start and end time.")
     })
 
-    parameters.append({
+    new_list.append({
         "name": "start_time",
         "type": "str",
         "required": False,
         "note": "Start time expressed as an ISO formatted string."
     })
-    parameters.append({
+    new_list.append({
         "name": "end_time",
         "type": "str",
         "required": False,
         "note": "End time expressed as an ISO formatted string."
     })
 
-    return pd.DataFrame(parameters)
+    return pd.DataFrame(new_list)
 
 
 def _query_function(query_dict):
