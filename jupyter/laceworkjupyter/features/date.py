@@ -1,7 +1,6 @@
 """
 A simple class to wrap the date parsing function in the utilities lib.
 """
-from laceworkjupyter import helper
 from laceworkjupyter import manager
 from laceworkjupyter import utils
 
