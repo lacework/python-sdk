@@ -33,7 +33,7 @@ class PoliciesAPI(object):
                severity,
                alert_enabled,
                alert_profile,
-               evaluator_id,
+               evaluator_id=None,
                limit=None,
                eval_frequency=None,
                org=False):
@@ -75,8 +75,9 @@ class PoliciesAPI(object):
             "severity": severity,
             "alertEnabled": int(bool(alert_enabled)),
             "alertProfile": alert_profile,
-            "evaluatorId": evaluator_id
         }
+        if evaluator_id:
+            data["evaluatorId"] = evaluator_id
 
         if isinstance(limit, int) and limit >= 0:
             data["limit"] = limit
