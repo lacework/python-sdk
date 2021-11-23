@@ -11,22 +11,23 @@ users to more easily work with the output of all API calls to the SDK in a noteb
 To get a data frame with the events within a time range one can simply write this code:
 
 ```
-from laceworkjupyter import LaceworkJupyterHelper
+import laceworkjupyter
 
-with LaceworkJupyterHelper() as helper:
-    df = helper.events.get_for_date_range('2021-08-25T00:00:00', '2021-08-27T23:59:23')
+with laceworkjupyter.LaceworkHelper() as lw:
+    client = lw.get_client()
+    df = client.events.get_for_date_range('2021-08-25T00:00:00', '2021-08-27T23:59:23')
 ```
 
 And to get events from the last 5 days:
 
 ```
-from laceworkjupyter import LaceworkJupyterHelper
-from laceworkjupyter import utils
+import laceworkjupyter
 
-with LaceworkJupyterHelper() as helper:
-    start_time, end_time = utils.parse_date_offset('LAST 5 DAYS')
+with laceworkjupyter.LaceworkHelper() as lw:
+    client = lw.get_client()
+    start_time, end_time = lw.parse_date_offset('LAST 5 DAYS')
 
-    df = helper.events.get_for_date_range(start_time=start_time, end_time=end_time)
+    df = client.events.get_for_date_range(start_time=start_time, end_time=end_time)
 ```
 
 ## Requirements
