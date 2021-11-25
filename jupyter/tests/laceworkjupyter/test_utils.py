@@ -65,7 +65,8 @@ def test_flatten_json_output():
     assert flattened == expected_json
 
     flattened = list(utils.flatten_json_output(test_json, pre_key='foobar'))[0]
-    new_expected = {f'foobar.{key}': value for key, value in expected_json.items()}
+    new_expected = {
+        f'foobar.{key}': value for key, value in expected_json.items()}
     assert flattened == new_expected
 
     flattened = list(utils.flatten_json_output(test_json, lists_to_rows=True))
@@ -87,20 +88,32 @@ def test_flatten_json_output():
 def test_flatten_data_frame():
     """Generate a dataframe and flatten it."""
     lines = [
-        {'first': 234, 'second': 583, 'third': {'item': 3, 'another': 'fyrirbaeri'}},
-        {'first': 214, 'second': 529, 'third': {'item': 23, 'another': 'blanda'}},
-        {'first': 134, 'second': 545, 'third': {'item': 43, 'another': 'ymist'}},
-        {'first': 452, 'second': 123, 'third': {'item': 95, 'another': 'dot'}},
+        {'first': 234, 'second': 583, 'third': {
+            'item': 3, 'another': 'fyrirbaeri'}},
+        {'first': 214, 'second': 529, 'third': {
+            'item': 23, 'another': 'blanda'}},
+        {'first': 134, 'second': 545, 'third': {
+            'item': 43, 'another': 'ymist'}},
+        {'first': 452, 'second': 123, 'third': {
+            'item': 95, 'another': 'dot'}},
     ]
 
     data_frame = pandas.DataFrame(lines)
     flattened_frame = utils.flatten_data_frame(data_frame)
 
     expected_lines = [
-        {'first': 234, 'second': 583, 'third.item': 3, 'third.another': 'fyrirbaeri'},
-        {'first': 214, 'second': 529, 'third.item': 23, 'third.another': 'blanda'},
-        {'first': 134, 'second': 545, 'third.item': 43, 'third.another': 'ymist'},
-        {'first': 452, 'second': 123, 'third.item': 95, 'third.another': 'dot'},
+        {
+            'first': 234, 'second': 583,
+            'third.item': 3, 'third.another': 'fyrirbaeri'},
+        {
+            'first': 214, 'second': 529, 'third.item': 23,
+            'third.another': 'blanda'},
+        {
+            'first': 134, 'second': 545, 'third.item': 43,
+            'third.another': 'ymist'},
+        {
+            'first': 452, 'second': 123, 'third.item': 95,
+            'third.another': 'dot'},
     ]
     expected_frame = pandas.DataFrame(expected_lines)
 

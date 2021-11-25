@@ -1,0 +1,43 @@
+- format_string: HOSTNAME = '{0:s}'
+  hint: example.com
+  parameter: DNS Hostname
+  table: LW_HA_DNS_REQUESTS
+  type: string
+
+- format_string: HOST_IP_ADDR = '{0:s}'
+  hint: 127.0.0.1
+  parameter: Resolved IP Address
+  table: LW_HA_DNS_REQUESTS
+  type: string
+
+- format_string: EVENT:userIdentity.userName LIKE '%{0:s}%'
+  hint: root
+  parameter: username
+  table: CloudTrailRawEvents
+  type: string
+
+- format_string: EVENT:sourceIPAddress = '{0:s}'
+  hint: 127.0.0.1
+  parameter: Source IP
+  table: CloudTrailRawEvents
+  type: string
+
+- parameter: Event Source
+  hint: exists or event
+  callback: format_event_source
+  table: CloudTrailRawEvents
+
+- parameter: Event Region
+  hint: The AWS Region, eg us-east-1
+  callback: format_event_region
+  table: CloudTrailRawEvents
+
+- parameter: Event Name
+  table: CloudTrailRawEvents
+  hint: random name
+  callback: format_event_name
+
+- parameter: Event Type
+  table: CloudTrailRawEvents
+  hint: random name
+  callback: format_event_type

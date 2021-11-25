@@ -7,7 +7,7 @@ from . import manager
 
 # TODO: Remove this, kept for maintaining backward compatability
 # for the original design. Will be removed after a grace period.
-from .helper import LaceworkJupyterClient as LaceworkJupyterHelper  # noqa: F401
+from .helper import LaceworkJupyterClient as LaceworkJupyterHelper  # noqa: F401, E501
 
 
 logger = logging.getLogger('lacework_sdk.jupyter.client')
@@ -70,6 +70,16 @@ class LaceworkHelper:
         for feature, feature_name in manager.LaceworkManager.get_features():
             feature_fn = decorators.feature_decorator(feature, self.ctx)
             setattr(self, feature_name, feature_fn)
+
+    @property
+    def client(self):
+        """
+        Returns a Lacework API client object.
+        """
+        if self.ctx.client:
+            return self.ctx.client
+
+        return self.get_client()
 
     def __enter__(self):
         """

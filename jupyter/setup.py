@@ -17,7 +17,8 @@ setup(
     name="laceworkjupyter",
     packages=find_packages(include=["laceworkjupyter", "laceworkjupyter.*"]),
     license="MIT",
-    description="Community-developed Jupyter helper for the Lacework Python SDK",
+    description=(
+        "Community-developed Jupyter helper for the Lacework Python SDK"),
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Kristinn Gudjonsson",
@@ -25,7 +26,8 @@ setup(
     version=version.get_version(),
     url="https://github.com/lacework/python-sdk",
     download_url="https://pypi.python.org/pypi/laceworkjupyter",
-    keywords=["lacework", "api", "sdk", "python", "api", "jupyter", "notebook"],
+    keywords=[
+        "lacework", "api", "sdk", "python", "api", "jupyter", "notebook"],
     include_package_data=True,
     install_requires=[
         "python-dotenv",

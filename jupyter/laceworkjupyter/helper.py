@@ -18,18 +18,18 @@ class APIWrapper:
         self._api_wrapper = api_wrapper
         self._api_name = wrapper_name
 
-        for func_name in [f for f in dir(api_wrapper) if not f.startswith("_")]:
-            func = getattr(api_wrapper, func_name)
+        for fname in [f for f in dir(api_wrapper) if not f.startswith("_")]:
+            func = getattr(api_wrapper, fname)
 
             decorator_plugin = plugins.PLUGINS.get(
-                f"{self._api_name}.{func_name}")
+                f"{self._api_name}.{fname}")
             if decorator_plugin:
                 setattr(
                     self,
-                    func_name,
+                    fname,
                     decorators.plugin_decorator(func, decorator_plugin))
             else:
-                setattr(self, func_name, decorators.dataframe_decorator(func))
+                setattr(self, fname, decorators.dataframe_decorator(func))
 
 
 class LaceworkJupyterClient:
