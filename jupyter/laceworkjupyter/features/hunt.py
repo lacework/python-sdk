@@ -44,12 +44,14 @@ def add_filter_definition(change):
     box = grid[3, 1]
     children = list(box.children)
 
+    layout = ipywidgets .Layout(height="auto", width="90%")
     if filter_display:
         children.append(
             ipywidgets.Text(
                 value="",
                 placeholder=filter_dict.get("hint", "Type Something"),
                 description=filter_dict.get("parameter"),
+                layout=layout,
                 disabled=False
             )
         )
@@ -68,6 +70,9 @@ def add_filter_definition(change):
 
 
 def _generate_table_filters(change):
+    """
+    Adds all filters that belong to the chosen table.
+    """
     global lw_ctx
 
     if change["type"] != "change":
@@ -99,12 +104,15 @@ def _generate_table_filters(change):
 
     checkboxes = []
     table_filters = lw_ctx.get("hunt_filters", [])
+    layout = ipywidgets .Layout(height="auto", width="90%")
     for table_filter in table_filters:
         if table_name != table_filter.get("table", ""):
             continue
         checkboxes.append(
             ipywidgets.Checkbox(
-                value=False, description=table_filter.get("parameter")))
+                value=False,
+                layout=layout,
+                description=table_filter.get("parameter")))
 
     for checkbox in checkboxes:
         checkbox.observe(add_filter_definition)
@@ -138,11 +146,11 @@ def _verify_query(_unused_button):
         _ = lw_ctx.client.queries.validate(
             lql_query, evaluator_id=evaluator_id)
         verified = ipywidgets.Valid(
-            value=True, description="LQL Query Verified")
+            value=True, description="LQL Verified")
     except http_session.ApiError as err:
         verified = ipywidgets.Valid(
             value=False,
-            description="Unable to verify the LQL query: {0}".format(err))
+            description="Failure: {0}".format(err))
 
     grid[5, :2] = verified
     lw_ctx.add("lql_query", lql_query)
@@ -171,7 +179,6 @@ def _execute_query(button):
     if not start_time.endswith('Z'):
         start_time = f'{start_time}Z'
 
-    print(start_time)
     try:
         _ = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%SZ")
     except ValueError as err:
@@ -249,7 +256,7 @@ def cloud_hunt(ctx=None):
     )
     execute_button.on_click(_execute_query)
 
-    grid = ipywidgets.GridspecLayout(6, 5, width="800px")
+    grid = ipywidgets.GridspecLayout(6, 5, width="900px")
     grid[0, :] = ipywidgets.HTML(
         value=(
             "<div align=\"center\"><h1>Cloud Hunting</h1><i>Assistant to "

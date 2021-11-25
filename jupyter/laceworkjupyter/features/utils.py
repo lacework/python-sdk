@@ -6,7 +6,19 @@ import yaml
 from IPython import get_ipython
 
 
-def _format_generic_string(event_value, attribute):
+def format_access_denied(event_value):
+    """
+    Creates a filter format string for a Yes No variable.
+
+    :return: A string that can be used in a LQL filter.
+    """
+    if event_value.lower().startswith('y'):
+        return "ERROR_CODE IN ('AccessDenied', 'Client.UnauthorizedOperation')"
+
+    return "ERROR_CODE IS NULL"
+
+
+def format_generic_string(event_value, attribute):
     """
     Creates a filter format string for a generic attribute.
 
@@ -21,46 +33,6 @@ def _format_generic_string(event_value, attribute):
         return "{0:s} NOT LIKE '%{1:s}%'".format(attribute, event_value[1:])
 
     return "{0:s} LIKE '%{1:s}%'".format(attribute, event_value)
-
-
-def format_event_name(event_value):
-    """
-    Creates a filter format string for event names.
-
-    :param str event_value: String that is used to generate the filter string.
-    :return: A string that can be used in a LQL filter.
-    """
-    return _format_generic_string(event_value, "EVENT_NAME")
-
-
-def format_event_type(event_value):
-    """
-    Creates a filter format string for event type.
-
-    :param str event_value: String that is used to generate the filter string.
-    :return: A string that can be used in a LQL filter.
-    """
-    return _format_generic_string(event_value, "EVENT:eventType::String")
-
-
-def format_event_source(event_value):
-    """
-    Creates a filter format string for event sources.
-
-    :param str event_value: String that is used to generate the filter string.
-    :return: A string that can be used in a LQL filter.
-    """
-    return _format_generic_string(event_value, "EVENT_SOURCE")
-
-
-def format_event_region(event_value):
-    """
-    Creates a filter format string for event region.
-
-    :param str event_value: String that is used to generate the filter string.
-    :return: A string that can be used in a LQL filter.
-    """
-    return _format_generic_string(event_value, "EVENT:awsRegion")
 
 
 def load_yaml_file(rel_file_path):
@@ -121,9 +93,13 @@ def build_lql_query(table_name, filters):
                 filter_string = filter_dict.get("format_string").format(value)
             elif "callback" in filter_dict:
                 fname = filter_dict.get("callback")
-                fn = locals().get(fname)
+                callback_parameters = filter_dict.get(
+                    "callback_parameters", {})
+                callback_parameters["event_value"] = value
+
+                fn = globals().get(fname)
                 if fn:
-                    filter_string = fn(value)
+                    filter_string = fn(**callback_parameters)
                 else:
                     filter_string = value
 
@@ -132,15 +108,18 @@ def build_lql_query(table_name, filters):
     lql_name = table_dict.get("name")
     query_name = table_name.replace(" ", "_")
 
-    query_lines = [f"Lacebook_{query_name}"]
+    query_lines = [f"Lacebook_Hunt_{query_name}"]
     query_lines.append("{\n  SOURCE {")
     query_lines.append(f"    {lql_name}")
     query_lines.append("  }")
     query_lines.append("  FILTER {")
+    filter_lines[0] = f"    {filter_lines[0]}"
     query_lines.append("\n    AND ".join(filter_lines))
     query_lines.append("  }")
     query_lines.append("  RETURN DISTINCT {")
-    query_lines.append(",\n     ".join(table_dict.get("return_fields", [])))
+    return_fields = table_dict.get("return_fields", [])
+    return_fields[0] = f"    {return_fields[0]}"
+    query_lines.append(",\n     ".join(return_fields))
     query_lines.append("  }\n}")
 
     return table_dict.get("evaluator_id"), "\n".join(query_lines)

@@ -1,4 +1,4 @@
-- display_name: DNS Requests
+- display_name: Agent DNS Requests
   name: LW_HA_DNS_REQUESTS
   return_fields:
   - RECORD_CREATED_TIME
@@ -8,6 +8,7 @@
   - HOST_IP_ADDR
   - TTL
   - PKTLEN
+
 - display_name: AWS CloudTrail Logs
   evaluator_id: Cloudtrail
   name: CloudTrailRawEvents
@@ -17,3 +18,16 @@
   - EVENT_TIME
   - EVENT
 
+- display_name: Agent Connections
+  name: LW_HA_CONNECTIONS
+  return_fields:
+  - MID
+  - SRC_IP_ADDR
+  - SRC_PORT
+  - DST_IP_ADDR
+  - DST_PORT
+  - PROTOCOL
+  - SYN
+  - INCOMING
+  - OUTGOING
+  - FIRST_KNOWN_TIME
