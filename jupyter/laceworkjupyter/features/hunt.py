@@ -16,6 +16,22 @@ DEFAULT_TABLE_PICK = "pick a table"
 lw_ctx = None
 
 
+def _get_start_and_end_time(ctx):
+    start_time = ctx.get("start_time")
+    end_time = ctx.get("end_time")
+
+    if not (start_time and end_time):
+        start_time, end_time = main_utils.parse_date_offset('LAST 2 DAYS')
+
+    start_time, _, _ = start_time.partition('.')
+    start_time = f'{start_time}Z'
+
+    end_time, _, _ = end_time.partition('.')
+    end_time = f'{end_time}Z'
+
+    return start_time, end_time
+
+
 def add_filter_definition(change):
     """
     Adds filter definitions to the UI.
@@ -185,13 +201,7 @@ def _execute_query(button):
     end_time = end_widget.value
 
     if not (start_time and end_time):
-        start_time, end_time = main_utils.parse_date_offset('LAST 2 DAYS')
-
-        start_time, _, _ = start_time.partition('.')
-        start_time = f'{start_time}Z'
-
-        end_time, _, _ = end_time.partition('.')
-        end_time = f'{end_time}Z'
+        start_time, end_time = _get_start_and_end_time(lw_ctx)
 
     start_time = start_time.upper()
     if not start_time.endswith('Z'):
@@ -280,20 +290,23 @@ def cloud_hunt(ctx=None):
             "environment.</i><br/><br/></div>"))
 
     grid[1, 1:3] = first_box
+
+    start_time, end_time = _get_start_and_end_time(ctx)
     grid[2, 0] = ipywidgets.Label("Start Time:")
     grid[2, 1] = ipywidgets.Text(
-        value="",
+        value=start_time,
         placeholder="YYYY-MM-DDTHH:MM:SSZ",
         description="",
         disabled=False
     )
     grid[2, 3] = ipywidgets.Label("End Time:")
     grid[2, 4] = ipywidgets.Text(
-        value="",
+        value=end_time,
         placeholder="YYYY-MM-DDTHH:MM:SSZ",
         description="",
         disabled=False
     )
+
     grid[3, 1:3] = ipywidgets.VBox()
     grid[4, 1] = verify_button
     grid[4, 3] = execute_button
