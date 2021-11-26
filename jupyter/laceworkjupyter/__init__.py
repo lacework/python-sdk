@@ -1,6 +1,8 @@
 """Defines helpers for interacting with the Lacework API in a notebook."""
 import logging
 
+import pandas as pd
+
 from . import decorators
 from . import features  # noqa: F401
 from . import manager
@@ -21,6 +23,19 @@ class LaceworkContext:
     def __init__(self):
         self._cache = {}
         self.client = None
+
+    @property
+    def cache(self):
+        """
+        Return a DataFrame with the content of the cache.
+        """
+        lines = []
+        for key, value in self._cache.items():
+            lines.append({
+                'Name': key,
+                'Type': type(value)
+            })
+        return pd.DataFrame(lines)
 
     def set_client(self, client):
         """

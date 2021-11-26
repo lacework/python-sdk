@@ -5,6 +5,7 @@ import ipywidgets
 
 from laceworksdk import http_session
 from laceworkjupyter import manager
+from laceworkjupyter import utils as main_utils
 from laceworkjupyter.features import utils
 
 # The text displayed as the default table pick.
@@ -147,12 +148,13 @@ def _verify_query(_unused_button):
             lql_query, evaluator_id=evaluator_id)
         verified = ipywidgets.Valid(
             value=True, description="LQL Verified")
+        grid[5, :2] = verified
     except http_session.ApiError as err:
         verified = ipywidgets.Valid(
             value=False,
             description="Failure: {0}".format(err))
+        grid[5, :] = verified
 
-    grid[5, :2] = verified
     lw_ctx.add("lql_query", lql_query)
     lw_ctx.add("lql_evaluator", evaluator_id)
 
@@ -173,9 +175,21 @@ def _execute_query(button):
 
     grid = lw_ctx.get("hunt_grid")
     start_widget = grid[2, 1]
-    start_time = start_widget.value
-    start_time = start_time.upper()
+    end_widget = grid[2, 4]
 
+    start_time = start_widget.value
+    end_time = end_widget.value
+
+    if not (start_time and end_time):
+        start_time, end_time = main_utils.parse_date_offset('LAST 2 DAYS')
+
+        start_time, _, _ = start_time.partition('.')
+        start_time = f'{start_time}Z'
+
+        end_time, _, _ = end_time.partition('.')
+        end_time = f'{end_time}Z'
+
+    start_time = start_time.upper()
     if not start_time.endswith('Z'):
         start_time = f'{start_time}Z'
 
@@ -187,8 +201,6 @@ def _execute_query(button):
             "in the format 'YYYY-MM-DDTHH:MM:SSZ' ({0:s}) - {1}".format(
                 start_time, err))
 
-    end_widget = grid[2, 3]
-    end_time = end_widget.value
     end_time = end_time.upper()
     if not end_time.endswith('Z'):
         end_time = f'{end_time}Z'
@@ -208,8 +220,8 @@ def _execute_query(button):
 
     df = lw_ctx.client.queries.execute(
         evaluator_id=lql_evaluator, query_text=lql_query, arguments=arguments)
-    lw_ctx.add("lql_results", df)
 
+    lw_ctx.add("lql_results", df)
     utils.write_to_namespace('df', df)
 
     grid[5, 2:] = ipywidgets.Label(
@@ -262,19 +274,20 @@ def cloud_hunt(ctx=None):
             "<div align=\"center\"><h1>Cloud Hunting</h1><i>Assistant to "
             "build LQL queries to perform threat hunting within your "
             "environment.</i><br/><br/></div>"))
+
     grid[1, 1:3] = first_box
     grid[2, 0] = ipywidgets.Label("Start Time:")
     grid[2, 1] = ipywidgets.Text(
         value="",
         placeholder="YYYY-MM-DDTHH:MM:SSZ",
-        description="ISO format",
+        description="",
         disabled=False
     )
-    grid[2, 2] = ipywidgets.Label("End Time:")
-    grid[2, 3] = ipywidgets.Text(
+    grid[2, 3] = ipywidgets.Label("End Time:")
+    grid[2, 4] = ipywidgets.Text(
         value="",
         placeholder="YYYY-MM-DDTHH:MM:SSZ",
-        description="ISO format",
+        description="",
         disabled=False
     )
     grid[3, 1:3] = ipywidgets.VBox()
