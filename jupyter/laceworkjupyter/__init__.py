@@ -22,6 +22,7 @@ class LaceworkContext:
 
     def __init__(self):
         self._cache = {}
+        self._state_cache = {}
         self.client = None
 
     @property
@@ -56,6 +57,20 @@ class LaceworkContext:
         """
         self._cache[key] = value
 
+    def add_state(self, module, key, value):
+        """
+        Add an entry into a state cache.
+
+        This cache is meant for modules that need a bit of state, but not
+        necessarily make it available for easy access from the context.
+
+        :param str module: The name of the module that is adding a cache.
+        :param str key: The key, or name used to store the value in the cache.
+        :param obj value: The value, which can be any object.
+        """
+        self._state_cache.setdefault(module, {})
+        self._state_cache[module][key] = value
+
     def get(self, key, default_value=None):
         """
         Get a value from the cache.
@@ -67,6 +82,18 @@ class LaceworkContext:
             value.
         """
         return self._cache.get(key, default_value)
+
+    def get_state(self, module, key, default_value=None):
+        """
+        Get a value from the state cache.
+
+        :param str key: The key, or name used to store the value in the cache.
+        :param obj default_value: The default value that is returned if the
+            cache key is not stored in the cache. Defaults to None.
+        :return: The value in the cache, and if not found returns the default
+            value.
+        """
+        return self._state_cache.get(module, {}).get(key, default_value)
 
 
 class LaceworkHelper:

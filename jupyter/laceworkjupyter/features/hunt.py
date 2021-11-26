@@ -32,7 +32,8 @@ def add_filter_definition(change):
     filter_name = filter_owner.description
 
     filter_dict = {}
-    table_filters = lw_ctx.get("hunt_filters")
+    table_filters = lw_ctx.get_state(
+        module="hunt_ui", key="hunt_filters")
     for table_filter in table_filters:
         if table_filter.get("parameter", "N/A") == filter_name:
             filter_dict = table_filter
@@ -41,7 +42,7 @@ def add_filter_definition(change):
     if not filter_dict:
         return
 
-    grid = lw_ctx.get("hunt_grid")
+    grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
     box = grid[3, 1]
     children = list(box.children)
 
@@ -85,7 +86,7 @@ def _generate_table_filters(change):
     # Since we added a default option, we need to decrease the index by one.
     table_index -= 1
 
-    grid = lw_ctx.get("hunt_grid")
+    grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
     box = grid[3, 1]
 
     if table_index == -1:
@@ -93,7 +94,8 @@ def _generate_table_filters(change):
         box.children = []
         return
 
-    tables = lw_ctx.get("hunt_tables", [])
+    tables = lw_ctx.get_state(
+        module="hunt_ui", key="hunt_tables", default_value=[])
     try:
         table_name = tables[table_index].get("name")
     except IndexError:
@@ -104,7 +106,8 @@ def _generate_table_filters(change):
         raise ValueError("Invalid table")
 
     checkboxes = []
-    table_filters = lw_ctx.get("hunt_filters", [])
+    table_filters = lw_ctx.get_state(
+        module="hunt_ui", key="hunt_filters", default_value=[])
     layout = ipywidgets .Layout(height="auto", width="90%")
     for table_filter in table_filters:
         if table_name != table_filter.get("table", ""):
@@ -129,7 +132,7 @@ def _verify_query(_unused_button):
     """Verify a LQL query."""
     global lw_ctx
 
-    grid = lw_ctx.get("hunt_grid")
+    grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
     table_box = grid[1, 1]
     table_widget = table_box.children[-1]
     value_widget = grid[3, 1]
@@ -173,7 +176,7 @@ def _execute_query(button):
     lql_query = lw_ctx.get("lql_query")
     lql_evaluator = lw_ctx.get("lql_evaluator")
 
-    grid = lw_ctx.get("hunt_grid")
+    grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
     start_widget = grid[2, 1]
     end_widget = grid[2, 4]
 
@@ -294,9 +297,9 @@ def cloud_hunt(ctx=None):
     grid[4, 1] = verify_button
     grid[4, 3] = execute_button
 
-    ctx.add("hunt_grid", grid)
-    ctx.add("hunt_tables", tables)
-    ctx.add("hunt_filters", table_filters)
+    ctx.add_state("hunt_ui", "hunt_grid", grid)
+    ctx.add_state("hunt_ui", "hunt_tables", tables)
+    ctx.add_state("hunt_ui", "hunt_filters", table_filters)
     lw_ctx = ctx
     display(grid)  # noqa: F821
 
