@@ -34,6 +34,7 @@ setup(
         "requests",
         "pyyaml",
         "laceworksdk",
+        "ipywidgets",
         "pandas"
     ],
     classifiers=[

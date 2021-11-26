@@ -1,3 +1,4 @@
 laceworksdk>=0.9.23
 pandas>=1.0.1
 pyyaml>=5.4.1
+ipywidgets>=7.6.5
