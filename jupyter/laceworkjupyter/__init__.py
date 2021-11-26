@@ -12,7 +12,7 @@ from . import manager
 from .helper import LaceworkJupyterClient as LaceworkJupyterHelper  # noqa: F401, E501
 
 
-logger = logging.getLogger('lacework_sdk.jupyter.client')
+logger = logging.getLogger("lacework_sdk.jupyter.client")
 
 
 class LaceworkContext:
@@ -33,8 +33,8 @@ class LaceworkContext:
         lines = []
         for key, value in self._cache.items():
             lines.append({
-                'Name': key,
-                'Type': type(value)
+                "Name": key,
+                "Type": type(value)
             })
         return pd.DataFrame(lines)
 

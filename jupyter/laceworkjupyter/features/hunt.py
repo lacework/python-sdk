@@ -108,7 +108,7 @@ def _generate_table_filters(change):
     checkboxes = []
     table_filters = lw_ctx.get_state(
         module="hunt_ui", key="hunt_filters", default_value=[])
-    layout = ipywidgets .Layout(height="auto", width="90%")
+    layout = ipywidgets.Layout(height="auto", width="90%")
     for table_filter in table_filters:
         if table_name != table_filter.get("table", ""):
             continue
@@ -146,21 +146,22 @@ def _verify_query(_unused_button):
     evaluator_id, lql_query = utils.build_lql_query(
         table_widget.value, params)
 
+    lw_ctx.add("lql_query", lql_query)
+    lw_ctx.add("lql_evaluator", evaluator_id)
+
     try:
         _ = lw_ctx.client.queries.validate(
             lql_query, evaluator_id=evaluator_id)
-        verified = ipywidgets.Valid(
-            value=True, description="LQL Verified")
-        grid[5, :2] = verified
     except http_session.ApiError as err:
         verified = ipywidgets.Valid(
             value=False,
             description="Failure: {0}".format(err))
         grid[5, :] = verified
+        return False
 
-    lw_ctx.add("lql_query", lql_query)
-    lw_ctx.add("lql_evaluator", evaluator_id)
-
+    verified = ipywidgets.Valid(
+        value=True, description="LQL Verified")
+    grid[5, :2] = verified
     return True
 
 
