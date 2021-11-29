@@ -236,8 +236,11 @@ def _execute_query(button):
 
     rows_returned = df.shape[0]
 
+    query_html = lql_query.replace("\n", "<br/>").replace(" ", "&nbsp;")
     label_widget.value = (
         f"<hr/><h2>Query Completed</h2><hr/>"
+        f"Query: <br/>"
+        f"<i>{query_html}</i>"
         f"<br/>Query has completed with {rows_returned} rows returned."
         f"<br/><br/>Results are stored in the variable '<b>df</b>'. The data "
         f"can also be accessed by the variable "
