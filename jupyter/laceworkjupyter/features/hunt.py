@@ -305,7 +305,6 @@ def cloud_hunt(ctx=None):
 
     start_time, end_time = _get_start_and_end_time(ctx)
 
-
     grid = ipywidgets.Box(
         children=[
             title, first_box,
