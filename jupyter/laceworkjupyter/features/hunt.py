@@ -58,8 +58,7 @@ def _add_filter_definition(change):
     if not filter_dict:
         return
 
-    grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
-    box = grid.children[5]
+    box = lw_ctx.get_state(module="hunt_ui", key="hunt_filter_box")
     children = list(box.children)
 
     layout = ipywidgets .Layout(height="auto", width="90%")
@@ -102,12 +101,7 @@ def _generate_table_filters(change):
     # Since we added a default option, we need to decrease the index by one.
     table_index -= 1
 
-    grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
-    box = grid.children[4]
-
-    # Clear the input from previous table definitions.
-    value_box = grid.children[5]
-    value_box.children = []
+    box = lw_ctx.get_state(module="hunt_ui", key="hunt_filter_box")
 
     if table_index == -1:
         # Default option, not a real table.
@@ -152,11 +146,10 @@ def _verify_query(_unused_button):
     """Verify a LQL query."""
     global lw_ctx
 
-    grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
-    grid_children = list(grid.children)
-    table_box = grid_children[1]
+    table_box = lw_ctx.get_state(module="hunt_ui", key="hunt_table_box")
     table_widget = table_box.children[-1]
-    value_widget = grid_children[5]
+    value_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_filter_box")
+    label_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_label")
 
     params = {}
     for child in value_widget.children:
@@ -174,17 +167,10 @@ def _verify_query(_unused_button):
         _ = lw_ctx.client.queries.validate(
             lql_query, evaluator_id=evaluator_id)
     except http_session.ApiError as err:
-        verified = ipywidgets.Valid(
-            value=False,
-            description="Failure: {0}".format(err))
-        grid_children.append(verified)
-        grid.children = grid_children
+        label_widget.value = "Failure to verify: {0}".format(err)
         return False
 
-    verified = ipywidgets.Valid(
-        value=True, description="LQL Verified")
-    grid_children.append(verified)
-    grid.children = grid_children
+    label_widget.value = "LQL Verified."
     return True
 
 
@@ -200,11 +186,10 @@ def _execute_query(button):
     lql_query = lw_ctx.get("lql_query")
     lql_evaluator = lw_ctx.get("lql_evaluator")
 
-    grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
-    start_widget = grid.children[2].children[-1]
-    end_widget = grid.children[3].children[-1]
-
+    start_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_start_widget")
     start_time = start_widget.value
+
+    end_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_end_widget")
     end_time = end_widget.value
 
     if not (start_time and end_time):
@@ -234,6 +219,10 @@ def _execute_query(button):
             "in the format 'YYYY-MM-DDTHH:MM:SSZ' ({0:s}) - {1}".format(
                 start_time, err))
 
+    label_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_label")
+    label_widget.value = (
+        f"{label_widget.value}.<br/><br/><b>Executing query...</b>")
+
     arguments = {
         "StartTimeRange": start_time,
         "EndTimeRange": end_time
@@ -245,10 +234,14 @@ def _execute_query(button):
     lw_ctx.add("lql_results", df)
     utils.write_to_namespace('df', df)
 
-    grid_children = list(grid.children)
-    grid_children.append(ipywidgets.Label(
-        "Results stored in the variable df and in lw.ctx.get('lql_results')"))
-    grid.children = grid_children
+    rows_returned = df.shape[0]
+
+    label_widget.value = (
+        f"<hr/><h2>Query Completed</h2><hr/>"
+        f"<br/>Query has completed with {rows_returned} rows returned."
+        f"<br/><br/>Results are stored in the variable '<b>df</b>'. The data "
+        f"can also be accessed by the variable "
+        f"'<b><i>lw.ctx.get(\"lql_results\")</i></b>'")
 
 
 def cloud_hunt(ctx=None):
@@ -269,8 +262,8 @@ def cloud_hunt(ctx=None):
     )
     table_list.observe(_generate_table_filters)
 
-    first_box = ipywidgets.HBox()
-    first_box.children = (
+    table_box = ipywidgets.HBox()
+    table_box.children = (
         ipywidgets.Label("Pick a table: "), table_list)
 
     verify_button = ipywidgets.Button(
@@ -304,37 +297,47 @@ def cloud_hunt(ctx=None):
             "environment.</i><br/><br/></div>"))
 
     start_time, end_time = _get_start_and_end_time(ctx)
+    start_widget = ipywidgets.Text(
+        value=start_time,
+        placeholder="YYYY-MM-DDTHH:MM:SSZ",
+        description="",
+        disabled=False
+    )
+    end_widget = ipywidgets.Text(
+        value=end_time,
+        placeholder="YYYY-MM-DDTHH:MM:SSZ",
+        description="",
+        disabled=False
+    )
+
+    filter_box = ipywidgets.VBox()
+    result_label = ipywidgets.HTML()
 
     grid = ipywidgets.Box(
         children=[
-            title, first_box,
+            title,
+            table_box,
             ipywidgets.HBox(children=[
                 ipywidgets.Label("Start Time:"),
-                ipywidgets.Text(
-                    value=start_time,
-                    placeholder="YYYY-MM-DDTHH:MM:SSZ",
-                    description="",
-                    disabled=False
-                )]
-            ), ipywidgets.HBox(children=[
+                start_widget,
                 ipywidgets.Label("End Time:"),
-                ipywidgets.Text(
-                    value=end_time,
-                    placeholder="YYYY-MM-DDTHH:MM:SSZ",
-                    description="",
-                    disabled=False
-                )],
-            ), ipywidgets.VBox(),  # filter pick
-            ipywidgets.VBox(),  # filter form
+                end_widget]),
+            filter_box,
             ipywidgets.HBox(children=(verify_button, execute_button)),
-        ],
-        layout=box_layout
+            result_label,
+        ], layout=box_layout
     )
 
-    ctx.add_state("hunt_ui", "hunt_grid", grid)
+    ctx.add_state("hunt_ui", "hunt_table_box", table_box)
+    ctx.add_state("hunt_ui", "hunt_start_widget", start_widget)
+    ctx.add_state("hunt_ui", "hunt_end_widget", end_widget)
+    ctx.add_state("hunt_ui", "hunt_filter_box", filter_box)
+    ctx.add_state("hunt_ui", "hunt_label", result_label)
+
     ctx.add_state("hunt_ui", "hunt_tables", tables)
     ctx.add_state("hunt_ui", "hunt_filters", table_filters)
     lw_ctx = ctx
+
     display(grid)  # noqa: F821
 
 
