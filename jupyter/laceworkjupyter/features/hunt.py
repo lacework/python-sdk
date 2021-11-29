@@ -32,7 +32,7 @@ def _get_start_and_end_time(ctx):
     return start_time, end_time
 
 
-def add_filter_definition(change):
+def _add_filter_definition(change):
     """
     Adds filter definitions to the UI.
     """
@@ -59,7 +59,7 @@ def add_filter_definition(change):
         return
 
     grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
-    box = grid[3, 1]
+    box = grid.children[5]
     children = list(box.children)
 
     layout = ipywidgets .Layout(height="auto", width="90%")
@@ -103,7 +103,11 @@ def _generate_table_filters(change):
     table_index -= 1
 
     grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
-    box = grid[3, 1]
+    box = grid.children[4]
+
+    # Clear the input from previous table definitions.
+    value_box = grid.children[5]
+    value_box.children = []
 
     if table_index == -1:
         # Default option, not a real table.
@@ -135,7 +139,7 @@ def _generate_table_filters(change):
                 description=table_filter.get("parameter")))
 
     for checkbox in checkboxes:
-        checkbox.observe(add_filter_definition)
+        checkbox.observe(_add_filter_definition)
 
     children = [ipywidgets.Label("Pick what filters to include:")]
     children.extend(checkboxes)
@@ -149,9 +153,10 @@ def _verify_query(_unused_button):
     global lw_ctx
 
     grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
-    table_box = grid[1, 1]
+    grid_children = list(grid.children)
+    table_box = grid_children[1]
     table_widget = table_box.children[-1]
-    value_widget = grid[3, 1]
+    value_widget = grid_children[5]
 
     params = {}
     for child in value_widget.children:
@@ -172,12 +177,14 @@ def _verify_query(_unused_button):
         verified = ipywidgets.Valid(
             value=False,
             description="Failure: {0}".format(err))
-        grid[5, :] = verified
+        grid_children.append(verified)
+        grid.children = grid_children
         return False
 
     verified = ipywidgets.Valid(
         value=True, description="LQL Verified")
-    grid[5, :2] = verified
+    grid_children.append(verified)
+    grid.children = grid_children
     return True
 
 
@@ -194,8 +201,8 @@ def _execute_query(button):
     lql_evaluator = lw_ctx.get("lql_evaluator")
 
     grid = lw_ctx.get_state(module="hunt_ui", key="hunt_grid")
-    start_widget = grid[2, 1]
-    end_widget = grid[2, 4]
+    start_widget = grid.children[2].children[-1]
+    end_widget = grid.children[3].children[-1]
 
     start_time = start_widget.value
     end_time = end_widget.value
@@ -238,8 +245,10 @@ def _execute_query(button):
     lw_ctx.add("lql_results", df)
     utils.write_to_namespace('df', df)
 
-    grid[5, 2:] = ipywidgets.Label(
-        "Results stored in the variable df and in lw.ctx.get('lql_results')")
+    grid_children = list(grid.children)
+    grid_children.append(ipywidgets.Label(
+        "Results stored in the variable df and in lw.ctx.get('lql_results')"))
+    grid.children = grid_children
 
 
 def cloud_hunt(ctx=None):
@@ -282,34 +291,46 @@ def cloud_hunt(ctx=None):
     )
     execute_button.on_click(_execute_query)
 
-    grid = ipywidgets.GridspecLayout(6, 5, width="900px")
-    grid[0, :] = ipywidgets.HTML(
+    box_layout = ipywidgets.Layout(
+        display='flex',
+        flex_flow='column',
+        align_items='stretch',
+        width='900px')
+
+    title = ipywidgets.HTML(
         value=(
             "<div align=\"center\"><h1>Cloud Hunting</h1><i>Assistant to "
             "build LQL queries to perform threat hunting within your "
             "environment.</i><br/><br/></div>"))
 
-    grid[1, 1:3] = first_box
-
     start_time, end_time = _get_start_and_end_time(ctx)
-    grid[2, 0] = ipywidgets.Label("Start Time:")
-    grid[2, 1] = ipywidgets.Text(
-        value=start_time,
-        placeholder="YYYY-MM-DDTHH:MM:SSZ",
-        description="",
-        disabled=False
-    )
-    grid[2, 3] = ipywidgets.Label("End Time:")
-    grid[2, 4] = ipywidgets.Text(
-        value=end_time,
-        placeholder="YYYY-MM-DDTHH:MM:SSZ",
-        description="",
-        disabled=False
-    )
 
-    grid[3, 1:3] = ipywidgets.VBox()
-    grid[4, 1] = verify_button
-    grid[4, 3] = execute_button
+
+    grid = ipywidgets.Box(
+        children=[
+            title, first_box,
+            ipywidgets.HBox(children=[
+                ipywidgets.Label("Start Time:"),
+                ipywidgets.Text(
+                    value=start_time,
+                    placeholder="YYYY-MM-DDTHH:MM:SSZ",
+                    description="",
+                    disabled=False
+                )]
+            ), ipywidgets.HBox(children=[
+                ipywidgets.Label("End Time:"),
+                ipywidgets.Text(
+                    value=end_time,
+                    placeholder="YYYY-MM-DDTHH:MM:SSZ",
+                    description="",
+                    disabled=False
+                )],
+            ), ipywidgets.VBox(),  # filter pick
+            ipywidgets.VBox(),  # filter form
+            ipywidgets.HBox(children=(verify_button, execute_button)),
+        ],
+        layout=box_layout
+    )
 
     ctx.add_state("hunt_ui", "hunt_grid", grid)
     ctx.add_state("hunt_ui", "hunt_tables", tables)
