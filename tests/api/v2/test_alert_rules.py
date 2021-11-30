@@ -6,6 +6,8 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
+import pytest 
+
 from laceworksdk.api.alert_rules import AlertRulesAPI
 
 ALERT_RULE_GUID = None
@@ -27,6 +29,7 @@ def test_alert_rules_api_get(api):
     assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_alert_rules_api_create(api):
 
     response = api.alert_channels.search(
@@ -80,6 +83,7 @@ def test_alert_rules_api_create(api):
     ALERT_RULE_GUID = response["data"]["mcGuid"]
 
 
+@pytest.mark.flaky_test
 def test_alert_rules_api_get_by_guid(api):
     assert ALERT_RULE_GUID is not None
     if ALERT_RULE_GUID:
@@ -105,6 +109,7 @@ def test_alert_rules_api_search(api):
     assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_alert_rules_api_update(api):
     assert ALERT_RULE_GUID is not None
     if ALERT_RULE_GUID:
@@ -119,6 +124,7 @@ def test_alert_rules_api_update(api):
         assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_alert_rules_api_delete(api):
     assert ALERT_RULE_GUID is not None
     if ALERT_RULE_GUID:

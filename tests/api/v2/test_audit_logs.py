@@ -5,6 +5,8 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 
 from datetime import datetime, timedelta, timezone
 
+import pytest
+
 from laceworksdk.api.audit_logs import AuditLogsAPI
 
 # Build start/end times
@@ -34,6 +36,7 @@ def test_audit_logs_api_get_by_date(api):
     assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_audit_logs_api_search(api):
     response = api.audit_logs.search(query_data={
         "timeFilter": {

@@ -6,6 +6,8 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
+import pytest
+
 from laceworksdk.api.agent_access_tokens import AgentAccessTokensAPI
 
 AGENT_ACCESS_TOKEN_ID = None
@@ -67,6 +69,7 @@ def test_agent_access_tokens_api_search(api):
         assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_agent_access_tokens_api_update(api):
     assert AGENT_ACCESS_TOKEN_ID is not None
     if AGENT_ACCESS_TOKEN_ID:

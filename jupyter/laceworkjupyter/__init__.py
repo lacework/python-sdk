@@ -22,6 +22,7 @@ class LaceworkContext:
 
     def __init__(self):
         self._cache = {}
+        self._state = ""
         self._state_cache = {}
         self.client = None
 
@@ -37,6 +38,13 @@ class LaceworkContext:
                 "Type": type(value)
             })
         return pd.DataFrame(lines)
+
+    @property
+    def state(self):
+        """
+        Returns the current state that is in use.
+        """
+        return self._state
 
     def set_client(self, client):
         """
@@ -57,19 +65,26 @@ class LaceworkContext:
         """
         self._cache[key] = value
 
-    def add_state(self, module, key, value):
+    def add_state(self, state, key, value):
         """
         Add an entry into a state cache.
 
         This cache is meant for modules that need a bit of state, but not
         necessarily make it available for easy access from the context.
 
-        :param str module: The name of the module that is adding a cache.
+        There can only be one state at a given time, so if a module adds to
+        a state that differs from the previous state, that state's cache
+        gets cleared.
+
+        :param str state: The name of the state that is adding a cache.
         :param str key: The key, or name used to store the value in the cache.
         :param obj value: The value, which can be any object.
         """
-        self._state_cache.setdefault(module, {})
-        self._state_cache[module][key] = value
+        if state != self._state:
+            self._state = state
+            self.state_cache = {}
+
+        self._state_cache[key] = value
 
     def get(self, key, default_value=None):
         """
@@ -83,17 +98,24 @@ class LaceworkContext:
         """
         return self._cache.get(key, default_value)
 
-    def get_state(self, module, key, default_value=None):
+    def get_state(self, state, key, default_value=None):
         """
         Get a value from the state cache.
 
+        :param str state: The name of the state we are pulling from.
         :param str key: The key, or name used to store the value in the cache.
         :param obj default_value: The default value that is returned if the
             cache key is not stored in the cache. Defaults to None.
         :return: The value in the cache, and if not found returns the default
             value.
         """
-        return self._state_cache.get(module, {}).get(key, default_value)
+        if state != self._state:
+            logger.warning(
+                "Attempting to fetch from a wrong state ({0:s} vs "
+                "{1:s})".format(state, self._state))
+            return default_value
+
+        return self._state_cache.get(key, default_value)
 
 
 class LaceworkHelper:

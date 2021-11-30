@@ -6,6 +6,8 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
+import pytest
+
 from laceworksdk.api.integrations import IntegrationsAPI
 
 INTEGRATION_GUID = None
@@ -43,6 +45,7 @@ def test_integrations_api_get_schema(api):
     assert response["ok"]
 
 
+@pytest.mark.flaky_test
 def test_integrations_api_create(api):
     response = api.integrations.create(
         name=f"Slack Test {RANDOM_TEXT}",

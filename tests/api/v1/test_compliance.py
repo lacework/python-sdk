@@ -33,6 +33,7 @@ def test_compliance_api_list_gcp_projects(api, gcp_org):
         assert response["ok"]
 
 
+@pytest.mark.flaky_test
 def test_compliance_api_get_latest_aws_report(api):
     integrations = api.integrations.get_by_type("AWS_CFG")
 
