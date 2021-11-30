@@ -42,16 +42,14 @@ with laceworkjupyter.LaceworkHelper() as lw:
 
 ## Lacebook - Docker Container
 
-One way to start using the Lacework Jupyter helper is to make use of the docker notebook container called
-`lacebook`. The easiest way to run the container is to fetch the docker-compose file:
+The easiest way to start using the Lacework Jupyter helper is to make use of the docker notebook container called
+`lacebook`. To run the container fetch the docker-compose file:
 
 ```shell
 $ curl -O https://raw.githubusercontent.com/lacework/python-sdk/master/jupyter/docker/docker-compose.yml
-$ docker-compose pull
-$ docker-compose up -d
 ```
 
-The other option is to create a file called `docker-compose.yml` with the content of:
+Or you can create your own docker config file, create the file `docker-compose.yml` with the content of:
 
 ```
 version: '3'
@@ -64,12 +62,15 @@ services:
     restart: on-failure
     volumes:
       - $HOME/.lacework.toml:/home/lacework/.lacework.toml
-      - /$HOME/data/:/usr/local/src/lacedata/
+      - /tmp:/usr/local/src/lacedata/
 ```
 
-(*if you use this docker compose file you will either need to create the folder $HOME/data that is
-readable and writeable by a user with the UID/GID 1000:1000. or change the line to point to a folder
-with that permission*)
+The next step is to pull the image and run the container:
+
+```shell
+$ docker-compose pull
+$ docker-compose up -d
+```
 
 This will start up a lacebook container which starts a Jupyter container listening on port 8899.
 To access the lacebook container visit http://localhost:8899. When prompted for a password
@@ -77,8 +78,13 @@ use `lacework`.
 
 ### Customize Container
 
-By default persistent storage for notebooks is in the user's /tmp directory. To change that,
-edit the file `docker-compose.yml' and change the line:
+The compose file will map up a drive on your host machine that is used as a persistent drive. That way the notebooks
+you create in the container will not be deleted once you upgrade the container. This also gives you option to
+share files with the container (CSV files for instance). By default this points to `/tmp/`, which is not a persistent
+folder on a Linux system.
+
+Therefore if you want a true persistent storage you will need to change the line in the docker-compose file into
+another folder of your choice. Edit the file `docker-compose.yml' and change the line:
 
 ```
       - /tmp/:/usr/local/src/lacedata/
@@ -95,6 +101,18 @@ and enter the backend URL: `http://localhost:8899/?token=lacework`
 
 ## How-To
 
-More to come here.
+The docker container will by default initialize few things, among them is to expose a variable called `lw`, which
+is an instance of the LaceworkHelper object. 
 
-One way to start exploring is to run this [Colab notebook](https://colab.research.google.com/github/lacework/python-sdk/blob/master/jupyter/notebooks/colab_sample.ipynb)
+One way to explore what features the `lw` object has is to run inside a container:
+
+```python
+lw.*?
+```
+
+Or by typing `lw.` and then hit the `<TAB>` key for an autocomplete.
+
+Most of the documentation will be written with notebook demonstrations. Here is a list of available notebooks to
+start exploring `lacebook`:
+
++ [The first notebook sample](https://colab.research.google.com/github/lacework/python-sdk/blob/master/jupyter/notebooks/colab_sample.ipynb)
