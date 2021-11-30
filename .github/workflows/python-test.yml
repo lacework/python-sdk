@@ -46,7 +46,7 @@ jobs:
 
       - name: Test SDK with pytest
         run: |
-          pytest -m "not ci_exempt" -m "not flaky_test" tests
+          pytest -m "not ci_exempt and not flaky_test" tests
         env:
           LW_ACCOUNT: ${{ secrets.LW_ACCOUNT }}
           LW_SUBACCOUNT: ${{ secrets.LW_SUBACCOUNT }}
