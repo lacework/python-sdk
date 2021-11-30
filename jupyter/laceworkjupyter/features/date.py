@@ -5,15 +5,19 @@ from laceworkjupyter import manager
 from laceworkjupyter import utils
 
 
-def parse_date_offset(offset_string):
+def parse_date_offset(offset_string, ctx=None):
     """
     Parse date offset string and return a start and end time.
 
     :param str offset_string: The offset string describing the time period.
+    :param obj ctx: The Lacework context object.
     :raises ValueError: If not able to convert the string to dates.
     :return: A tuple with start and end time as ISO 8601 formatted strings.
     """
-    return utils.parse_date_offset(offset_string)
+    start_time, end_time = utils.parse_date_offset(offset_string)
+    ctx.add("start_time", start_time)
+    ctx.add("end_time", end_time)
+    return start_time, end_time
 
 
-manager.LaceworkManager.add_feature(parse_date_offset, 'parse_date_offset')
+manager.LaceworkManager.add_feature(parse_date_offset, "parse_date_offset")

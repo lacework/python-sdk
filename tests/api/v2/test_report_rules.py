@@ -6,6 +6,8 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
+import pytest
+
 from laceworksdk.api.report_rules import ReportRulesAPI
 
 REPORT_RULE_GUID = None
@@ -27,6 +29,7 @@ def test_report_rules_api_get(api):
     assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_report_rules_api_create(api):
 
     response = api.alert_channels.search(
@@ -83,6 +86,7 @@ def test_report_rules_api_create(api):
     REPORT_RULE_GUID = response["data"]["mcGuid"]
 
 
+@pytest.mark.flaky_test
 def test_report_rules_api_get_by_guid(api):
     assert REPORT_RULE_GUID is not None
     if REPORT_RULE_GUID:
@@ -108,6 +112,7 @@ def test_report_rules_api_search(api):
     assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_report_rules_api_update(api):
     assert REPORT_RULE_GUID is not None
     if REPORT_RULE_GUID:
@@ -122,6 +127,7 @@ def test_report_rules_api_update(api):
         assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_report_rules_api_delete(api):
     assert REPORT_RULE_GUID is not None
     if REPORT_RULE_GUID:

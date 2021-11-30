@@ -31,7 +31,8 @@ def dataframe_decorator(function):
     return get_output
 
 
-def flatten_json_output(json_data, pre_key='', lists_to_rows=False):  # noqa: C901
+def flatten_json_output(  # noqa: C901
+        json_data, pre_key='', lists_to_rows=False):
     """
     Flatten and yield dict objects from a Lacework JSON structure.
 

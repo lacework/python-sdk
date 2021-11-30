@@ -1,0 +1,97 @@
+- format_string: HOSTNAME = '{0:s}'
+  hint: example.com
+  parameter: Exact DNS Hostname
+  table: LW_HA_DNS_REQUESTS
+  type: string
+
+- format_string: HOSTNAME LIKE '%{0:s}%'
+  hint: example.com
+  parameter: Partial DNS Hostname
+  table: LW_HA_DNS_REQUESTS
+  type: string
+
+- format_string: HOST_IP_ADDR = '{0:s}'
+  hint: 127.0.0.1
+  parameter: Resolved IP Address
+  table: LW_HA_DNS_REQUESTS
+  type: string
+
+- hint: root
+  parameter: username
+  callback: format_generic_string
+  callback_parameters:
+    attribute: EVENT:userIdentity.userName
+  table: CloudTrailRawEvents
+  type: string
+
+- format_string: EVENT:sourceIPAddress = '{0:s}'
+  hint: 127.0.0.1
+  parameter: Source IP
+  table: CloudTrailRawEvents
+  type: string
+
+- parameter: Event Source
+  hint: exists or event
+  callback: format_generic_string
+  callback_parameters:
+    attribute: EVENT_SOURCE
+  table: CloudTrailRawEvents
+
+- parameter: Event Region
+  hint: The AWS Region, eg us-east-1
+  callback: format_generic_string
+  callback_parameters:
+    attribute: EVENT:awsRegion
+  table: CloudTrailRawEvents
+
+- parameter: Event Name
+  table: CloudTrailRawEvents
+  hint: random name
+  callback: format_generic_string
+  callback_parameters:
+    attribute: EVENT_NAME
+
+- parameter: Event Type
+  table: CloudTrailRawEvents
+  hint: random name
+  callback: format_generic_string
+  callback_parameters:
+    attribute: EVENT:eventType::String
+
+- parameter: Source Address
+  table: CloudTrailRawEvents
+  hint: 127.0.0.1
+  callback: format_generic_string
+  callback_parameters:
+    attribute: EVENT:sourceIPAddress
+
+- parameter: User Agent
+  table: CloudTrailRawEvents
+  hint: Chrome
+  callback: format_generic_string
+  callback_parameters:
+    attribute: EVENT:userAgent
+
+- parameter: Request Parameter
+  table: CloudTrailRawEvents
+  hint: some param
+  callback: format_generic_string
+  callback_parameters:
+    attribute: EVENT:requestParameters.name
+
+- parameter: Error Code
+  table: CloudTrailRawEvents
+  hint: name
+  callback: format_generic_string
+  callback_parameters:
+    attribute: ERROR_CODE
+
+- parameter: Access Denied
+  table: CloudTrailRawEvents
+  hint: y or n
+  callback: format_access_denied
+
+- parameter: IP Address
+  table: LW_HA_CONNECTIONS
+  hint: 127.0.0.1
+  format_string: SRC_IP_ADDR = '{0:s}' OR DST_IP_ADDR = '{0:s}'
