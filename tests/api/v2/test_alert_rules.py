@@ -6,7 +6,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
-import pytest 
+import pytest
 
 from laceworksdk.api.alert_rules import AlertRulesAPI
 
