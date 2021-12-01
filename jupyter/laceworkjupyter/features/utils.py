@@ -5,6 +5,8 @@ import os
 import yaml
 from IPython import get_ipython
 
+from laceworkjupyter import utils as main_utils
+
 
 def format_access_denied(event_value):
     """
@@ -136,3 +138,28 @@ def write_to_namespace(key, value):
 
     if ip and key:
         ip.push({key: value})
+
+
+def get_start_and_end_time(ctx):
+    """
+    Return start and end time from cache.
+
+    This function returns the currently stored start and end time
+    in the cache. If there aren't any values stored in the cache
+    the values for last two days are returned.
+
+    :return: A tuple, with two strings, start and end time.
+    """
+    start_time = ctx.get("start_time")
+    end_time = ctx.get("end_time")
+
+    if not (start_time and end_time):
+        start_time, end_time = main_utils.parse_date_offset('LAST 2 DAYS')
+
+    start_time, _, _ = start_time.partition('.')
+    start_time = f'{start_time}Z'
+
+    end_time, _, _ = end_time.partition('.')
+    end_time = f'{end_time}Z'
+
+    return start_time, end_time
