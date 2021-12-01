@@ -94,6 +94,18 @@ To a directory that persists through reboots. This can be any folder on your hos
 the only limitations are that the folder needs to be readable and writeable by a user 
 with UID/GID 1000:1000 for the container user to be able to make use of it.
 
+### Upgrade Container
+
+The container gets rebuilt with each commit to the codebase. To upgrade the container run the following commands:
+
+```shell
+docker-compose down
+docker-compose pull
+docker-compose up -d
+```
+
+(*This assumes you are running the command in the same folder as the docker-compose.yml file*)
+
 ### Use Lacebook with Colab
 
 The lacebook container can also be used with Colab notebooks. Select `Connect to a local runtime`
