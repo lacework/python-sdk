@@ -49,7 +49,7 @@ def _add_filter_definition(change):
 
     filter_dict = {}
     table_filters = lw_ctx.get_state(
-        module="hunt_ui", key="hunt_filters")
+        state="hunt_ui", key="hunt_filters")
     for table_filter in table_filters:
         if table_filter.get("parameter", "N/A") == filter_name:
             filter_dict = table_filter
@@ -58,7 +58,7 @@ def _add_filter_definition(change):
     if not filter_dict:
         return
 
-    box = lw_ctx.get_state(module="hunt_ui", key="hunt_filter_box")
+    box = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
     children = list(box.children)
 
     layout = ipywidgets .Layout(height="auto", width="90%")
@@ -101,7 +101,7 @@ def _generate_table_filters(change):
     # Since we added a default option, we need to decrease the index by one.
     table_index -= 1
 
-    box = lw_ctx.get_state(module="hunt_ui", key="hunt_filter_box")
+    box = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
 
     if table_index == -1:
         # Default option, not a real table.
@@ -109,7 +109,7 @@ def _generate_table_filters(change):
         return
 
     tables = lw_ctx.get_state(
-        module="hunt_ui", key="hunt_tables", default_value=[])
+        state="hunt_ui", key="hunt_tables", default_value=[])
     try:
         table_name = tables[table_index].get("name")
     except IndexError:
@@ -121,7 +121,7 @@ def _generate_table_filters(change):
 
     checkboxes = []
     table_filters = lw_ctx.get_state(
-        module="hunt_ui", key="hunt_filters", default_value=[])
+        state="hunt_ui", key="hunt_filters", default_value=[])
     layout = ipywidgets.Layout(height="auto", width="90%")
     for table_filter in table_filters:
         if table_name != table_filter.get("table", ""):
@@ -146,10 +146,10 @@ def _verify_query(_unused_button):
     """Verify a LQL query."""
     global lw_ctx
 
-    table_box = lw_ctx.get_state(module="hunt_ui", key="hunt_table_box")
+    table_box = lw_ctx.get_state(state="hunt_ui", key="hunt_table_box")
     table_widget = table_box.children[-1]
-    value_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_filter_box")
-    label_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_label")
+    value_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
+    label_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_label")
 
     params = {}
     for child in value_widget.children:
@@ -186,10 +186,10 @@ def _execute_query(button):
     lql_query = lw_ctx.get("lql_query")
     lql_evaluator = lw_ctx.get("lql_evaluator")
 
-    start_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_start_widget")
+    start_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_start_widget")
     start_time = start_widget.value
 
-    end_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_end_widget")
+    end_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_end_widget")
     end_time = end_widget.value
 
     if not (start_time and end_time):
@@ -219,7 +219,7 @@ def _execute_query(button):
             "in the format 'YYYY-MM-DDTHH:MM:SSZ' ({0:s}) - {1}".format(
                 start_time, err))
 
-    label_widget = lw_ctx.get_state(module="hunt_ui", key="hunt_label")
+    label_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_label")
     label_widget.value = (
         f"{label_widget.value}.<br/><br/><b>Executing query...</b>")
 
