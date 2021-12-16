@@ -1,5 +1,8 @@
 """
-File that includes new custom accessors to pandas.
+File that includes custom accessors to pandas.
+
+This is a way to define custom accessors to either
+data frames or series objects.
 """
 
 import base64
