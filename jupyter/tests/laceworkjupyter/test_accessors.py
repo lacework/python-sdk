@@ -3,7 +3,7 @@ Test file for the local accessors.
 """
 import pandas as pd
 
-from laceworkjupyter import accessors
+from laceworkjupyter import accessors  # noqa: F401
 
 
 def test_decode_accessor():
@@ -24,5 +24,11 @@ def test_decode_accessor():
 
     assert expected_set == discovered_set
 
+    unquoted_series = frame.uri.decode.url_unquote()
+    unquoted_set = set(list(unquoted_series.values))
 
+    expected_set = set([
+        'http://mbl.is/?stuff=r 1 af',
+        'http://mbl.is/?sfi=r 1 af'])
 
+    assert expected_set == unquoted_set
