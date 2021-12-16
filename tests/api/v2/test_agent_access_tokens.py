@@ -30,6 +30,7 @@ def test_agent_access_tokens_api_get(api):
     assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_agent_access_tokens_api_get_by_id(api):
     response = api.agent_access_tokens.get()
 

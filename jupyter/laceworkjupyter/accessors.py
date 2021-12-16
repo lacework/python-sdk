@@ -43,7 +43,8 @@ class DecodeAccessor:
         Takes a series with base64 encoded data and decodes it using altchars.
 
         :param bytes altchars: A byte-like object of length 2 which specifies
-            the alternative alphabet used instead of the '+' and '/' characters.
+            the alternative alphabet used instead of the '+' and '/'
+            characters.
         :return: Decoded Base64 string.
         """
         return self.data.apply(
