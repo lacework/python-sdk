@@ -16,6 +16,9 @@ import snowflake.connector
 from picatrix import notebook_init
 import ds4n6_lib as ds
 
+# Add in the accessors to pandas.
+from laceworkjupyter import accessors
+
 # Enable the Picatrix helpers.
 notebook_init.init()
 

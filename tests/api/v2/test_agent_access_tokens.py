@@ -30,6 +30,7 @@ def test_agent_access_tokens_api_get(api):
     assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_agent_access_tokens_api_get_by_id(api):
     response = api.agent_access_tokens.get()
 
@@ -47,6 +48,7 @@ def test_agent_access_tokens_api_get_by_id(api):
         assert "data" in response.keys()
 
 
+@pytest.mark.flaky_test
 def test_agent_access_tokens_api_search(api):
     assert AGENT_ACCESS_TOKEN_ID is not None
     if AGENT_ACCESS_TOKEN_ID:
