@@ -130,7 +130,15 @@ class LaceworkHelper:
 
     def __init__(self):
         self.ctx = LaceworkContext()
+        self.refresh_features()
 
+    def refresh_features(self):
+        """
+        Refresh all the features of the helper.
+
+        IF a new feature is added this function can be called to refresh
+        the features that are registered to the helper object.
+        """
         for feature, feature_name in manager.LaceworkManager.get_features():
             feature_fn = decorators.feature_decorator(feature, self.ctx)
             setattr(self, feature_name, feature_fn)
