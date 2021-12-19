@@ -5,6 +5,7 @@ from laceworkjupyter import manager
 from laceworkjupyter import utils
 
 
+@manager.register_feature
 def parse_date_offset(offset_string, ctx=None):
     """
     Parse date offset string and return a start and end time.
@@ -18,6 +19,3 @@ def parse_date_offset(offset_string, ctx=None):
     ctx.add("start_time", start_time)
     ctx.add("end_time", end_time)
     return start_time, end_time
-
-
-manager.LaceworkManager.add_feature(parse_date_offset, "parse_date_offset")

@@ -11,8 +11,13 @@ def test_decode_accessor():
     Tests the decode accessor.
     """
     lines = [
-        {'value': 12, 'some_string': 'VGhpcyBpcyBhIHN0cmluZw==', 'uri': 'http://mbl.is/%3Fstuff=r+1%20af'},
-        {'value': 114, 'some_string': 'VGhpcyBpcyBhIGEgc2VjcmV0', 'uri': 'http://mbl.is/%3Fsfi=r+1%20af'},
+        {
+            'value': 12, 'some_string': 'VGhpcyBpcyBhIHN0cmluZw==',
+            'uri': 'http://mbl.is/%3Fstuff=r+1%20af'
+        }, {
+            'value': 114, 'some_string': 'VGhpcyBpcyBhIGEgc2VjcmV0',
+            'uri': 'http://mbl.is/%3Fsfi=r+1%20af'
+        },
     ]
     frame = pd.DataFrame(lines)
 

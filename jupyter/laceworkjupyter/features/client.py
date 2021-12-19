@@ -4,6 +4,7 @@ from laceworkjupyter import helper
 from laceworkjupyter import manager
 
 
+@manager.register_feature
 def get_client(
         api_key=None, api_secret=None, account=None,
         subaccount=None, instance=None, base_domain=None,
@@ -21,6 +22,3 @@ def get_client(
 
     ctx.set_client(client)
     return client
-
-
-manager.LaceworkManager.add_feature(get_client, 'get_client')

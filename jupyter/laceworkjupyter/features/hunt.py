@@ -247,6 +247,7 @@ def _execute_query(button):
         f"'<b><i>lw.ctx.get(\"lql_results\")</i></b>'")
 
 
+@manager.register_feature
 def cloud_hunt(ctx=None):
     """
     Displays a UI to build LQL queries to do threat hunting.
@@ -342,6 +343,3 @@ def cloud_hunt(ctx=None):
     lw_ctx = ctx
 
     display(grid)  # noqa: F821
-
-
-manager.LaceworkManager.add_feature(cloud_hunt, "cloud_hunt")

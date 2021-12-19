@@ -12,6 +12,7 @@ from laceworkjupyter.features import utils
 logger = logging.getLogger("lacework_sdk.jupyter.feature.policies")
 
 
+@manager.register_feature
 def list_available_queries(ctx=None):
     """
     Returns a DataFrame with the available LQL queries.
@@ -21,6 +22,7 @@ def list_available_queries(ctx=None):
     return ctx.client.queries.get()
 
 
+@manager.register_feature
 def query_stored_lql(query_id, start_time="", end_time="", ctx=None):
     """
     Returns the results from running a LQL query.
@@ -58,8 +60,3 @@ def query_stored_lql(query_id, start_time="", end_time="", ctx=None):
 
     return client.queries.execute_by_id(
         query_id=query_id, arguments=arguments)
-
-
-manager.LaceworkManager.add_feature(
-    list_available_queries, "list_available_queries")
-manager.LaceworkManager.add_feature(query_stored_lql, "query_stored_lql")

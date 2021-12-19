@@ -39,3 +39,19 @@ class LaceworkManager:
         """
         for feature_fn, feature_name in cls._features.items():
             yield (feature_name, feature_fn)
+
+
+def register_feature(fn, name=""):
+    """
+    Decorator that can be used to register a feature.
+
+    :param function fn: The function to register.
+    :param str name: Optional string with the name of the function
+        as it should be registered. If not provided the name of the
+        function is used.
+    """
+    if not name:
+        name = fn.__name__
+
+    LaceworkManager.add_feature(fn, name)
+    return fn
