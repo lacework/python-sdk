@@ -34,10 +34,10 @@ class DecodeAccessor:
         """
         try:
             decoded_string = base64.b64decode(string_value)
-        except binascii.Error:
+        except binascii.Error as exc:
             logger.error(
-                "Unable to decod string: {0:s}".format(string_value),
-                exc_info=True)
+                "Unable to decode string: '{0:s}', error: {1!s}".format(
+                    string_value, exc)),
             return string_value
 
         try:
