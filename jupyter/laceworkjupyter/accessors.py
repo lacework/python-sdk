@@ -6,12 +6,18 @@ data frames or series objects.
 """
 
 import base64
+import binascii
+import logging
+
 import urllib.parse
 
 import pandas as pd
 
 
-@pd.api.extensions.register_series_accessor('decode')
+logger = logging.getLogger("lacework_sdk.jupyter.accessor")
+
+
+@pd.api.extensions.register_series_accessor("decode")
 class DecodeAccessor:
     """
     Accessor class for decoding data.
@@ -26,10 +32,18 @@ class DecodeAccessor:
         :param str string_value: The base64 decoded string.
         :return: A decoded string.
         """
-        decoded_string = base64.b64decode(string_value)
         try:
-            return decoded_string.decode('utf8')
+            decoded_string = base64.b64decode(string_value)
+        except binascii.Error as exc:
+            logger.error(
+                "Unable to decode string: '{0:s}', error: {1!s}".format(
+                    string_value, exc)),
+            return string_value
+
+        try:
+            return decoded_string.decode("utf8")
         except UnicodeDecodeError:
+            logger.warning("Unable to decode string using UTF-8")
             return decoded_string
 
     def base64(self):
