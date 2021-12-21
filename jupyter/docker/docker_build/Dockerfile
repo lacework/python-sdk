@@ -23,7 +23,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ENV JUPYTER_PORT=8899
 
 COPY --chown=1000:1000 docker/docker_build/00-import.py /home/lacework/.ipython/profile_default/startup/00-import.py
-COPY --chown=1000:1000 docker/docker_build/10-functions.py /home/lacework/.ipython/profile_default/startup/10-functions.py
 COPY --chown=1000:1000 docker/docker_build/jupyter_notebook_config.py /home/lacework/.jupyter/jupyter_notebook_config.py
 COPY --chown=1000:1000 docker/docker_build/logo.png /home/lacework/.jupyter/custom/logo.png
 COPY --chown=1000:1000 docker/docker_build/custom.css /home/lacework/.jupyter/custom/custom.css
