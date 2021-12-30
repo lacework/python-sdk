@@ -1,19 +1,17 @@
-- format_string: HOSTNAME = '{0:s}'
-  hint: example.com
-  parameter: Exact DNS Hostname
-  table: LW_HA_DNS_REQUESTS
-  type: string
-
-- format_string: HOSTNAME LIKE '%{0:s}%'
-  hint: example.com
-  parameter: Partial DNS Hostname
-  table: LW_HA_DNS_REQUESTS
-  type: string
+- parameter: Hostname
+  tables: 
+   - LW_HA_USER_LOGINS
+   - LW_HA_DNS_REQUESTS
+  hint: myhostname
+  callback: format_generic_string
+  callback_parameters:
+    attribute: HOSTNAME
 
 - format_string: HOST_IP_ADDR = '{0:s}'
   hint: 127.0.0.1
   parameter: Resolved IP Address
-  table: LW_HA_DNS_REQUESTS
+  tables:
+   - LW_HA_DNS_REQUESTS
   type: string
 
 - hint: root
@@ -21,13 +19,15 @@
   callback: format_generic_string
   callback_parameters:
     attribute: EVENT:userIdentity.userName
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   type: string
 
-- format_string: EVENT:sourceIPAddress = '{0:s}'
+- parameter: Source IP
+  format_string: EVENT:sourceIPAddress = '{0:s}'
   hint: 127.0.0.1
-  parameter: Source IP
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   type: string
 
 - parameter: Event Source
@@ -35,63 +35,246 @@
   callback: format_generic_string
   callback_parameters:
     attribute: EVENT_SOURCE
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
 
 - parameter: Event Region
   hint: The AWS Region, eg us-east-1
   callback: format_generic_string
   callback_parameters:
     attribute: EVENT:awsRegion
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
 
 - parameter: Event Name
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   hint: random name
   callback: format_generic_string
   callback_parameters:
     attribute: EVENT_NAME
 
 - parameter: Event Type
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   hint: random name
   callback: format_generic_string
   callback_parameters:
     attribute: EVENT:eventType::String
 
 - parameter: Source Address
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   hint: 127.0.0.1
   callback: format_generic_string
   callback_parameters:
     attribute: EVENT:sourceIPAddress
 
 - parameter: User Agent
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   hint: Chrome
   callback: format_generic_string
   callback_parameters:
     attribute: EVENT:userAgent
 
 - parameter: Request Parameter
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   hint: some param
   callback: format_generic_string
   callback_parameters:
     attribute: EVENT:requestParameters.name
 
 - parameter: Error Code
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   hint: name
   callback: format_generic_string
   callback_parameters:
     attribute: ERROR_CODE
 
 - parameter: Access Denied
-  table: CloudTrailRawEvents
+  tables:
+   - CloudTrailRawEvents
   hint: y or n
   callback: format_access_denied
 
 - parameter: IP Address
-  table: LW_HA_CONNECTIONS
+  tables:
+   - LW_HA_CONNECTIONS
   hint: 127.0.0.1
   format_string: SRC_IP_ADDR = '{0:s}' OR DST_IP_ADDR = '{0:s}'
+
+- parameter: ARN Parameter
+  tables:
+   - LW_CFG_AWS_IAM_LIST_ROLES
+   - LW_CFG_AWS_RDS_DESCRIBE_DB_INSTANCES
+   - LW_CFG_AWS_LAMBDA_LIST_FUNCTIONS
+  hint: arn:aws:iam::....
+  callback: format_generic_string
+  callback_parameters:
+    attribute: ARN
+
+- parameter: ARN Resource Type
+  tables:
+   - LW_CFG_AWS_IAM_LIST_ROLES
+  hint: iam:role
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_TYPE
+
+- parameter: Resource Region
+  tables:
+   - LW_CFG_AWS_IAM_LIST_ROLES
+   - LW_CFG_AWS_RDS_DESCRIBE_DB_INSTANCES
+   - LW_CFG_AWS_LAMBDA_LIST_FUNCTIONS
+  hint: us-west-1
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_REGION
+
+- parameter: Endpoint Region
+  tables:
+   - LW_CFG_AWS_IAM_LIST_ROLES
+  hint: us-west-2
+  callback: format_generic_string
+  callback_parameters:
+    attribute: PROPS:endpointRegion
+
+- parameter: Resource Role Name
+  tables:
+   - LW_CFG_AWS_IAM_LIST_ROLES
+  hint: aws-access....
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_CONFIG:RoleName
+
+- parameter: API Key
+  tables:
+   - LW_CFG_AWS_RDS_DESCRIBE_DB_INSTANCES
+  hint: describe-...
+  callback: format_generic_string
+  callback_parameters:
+    attribute: API_KEY
+
+- parameter: Account Alias
+  tables:
+   - LW_CFG_AWS_RDS_DESCRIBE_DB_INSTANCES
+   - LW_CFG_AWS_LAMBDA_LIST_FUNCTIONS
+  hint: myaccount
+  callback: format_generic_string
+  callback_parameters:
+    attribute: ACCOUNT_ALIAS
+
+- parameter: DB Instance ARN
+  tables:
+   - LW_CFG_AWS_RDS_DESCRIBE_DB_INSTANCES
+  hint: arn:aws:....
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_CONFIG:DBInstanceArn
+
+- parameter: DB Name
+  tables:
+   - LW_CFG_AWS_RDS_DESCRIBE_DB_INSTANCES
+  hint: mydbname
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_CONFIG:DBName
+
+- parameter: Resource ID
+  tables:
+   - LW_CFG_AWS_LAMBDA_LIST_FUNCTIONS
+  hint: myresource
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_ID
+
+- parameter: Function ARN
+  tables:
+   - LW_CFG_AWS_LAMBDA_LIST_FUNCTIONS
+  hint: arn:aws:....
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_CONFIG:FunctionArn
+
+- parameter: Function Name
+  tables:
+   - LW_CFG_AWS_LAMBDA_LIST_FUNCTIONS
+  hint: myname
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_CONFIG:FunctionName
+
+- parameter: Function Runtime
+  tables:
+   - LW_CFG_AWS_LAMBDA_LIST_FUNCTIONS
+  hint: nodejs
+  callback: format_generic_string
+  callback_parameters:
+    attribute: RESOURCE_CONFIG:Runtime
+
+- parameter: Username
+  tables:
+   - LW_HA_USER_LOGINS
+  hint: myuser
+  callback: format_generic_string
+  callback_parameters:
+    attribute: USERNAME
+
+- parameter: IP Address
+  tables:
+   - LW_HA_USER_LOGINS
+  hint: 127.0.0.1
+  callback: format_generic_string
+  callback_parameters:
+    attribute: IP_ADDR
+
+- parameter: Terminal (TTY)
+  tables:
+   - LW_HA_USER_LOGINS
+  hint: ts/tty
+  callback: format_generic_string
+  callback_parameters:
+    attribute: TTY
+
+- parameter: File name
+  tables:
+   - LW_HE_FILES
+  hint: myfile
+  callback: format_generic_string
+  callback_parameters:
+    attribute: FILE_NAME
+
+- parameter: Owner Username
+  tables:
+   - LW_HE_FILES
+  hint: myuser
+  callback: format_generic_string
+  callback_parameters:
+    attribute: OWNER_USERNAME
+
+- parameter: File Path
+  tables:
+   - LW_HE_FILES
+  hint: /some/path
+  callback: format_generic_string
+  callback_parameters:
+    attribute: PATH
+
+- parameter: File Type
+  tables:
+   - LW_HE_FILES
+  hint: application/x-executable
+  callback: format_generic_string
+  callback_parameters:
+    attribute: FILE_TYPE
+
+- parameter: File SHA256 Hash
+  tables:
+   - LW_HE_FILES
+  hint: myuser
+  callback: format_generic_string
+  callback_parameters:
+    attribute: FILEDATA_HASH

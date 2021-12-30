@@ -31,3 +31,92 @@
   - INCOMING
   - OUTGOING
   - FIRST_KNOWN_TIME
+
+- display_name: AWS IAM List Roles
+  name: LW_CFG_AWS_IAM_LIST_ROLES
+  return_fields:
+  - ARN
+  - API_KEY
+  - ACCOUNT_ID
+  - ACCOUNT_ALIAS
+  - RESOURCE_TYPE
+  - RESOURCE_ID
+  - RESOURCE_REGION
+  - RESOURCE_CONFIG
+  - RESOURCE_TAGS
+  - STATUS
+  - KEYS
+  - PROPS
+
+- display_name: AWS RDS DB Instances
+  name: LW_CFG_AWS_RDS_DESCRIBE_DB_INSTANCES
+  return_fields:
+  - ARN
+  - API_KEY
+  - SERVICE
+  - ACCOUNT_ID
+  - ACCOUNT_ALIAS
+  - RESOURCE_TYPE
+  - RESOURCE_ID
+  - RESOURCE_REGION
+  - RESOURCE_CONFIG
+  - RESOURCE_TAGS
+  - STATUS
+  - KEYS
+  - PROPS
+
+- display_name: AWS Config Lambda List Functions
+  name: LW_CFG_AWS_LAMBDA_LIST_FUNCTIONS
+  return_fields:
+  - ARN
+  - API_KEY
+  - SERVICE
+  - ACCOUNT_ID
+  - ACCOUNT_ALIAS
+  - RESOURCE_TYPE
+  - RESOURCE_ID
+  - RESOURCE_REGION
+  - RESOURCE_CONFIG
+  - RESOURCE_TAGS
+  - STATUS
+  - KEYS
+  - PROPS
+
+- display_name: User Logins
+  name: LW_HA_USER_LOGINS
+  return_fields:
+  - LOGIN_TIME
+  - LOGOFF_TIME
+  - EVENT_TYPE
+  - MID
+  - USERNAME
+  - HOSTNAME
+  - IP_ADDR
+  - TTY
+  - UID
+  - GID
+
+- name: LW_HE_FILES
+  display_name: Files on host
+  return_fields:
+  - RECORD_CREATED_TIME
+  - MID
+  - PATH
+  - FILE_NAME
+  - INODE
+  - FILE_TYPE
+  - IS_LINK
+  - LINK_DEST_PATH
+  - LINK_ABS_DEST_PATH
+  - OWNER_UID
+  - OWNER_USERNAME
+  - OWNER_GID
+  - METADATA_HASH
+  - FILEDATA_HASH
+  - SIZE
+  - BLOCK_SIZE
+  - FILE_ACCESSED_TIME
+  - FILE_MODIFIED_TIME
+  - FILE_CREATED_TIME
+  - FILE_PERMISSIONS
+  - HARD_LINK_COUNT
