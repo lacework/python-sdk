@@ -180,8 +180,9 @@ def _generate_custom_filters(change):
             "Table with index {0:d} is not defined.".format(table_index))
 
     table_name = datasource['name']
-    lw_ctx.add_state("hunt_ui", "hunt_custom_table_name", table_name)
     table_schema = lw_ctx.client.datasources.get_datasource_schema(table_name)
+    lw_ctx.add_state("hunt_ui", "hunt_custom_table_schema", table_schema)
+    lw_ctx.add_state("hunt_ui", "hunt_custom_table_name", table_name)
 
     checkboxes = []
     return_fields = []
@@ -315,13 +316,24 @@ def _build_custom_query():
     global lw_ctx
 
     value_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
+    table_schema = lw_ctx.get_state(
+        state="hunt_ui", key="hunt_custom_table_schema")
 
     filters = []
     for child in value_widget.children:
         if not isinstance(child, ipywidgets.Text):
             continue
-        filters.append(utils.format_generic_string(
-            attribute=child.description, event_value=child.value))
+        attribute = child.description
+        attribute_series = table_schema[
+            table_schema.name == attribute].iloc[0]
+        attribute_type = attribute_series['dataType']
+
+        if attribute_type == 'String':
+            filters.append(utils.format_generic_string(
+                attribute=attribute, event_value=child.value))
+        else:
+            # TODO: Add more handling here.
+            filters.append("{attribute} == {child.value}")
 
     query_dict = {
         "table_name": lw_ctx.get_state(
@@ -343,7 +355,9 @@ def _build_custom_query():
 
 
 def _verify_query(_unused_button):
-    """Verify a LQL query."""
+    """
+    Verify a LQL query.
+    """
     global lw_ctx
 
     label_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_label")
