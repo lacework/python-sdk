@@ -57,13 +57,16 @@ def load_yaml_file(rel_file_path):
         return yaml.safe_load(fh)
 
 
-def build_lql_query(table_name, filters):
+def get_query_definition(table_name, filters):
     """
-    Build a LQL query and return evaluator ID and the query.
+    Returns a dict with query defintion from a table name and fiters.
 
-    :param str table_name: The
-    :rasise ValueError: If the table does not exist within the definitions.
-    :return:
+    :param str table_name: The name of the table as defined in the table
+        definitions.
+    :param dict filters: A dict with filter names as keys.
+    :raises ValueError: If the table does not exist within the definitions.
+    :return: A dict with four keys, table_name, evaluator_id, filters
+        and return_fields.
     """
     tables = load_yaml_file("tables.yaml")
     table_filters = load_yaml_file("filters.yaml")
@@ -78,9 +81,9 @@ def build_lql_query(table_name, filters):
         raise ValueError("No table with display_name: {0:s}".format(
             table_name))
 
+    table_name = table_dict.get("name", "_")
     available_filters = [
-        x for x in table_filters if x.get("table", "") == table_dict.get(
-            "name", "_")]
+        x for x in table_filters if table_name in x.get("tables", [])]
     filter_keys = list(filters.keys())
     filters_use = [
         x for x in available_filters if x.get("parameter") in filter_keys]
@@ -107,24 +110,41 @@ def build_lql_query(table_name, filters):
 
             filter_lines.append(filter_string)
 
-    lql_name = table_dict.get("name")
-    query_name = table_name.replace(" ", "_")
+    return {
+        "table_name": table_dict.get("name"),
+        "filters": filter_lines,
+        "evaluator_id": table_dict.get("evaluator_id"),
+        "return_fields": table_dict.get("return_fields", [])
+    }
+
+
+def build_lql_query(query_name, query_dict):
+    """
+    Build a LQL query and return evaluator ID and the query.
+
+    :param str query_name: The name of the LQL query.
+    :param dict query_dict: A dict with three keys, table_name,
+        filters and return_fields.
+    :return: A string with the LQL query.
+    """
+    lql_name = query_dict.get("table_name", "NOTABLE")
+    filter_lines = query_dict.get("filters", [])
+    return_fields = query_dict.get("return_fields", [])
 
     query_lines = [f"Lacebook_Hunt_{query_name}"]
     query_lines.append("{\n  SOURCE {")
     query_lines.append(f"    {lql_name}")
     query_lines.append("  }")
     query_lines.append("  FILTER {")
-    filter_lines[0] = f"    {filter_lines[0]}"
+    filter_lines[0] = f"     {filter_lines[0]}"
     query_lines.append("\n    AND ".join(filter_lines))
     query_lines.append("  }")
     query_lines.append("  RETURN DISTINCT {")
-    return_fields = table_dict.get("return_fields", [])
     return_fields[0] = f"    {return_fields[0]}"
     query_lines.append(",\n     ".join(return_fields))
     query_lines.append("  }\n}")
 
-    return table_dict.get("evaluator_id"), "\n".join(query_lines)
+    return "\n".join(query_lines)
 
 
 def write_to_namespace(key, value):
