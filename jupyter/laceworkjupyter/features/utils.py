@@ -37,6 +37,28 @@ def format_generic_string(event_value, attribute):
     return "{0:s} LIKE '%{1:s}%'".format(attribute, event_value)
 
 
+def format_generic_number(event_value, attribute):
+    """
+    Creates a filter format string for a generic number attribute.
+
+    :param str event_value: String that is used to generate the filter string.
+    :param str attribute: The attribute that is used in the filter.
+    :return: A string that can be used in a LQL filter.
+    """
+    if event_value.isdigit():
+        pre = "="
+
+    if event_value.startswith("<"):
+        event_value = event_value[1:]
+        pre = "<="
+
+    if event_value.startswith(">"):
+        event_value = event_value[1:]
+        pre = ">="
+
+    return f"{attribute} {pre} {event_value}"
+
+
 def load_yaml_file(rel_file_path):
     """
     Load a YAML file from features path and return a python object.

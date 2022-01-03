@@ -14,6 +14,21 @@ DEFAULT_CUSTOM_PICK = "Build A Custom Query"
 
 DEFAULT_FILTER_PICK = "Pick what filters to include:"
 
+DEFAULT_FILTER_BEHAVIOR = {
+    "String": {
+        "Equals": "= '{value:s}'",
+        "Contains": "LIKE '%{value:s}%'",
+        "Not Contains": "NOT LIKE '%{value:s}%'",
+        "Exists": "IS NOT NULL"},
+    "Number": {
+        "Equals": "= {value:s}",
+        "Less Than": "<= {value:s}",
+        "Greater Than": ">= {value:s}"},
+    "Defaults": {
+        "String": "Contains",
+        "Number": "Equals"}
+}
+
 # Since observation functions cannot pass arbitrary values
 # we will need to make the LW context object global here.
 lw_ctx = None
@@ -53,26 +68,52 @@ def _add_custom_filter_definition(change):
 
     box = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
     children = list(box.children)
+    table_schema_dict = lw_ctx.get_state(
+        state="hunt_ui", key="hunt_custom_table_schema")
+    schema = table_schema_dict.get(parameter_name, {})
+    schema_type = schema.get("data_type", "String")
+    filter_behavior = DEFAULT_FILTER_BEHAVIOR.get(schema_type)
+    dropdown_options = filter_behavior.keys()
+    dropdown_default = DEFAULT_FILTER_BEHAVIOR["Defaults"].get(schema_type)
 
-    layout = ipywidgets .Layout(height="auto", width="90%")
+    # We give each character 16px in size, which should be an ample space
+    # for it to be displayed.
+    parameter_width = len(parameter_name) * 16
+
+    layout = ipywidgets.Layout(height="auto", width="100%")
     if filter_display:
-        children.append(
+        new_box = ipywidgets.HBox(children=[
+            ipywidgets.Label(
+                parameter_name,
+                layout=ipywidgets.Layout(
+                    width=f"{parameter_width}px")),
+            ipywidgets.Dropdown(
+                options=dropdown_options,
+                value=dropdown_default,
+                description="Pick behavior",
+                disabled=False),
             ipywidgets.Text(
                 value="",
                 placeholder="Type A Filter Value",
-                description=parameter_name,
+                description="",
                 layout=layout,
                 disabled=False
-            )
-        )
+            )], layout=layout)
+        children.append(new_box)
     else:
         new_children = []
         for child in children:
-            if not isinstance(child, ipywidgets.Text):
+            if not isinstance(child, ipywidgets.HBox):
                 new_children.append(child)
                 continue
 
-            if child.description != parameter_name:
+            box_children = child.children
+            if len(box_children) != 3:
+                new_children.append(child)
+                continue
+
+            label_widget = box_children[0]
+            if label_widget.value != parameter_name:
                 new_children.append(child)
         children = new_children
 
@@ -158,7 +199,7 @@ def _generate_custom_table():
     box.children = children
 
 
-def _generate_custom_filters(change):
+def _generate_custom_filters(change):  # noqa: C901
     """
     Adds all filters that belong to a custom table.
     """
@@ -180,19 +221,28 @@ def _generate_custom_filters(change):
             "Table with index {0:d} is not defined.".format(table_index))
 
     table_name = datasource['name']
-    table_schema = lw_ctx.client.datasources.get_datasource_schema(table_name)
-    lw_ctx.add_state("hunt_ui", "hunt_custom_table_schema", table_schema)
     lw_ctx.add_state("hunt_ui", "hunt_custom_table_name", table_name)
+
+    table_schema = lw_ctx.client.datasources.get_datasource_schema(table_name)
 
     checkboxes = []
     return_fields = []
 
     layout = ipywidgets.Layout(height="auto", width="90%")
+    table_schema_dict = {}
     for _, row in table_schema.iterrows():
         name = row["name"]
         return_fields.append(name)
         data_type = row["dataType"]
         description = row["description"]
+        table_schema_dict[name] = {
+            "data_type": data_type,
+            "description": description
+        }
+
+        # We don't support Timestamp filters.
+        if data_type == "Timestamp":
+            continue
 
         checkboxes.append(
             ipywidgets.Checkbox(
@@ -201,6 +251,7 @@ def _generate_custom_filters(change):
                 description=f"{name} [{data_type}] - {description}"))
 
     lw_ctx.add_state("hunt_ui", "hunt_custom_return_fields", return_fields)
+    lw_ctx.add_state("hunt_ui", "hunt_custom_table_schema", table_schema_dict)
 
     for checkbox in checkboxes:
         checkbox.observe(_add_custom_filter_definition)
@@ -316,24 +367,33 @@ def _build_custom_query():
     global lw_ctx
 
     value_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
-    table_schema = lw_ctx.get_state(
+    table_schema_dict = lw_ctx.get_state(
         state="hunt_ui", key="hunt_custom_table_schema")
 
     filters = []
     for child in value_widget.children:
-        if not isinstance(child, ipywidgets.Text):
+        if not isinstance(child, ipywidgets.HBox):
             continue
-        attribute = child.description
-        attribute_series = table_schema[
-            table_schema.name == attribute].iloc[0]
-        attribute_type = attribute_series['dataType']
+        label_widget = child.children[0]
+        dropdown_widget = child.children[1]
+        text_widget = child.children[2]
 
-        if attribute_type == 'String':
-            filters.append(utils.format_generic_string(
-                attribute=attribute, event_value=child.value))
+        attribute = label_widget.value
+        attribute_schema = table_schema_dict.get(attribute)
+
+        if attribute_schema:
+            attribute_type = attribute_schema.get("data_type", "String")
+
+            filter_behavior = DEFAULT_FILTER_BEHAVIOR.get(
+                attribute_type, {})
+            filter_format_string = filter_behavior.get(
+                dropdown_widget.value, "= {value:s}")
+
+            second_string = filter_format_string.format(
+                value=text_widget.value)
+            filters.append(f"{attribute} {second_string}")
         else:
-            # TODO: Add more handling here.
-            filters.append("{attribute} == {child.value}")
+            raise ValueError("Unable to handle data of type {attribute_type}")
 
     query_dict = {
         "table_name": lw_ctx.get_state(
@@ -501,7 +561,7 @@ def cloud_hunt(ctx=None):
         display='flex',
         flex_flow='column',
         align_items='stretch',
-        width='900px')
+        width='1000px')
 
     title = ipywidgets.HTML(
         value=(
