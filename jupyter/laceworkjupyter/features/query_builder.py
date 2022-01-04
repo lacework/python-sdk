@@ -6,9 +6,9 @@ from laceworksdk import http_session
 from laceworkjupyter import manager
 from laceworkjupyter.features import utils
 
+
 # The text displayed as the default table pick.
 DEFAULT_TABLE_PICK = "Pick a table"
-
 DEFAULT_FILTER_PICK = "Pick what filters to include:"
 
 DEFAULT_FILTER_BEHAVIOR = {

@@ -1,11 +1,8 @@
 """Provides cloud hunting UI to construct LQL queries."""
 
-import datetime
 import ipywidgets
 
-from laceworksdk import http_session
 from laceworkjupyter import manager
-from laceworkjupyter import utils as main_utils
 from laceworkjupyter.features import query_builder
 from laceworkjupyter.features import utils
 
