@@ -13,16 +13,22 @@ DEFAULT_FILTER_PICK = "Pick what filters to include:"
 
 DEFAULT_FILTER_BEHAVIOR = {
     "String": {
-        "Equals": "= '{value:s}'",
-        "Contains": "LIKE '%{value:s}%'",
-        "Not Contains": "NOT LIKE '%{value:s}%'",
-        "Exists": "IS NOT NULL"},
+        "Equals": "{attribute:s} = '{value:s}'",
+        "Contains": "{attribute:s} LIKE '%{value:s}%'",
+        "Not Contains": "{attribute:s} NOT LIKE '%{value:s}%'",
+        "Exists": "{attribute:s} IS NOT NULL"},
+    "JSON": {
+        "Equals": "= '{attribute:s}:{key:s} = {value:s}'",
+        "Contains": "{attribute:s}:{key:s} LIKE '%{value:s}%'",
+        "Not Contains": "{attribute:s}:{key:s} NOT LIKE '%{value:s}%'",
+        "Exists": "{attribute:s}:{key:s} IS NOT NULL"},
     "Number": {
-        "Equals": "= {value:s}",
-        "Less Than": "<= {value:s}",
-        "Greater Than": ">= {value:s}"},
+        "Equals": "{attribute:s} = {value:s}",
+        "Less Than": "{attribute:s} <= {value:s}",
+        "Greater Than": "{attribute:s} >= {value:s}"},
     "Defaults": {
         "String": "Contains",
+        "JSON": "Contains",
         "Number": "Equals"}
 }
 
@@ -49,6 +55,7 @@ def add_filter_definition(change):
 
     box = lw_ctx.get_state(state="query_builder", key="query_filter_box")
     children = list(box.children)
+
     table_schema_dict = lw_ctx.get_state(
         state="query_builder", key="query_custom_table_schema")
     schema = table_schema_dict.get(parameter_name, {})
@@ -63,7 +70,7 @@ def add_filter_definition(change):
 
     layout = ipywidgets.Layout(height="auto", width="100%")
     if filter_display:
-        new_box = ipywidgets.HBox(children=[
+        filter_children=[
             ipywidgets.Label(
                 parameter_name,
                 layout=ipywidgets.Layout(
@@ -71,7 +78,7 @@ def add_filter_definition(change):
             ipywidgets.Dropdown(
                 options=dropdown_options,
                 value=dropdown_default,
-                description="Pick behavior",
+                description="",
                 disabled=False),
             ipywidgets.Text(
                 value="",
@@ -79,7 +86,15 @@ def add_filter_definition(change):
                 description="",
                 layout=layout,
                 disabled=False
-            )], layout=layout)
+            )]
+
+        # Special handling for JSON.
+        if schema_type == "JSON":
+            filter_children.insert(1, ipywidgets.Text(
+                value="", placeholder="Attribute Name",
+                description="", layout=layout, disabled=False))
+
+        new_box = ipywidgets.HBox(children=filter_children, layout=layout)
         children.append(new_box)
     else:
         new_children = []
@@ -216,25 +231,34 @@ def build_query(ctx):
         if not isinstance(child, ipywidgets.HBox):
             continue
         label_widget = child.children[0]
-        dropdown_widget = child.children[1]
-        text_widget = child.children[2]
-
         attribute = label_widget.value
-        attribute_schema = table_schema_dict.get(attribute)
+        attribute_schema = table_schema_dict.get(attribute, "")
 
-        if attribute_schema:
-            attribute_type = attribute_schema.get("data_type", "String")
+        if not attribute_schema:
+            raise ValueError("Unable to handle data of type for {0:s}".format(
+                attribute))
 
-            filter_behavior = DEFAULT_FILTER_BEHAVIOR.get(
-                attribute_type, {})
-            filter_format_string = filter_behavior.get(
-                dropdown_widget.value, "= {value:s}")
+        attribute_type = attribute_schema.get("data_type", "String")
 
-            second_string = filter_format_string.format(
-                value=text_widget.value)
-            filters.append(f"{attribute} {second_string}")
+        if attribute_type == "JSON":
+            key_widget = child.children[1]
+            key = key_widget.value
+            dropdown_widget = child.children[2]
+            text_widget = child.children[3]
         else:
-            raise ValueError("Unable to handle data of type {attribute_type}")
+            dropdown_widget = child.children[1]
+            text_widget = child.children[2]
+            key = ""
+
+
+        filter_behavior = DEFAULT_FILTER_BEHAVIOR.get(
+            attribute_type, {})
+        filter_format_string = filter_behavior.get(
+            dropdown_widget.value, "{attribute} = {value:s}")
+
+        filter_string = filter_format_string.format(
+            attribute=attribute, value=text_widget.value, key=key)
+        filters.append(filter_string)
 
     query_dict = {
         "table_name": ctx.get_state(
