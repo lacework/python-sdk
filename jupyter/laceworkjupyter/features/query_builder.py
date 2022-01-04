@@ -101,15 +101,14 @@ def add_filter_definition(change):
     box.children = children
 
 
-def generate_table():
+def generate_table(ctx):
     """
     Adds a list of tables and associated filters.
     """
-    global lw_ctx
-    box = lw_ctx.get_state(state="query_builder", key="query_filter_box")
-    datasources = lw_ctx.client.datasources.get()
-    lw_ctx.add_state("query_builder", "query_datasources", datasources)
-    lw_ctx.add_state("query_builder", "query_custom", True)
+    box = ctx.get_state(state="query_builder", key="query_filter_box")
+    datasources = ctx.client.datasources.get()
+    ctx.add_state("query_builder", "query_datasources", datasources)
+    ctx.add_state("query_builder", "query_custom", True)
 
     tables = {x["description"]: x["name"] for _, x in datasources.iterrows()}
     options = [DEFAULT_TABLE_PICK]
@@ -405,5 +404,5 @@ def query_builder(ctx=None):
     ctx.add_state("query_builder", "query_label", result_label)
     lw_ctx = ctx
 
-    generate_table()
+    generate_table(ctx)
     display(grid)  # noqa: F821

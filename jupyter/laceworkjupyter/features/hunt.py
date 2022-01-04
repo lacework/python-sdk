@@ -97,7 +97,7 @@ def _generate_table_filters(change):  # noqa: C901
         state="query_builder", key="query_tables", default_value=[])
 
     if table_index == len(tables):
-        query_builder.generate_table()
+        query_builder.generate_table(lw_ctx)
         return
 
     # We now know we are not doing a custom table.
@@ -232,10 +232,10 @@ def cloud_hunt(ctx=None):
     execute_button.on_click(_execute_button)
 
     box_layout = ipywidgets.Layout(
-        display='flex',
-        flex_flow='column',
-        align_items='stretch',
-        width='1000px')
+        display="flex",
+        flex_flow="column",
+        align_items="stretch",
+        width="1000px")
 
     title = ipywidgets.HTML(
         value=(
