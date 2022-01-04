@@ -70,7 +70,7 @@ def add_filter_definition(change):
 
     layout = ipywidgets.Layout(height="auto", width="100%")
     if filter_display:
-        filter_children=[
+        filter_children = [
             ipywidgets.Label(
                 parameter_name,
                 layout=ipywidgets.Layout(
@@ -249,7 +249,6 @@ def build_query(ctx):
             dropdown_widget = child.children[1]
             text_widget = child.children[2]
             key = ""
-
 
         filter_behavior = DEFAULT_FILTER_BEHAVIOR.get(
             attribute_type, {})
