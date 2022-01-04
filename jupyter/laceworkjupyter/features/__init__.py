@@ -5,3 +5,4 @@ from . import date  # noqa: F401
 from . import hunt  # noqa: F401
 from . import policies  # noqa: F401
 from . import query  # noqa: F401
+from . import query_builder  # noqa: F401

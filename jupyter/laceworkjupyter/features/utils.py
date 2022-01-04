@@ -1,5 +1,6 @@
 """Various functions that are shared across features."""
 
+import datetime
 import os
 
 import yaml
@@ -35,6 +36,28 @@ def format_generic_string(event_value, attribute):
         return "{0:s} NOT LIKE '%{1:s}%'".format(attribute, event_value[1:])
 
     return "{0:s} LIKE '%{1:s}%'".format(attribute, event_value)
+
+
+def format_generic_number(event_value, attribute):
+    """
+    Creates a filter format string for a generic number attribute.
+
+    :param str event_value: String that is used to generate the filter string.
+    :param str attribute: The attribute that is used in the filter.
+    :return: A string that can be used in a LQL filter.
+    """
+    if event_value.isdigit():
+        pre = "="
+
+    if event_value.startswith("<"):
+        event_value = event_value[1:]
+        pre = "<="
+
+    if event_value.startswith(">"):
+        event_value = event_value[1:]
+        pre = ">="
+
+    return f"{attribute} {pre} {event_value}"
 
 
 def load_yaml_file(rel_file_path):
@@ -181,5 +204,48 @@ def get_start_and_end_time(ctx):
 
     end_time, _, _ = end_time.partition('.')
     end_time = f'{end_time}Z'
+
+    return start_time, end_time
+
+
+def get_times_from_widgets(ctx):
+    """
+    Returns start and end times read from widgets.
+
+    :raises ValuError: If the timestamps are wrongly formatted.
+    :return: A tuple with two entries, start and end time.
+    """
+    start_widget = ctx.get_state(state="query_builder", key="query_start_widget")
+    start_time = start_widget.value
+
+    end_widget = ctx.get_state(state="query_builder", key="query_end_widget")
+    end_time = end_widget.value
+
+    if not (start_time and end_time):
+        start_time, end_time = get_start_and_end_time(ctx)
+
+    start_time = start_time.upper()
+    if not start_time.endswith('Z'):
+        start_time = f'{start_time}Z'
+
+    try:
+        _ = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError as err:
+        raise ValueError(
+            "Unable to verify the end time (remember it should be entered "
+            "in the format 'YYYY-MM-DDTHH:MM:SSZ' ({0:s}) - {1}".format(
+                start_time, err))
+
+    end_time = end_time.upper()
+    if not end_time.endswith('Z'):
+        end_time = f'{end_time}Z'
+
+    try:
+        _ = datetime.datetime.strptime(end_time, "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError as err:
+        raise ValueError(
+            "Unable to verify the end time (remember it should be entered "
+            "in the format 'YYYY-MM-DDTHH:MM:SSZ' ({0:s}) - {1}".format(
+                start_time, err))
 
     return start_time, end_time
