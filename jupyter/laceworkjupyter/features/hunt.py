@@ -6,118 +6,18 @@ import ipywidgets
 from laceworksdk import http_session
 from laceworkjupyter import manager
 from laceworkjupyter import utils as main_utils
+from laceworkjupyter.features import query_builder
 from laceworkjupyter.features import utils
+
 
 # The text displayed as the default table pick.
 DEFAULT_TABLE_PICK = "Pick a table"
 DEFAULT_CUSTOM_PICK = "Build A Custom Query"
-
 DEFAULT_FILTER_PICK = "Pick what filters to include:"
-
-DEFAULT_FILTER_BEHAVIOR = {
-    "String": {
-        "Equals": "= '{value:s}'",
-        "Contains": "LIKE '%{value:s}%'",
-        "Not Contains": "NOT LIKE '%{value:s}%'",
-        "Exists": "IS NOT NULL"},
-    "Number": {
-        "Equals": "= {value:s}",
-        "Less Than": "<= {value:s}",
-        "Greater Than": ">= {value:s}"},
-    "Defaults": {
-        "String": "Contains",
-        "Number": "Equals"}
-}
 
 # Since observation functions cannot pass arbitrary values
 # we will need to make the LW context object global here.
 lw_ctx = None
-
-
-def _get_start_and_end_time(ctx):
-    start_time = ctx.get("start_time")
-    end_time = ctx.get("end_time")
-
-    if not (start_time and end_time):
-        start_time, end_time = main_utils.parse_date_offset('LAST 2 DAYS')
-
-    start_time, _, _ = start_time.partition('.')
-    start_time = f'{start_time}Z'
-
-    end_time, _, _ = end_time.partition('.')
-    end_time = f'{end_time}Z'
-
-    return start_time, end_time
-
-
-def _add_custom_filter_definition(change):
-    """
-    Adds a customer filter definition to the UI.
-    """
-    global lw_ctx
-
-    if change["type"] != "change":
-        return
-    if change["name"] != "value":
-        return
-
-    filter_display = change.get("new", False)
-    filter_owner = change.get("owner")
-    filter_name = filter_owner.description
-    parameter_name = filter_name.split()[0]
-
-    box = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
-    children = list(box.children)
-    table_schema_dict = lw_ctx.get_state(
-        state="hunt_ui", key="hunt_custom_table_schema")
-    schema = table_schema_dict.get(parameter_name, {})
-    schema_type = schema.get("data_type", "String")
-    filter_behavior = DEFAULT_FILTER_BEHAVIOR.get(schema_type)
-    dropdown_options = filter_behavior.keys()
-    dropdown_default = DEFAULT_FILTER_BEHAVIOR["Defaults"].get(schema_type)
-
-    # We give each character 16px in size, which should be an ample space
-    # for it to be displayed.
-    parameter_width = len(parameter_name) * 16
-
-    layout = ipywidgets.Layout(height="auto", width="100%")
-    if filter_display:
-        new_box = ipywidgets.HBox(children=[
-            ipywidgets.Label(
-                parameter_name,
-                layout=ipywidgets.Layout(
-                    width=f"{parameter_width}px")),
-            ipywidgets.Dropdown(
-                options=dropdown_options,
-                value=dropdown_default,
-                description="Pick behavior",
-                disabled=False),
-            ipywidgets.Text(
-                value="",
-                placeholder="Type A Filter Value",
-                description="",
-                layout=layout,
-                disabled=False
-            )], layout=layout)
-        children.append(new_box)
-    else:
-        new_children = []
-        for child in children:
-            if not isinstance(child, ipywidgets.HBox):
-                new_children.append(child)
-                continue
-
-            box_children = child.children
-            if len(box_children) != 3:
-                new_children.append(child)
-                continue
-
-            label_widget = box_children[0]
-            if label_widget.value != parameter_name:
-                new_children.append(child)
-        children = new_children
-
-    box.children = children
 
 
 def _add_filter_definition(change):
@@ -137,7 +37,7 @@ def _add_filter_definition(change):
 
     filter_dict = {}
     table_filters = lw_ctx.get_state(
-        state="hunt_ui", key="hunt_filters")
+        state="query_builder", key="query_filters")
     for table_filter in table_filters:
         if table_filter.get("parameter", "N/A") == filter_name:
             filter_dict = table_filter
@@ -146,7 +46,7 @@ def _add_filter_definition(change):
     if not filter_dict:
         return
 
-    box = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
+    box = lw_ctx.get_state(state="query_builder", key="query_filter_box")
     children = list(box.children)
 
     layout = ipywidgets .Layout(height="auto", width="90%")
@@ -174,102 +74,6 @@ def _add_filter_definition(change):
     box.children = children
 
 
-def _generate_custom_table():
-    """
-    Adds a list of tables and associated filters.
-    """
-    global lw_ctx
-    box = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
-    datasources = lw_ctx.client.datasources.get()
-    lw_ctx.add_state("hunt_ui", "hunt_datasources", datasources)
-    lw_ctx.add_state("hunt_ui", "hunt_custom", True)
-
-    tables = {x["description"]: x["name"] for _, x in datasources.iterrows()}
-    table_list = ipywidgets.Dropdown(
-        options=tables.keys(),
-        description="Choose table",
-        disabled=False
-    )
-    table_list.observe(_generate_custom_filters)
-
-    children = [
-        ipywidgets.Label("Available Tables to Query From:"),
-        table_list
-    ]
-    box.children = children
-
-
-def _generate_custom_filters(change):  # noqa: C901
-    """
-    Adds all filters that belong to a custom table.
-    """
-    global lw_ctx
-
-    if change["type"] != "change":
-        return
-    if change["name"] != "index":
-        return
-
-    box = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
-    datasources = lw_ctx.get_state("hunt_ui", key="hunt_datasources")
-    table_index = change.get("new", 0)
-
-    try:
-        datasource = datasources.iloc[table_index]
-    except IndexError:
-        raise ValueError(
-            "Table with index {0:d} is not defined.".format(table_index))
-
-    table_name = datasource['name']
-    lw_ctx.add_state("hunt_ui", "hunt_custom_table_name", table_name)
-
-    table_schema = lw_ctx.client.datasources.get_datasource_schema(table_name)
-
-    checkboxes = []
-    return_fields = []
-
-    layout = ipywidgets.Layout(height="auto", width="90%")
-    table_schema_dict = {}
-    for _, row in table_schema.iterrows():
-        name = row["name"]
-        return_fields.append(name)
-        data_type = row["dataType"]
-        description = row["description"]
-        table_schema_dict[name] = {
-            "data_type": data_type,
-            "description": description
-        }
-
-        # We don't support Timestamp filters.
-        if data_type == "Timestamp":
-            continue
-
-        checkboxes.append(
-            ipywidgets.Checkbox(
-                value=False,
-                layout=layout,
-                description=f"{name} [{data_type}] - {description}"))
-
-    lw_ctx.add_state("hunt_ui", "hunt_custom_return_fields", return_fields)
-    lw_ctx.add_state("hunt_ui", "hunt_custom_table_schema", table_schema_dict)
-
-    for checkbox in checkboxes:
-        checkbox.observe(_add_custom_filter_definition)
-
-    children = list(box.children)
-    for index, child in enumerate(children):
-        if isinstance(child, ipywidgets.Label):
-            if child.value == DEFAULT_FILTER_PICK:
-                children = children[:index]
-                break
-
-    children.append(ipywidgets.Label(DEFAULT_FILTER_PICK))
-    children.extend(checkboxes)
-    children.append(ipywidgets.Label(
-        "Add the values for each selected filter:"))
-    box.children = children
-
-
 def _generate_table_filters(change):  # noqa: C901
     """
     Adds all filters that belong to the chosen table.
@@ -285,7 +89,7 @@ def _generate_table_filters(change):  # noqa: C901
     # Since we added a default option, we need to decrease the index by one.
     table_index -= 1
 
-    box = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
+    box = lw_ctx.get_state(state="query_builder", key="query_filter_box")
 
     if table_index == -1:
         # Default option, not a real table.
@@ -293,14 +97,14 @@ def _generate_table_filters(change):  # noqa: C901
         return
 
     tables = lw_ctx.get_state(
-        state="hunt_ui", key="hunt_tables", default_value=[])
+        state="query_builder", key="query_tables", default_value=[])
 
     if table_index == len(tables):
-        _generate_custom_table()
+        query_builder.generate_table()
         return
 
     # We now know we are not doing a custom table.
-    lw_ctx.add_state("hunt_ui", "hunt_custom", False)
+    lw_ctx.add_state("query_builder", "query_custom", False)
 
     try:
         table_name = tables[table_index].get("name")
@@ -313,7 +117,7 @@ def _generate_table_filters(change):  # noqa: C901
 
     checkboxes = []
     table_filters = lw_ctx.get_state(
-        state="hunt_ui", key="hunt_filters", default_value=[])
+        state="query_builder", key="query_filters", default_value=[])
     layout = ipywidgets.Layout(height="auto", width="90%")
     for table_filter in table_filters:
         if table_name not in table_filter.get("tables", []):
@@ -334,15 +138,15 @@ def _generate_table_filters(change):  # noqa: C901
     box.children = children
 
 
-def _build_standard_query():
+def _build_query(ctx):
     """
-    Returns a tuple with an evaluator ID and a LQL query from definitions.
-    """
-    global lw_ctx
+    Builds a LQL query from the query builder parameters.
 
-    table_box = lw_ctx.get_state(state="hunt_ui", key="hunt_table_box")
+    :param obj ctx: The Context object.
+    """
+    table_box = ctx.get_state(state="query_builder", key="query_table_box")
     table_widget = table_box.children[-1]
-    value_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
+    value_widget = ctx.get_state(state="query_builder", key="query_filter_box")
 
     params = {}
     for child in value_widget.children:
@@ -353,166 +157,39 @@ def _build_standard_query():
     query_dict = utils.get_query_definition(
         table_widget.value, params)
     query_name = query_dict.get("table_name", "No Table").replace(" ", "_")
+
     evaluator_id = query_dict.get("evaluator_id")
-
     lql_query = utils.build_lql_query(query_name, query_dict)
+    ctx.add("lql_query", lql_query)
+    ctx.add("lql_evaluator", evaluator_id)
 
-    return evaluator_id, lql_query
 
-
-def _build_custom_query():
+def _verify_button(unused_button):
     """
-    Returns a tuple with an evaluator ID and a LQL from a custom definitions.
-    """
-    global lw_ctx
-
-    value_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_filter_box")
-    table_schema_dict = lw_ctx.get_state(
-        state="hunt_ui", key="hunt_custom_table_schema")
-
-    filters = []
-    for child in value_widget.children:
-        if not isinstance(child, ipywidgets.HBox):
-            continue
-        label_widget = child.children[0]
-        dropdown_widget = child.children[1]
-        text_widget = child.children[2]
-
-        attribute = label_widget.value
-        attribute_schema = table_schema_dict.get(attribute)
-
-        if attribute_schema:
-            attribute_type = attribute_schema.get("data_type", "String")
-
-            filter_behavior = DEFAULT_FILTER_BEHAVIOR.get(
-                attribute_type, {})
-            filter_format_string = filter_behavior.get(
-                dropdown_widget.value, "= {value:s}")
-
-            second_string = filter_format_string.format(
-                value=text_widget.value)
-            filters.append(f"{attribute} {second_string}")
-        else:
-            raise ValueError("Unable to handle data of type {attribute_type}")
-
-    query_dict = {
-        "table_name": lw_ctx.get_state(
-            state="hunt_ui", key="hunt_custom_table_name"),
-        "filters": filters,
-        "return_fields": lw_ctx.get_state(
-            state="hunt_ui", key="hunt_custom_return_fields"),
-    }
-
-    lql_query = utils.build_lql_query(
-        "CustomQueryBuild", query_dict)
-
-    if query_dict.get("table_name", "") == "CloudTrailRawEvents":
-        evaluator_id = "Cloudtrail"
-    else:
-        evaluator_id = None
-
-    return evaluator_id, lql_query
-
-
-def _verify_query(_unused_button):
-    """
-    Verify a LQL query.
+    Handler for the verify button clicks.
     """
     global lw_ctx
-
-    label_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_label")
-
-    custom_query = lw_ctx.get_state("hunt_ui", key="hunt_custom")
+    custom_query = lw_ctx.get_state("query_builder", key="query_custom")
     if custom_query:
-        evaluator_id, lql_query = _build_custom_query()
+        query_builder.build_query(lw_ctx)
     else:
-        evaluator_id, lql_query = _build_standard_query()
+        _build_query(lw_ctx)
 
-    lw_ctx.add("lql_query", lql_query)
-    lw_ctx.add("lql_evaluator", evaluator_id)
-
-    try:
-        _ = lw_ctx.client.queries.validate(
-            lql_query, evaluator_id=evaluator_id)
-    except http_session.ApiError as err:
-        label_widget.value = "Failure to verify: {0}".format(err)
-        return False
-
-    label_widget.value = "LQL Verified."
-    return True
+    return query_builder.verify_query(lw_ctx)
 
 
-def _execute_query(button):
+def _execute_button(unused_button):
     """
-    Verify and execute a LQL query.
+    Handler for the execute button clicks.
     """
     global lw_ctx
+    custom_query = lw_ctx.get_state("query_builder", key="query_custom")
+    if custom_query:
+        query_builder.build_query(lw_ctx)
+    else:
+        _build_query(lw_ctx)
 
-    if not _verify_query(button):
-        return
-
-    lql_query = lw_ctx.get("lql_query")
-    lql_evaluator = lw_ctx.get("lql_evaluator")
-
-    start_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_start_widget")
-    start_time = start_widget.value
-
-    end_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_end_widget")
-    end_time = end_widget.value
-
-    if not (start_time and end_time):
-        start_time, end_time = _get_start_and_end_time(lw_ctx)
-
-    start_time = start_time.upper()
-    if not start_time.endswith('Z'):
-        start_time = f'{start_time}Z'
-
-    try:
-        _ = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%SZ")
-    except ValueError as err:
-        raise ValueError(
-            "Unable to verify the end time (remember it should be entered "
-            "in the format 'YYYY-MM-DDTHH:MM:SSZ' ({0:s}) - {1}".format(
-                start_time, err))
-
-    end_time = end_time.upper()
-    if not end_time.endswith('Z'):
-        end_time = f'{end_time}Z'
-
-    try:
-        _ = datetime.datetime.strptime(end_time, "%Y-%m-%dT%H:%M:%SZ")
-    except ValueError as err:
-        raise ValueError(
-            "Unable to verify the end time (remember it should be entered "
-            "in the format 'YYYY-MM-DDTHH:MM:SSZ' ({0:s}) - {1}".format(
-                start_time, err))
-
-    label_widget = lw_ctx.get_state(state="hunt_ui", key="hunt_label")
-    label_widget.value = (
-        f"{label_widget.value}.<br/><br/><b>Executing query...</b>")
-
-    arguments = {
-        "StartTimeRange": start_time,
-        "EndTimeRange": end_time
-    }
-
-    df = lw_ctx.client.queries.execute(
-        evaluator_id=lql_evaluator, query_text=lql_query, arguments=arguments)
-
-    lw_ctx.add("lql_results", df)
-    utils.write_to_namespace('df', df)
-
-    rows_returned = df.shape[0]
-
-    query_html = lql_query.replace("\n", "<br/>").replace(" ", "&nbsp;")
-    label_widget.value = (
-        f"<hr/><h2>Query Completed</h2><hr/>"
-        f"Query: <br/>"
-        f"<i>{query_html}</i>"
-        f"<br/>Query has completed with {rows_returned} rows returned."
-        f"<br/><br/>Results are stored in the variable '<b>df</b>'. The data "
-        f"can also be accessed by the variable "
-        f"'<b><i>lw.ctx.get(\"lql_results\")</i></b>'")
+    return query_builder.execute_query(lw_ctx)
 
 
 @manager.register_feature
@@ -546,7 +223,7 @@ def cloud_hunt(ctx=None):
         tooltip="Build the LQL query and verify it",
         icon="check"
     )
-    verify_button.on_click(_verify_query)
+    verify_button.on_click(_verify_button)
 
     execute_button = ipywidgets.Button(
         value=False,
@@ -555,7 +232,7 @@ def cloud_hunt(ctx=None):
         disabled=False,
         tooltip="Build the LQL query and execute it"
     )
-    execute_button.on_click(_execute_query)
+    execute_button.on_click(_execute_button)
 
     box_layout = ipywidgets.Layout(
         display='flex',
@@ -569,7 +246,7 @@ def cloud_hunt(ctx=None):
             "build LQL queries to perform threat hunting within your "
             "environment.</i><br/><br/></div>"))
 
-    start_time, end_time = _get_start_and_end_time(ctx)
+    start_time, end_time = utils.get_start_and_end_time(ctx)
     start_widget = ipywidgets.Text(
         value=start_time,
         placeholder="YYYY-MM-DDTHH:MM:SSZ",
@@ -601,14 +278,15 @@ def cloud_hunt(ctx=None):
         ], layout=box_layout
     )
 
-    ctx.add_state("hunt_ui", "hunt_table_box", table_box)
-    ctx.add_state("hunt_ui", "hunt_start_widget", start_widget)
-    ctx.add_state("hunt_ui", "hunt_end_widget", end_widget)
-    ctx.add_state("hunt_ui", "hunt_filter_box", filter_box)
-    ctx.add_state("hunt_ui", "hunt_label", result_label)
+    ctx.add_state("query_builder", "query_table_box", table_box)
+    ctx.add_state("query_builder", "query_start_widget", start_widget)
+    ctx.add_state("query_builder", "query_end_widget", end_widget)
+    ctx.add_state("query_builder", "query_filter_box", filter_box)
+    ctx.add_state("query_builder", "query_label", result_label)
 
-    ctx.add_state("hunt_ui", "hunt_tables", tables)
-    ctx.add_state("hunt_ui", "hunt_filters", table_filters)
+    ctx.add_state("query_builder", "query_tables", tables)
+    ctx.add_state("query_builder", "query_filters", table_filters)
     lw_ctx = ctx
+    query_builder.lw_ctx = ctx
 
     display(grid)  # noqa: F821
