@@ -64,9 +64,10 @@ def add_filter_definition(change):
     dropdown_options = filter_behavior.keys()
     dropdown_default = DEFAULT_FILTER_BEHAVIOR["Defaults"].get(schema_type)
 
-    # We give each character 16px in size, which should be an ample space
+    # We give each character 12px in size, which should be an ample space
     # for it to be displayed.
-    parameter_width = len(parameter_name) * 16
+    parameter_width = len(parameter_name) * 12
+    dropdown_width = max([len(x) for x in dropdown_options]) * 12
 
     layout = ipywidgets.Layout(height="auto", width="100%")
     if filter_display:
@@ -79,12 +80,13 @@ def add_filter_definition(change):
                 options=dropdown_options,
                 value=dropdown_default,
                 description="",
+                layout=ipywidgets.Layout(
+                    width=f"{dropdown_width}px"),
                 disabled=False),
             ipywidgets.Text(
                 value="",
                 placeholder="Type A Filter Value",
                 description="",
-                layout=layout,
                 disabled=False
             )]
 
@@ -92,7 +94,7 @@ def add_filter_definition(change):
         if schema_type == "JSON":
             filter_children.insert(1, ipywidgets.Text(
                 value="", placeholder="Attribute Name",
-                description="", layout=layout, disabled=False))
+                description="", disabled=False))
 
         new_box = ipywidgets.HBox(children=filter_children, layout=layout)
         children.append(new_box)
@@ -104,7 +106,7 @@ def add_filter_definition(change):
                 continue
 
             box_children = child.children
-            if len(box_children) != 3:
+            if len(box_children) not in (3, 4):
                 new_children.append(child)
                 continue
 
@@ -156,6 +158,7 @@ def generate_filters(change):  # noqa: C901
     box = lw_ctx.get_state(state="query_builder", key="query_filter_box")
     datasources = lw_ctx.get_state("query_builder", key="query_datasources")
     table_index = change.get("new", 0)
+
     # We added a default text as the first option.
     table_index -= 1
 
@@ -211,7 +214,8 @@ def generate_filters(change):  # noqa: C901
     children.append(ipywidgets.Label(DEFAULT_FILTER_PICK))
     children.extend(checkboxes)
     children.append(ipywidgets.Label(
-        "Add the values for each selected filter:"))
+        "Add the values for each selected filter (all filters "
+        "have AND conditions between them):"))
     box.children = children
 
 
