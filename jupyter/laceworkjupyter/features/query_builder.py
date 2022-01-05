@@ -67,6 +67,7 @@ def add_filter_definition(change):
     # We give each character 12px in size, which should be an ample space
     # for it to be displayed.
     parameter_width = len(parameter_name) * 12
+    dropdown_width = max([len(x) for x in dropdown_options]) * 12
 
     layout = ipywidgets.Layout(height="auto", width="100%")
     if filter_display:
@@ -79,6 +80,8 @@ def add_filter_definition(change):
                 options=dropdown_options,
                 value=dropdown_default,
                 description="",
+                layout=ipywidgets.Layout(
+                    width=f"{dropdown_width}px"),
                 disabled=False),
             ipywidgets.Text(
                 value="",
