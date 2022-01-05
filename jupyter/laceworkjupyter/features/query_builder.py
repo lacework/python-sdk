@@ -64,7 +64,7 @@ def add_filter_definition(change):
     dropdown_options = filter_behavior.keys()
     dropdown_default = DEFAULT_FILTER_BEHAVIOR["Defaults"].get(schema_type)
 
-    # We give each character 16px in size, which should be an ample space
+    # We give each character 12px in size, which should be an ample space
     # for it to be displayed.
     parameter_width = len(parameter_name) * 12
 
