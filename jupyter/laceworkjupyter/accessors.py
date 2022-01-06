@@ -8,9 +8,11 @@ data frames or series objects.
 import base64
 import binascii
 import logging
+import socket
 
 import urllib.parse
 
+import numpy as np
 import pandas as pd
 
 
@@ -71,7 +73,7 @@ class DecodeAccessor:
         return self.data.apply(urllib.parse.unquote_plus)
 
 
-@pd.api.extensions.register_series_accessor('encode')
+@pd.api.extensions.register_series_accessor("encode")
 class EncodeAccessor:
     """
     Accessor class to encode data.
@@ -84,3 +86,51 @@ class EncodeAccessor:
         Returns base64 encoded data from a string series.
         """
         return self.data.astype(bytes).apply(base64.b64encode)
+
+
+@pd.api.extensions.register_series_accessor("ip")
+class IPAccessor:
+    """
+    Accessor class for IP address related information.
+    """
+    def __init__(self, data):
+        self.data = data
+        self._cache = {}
+
+    def _reverse(self, ip):
+        """
+        Returns a reverse DNS lookup for an IP address.
+
+        :param str ip: An IP address to lookup
+        :return: A string with the results from the reverse lookup
+            or a NAN value if none found.
+        """
+        cached = self._cache.get("reverse", {}).get(ip)
+        if cached:
+            return cached
+
+        try:
+            results = socket.gethostbyaddr(ip)
+        except (socket.gaierror, socket.herror):
+            return np.nan
+
+        if not results:
+            return np.nan
+
+        value = results[0]
+        self._cache.setdefault("reverse", {})
+        self._cache["reverse"][ip] = value
+        return value
+
+    def reverse_dns(self):
+        """
+        Takes a pandas Series or a column and does reverse DNS lookups.
+
+        This takes a column in a DataFrame or a Series object that contains
+        IP addresses and does a reverse DNS lookup for each of the IPs found
+        in the dataset.
+
+        :return: A pandas Series object with either a rDNS value or NAN if not
+            found for each IP address in the incoming column.
+        """
+        return self.data.apply(self._reverse)
