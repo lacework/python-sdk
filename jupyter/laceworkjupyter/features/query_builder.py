@@ -18,7 +18,7 @@ DEFAULT_FILTER_BEHAVIOR = {
         "Not Contains": "{attribute:s} NOT LIKE '%{value:s}%'",
         "Exists": "{attribute:s} IS NOT NULL"},
     "JSON": {
-        "Equals": "= '{attribute:s}:{key:s} = {value:s}'",
+        "Equals": "{attribute:s}:{key:s} = '{value:s}'",
         "Contains": "{attribute:s}:{key:s} LIKE '%{value:s}%'",
         "Not Contains": "{attribute:s}:{key:s} NOT LIKE '%{value:s}%'",
         "Exists": "{attribute:s}:{key:s} IS NOT NULL"},
