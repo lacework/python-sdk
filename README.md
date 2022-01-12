@@ -6,22 +6,42 @@
 **laceworksdk** is a community developed Python library for interacting with the Lacework APIs.
 
 The purpose of this library is to simplify the common tasks required for interacting with the Lacework API, and allow
-users write simple code to automate tasks related to their Lacework instance. From data retrieval to configuration,
+users write simple code to automate tasks related to their Lacework instance(s). From data retrieval to configuration,
 this library aims to expose all publicly available APIs. For example, the following code would authenticate,
-fetch events, fetch host vulnerabilities, and fetch container vulnerabilities - in 5 lines of code.
+fetch events, fetch host vulnerabilities, and fetch container vulnerabilities. The latest version of the SDK supports
+expressive searches as enabled by v2 of the Lacework APIs.
 
-```
+```python
 from laceworksdk import LaceworkClient
 
+lw = LaceworkClient() # This would leverage your default Lacework CLI profile.
 lw = LaceworkClient(account="ACCOUNT",
+                    subaccount="SUBACCOUNT",
                     api_key="API KEY",
                     api_secret="API SECRET")
 
 events = lw.events.get_for_date_range(start_time=start_time, end_time=end_time)
 
-host_vulns = lw.vulnerabilities.get_host_vulnerabilities()
+host_vulns = lw.vulnerabilities.hosts.search(json={
+    "timeFilters": {
+        "startTime": start_time,
+        "endTime": end_time
+    }
+})
 
-container_vulns = lw.vulnerabilities.get_container_vulnerabilities(image_digest="sha256:123")
+container_vulns = lw.vulnerabilities.containers.search(json={
+    "timeFilters": {
+        "startTime": start_time,
+        "endTime": end_time
+    },
+    "filters": [
+        {
+            "field": "imageId",
+            "expression": "eq",
+            "value": "sha256:657922eb2d64b0a34fe7339f8b48afb9f2f44635d7d6eaa92af69591d29b3330"
+        }
+    ]
+})
 ```
 
 ## Requirements
@@ -34,30 +54,32 @@ container_vulns = lw.vulnerabilities.get_container_vulnerabilities(image_digest=
 
 ## How-To
 
-The following data points are required to instantiate a LaceworkClient instance:
+The following information is required to instantiate a LaceworkClient instance:
 
 - `account`: The Lacework account/organization domain. (`xxxxx`.lacework.net)
-- `subaccount`: (Optional) The Lacework sub-account domain. (`xxxxx`.lacework.net)
-  - This is only used if leveraging the Manage@Scale organization feature of Lacework
 - `api_key`: The API Key that was generated from the Lacework UI/API.
 - `api_secret`: The API Secret that was generated from the Lacework UI/API.
 
-To generate an API Key and Secret, do the following:
+Optionally, you can also set a Lacework Sub-Account using the `subaccount` parameter.
+
+To generate API credentials, you'll need to do the following in Lacework:
 
 1.  In the Lacework web interface, go to Settings -> API Keys
-2.  Create a new API Key, or download information for an existing one.
+2.  Create a new API Key and download information the credentials.
 
-### Environment Variables
+## Environment Variables
 
-The `account`, `subaccount`, `api_key`, and `api_secret` can also be set using environment variables or
-saved in ~/.lacework.toml configuration file (same file as the Lacework CLI uses).
+If you wish to configure the LaceworkClient instance using environment variables, this module honors the same
+variables used by the Lacework CLI. The `account`, `subaccount`, `api_key`, `api_secret`, and `profile` parameters
+can all be configured as specified below.
 
-| Environment Variable | Description                                                      | Required |
-| -------------------- | ---------------------------------------------------------------- | :------: |
-| `LW_ACCOUNT`         | Lacework account/organization domain (i.e. `xxxxx`.lacework.net) |    Y     |
-| `LW_SUBACCOUNT`      | Lacework sub-account domain (i.e. `xxxxx`.lacework.net)          |    N     |
-| `LW_API_KEY`         | Lacework API Access Key                                          |    Y     |
-| `LW_API_SECRET`      | Lacework API Access Secret                                       |    Y     |
+| Environment Variable | Description                                                          | Required |
+| -------------------- | -------------------------------------------------------------------- | :------: |
+| `LW_PROFILE`         | Lacework CLI profile to use (configured at ~/.lacework.toml)         |    N     |
+| `LW_ACCOUNT`         | Lacework account/organization domain (i.e. `<account>`.lacework.net) |    Y     |
+| `LW_SUBACCOUNT`      | Lacework sub-account                                                 |    N     |
+| `LW_API_KEY`         | Lacework API Access Key                                              |    Y     |
+| `LW_API_SECRET`      | Lacework API Access Secret                                           |    Y     |
 
 ## Installation
 
@@ -74,41 +96,6 @@ Installing and upgrading `laceworksdk` is easy:
 ## Examples
 
 Are you looking for some sample scripts? Check out the [examples](examples/) folder!
-
-## Implemented APIs
-
-### API v1
-
-- [x] Account API
-- [x] Compliance API
-- [x] Custom Compliance Config API
-- [x] Download File API
-- [x] Events API
-- [x] Integrations API
-- [x] Recommendations API
-- [x] Run Reports API
-- [x] Suppressions API
-- [x] Token API
-- [x] Vulnerability API
-
-### API v2
-
-- [x] Access Tokens
-- [x] Agent Access Tokens
-- [x] Alert Channels
-- [x] Alert Rules
-- [x] Audit Logs
-- [x] Cloud Accounts
-- [x] Cloud Activities
-- [x] Container Registries
-- [x] Contract Info
-- [x] Policies
-- [x] Queries
-- [x] Report Rules
-- [x] Resource Groups
-- [x] Schemas
-- [x] Team Members
-- [x] User Profile
 
 ### Contributing
 
