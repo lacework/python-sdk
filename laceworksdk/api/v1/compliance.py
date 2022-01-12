@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class ComplianceAPI(object):
+class ComplianceAPI:
     """
     Lacework Compliance API.
     """
@@ -22,7 +22,7 @@ class ComplianceAPI(object):
         :return ComplianceAPI object.
         """
 
-        super(ComplianceAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

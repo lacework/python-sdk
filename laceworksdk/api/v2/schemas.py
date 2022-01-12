@@ -3,12 +3,10 @@
 Lacework Schemas API wrapper.
 """
 
-import logging
-
-logger = logging.getLogger(__name__)
+from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
-class SchemasAPI(object):
+class SchemasAPI(BaseEndpoint):
     """
     Lacework Schemas API.
     """
@@ -22,30 +20,21 @@ class SchemasAPI(object):
         :return SchemasAPI object.
         """
 
-        super(SchemasAPI, self).__init__()
-
-        self._session = session
+        super().__init__(session, "schemas")
 
     def get(self,
             type=None,
             subtype=None):
         """
-        A method to list all schema types, or fetch a specific schema
+        A method to get schema objects.
+
+        :param guid: A string representing the object type.
+        :param type: A string representing the object subtype.
 
         :return response json
         """
 
-        logger.info("Fetching schema info from Lacework...")
-
-        # Build the Schema request URI
-        if type and subtype:
-            api_uri = f"/api/v2/schemas/{type}/{subtype}"
-        elif type:
-            api_uri = f"/api/v2/schemas/{type}"
-        else:
-            api_uri = "/api/v2/schemas"
-
-        response = self._session.get(api_uri)
+        response = self._session.get(self.build_url(id=subtype, resource=type))
 
         return response.json()
 

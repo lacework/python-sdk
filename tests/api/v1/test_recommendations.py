@@ -3,7 +3,7 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-from laceworksdk.api.recommendations import RecommendationsAPI
+from laceworksdk.api.v1.recommendations import RecommendationsAPI
 
 
 # Tests

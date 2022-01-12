@@ -7,7 +7,7 @@ from datetime import datetime, timedelta, timezone
 
 import pytest
 
-from laceworksdk.api.audit_logs import AuditLogsAPI
+from laceworksdk.api.v2.audit_logs import AuditLogsAPI
 
 # Build start/end times
 current_time = datetime.now(timezone.utc)

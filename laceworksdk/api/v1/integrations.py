@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class IntegrationsAPI(object):
+class IntegrationsAPI:
     """
     Lacework Integrations API.
     """
@@ -22,7 +22,7 @@ class IntegrationsAPI(object):
         :return IntegrationsAPI object.
         """
 
-        super(IntegrationsAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

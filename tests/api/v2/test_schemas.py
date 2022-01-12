@@ -3,7 +3,7 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-from laceworksdk.api.schemas import SchemasAPI
+from laceworksdk.api.v2.schemas import SchemasAPI
 
 
 # Tests

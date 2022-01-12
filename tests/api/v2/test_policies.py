@@ -9,7 +9,7 @@ import string
 
 from datetime import datetime, timedelta, timezone
 
-from laceworksdk.api.policies import PoliciesAPI
+from laceworksdk.api.v2.policies import PoliciesAPI
 
 # Build start/end times
 current_time = datetime.now(timezone.utc)

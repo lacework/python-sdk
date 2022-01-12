@@ -3,7 +3,7 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-from laceworksdk.api.download_file import DownloadFileAPI
+from laceworksdk.api.v1.download_file import DownloadFileAPI
 
 
 # Tests

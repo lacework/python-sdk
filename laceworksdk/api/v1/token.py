@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class TokenAPI(object):
+class TokenAPI:
     """
     Lacework Agent Access Token API.
     """
@@ -22,7 +22,7 @@ class TokenAPI(object):
         :return TokenAPI object.
         """
 
-        super(TokenAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

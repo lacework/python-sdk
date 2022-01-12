@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class AccountAPI(object):
+class AccountAPI:
     """
     Lacework Account API.
     """
@@ -22,7 +22,7 @@ class AccountAPI(object):
         :return AccountAPI object
         """
 
-        super(AccountAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class RunReportsAPI(object):
+class RunReportsAPI:
     """
     Lacework RunReports API.
     """
@@ -21,7 +21,7 @@ class RunReportsAPI(object):
         :return RunReportsAPI object.
         """
 
-        super(RunReportsAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

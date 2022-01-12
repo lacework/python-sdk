@@ -6,9 +6,10 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
-from laceworksdk.api.alert_channels import AlertChannelsAPI
+from laceworksdk.api.v2.alert_channels import AlertChannelsAPI
 
 INTEGRATION_GUID = None
+INTEGRATION_GUID_ORG = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 
 
@@ -52,6 +53,23 @@ def test_alert_channels_api_create(api):
 
     global INTEGRATION_GUID
     INTEGRATION_GUID = response["data"]["intgGuid"]
+
+
+def test_alert_channels_api_create_org(api):
+    api.set_org_level_access(True)
+    response = api.alert_channels.create(
+        name=f"Slack Test Org {RANDOM_TEXT}",
+        type="SlackChannel",
+        enabled=1,
+        data={
+            "slackUrl": f"https://hooks.slack.com/services/TEST/WEBHOOK/{RANDOM_TEXT}"
+        }
+    )
+    api.set_org_level_access(False)
+    assert "data" in response.keys()
+
+    global INTEGRATION_GUID_ORG
+    INTEGRATION_GUID_ORG = response["data"]["intgGuid"]
 
 
 def test_alert_channels_api_get_by_guid(api):
@@ -120,4 +138,13 @@ def test_alert_channels_api_delete(api):
     assert INTEGRATION_GUID is not None
     if INTEGRATION_GUID:
         response = api.alert_channels.delete(INTEGRATION_GUID)
+        assert response.status_code == 204
+
+
+def test_alert_channels_api_delete_org(api):
+    assert INTEGRATION_GUID_ORG is not None
+    if INTEGRATION_GUID_ORG:
+        api.set_org_level_access(True)
+        response = api.alert_channels.delete(INTEGRATION_GUID_ORG)
+        api.set_org_level_access(False)
         assert response.status_code == 204

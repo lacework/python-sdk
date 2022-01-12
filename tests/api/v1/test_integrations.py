@@ -8,7 +8,7 @@ import string
 
 import pytest
 
-from laceworksdk.api.integrations import IntegrationsAPI
+from laceworksdk.api.v1.integrations import IntegrationsAPI
 
 INTEGRATION_GUID = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))

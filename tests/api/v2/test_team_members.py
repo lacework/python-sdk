@@ -6,7 +6,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
-from laceworksdk.api.team_members import TeamMembersAPI
+from laceworksdk.api.v2.team_members import TeamMembersAPI
 
 TEAM_MEMBER_GUID = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
@@ -29,14 +29,14 @@ def test_team_members_api_get(api):
 
 def test_team_members_api_create(api):
     response = api.team_members.create(
-        username=f"{RANDOM_TEXT}@lacework.net",
+        user_name=f"{RANDOM_TEXT}@lacework.net",
         props={
             "firstName": "John",
             "lastName": "Doe",
             "company": "Lacework",
             "accountAdmin": True
         },
-        enabled=True
+        user_enabled=True
     )
 
     assert "data" in response.keys()
@@ -76,7 +76,7 @@ def test_team_members_api_update(api):
     if TEAM_MEMBER_GUID:
         response = api.team_members.update(
             TEAM_MEMBER_GUID,
-            enabled=False
+            user_enabled=False
         )
 
         assert "data" in response.keys()

@@ -6,7 +6,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
-from laceworksdk.api.resource_groups import ResourceGroupsAPI
+from laceworksdk.api.v2.resource_groups import ResourceGroupsAPI
 
 RESOURCE_GROUP_GUID = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))

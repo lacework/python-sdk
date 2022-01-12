@@ -6,7 +6,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
-from laceworksdk.api.container_registries import ContainerRegistriesAPI
+from laceworksdk.api.v2.container_registries import ContainerRegistriesAPI
 
 INTEGRATION_GUID = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))

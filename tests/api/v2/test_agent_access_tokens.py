@@ -8,7 +8,7 @@ import string
 
 import pytest
 
-from laceworksdk.api.agent_access_tokens import AgentAccessTokensAPI
+from laceworksdk.api.v2.agent_access_tokens import AgentAccessTokensAPI
 
 AGENT_ACCESS_TOKEN_ID = None
 AGENT_ACCESS_TOKEN_ALIAS = None

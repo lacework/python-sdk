@@ -3,7 +3,7 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-from laceworksdk.api.user_profile import UserProfileAPI
+from laceworksdk.api.v2.user_profile import UserProfileAPI
 
 
 # Tests
@@ -17,5 +17,5 @@ def test_user_profile_api_env_object_creation(api_env):
 
 
 def test_user_profile_api_get(api):
-    response = api.schemas.get()
+    response = api.user_profile.get()
     assert len(response) > 0

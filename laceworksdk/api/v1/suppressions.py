@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class SuppressionsAPI(object):
+class SuppressionsAPI:
     """
     Lacework Suppressions API.
     """
@@ -21,7 +21,7 @@ class SuppressionsAPI(object):
         :return SuppressionsAPI object.
         """
 
-        super(SuppressionsAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

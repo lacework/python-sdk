@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class DownloadFileAPI(object):
+class DownloadFileAPI:
     """
     Lacework Download File API.
     """
@@ -22,7 +22,7 @@ class DownloadFileAPI(object):
         :return DownloadFileAPI object.
         """
 
-        super(DownloadFileAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

@@ -5,7 +5,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 
 from datetime import datetime, timedelta, timezone
 
-from laceworksdk.api.contract_info import ContractInfoAPI
+from laceworksdk.api.v2.contract_info import ContractInfoAPI
 
 # Build start/end times
 current_time = datetime.now(timezone.utc)

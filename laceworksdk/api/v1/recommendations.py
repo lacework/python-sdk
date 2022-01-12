@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class RecommendationsAPI(object):
+class RecommendationsAPI:
     """
     Lacework Recommendations API.
     """
@@ -21,7 +21,7 @@ class RecommendationsAPI(object):
         :return RecommendationsAPI object.
         """
 
-        super(RecommendationsAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

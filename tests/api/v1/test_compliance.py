@@ -9,7 +9,7 @@ import random
 import pytest
 
 from dotenv import load_dotenv
-from laceworksdk.api.compliance import ComplianceAPI
+from laceworksdk.api.v1.compliance import ComplianceAPI
 
 load_dotenv()
 

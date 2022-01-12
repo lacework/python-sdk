@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class EventsAPI(object):
+class EventsAPI:
     """
     Lacework Events API.
     """
@@ -22,7 +22,7 @@ class EventsAPI(object):
         :return EventsAPI object
         """
 
-        super(EventsAPI, self).__init__()
+        super().__init__()
 
         self._session = session
 

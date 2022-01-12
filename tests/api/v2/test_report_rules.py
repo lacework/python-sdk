@@ -8,7 +8,7 @@ import string
 
 import pytest
 
-from laceworksdk.api.report_rules import ReportRulesAPI
+from laceworksdk.api.v2.report_rules import ReportRulesAPI
 
 REPORT_RULE_GUID = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))

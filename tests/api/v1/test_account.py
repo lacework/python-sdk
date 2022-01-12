@@ -3,7 +3,7 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-from laceworksdk.api.account import AccountAPI
+from laceworksdk.api.v1.account import AccountAPI
 
 
 # Tests

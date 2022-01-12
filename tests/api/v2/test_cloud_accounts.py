@@ -6,7 +6,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
-from laceworksdk.api.cloud_accounts import CloudAccountsAPI
+from laceworksdk.api.v2.cloud_accounts import CloudAccountsAPI
 
 INTEGRATION_GUID = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))

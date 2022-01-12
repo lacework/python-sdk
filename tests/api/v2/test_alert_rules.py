@@ -8,7 +8,7 @@ import string
 
 import pytest
 
-from laceworksdk.api.alert_rules import AlertRulesAPI
+from laceworksdk.api.v2.alert_rules import AlertRulesAPI
 
 ALERT_RULE_GUID = None
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))

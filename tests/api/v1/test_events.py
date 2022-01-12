@@ -7,7 +7,7 @@ import random
 
 from datetime import datetime, timedelta, timezone
 
-from laceworksdk.api.events import EventsAPI
+from laceworksdk.api.v1.events import EventsAPI
 
 
 # Build start/end times
