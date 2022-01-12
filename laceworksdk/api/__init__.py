@@ -21,15 +21,21 @@ from .v1.run_reports import RunReportsAPI
 from .v1.suppressions import SuppressionsAPI
 from .v1.token import TokenAPI
 
+from .v2.activities import ActivitiesAPI
 from .v2.agent_access_tokens import AgentAccessTokensAPI
 from .v2.alert_channels import AlertChannelsAPI
+from .v2.alert_profiles import AlertProfilesAPI
 from .v2.alert_rules import AlertRulesAPI
+from .v2.alerts import AlertsAPI
 from .v2.audit_logs import AuditLogsAPI
 from .v2.cloud_accounts import CloudAccountsAPI
 from .v2.cloud_activities import CloudActivitiesAPI
+from .v2.configs import ConfigsAPI
 from .v2.container_registries import ContainerRegistriesAPI
 from .v2.contract_info import ContractInfoAPI
 from .v2.datasources import DatasourcesAPI
+from .v2.entities import EntitiesAPI
+from .v2.organization_info import OrganizationInfoAPI
 from .v2.policies import PoliciesAPI
 from .v2.queries import QueriesAPI
 from .v2.report_rules import ReportRulesAPI
@@ -37,6 +43,7 @@ from .v2.resource_groups import ResourceGroupsAPI
 from .v2.schemas import SchemasAPI
 from .v2.team_members import TeamMembersAPI
 from .v2.user_profile import UserProfileAPI
+from .v2.vulnerabilities import VulnerabilitiesAPI
 
 from laceworksdk.config import (
     LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE,
@@ -124,20 +131,26 @@ class LaceworkClient:
 
         # API Wrappers
         self.account = AccountAPI(self._session)
+        self.activities = ActivitiesAPI(self._session)
         self.agent_access_tokens = AgentAccessTokensAPI(self._session)
         self.alert_channels = AlertChannelsAPI(self._session)
+        self.alert_profiles = AlertProfilesAPI(self._session)
         self.alert_rules = AlertRulesAPI(self._session)
+        self.alerts = AlertsAPI(self._session)
         self.audit_logs = AuditLogsAPI(self._session)
         self.cloud_accounts = CloudAccountsAPI(self._session)
         self.cloud_activities = CloudActivitiesAPI(self._session)
         self.compliance = ComplianceAPI(self._session)
         self.compliance.config = CustomComplianceConfigAPI(self._session)
+        self.configs = ConfigsAPI(self._session)
         self.container_registries = ContainerRegistriesAPI(self._session)
         self.contract_info = ContractInfoAPI(self._session)
         self.datasources = DatasourcesAPI(self._session)
+        self.entities = EntitiesAPI(self._session)
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
+        self.organization_info = OrganizationInfoAPI(self._session)
         self.policies = PoliciesAPI(self._session)
         self.queries = QueriesAPI(self._session)
         self.recommendations = RecommendationsAPI(self._session)
@@ -149,7 +162,8 @@ class LaceworkClient:
         self.team_members = TeamMembersAPI(self._session)
         self.tokens = TokenAPI(self._session)
         self.user_profile = UserProfileAPI(self._session)
-        self.vulnerabilities = VulnerabilityAPI(self._session)
+        self.vulnerabilities = VulnerabilitiesAPI(self._session)
+
     def set_org_level_access(self, org_level_access):
         """
         A method to set whether the client should use organization-level API calls.
