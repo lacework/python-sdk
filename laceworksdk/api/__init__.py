@@ -149,3 +149,19 @@ class LaceworkClient(object):
         self.tokens = TokenAPI(self._session)
         self.user_profile = UserProfileAPI(self._session)
         self.vulnerabilities = VulnerabilityAPI(self._session)
+    def set_org_level_access(self, org_level_access):
+        """
+        A method to set whether the client should use organization-level API calls.
+        """
+
+        if org_level_access is True:
+            self._session._org_level_access = True
+        else:
+            self._session._org_level_access = False
+
+    def set_subaccount(self, subaccount):
+        """
+        A method to update the subaccount the client should use for API calls.
+        """
+
+        self._session._subaccount = subaccount
