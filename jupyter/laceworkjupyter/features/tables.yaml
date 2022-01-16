@@ -18,20 +18,6 @@
   - EVENT_TIME
   - EVENT
 
-- display_name: Agent Connections
-  name: LW_HA_CONNECTIONS
-  return_fields:
-  - MID
-  - SRC_IP_ADDR
-  - SRC_PORT
-  - DST_IP_ADDR
-  - DST_PORT
-  - PROTOCOL
-  - SYN
-  - INCOMING
-  - OUTGOING
-  - FIRST_KNOWN_TIME
-
 - display_name: AWS IAM List Roles
   name: LW_CFG_AWS_IAM_LIST_ROLES
   return_fields:

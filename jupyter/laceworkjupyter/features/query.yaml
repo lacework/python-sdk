@@ -22,33 +22,6 @@ queries:
           }
         }
 
-    - name: "agent_ip"
-      params:
-        - name: "ip_address"
-          type: "str"
-      query: |-
-        TestAgentConnections{
-          SOURCE {
-            LW_HA_CONNECTIONS
-          }
-          FILTER {
-            SRC_IP_ADDR = '<<ip_address>>'
-            OR DST_IP_ADDR = '<<ip_address>>'
-          }
-          RETURN DISTINCT {
-            MID,
-            SRC_IP_ADDR,
-            SRC_PORT,
-            DST_IP_ADDR,
-            DST_PORT,
-            PROTOCOL,
-            SYN,
-            INCOMING,
-            OUTGOING,
-            FIRST_KNOWN_TIME
-          }
-        }
-
     - name: "dns_to_ip"
       params:
         - name: "ip_address"
