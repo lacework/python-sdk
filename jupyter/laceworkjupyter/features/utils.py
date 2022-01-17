@@ -141,29 +141,71 @@ def get_query_definition(table_name, filters):
     }
 
 
-def build_lql_query(query_name, query_dict):
+def build_lql_query(query_name, query_dict, join_support=True):
     """
     Build a LQL query and return evaluator ID and the query.
 
     :param str query_name: The name of the LQL query.
     :param dict query_dict: A dict with three keys, table_name,
         filters and return_fields.
+    :param bool join_support: Indicates whether we should consider
+        join operations if the table is supported for JOIN. Optional
+        and defaults to True.
     :return: A string with the LQL query.
     """
     lql_name = query_dict.get("table_name", "NOTABLE")
     filter_lines = query_dict.get("filters", [])
     return_fields = query_dict.get("return_fields", [])
 
+    join = False
+    join_dict = {}
+    join_tables = load_yaml_file("join.yaml")
+    for join_table in join_tables:
+        if lql_name in join_table.get("to", []):
+            join_dict = join_table
+            break
+
+    if join_support and bool(join_dict):
+        join = True
+
     query_lines = [f"Lacebook_Hunt_{query_name}"]
     query_lines.append("{\n  SOURCE {")
-    query_lines.append(f"    {lql_name}")
+    if join:
+        table_pieces = lql_name.split('_')
+        if len(table_pieces) == 3:
+            table_alias = table_pieces[-1].lower()
+        elif len(table_pieces) > 3:
+            table_alias = table_pieces[-2].lower()
+        else:
+            table_alias = 'pre'
+
+        join_table = join_dict.get("from", "")
+        join_alias = join_dict.get("alias", "post")
+        query_lines.append(
+            f"    {lql_name} {table_alias} WITH {join_table} {join_alias}")
+    else:
+        query_lines.append(f"    {lql_name}")
+
     query_lines.append("  }")
     query_lines.append("  FILTER {")
+
+    if join:
+        for index, filter_line in enumerate(filter_lines):
+            filter_lines[index] = f"{table_alias}.{filter_line}"
+
     filter_lines[0] = f"     {filter_lines[0]}"
     query_lines.append("\n    AND ".join(filter_lines))
     query_lines.append("  }")
     query_lines.append("  RETURN DISTINCT {")
-    return_fields[0] = f"    {return_fields[0]}"
+
+    if join:
+        for index, return_field in enumerate(return_fields):
+            return_fields[index] = f"{table_alias}.{return_field}"
+
+        join_fields = join_dict.get("return_fields", [])
+        return_fields.extend([f"{join_alias}.{x}" for x in join_fields])
+
+    return_fields[0] = f"     {return_fields[0]}"
     query_lines.append(",\n     ".join(return_fields))
     query_lines.append("  }\n}")
 
@@ -215,7 +257,8 @@ def get_times_from_widgets(ctx):
     :raises ValuError: If the timestamps are wrongly formatted.
     :return: A tuple with two entries, start and end time.
     """
-    start_widget = ctx.get_state(state="query_builder", key="query_start_widget")
+    start_widget = ctx.get_state(
+        state="query_builder", key="query_start_widget")
     start_time = start_widget.value
 
     end_widget = ctx.get_state(state="query_builder", key="query_end_widget")

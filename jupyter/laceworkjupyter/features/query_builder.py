@@ -198,8 +198,10 @@ def generate_filters(change):  # noqa: C901
                 layout=layout,
                 description=f"{name} [{data_type}] - {description}"))
 
-    lw_ctx.add_state("query_builder", "query_custom_return_fields", return_fields)
-    lw_ctx.add_state("query_builder", "query_custom_table_schema", table_schema_dict)
+    lw_ctx.add_state(
+        "query_builder", "query_custom_return_fields", return_fields)
+    lw_ctx.add_state(
+        "query_builder", "query_custom_table_schema", table_schema_dict)
 
     for checkbox in checkboxes:
         checkbox.observe(add_filter_definition)

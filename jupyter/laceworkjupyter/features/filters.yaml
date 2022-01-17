@@ -100,12 +100,6 @@
   hint: y or n
   callback: format_access_denied
 
-- parameter: IP Address
-  tables:
-   - LW_HA_CONNECTIONS
-  hint: 127.0.0.1
-  format_string: SRC_IP_ADDR = '{0:s}' OR DST_IP_ADDR = '{0:s}'
-
 - parameter: ARN Parameter
   tables:
    - LW_CFG_AWS_IAM_LIST_ROLES

@@ -156,7 +156,8 @@ def _build_query(ctx):
     query_name = query_dict.get("table_name", "No Table").replace(" ", "_")
 
     evaluator_id = query_dict.get("evaluator_id")
-    lql_query = utils.build_lql_query(query_name, query_dict)
+    lql_query = utils.build_lql_query(
+        query_name, query_dict, join_support=False)
     ctx.add("lql_query", lql_query)
     ctx.add("lql_evaluator", evaluator_id)
 

@@ -1,0 +1,25 @@
+- description: Host Information
+  from: LW_HE_MACHINES
+  alias: machine
+  return_fields:
+  - HOSTNAME AS MACHINE_HOST
+  - DOMAIN AS MACHINE_DOMAIN
+  - OS_DESC AS MACHINE_OS_DESC
+  - OS AS MACHINE_OS
+  to:
+  - LW_HA_DNS_REQUESTS
+  - LW_HA_FILE_CHANGES
+  - LW_HA_USER_LOGINS
+  - LW_HE_CONTAINERS
+  - LW_HE_FILES
+  - LW_HE_IMAGES
+
+- description: User Information
+  from: LW_HE_USERS
+  alias: user
+  return_fields:
+  - PRIMARY_GROUP_NAME AS USER_PRIMARY_GROUP
+  - OTHER_GROUP_NAMES AS USER_GROUPS
+  - HOME_DIR AS USER_HOME_DIR
+  to:
+  - LW_HE_PROCESSES
