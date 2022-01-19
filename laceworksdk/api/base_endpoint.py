@@ -22,7 +22,10 @@ class BaseEndpoint:
 
     def build_dict_from_items(self, *dicts, **items):
         """
-        A method to build a dictionary based on inputs, pruning items that are None
+        A method to build a dictionary based on inputs, pruning items that are None.
+
+        :raises KeyError: In case there is a duplicate key name in the dictionary.
+        :returns: A single dict built from the input.
         """
 
         dict_list = list(dicts)
@@ -32,11 +35,12 @@ class BaseEndpoint:
         for d in dict_list:
             for key, value in d.items():
                 camel_key = self._convert_lower_camel_case(key)
-                if value is not None:
-                    if camel_key not in result.keys():
-                        result[camel_key] = value
-                    else:
-                        raise KeyError(f"Attempted to insert duplicate key '{camel_key}'")
+                if value is None:
+                    continue
+                if camel_key in result.keys():
+                    raise KeyError(f"Attempted to insert duplicate key '{camel_key}'")
+
+                result[camel_key] = value
 
         return result
 
