@@ -64,8 +64,9 @@ class CrudEndpoint(BaseEndpoint):
         """
 
         # TODO: Remove this on v1.0 release - provided for back compat
-        if kwargs["query_data"]:
-            json = kwargs["query_data"]
+        query_data = kwargs.get("query_data")
+        if query_data:
+            json = query_data
 
         response = self._session.post(self.build_url(action="search"), json=json)
 
