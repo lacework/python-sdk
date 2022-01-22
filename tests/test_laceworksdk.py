@@ -17,4 +17,4 @@ class TestLaceworkSDK:
 
         # Lacework Exceptions
         assert hasattr(laceworksdk, "ApiError")
-        assert hasattr(laceworksdk, "laceworksdkException")
+        assert hasattr(laceworksdk, "LaceworksdkException")
