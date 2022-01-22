@@ -79,6 +79,9 @@ class ResourceGroupsAPI(CrudEndpoint):
 
         :param json: A dictionary containing the desired search parameters.
             (filters, returns)
+        :param query_data: (DEPRECATED: Use 'json' moving forward)
+            A dictionary containing the desired search parameters.
+            (filters, returns)
 
         :return response json
         """
