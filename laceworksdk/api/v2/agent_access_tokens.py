@@ -96,4 +96,9 @@ class AgentAccessTokensAPI(CrudEndpoint):
         )
 
     def delete(self):
+        """
+        A method to 'pass' when attempting to delete an AgentAccessToken object.
+
+        Lacework does not currently allow for agent access tokens to be deleted.
+        """
         pass

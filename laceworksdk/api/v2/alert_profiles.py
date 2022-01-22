@@ -73,6 +73,11 @@ class AlertProfilesAPI(CrudEndpoint):
         return self.get(id=id)
 
     def search(self, **request_params):
+        """
+        A method to 'pass' when attempting to search AlertProfiles objects.
+
+        Search functionality is not yet implemented for Alert Profiles.
+        """
         pass
 
     def update(self,
