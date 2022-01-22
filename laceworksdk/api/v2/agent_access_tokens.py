@@ -41,20 +41,6 @@ class AgentAccessTokensAPI(CrudEndpoint):
             **request_params
         )
 
-    def get(self,
-            id=None):
-        """
-        A method to get AgentAccessTokens objects.
-
-        :param id: A string representing the object ID.
-
-        :return response json
-        """
-
-        return super().get(
-            id=id
-        )
-
     def get_by_id(self,
                   id):
         """
