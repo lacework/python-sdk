@@ -7,10 +7,19 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
 class ConfigsAPI:
+    """A class used to represent the Configs API endpoint.
+
+    The Configs API endpoint is simply a parent for different types of
+    configs that can be queried.
+
+    Attributes
+    ----------
+    compliance_evaluations:
+        A ComplianceEvaluationsAPI instance.
+    """
 
     def __init__(self, session):
-        """
-        Initializes the ConfigsAPI object.
+        """Initializes the ConfigsAPI object.
 
         :param session: An instance of the HttpSession class
 
@@ -24,27 +33,11 @@ class ConfigsAPI:
 
 
 class ComplianceEvaluationsAPI(SearchEndpoint):
+    """A class used to represent the Compliance Evaluations API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the ComplianceEvaluationsAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return ComplianceEvaluationsAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search ComplianceEvaluations objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="ComplianceEvaluations", json=json)
+    """
+    RESOURCE = "ComplianceEvaluations"

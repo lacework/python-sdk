@@ -7,10 +7,25 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
 class ActivitiesAPI:
+    """A class used to represent the Activities API endpoint.
+
+    The Activities API endpoint is simply a parent for different types of
+    activities that can be queried.
+
+    Attributes
+    ----------
+    changed_files:
+        A ChangedFilesAPI instance.
+    connections:
+        A ConnectionsAPI instance.
+    dns:
+        A DnsAPI instance.
+    user_logins:
+        A UserLoginsAPI instance.
+    """
 
     def __init__(self, session):
-        """
-        Initializes the ActivitiesAPI object.
+        """Initializes the ActivitiesAPI object.
 
         :param session: An instance of the HttpSession class
 
@@ -27,108 +42,44 @@ class ActivitiesAPI:
 
 
 class ChangedFilesAPI(SearchEndpoint):
+    """A class used to represent the Changed Files API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the ChangedFilesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return ChangedFilesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
-        A method to search Changed Files objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="ChangedFiles", json=json)
+    Methods
+    -------
+    search(json=None)
+        A method to search ChangedFiles objects.
+    """
+    RESOURCE = "ChangedFiles"
 
 
 class ConnectionsAPI(SearchEndpoint):
+    """A class used to represent the Connections API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the ConnectionsAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return ConnectionsAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Connections objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Connections", json=json)
+    """
+    RESOURCE = "Connections"
 
 
 class DnsAPI(SearchEndpoint):
+    """A class used to represent the DNS Lookup API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the DnsAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return DnsAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search DNS lookup objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="DNSs", json=json)
+    """
+    RESOURCE = "DNSs"
 
 
 class UserLoginsAPI(SearchEndpoint):
+    """A class used to represent the UserLogins API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the UserLoginsAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return UserLoginsAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
-        A method to search User Logins objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="UserLogins", json=json)
+    Methods
+    -------
+    search(json=None)
+        A method to search UserLogins objects.
+    """
+    RESOURCE = "UserLogins"

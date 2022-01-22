@@ -9,6 +9,22 @@ from laceworksdk.api.v1.vulnerability import VulnerabilityAPI
 
 
 class VulnerabilitiesAPI(VulnerabilityAPI):
+    """A class used to represent the Vulnerabilities API endpoint.
+
+    The Vulnerabilities API endpoint is simply a parent for different types of
+    vulnerabilities that can be queried.  Due to namespace overlap with the v1
+    API, this class is a subclass of VulnerabilityAPI to expose those methods
+    and provide backwards compatibility.
+
+    Attributes
+    ----------
+    containers:
+        A ContainerVulnerabilitiesAPI instance.
+    hosts:
+        A HostVulnerabilitiesAPI instance.
+    packages:
+        A SoftwarePackagesAPI instance.
+    """
 
     def __init__(self, session):
         """
@@ -28,30 +44,18 @@ class VulnerabilitiesAPI(VulnerabilityAPI):
 
 
 class ContainerVulnerabilitiesAPI(SearchEndpoint):
+    """A class used to represent the Container Vulnerabilities API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the ContainerVulnerabilitiesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return ContainerVulnerabilitiesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Container Vulnerabilities objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Containers", json=json)
+    scan(registry, repository, tag, **request_params)
+        A method to issue a Container Vulnerability scan.
+    status(request_id)
+        A method to get the status of a Container Vulnerability scan.
+    """
+    RESOURCE = "Containers"
 
     def scan(self,
              registry,
@@ -100,44 +104,24 @@ class ContainerVulnerabilitiesAPI(SearchEndpoint):
 
 
 class HostVulnerabilitiesAPI(SearchEndpoint):
+    """A class used to represent the Host Vulnerabilities API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the HostVulnerabilitiesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return HostVulnerabilitiesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Host Vulnerabilities objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Hosts", json=json)
+    """
+    RESOURCE = "Hosts"
 
 
 class SoftwarePackagesAPI(BaseEndpoint):
+    """A class used to represent the Software Packages API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the SoftwarePackagesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return SoftwarePackagesAPI object.
-        """
-
-        super().__init__(session, base_path)
+    Methods
+    -------
+    scan(os_pkg_info_list, **request_params)
+        A method to initiate a Software Package vulnerability scan.
+    """
 
     def scan(self,
              os_pkg_info_list,

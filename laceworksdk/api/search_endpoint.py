@@ -5,6 +5,9 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 
 class SearchEndpoint(BaseEndpoint):
 
+    # If defined, this is the resource used in the URL path
+    RESOURCE = ""
+
     def __init__(self,
                  session,
                  object_type,
@@ -26,6 +29,9 @@ class SearchEndpoint(BaseEndpoint):
 
         :return a generator which yields a page of objects at a time as returned by the Lacework API.
         """
+
+        if not resource and self.RESOURCE:
+            resource = self.RESOURCE
 
         response = self._session.post(self.build_url(resource=resource, action="search"), json=json)
 

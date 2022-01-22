@@ -7,6 +7,42 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
 class EntitiesAPI:
+    """A class used to represent the Entities API endpoint.
+
+    The Entities API endpoint is simply a parent for different types of
+    entities that can be queried.
+
+    Attributes
+    ----------
+    applications:
+        A ApplicationsAPI instance.
+    command_lines:
+        A CommandLinesAPI instance.
+    containers:
+        A ContainersAPI instance.
+    files:
+        A FilesAPI instance.
+    images:
+        A ImagesAPI instance.
+    internal_ip_addresses:
+        A InternalIPAddressesAPI instance.
+    k8s_pods:
+        A K8sPodsAPI instance.
+    machines:
+        A MachinesAPI instance.
+    machine_details:
+        A MachineDetailsAPI instance.
+    network_interfaces:
+        A NetworkInterfacesAPI instance.
+    new_file_hashes:
+        A NewFileHashesAPI instance.
+    packages:
+        A PackagesAPI instance.
+    processes:
+        A ProcessesAPI instance.
+    users:
+        A UsersAPI instance.
+    """
 
     def __init__(self, session):
         """
@@ -37,378 +73,154 @@ class EntitiesAPI:
 
 
 class ApplicationsAPI(SearchEndpoint):
+    """A class used to represent the Applications API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the ApplicationsAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return ApplicationsAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Applications objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Applications", json=json)
+    """
+    RESOURCE = "Applications"
 
 
 class CommandLinesAPI(SearchEndpoint):
+    """A class used to represent the Command Lines API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the CommandLinesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return CommandLinesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search CommandLines objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="CommandLines", json=json)
+    """
+    RESOURCE = "CommandLines"
 
 
 class ContainersAPI(SearchEndpoint):
+    """A class used to represent the Containers API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the ContainersAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return ContainersAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Containers objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Containers", json=json)
+    """
+    RESOURCE = "Containers"
 
 
 class FilesAPI(SearchEndpoint):
+    """A class used to represent the Files API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the FilesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return FilesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Files objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Files", json=json)
+    """
+    RESOURCE = "Files"
 
 
 class ImagesAPI(SearchEndpoint):
+    """A class used to represent the Images API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the ImagesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return ImagesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Images objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Images", json=json)
+    """
+    RESOURCE = "Images"
 
 
 class InternalIPAddressesAPI(SearchEndpoint):
+    """A class used to represent the Internal IP Addresses API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the InternalIPAddressesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return InternalIPAddressesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search InternalIPAddresses objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="InternalIPAddresses", json=json)
+    """
+    RESOURCE = "InternalIPAddresses"
 
 
 class K8sPodsAPI(SearchEndpoint):
+    """A class used to represent the K8s Pods API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the K8sPodsAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return K8sPodsAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search K8sPods objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="K8sPods", json=json)
+    """
+    RESOURCE = "K8sPods"
 
 
 class MachinesAPI(SearchEndpoint):
+    """A class used to represent the Machines API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the MachinesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return MachinesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Machines objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Machines", json=json)
+    """
+    RESOURCE = "Machines"
 
 
 class MachineDetailsAPI(SearchEndpoint):
+    """A class used to represent the Machine Details API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the MachineDetailsAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return MachineDetailsAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search MachineDetails objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="MachineDetails", json=json)
+    """
+    RESOURCE = "MachineDetails"
 
 
 class NetworkInterfacesAPI(SearchEndpoint):
+    """A class used to represent the Network Interfaces API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the NetworkInterfacesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return NetworkInterfacesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search NetworkInterfaces objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="NetworkInterfaces", json=json)
+    """
+    RESOURCE = "NetworkInterfaces"
 
 
 class NewFileHashesAPI(SearchEndpoint):
+    """A class used to represent the New File Hashes API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the NewFileHashesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return NewFileHashesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search NewFileHashes objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="NewFileHashes", json=json)
+    """
+    RESOURCE = "NewFileHashes"
 
 
 class PackagesAPI(SearchEndpoint):
+    """A class used to represent the Packages API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the PackagesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return PackagesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Packages objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Packages", json=json)
+    """
+    RESOURCE = "Packages"
 
 
 class ProcessesAPI(SearchEndpoint):
+    """A class used to represent the Processes API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the ProcessesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return ProcessesAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Processes objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Processes", json=json)
+    """
+    RESOURCE = "Processes"
 
 
 class UsersAPI(SearchEndpoint):
+    """A class used to represent the Users API endpoint.
 
-    def __init__(self, session, base_path):
-        """
-        Initializes the UsersAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return UsersAPI object.
-        """
-
-        super().__init__(session, base_path)
-
-    def search(self,
-               json=None):
-        """
+    Methods
+    -------
+    search(json=None)
         A method to search Users objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
-        return super().search(resource="Users", json=json)
+    """
+    RESOURCE = "Users"
