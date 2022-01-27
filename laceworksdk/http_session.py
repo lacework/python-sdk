@@ -77,7 +77,8 @@ class HttpSession:
             total=retries,
             backoff_factor=backoff_factor,
             status_forcelist=status_forcelist,
-            allowed_methods=allowed_methods
+            allowed_methods=allowed_methods,
+            raise_on_status=False
         )
 
         # Build the adapter with the retry criteria
