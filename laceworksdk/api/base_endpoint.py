@@ -2,7 +2,7 @@
 
 class BaseEndpoint:
     """
-    Lacework BaseEndpoint Class.
+    A class used to implement base functionality for Lacework API Endpoints
     """
 
     def __init__(self,
@@ -47,6 +47,10 @@ class BaseEndpoint:
     def build_url(self, id=None, resource=None, action=None):
         """
         Builds the URL to use based on the endpoint path, resource, type, and ID.
+
+        :param id: A string representing the ID of an object to use in the URL
+        :param resource: A string representing the type of resource to append to the URL
+        :param action: A string representing the type of action to append to the URL
         """
 
         result = f"{self._endpoint_root}/{self._object_type}"
@@ -64,6 +68,10 @@ class BaseEndpoint:
     def _convert_lower_camel_case(param_name):
         """
         Convert a Pythonic variable name to lowerCamelCase.
+
+        This function will take an underscored parameter name like 'query_text' and convert it
+        to lowerCamelCase of 'queryText'.  If a parameter with no underscores is provided, it will
+        assume that the value is already in lowerCamelCase format.
         """
 
         words = param_name.split("_")
