@@ -4,6 +4,9 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
 class CrudEndpoint(BaseEndpoint):
+    """
+    A class used to implement CRUD create/read/update/delete functionality for Lacework API Endpoints
+    """
 
     def __init__(self,
                  session,

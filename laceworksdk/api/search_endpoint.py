@@ -4,6 +4,9 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
 class SearchEndpoint(BaseEndpoint):
+    """
+    A class used to implement Search functionality for Lacework API Endpoints
+    """
 
     # If defined, this is the resource used in the URL path
     RESOURCE = ""
