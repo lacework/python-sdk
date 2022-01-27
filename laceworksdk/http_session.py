@@ -9,7 +9,7 @@ import requests
 
 from datetime import datetime, timezone
 from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+from urllib3.util.retry import Retry
 
 from laceworksdk import version
 from laceworksdk.config import (
