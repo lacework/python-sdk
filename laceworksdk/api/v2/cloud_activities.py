@@ -79,8 +79,7 @@ class CloudActivitiesAPI(BaseEndpoint):
             yield item
 
     def search(self,
-               json=None,
-               query_data=None):
+               json=None):
         """
         A method to search CloudActivities objects.
 
@@ -89,10 +88,6 @@ class CloudActivitiesAPI(BaseEndpoint):
 
         :return response json
         """
-
-        # TODO: Remove this on v1.0 release - provided for back compat
-        if query_data:
-            json = query_data
 
         response = self._session.post(self.build_url(action="search"), json=json)
 

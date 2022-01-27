@@ -36,7 +36,7 @@ if __name__ == "__main__":
     lacework_client.cloudtrail.get(start_time=start_time, end_time=end_time)
 
     # Search CloudTrail
-    lacework_client.cloudtrail.search(query_data={
+    lacework_client.cloudtrail.search(json={
         "timeFilter": {
             "startTime": start_time,
             "endTime": end_time

@@ -26,7 +26,7 @@ if __name__ == "__main__":
     lacework_client.alert_channels.get()
 
     # Search Alert Channels
-    lacework_client.alert_channels.search(query_data={
+    lacework_client.alert_channels.search(json={
         "filters": [
             {
                 "expression": "eq",
