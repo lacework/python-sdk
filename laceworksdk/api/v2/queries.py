@@ -103,7 +103,7 @@ class QueriesAPI(CrudEndpoint):
                 "value": value
             })
 
-        response = self._session.post(self.build_url(action="execute"))
+        response = self._session.post(self.build_url(action="execute"), json=json)
 
         return response.json()
 
