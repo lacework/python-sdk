@@ -79,23 +79,6 @@ class ReportRulesAPI(CrudEndpoint):
 
         return self.get(guid=guid)
 
-    def search(self,
-               json=None,
-               query_data=None):
-        """
-        A method to search ReportRules objects.
-
-        :param json: A dictionary containing the desired search parameters.
-            (filters, returns)
-        :param query_data: (DEPRECATED: Use 'json' moving forward)
-            A dictionary containing the desired search parameters.
-            (filters, returns)
-
-        :return response json
-        """
-
-        return super().search(json=json, query_data=query_data)
-
     def update(self,
                guid,
                type=None,
