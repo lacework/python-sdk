@@ -55,8 +55,7 @@ class AgentAccessTokensAPI(CrudEndpoint):
 
     def update(self,
                id,
-               alias=None,
-               enabled=None,
+               token_enabled=None,
                **request_params):
         """
         A method to update an AgentAccessTokens object.
@@ -73,8 +72,7 @@ class AgentAccessTokensAPI(CrudEndpoint):
 
         return super().update(
             id=id,
-            token_alias=alias,
-            token_enabled=int(bool(enabled)),
+            token_enabled=int(bool(token_enabled)),
             **request_params
         )
 
@@ -84,4 +82,3 @@ class AgentAccessTokensAPI(CrudEndpoint):
 
         Lacework does not currently allow for agent access tokens to be deleted.
         """
-        pass
