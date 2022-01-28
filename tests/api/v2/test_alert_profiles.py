@@ -3,82 +3,60 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-import random
-import string
-
 import pytest
 
 from laceworksdk.api.v2.alert_profiles import AlertProfilesAPI
-
-ALERT_PROFILE_GUID = None
-RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+from tests.api.test_crud_endpoint import CrudEndpoint
 
 
 # Tests
 
-def test_alert_profiles_api_object_creation(api):
-    assert isinstance(api.alert_profiles, AlertProfilesAPI)
+@pytest.fixture(scope="module")
+def api_object(api):
+    return api.alert_profiles
 
 
-def test_alert_profiles_api_get(api):
-    response = api.alert_profiles.get()
-    assert "data" in response.keys()
-
-
-# TODO: Remove ci_exempt for all tests once v4.50 ships
-@pytest.mark.ci_exempt
-def test_alert_profiles_api_create(api):
-    response = api.alert_profiles.create(
-        alert_profile_id=f"Test_{RANDOM_TEXT}_AlertProfileID",
-        alerts=[
+@pytest.fixture(scope="module")
+def api_object_create_body(random_text):
+    return {
+        "alert_profile_id": f"Test_{random_text}_AlertProfileID",
+        "alerts": [
             {
-                "name": f"HE_User_NewViolation_{RANDOM_TEXT}",
-                "eventName": f"Alert Event Name {RANDOM_TEXT}",
-                "description": f"Alert Event Description {RANDOM_TEXT}",
-                "subject": f"Alert Event Subject {RANDOM_TEXT}"
+                "name": f"HE_User_NewViolation_{random_text}",
+                "eventName": f"Alert Event Name {random_text}",
+                "description": f"Alert Event Description {random_text}",
+                "subject": f"Alert Event Subject {random_text}"
             }
         ],
-        extends="LW_HE_USERS_DEFAULT_PROFILE"
-    )
-
-    assert "data" in response.keys()
-
-    global ALERT_PROFILE_GUID
-    ALERT_PROFILE_GUID = response["data"]["alertProfileId"]
+        "extends": "LW_HE_USERS_DEFAULT_PROFILE"
+    }
 
 
-@pytest.mark.ci_exempt
-def test_alert_profiles_api_get_by_guid(api):
-    assert ALERT_PROFILE_GUID is not None
-    if ALERT_PROFILE_GUID:
-        response = api.alert_profiles.get_by_id(id=ALERT_PROFILE_GUID)
-
-        assert "data" in response.keys()
-        assert response["data"]["alertProfileId"] == ALERT_PROFILE_GUID
-
-
-@pytest.mark.ci_exempt
-def test_alert_profiles_api_update(api):
-    assert ALERT_PROFILE_GUID is not None
-    if ALERT_PROFILE_GUID:
-        response = api.alert_profiles.update(
-            ALERT_PROFILE_GUID,
-            alerts=[
-                {
-                    "name": f"HE_User_NewViolation_{RANDOM_TEXT}_Updated",
-                    "eventName": f"Alert Event Name {RANDOM_TEXT} (Updated)",
-                    "description": f"Alert Event Description {RANDOM_TEXT} (Updated)",
-                    "subject": f"Alert Event Subject {RANDOM_TEXT} (Updated)"
-                }
-            ]
-        )
-
-        assert "data" in response.keys()
+@pytest.fixture(scope="module")
+def api_object_update_body(random_text):
+    return {
+        "alerts": [
+            {
+                "name": f"HE_User_NewViolation_{random_text}_Updated",
+                "eventName": f"Alert Event Name {random_text} Updated",
+                "description": f"Alert Event Description {random_text} Updated",
+                "subject": f"Alert Event Subject {random_text} Updated"
+            }
+        ]
+    }
 
 
-@pytest.mark.ci_exempt
-def test_alert_profiles_api_delete(api):
-    assert ALERT_PROFILE_GUID is not None
-    if ALERT_PROFILE_GUID:
-        response = api.alert_profiles.delete(ALERT_PROFILE_GUID)
-        assert response.status_code == 204
+class TestAlertProfiles(CrudEndpoint):
+
+    OBJECT_ID_NAME = "alertProfileId"
+    OBJECT_TYPE = AlertProfilesAPI
+    OBJECT_PARAM_EXCEPTIONS = ["alerts"]
+
+    def test_api_search(self):
+        """
+        Search is unavailable for this endpoint.
+        """
+        pass
+
+    def test_api_get_by_id(self, api_object):
+        self._get_object_classifier_test(api_object, "id", self.OBJECT_ID_NAME)

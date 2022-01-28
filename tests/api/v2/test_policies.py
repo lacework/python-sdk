@@ -3,89 +3,59 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-import pytest
 import random
-import string
 
-from datetime import datetime, timedelta, timezone
+import pytest
 
 from laceworksdk.api.v2.policies import PoliciesAPI
+from tests.api.test_crud_endpoint import CrudEndpoint
 
-# Build start/end times
-current_time = datetime.now(timezone.utc)
-start_time = current_time - timedelta(days=6)
-start_time = start_time.strftime("%Y-%m-%dT%H:%M:%S.000Z")
-end_time = current_time.strftime("%Y-%m-%dT%H:%M:%S.000Z")
-
-POLICY_ID = None
-RANDOM_TEXT = "".join(random.choices(string.ascii_uppercase, k=8))
 
 # Tests
 
-
-def test_policies_api_object_creation(api):
-    assert isinstance(api.policies, PoliciesAPI)
-
-
-def test_cloud_accounts_api_env_object_creation(api_env):
-    assert isinstance(api_env.policies, PoliciesAPI)
+@pytest.fixture(scope="module")
+def api_object(api):
+    return api.policies
 
 
-def test_policies_api_get(api):
-    response = api.policies.get()
-    assert "data" in response.keys()
+@pytest.fixture(scope="module")
+def api_object_create_body(random_text, query):
+    return {
+        "policy_type": "Violation",
+        "query_id": query["queryId"],
+        "enabled": True,
+        "title": random_text,
+        "description": f"{random_text} description",
+        "remediation": "Policy remediation",
+        "severity": "high",
+        "alert_enabled": True,
+        "alert_profile": "LW_CloudTrail_Alerts",
+        "evaluator_id": query["evaluatorId"]
+    }
 
 
-@pytest.mark.flaky(reruns=3)
-def test_policies_api_create(api):
+@pytest.fixture(scope="module")
+def api_object_update_body():
+    return {
+        "enabled": False
+    }
+
+
+@pytest.fixture(scope="module")
+def query(api):
     queries = api.queries.get()
     queries = list(filter(lambda elem: elem["owner"] == "Lacework", queries["data"]))
-
-    if len(queries) > 0:
-        query = random.choice(queries)
-
-        response = api.policies.create(
-            policy_type="Violation",
-            query_id=query["queryId"],
-            enabled=True,
-            title=RANDOM_TEXT,
-            description=f"{RANDOM_TEXT} description",
-            remediation="Policy remediation",
-            severity="high",
-            alert_enabled=True,
-            alert_profile="LW_CloudTrail_Alerts",
-            evaluator_id=query["evaluatorId"]
-        )
-
-        global POLICY_ID
-        POLICY_ID = response["data"]["policyId"]
-
-        assert "data" in response.keys()
+    query = random.choice(queries)
+    return query
 
 
-def test_policies_api_get_by_id(api):
-    assert POLICY_ID is not None
-    if POLICY_ID:
-        response = api.policies.get_by_id(policy_id=POLICY_ID)
+class TestPolicies(CrudEndpoint):
 
-        assert "data" in response.keys()
+    OBJECT_ID_NAME = "policyId"
+    OBJECT_TYPE = PoliciesAPI
 
+    def test_api_get_by_id(self, api_object):
+        self._get_object_classifier_test(api_object, "id", self.OBJECT_ID_NAME)
 
-def test_policies_api_update(api):
-    assert POLICY_ID is not None
-    if POLICY_ID:
-        response = api.policies.update(
-            policy_id=POLICY_ID,
-            enabled=False
-        )
-
-        assert "data" in response.keys()
-        assert response["data"]["enabled"] is False
-
-
-def test_policies_api_delete(api):
-    assert POLICY_ID is not None
-    if POLICY_ID:
-        response = api.policies.delete(policy_id=POLICY_ID)
-
-        assert response.status_code == 204
+    def test_api_search(self):
+        pass

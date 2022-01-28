@@ -23,7 +23,8 @@ def api_object(api):
 
 
 class TestActivitiesEndpoint(SearchEndpoint):
-    BASE_OBJECT_TYPE = ActivitiesAPI
+
+    OBJECT_TYPE = ActivitiesAPI
     OBJECT_MAP = {
         "changed_files": ChangedFilesAPI,
         "connections": ConnectionsAPI,

@@ -8,14 +8,15 @@ from datetime import datetime, timedelta, timezone
 
 class SearchEndpoint:
 
-    BASE_OBJECT_TYPE = None
-    DAY_DELTA = 1
+    OBJECT_TYPE = None
     OBJECT_MAP = {}
+
+    DAY_DELTA = 1
     MAX_PAGES = 2
 
     def test_object_creation(self, api_object):
 
-        assert isinstance(api_object, self.BASE_OBJECT_TYPE)
+        assert isinstance(api_object, self.OBJECT_TYPE)
 
         for attribute, object_type in self.OBJECT_MAP.items():
             assert isinstance(getattr(api_object, attribute), object_type)

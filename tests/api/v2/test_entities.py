@@ -33,7 +33,8 @@ def api_object(api):
 
 
 class TestEntitiesEndpoint(SearchEndpoint):
-    BASE_OBJECT_TYPE = EntitiesAPI
+
+    OBJECT_TYPE = EntitiesAPI
     OBJECT_MAP = {
         "applications": ApplicationsAPI,
         "command_lines": CommandLinesAPI,

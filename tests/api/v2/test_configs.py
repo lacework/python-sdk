@@ -20,7 +20,8 @@ def api_object(api):
 
 
 class TestConfigsEndpoint(SearchEndpoint):
-    BASE_OBJECT_TYPE = ConfigsAPI
+
+    OBJECT_TYPE = ConfigsAPI
     OBJECT_MAP = {
         "compliance_evaluations": ComplianceEvaluationsAPI,
     }

@@ -3,19 +3,33 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
+import pytest
+
 from laceworksdk.api.v2.user_profile import UserProfileAPI
+from tests.api.test_base_endpoint import BaseEndpoint
 
 
 # Tests
 
-def test_user_profile_api_object_creation(api):
-    assert isinstance(api.user_profile, UserProfileAPI)
+@pytest.fixture(scope="module")
+def api_object(api):
+    return api.user_profile
 
 
-def test_user_profile_api_env_object_creation(api_env):
-    assert isinstance(api_env.user_profile, UserProfileAPI)
+class TestUserProfile(BaseEndpoint):
 
+    OBJECT_TYPE = UserProfileAPI
 
-def test_user_profile_api_get(api):
-    response = api.user_profile.get()
-    assert len(response) > 0
+    def test_api_get(self, api_object):
+        response = api_object.get()
+        keys = set([
+            "username",
+            "orgAccount",
+            "url",
+            "orgAdmin",
+            "orgUser",
+            "accounts"
+        ])
+
+        for item in response["data"]:
+            assert keys.issubset(item.keys())

@@ -22,7 +22,8 @@ def api_object(api):
 
 
 class TestVulnerabilitesEndpoint(SearchEndpoint):
-    BASE_OBJECT_TYPE = VulnerabilitiesAPI
+
+    OBJECT_TYPE = VulnerabilitiesAPI
     OBJECT_MAP = {
         "containers": ContainerVulnerabilitiesAPI,
         "hosts": HostVulnerabilitiesAPI
