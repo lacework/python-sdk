@@ -20,14 +20,10 @@ class ContractInfoAPI(BaseEndpoint):
         super().__init__(session, "ContractInfo")
 
     def get(self,
-            start_time=None,
-            end_time=None,
             **request_params):
         """
         A method to get ContractInfo objects.
 
-        :param start_time: A "%Y-%m-%dT%H:%M:%SZ" structured timestamp to begin from.
-        :param end_time: A "%Y-%m-%dT%H:%M:%S%Z" structured timestamp to end at.
         :param request_params: Additional request parameters.
             (provides support for parameters that may be added in the future)
 
@@ -35,9 +31,7 @@ class ContractInfoAPI(BaseEndpoint):
         """
 
         params = self.build_dict_from_items(
-            request_params,
-            start_time=start_time,
-            end_time=end_time
+            request_params
         )
 
         response = self._session.get(self.build_url(), params=params)

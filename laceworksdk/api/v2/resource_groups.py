@@ -20,16 +20,16 @@ class ResourceGroupsAPI(CrudEndpoint):
         super().__init__(session, "ResourceGroups")
 
     def create(self,
-               name,
-               type,
+               resource_name,
+               resource_type,
                enabled,
                props,
                **request_params):
         """
         A method to create a new ResourceGroups object.
 
-        :param name: A string representing the object name.
-        :param type: A string representing the object type.
+        :param resource_name: A string representing the object name.
+        :param resource_type: A string representing the object type.
         :param enabled: A boolean/integer representing whether the object is enabled.
             (0 or 1)
         :param props: A JSON object matching the schema for the specified type.
@@ -40,8 +40,8 @@ class ResourceGroupsAPI(CrudEndpoint):
         """
 
         return super().create(
-            resource_name=name,
-            resource_type=type,
+            resource_name=resource_name,
+            resource_type=resource_type,
             enabled=int(bool(enabled)),
             props=props,
             **request_params
@@ -73,8 +73,8 @@ class ResourceGroupsAPI(CrudEndpoint):
 
     def update(self,
                guid,
-               name=None,
-               type=None,
+               resource_name=None,
+               resource_type=None,
                enabled=None,
                props=None,
                **request_params):
@@ -82,8 +82,8 @@ class ResourceGroupsAPI(CrudEndpoint):
         A method to update an ResourceGroups object.
 
         :param guid: A string representing the object GUID.
-        :param name: A string representing the object name.
-        :param type: A string representing the object type.
+        :param resource_name: A string representing the object name.
+        :param resource_type: A string representing the object type.
         :param enabled: A boolean/integer representing whether the object is enabled.
             (0 or 1)
         :param props: A JSON object matching the schema for the specified type.
@@ -95,8 +95,8 @@ class ResourceGroupsAPI(CrudEndpoint):
 
         return super().update(
             id=guid,
-            resource_name=name,
-            resource_type=type,
+            resource_name=resource_name,
+            resource_type=resource_type,
             enabled=int(bool(enabled)),
             props=props,
             **request_params
