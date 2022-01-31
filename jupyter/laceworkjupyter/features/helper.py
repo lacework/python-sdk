@@ -44,7 +44,7 @@ def deep_extract_field(data_frame, column, field_string, ctx=None):
             return np.nan
 
         data = json_obj
-        for point in item.split('.'):
+        for point in item.split("."):
             if not isinstance(data, dict):
                 logger.error(
                     "Sub-item %s is not a dict (%s)", point, type(data))
