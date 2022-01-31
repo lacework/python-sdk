@@ -5,54 +5,59 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 
 import pytest
 
-from datetime import datetime, timedelta, timezone
+from unittest import TestCase
 
-from laceworksdk.api.cloud_activities import CloudActivitiesAPI
-
-# Build start/end times
-current_time = datetime.now(timezone.utc)
-start_time = current_time - timedelta(days=1)
-start_time = start_time.strftime("%Y-%m-%dT%H:%M:%SZ")
-end_time = current_time.strftime("%Y-%m-%dT%H:%M:%SZ")
+from laceworksdk.api.v2.cloud_activities import CloudActivitiesAPI
+from tests.api.test_read_endpoint import ReadEndpoint
 
 
 # Tests
 
-def test_cloud_activities_api_object_creation(api):
-    assert isinstance(api.cloud_activities, CloudActivitiesAPI)
+@pytest.fixture(scope="module")
+def api_object(api):
+    return api.cloud_activities
 
 
-def test_cloud_activities_api_env_object_creation(api_env):
-    assert isinstance(api_env.cloud_activities, CloudActivitiesAPI)
+class TestCloudActivities(ReadEndpoint):
 
+    OBJECT_ID_NAME = "eventId"
+    OBJECT_TYPE = CloudActivitiesAPI
 
-@pytest.mark.ci_exempt
-def test_cloud_activities_api_get(api):
-    response = api.cloud_activities.get()
-    assert "data" in response.keys()
+    def test_get_by_date(self, api_object):
+        start_time, end_time = self._get_start_end_times()
+        response = api_object.get(start_time=start_time, end_time=end_time)
+        assert "data" in response.keys()
 
+    def test_get_by_date_camelcase(self, api_object):
+        start_time, end_time = self._get_start_end_times()
+        response = api_object.get(startTime=start_time, endTime=end_time)
+        assert "data" in response.keys()
 
-def test_cloud_activities_api_get_by_date(api):
-    response = api.cloud_activities.get(start_time=start_time, end_time=end_time)
-    assert "data" in response.keys()
+    def test_get_duplicate_key(self, api_object):
+        start_time, end_time = self._get_start_end_times()
+        tester = TestCase()
+        with tester.assertRaises(KeyError):
+            api_object.get(start_time=start_time, startTime=start_time, endTime=end_time)
 
+    def test_get_pages(self, api_object):
+        response = api_object.get_pages()
 
-def test_cloud_activities_api_search(api):
-    response = api.cloud_activities.search(query_data={
-        "timeFilter": {
-            "startTime": start_time,
-            "endTime": end_time
-        },
-        "filters": [
-            {
-                "expression": "eq",
-                "field": "eventModel",
-                "value": "CloudTrailCep"
-            }
-        ],
-        "returns": [
+        for page in response:
+            assert "data" in page.keys()
+
+    def test_get_data_items(self, api_object):
+        start_time, end_time = self._get_start_end_times()
+        response = api_object.get_data_items(start_time=start_time, end_time=end_time)
+
+        event_keys = set([
+            "endTime",
+            "entityMap",
+            "eventActor",
+            "eventId",
+            "eventModel",
             "eventType",
-            "eventActor"
-        ]
-    })
-    assert "data" in response.keys()
+            "startTime"
+        ])
+
+        for item in response:
+            assert event_keys.issubset(item.keys())

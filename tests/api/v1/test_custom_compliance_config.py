@@ -3,7 +3,7 @@
 Test suite for the community-developed Python SDK for interacting with Lacework APIs.
 """
 
-from laceworksdk.api.custom_compliance_config import CustomComplianceConfigAPI
+from laceworksdk.api.v1.custom_compliance_config import CustomComplianceConfigAPI
 
 
 # Tests

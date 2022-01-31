@@ -8,7 +8,7 @@ from .version import version  # noqa: F401
 import logging
 
 from .api import LaceworkClient  # noqa: F401
-from .exceptions import ApiError, laceworksdkException  # noqa: F401
+from .exceptions import ApiError, LaceworkSDKException  # noqa: F401
 
 # Initialize Package Logging
 logger = logging.getLogger(__name__)

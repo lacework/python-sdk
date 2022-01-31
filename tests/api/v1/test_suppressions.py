@@ -6,7 +6,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
-from laceworksdk.api.suppressions import SuppressionsAPI
+from laceworksdk.api.v1.suppressions import SuppressionsAPI
 
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
 

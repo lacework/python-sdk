@@ -10,14 +10,14 @@ import requests
 logger = logging.getLogger(__name__)
 
 
-class laceworksdkException(Exception):
+class LaceworkSDKException(Exception):
     """
     Base class for all lacework package exceptions.
     """
     pass
 
 
-class ApiError(laceworksdkException):
+class ApiError(LaceworkSDKException):
     """
     Errors returned in response to requests sent to the Lacework APIs.
     Several data attributes are available for inspection.
@@ -57,7 +57,7 @@ class ApiError(laceworksdkException):
             self.message = None
         """The error message from the parsed API response."""
 
-        super(ApiError, self).__init__(
+        super().__init__(
             "[{status_code}]{status} - {message}".format(
                 status_code=self.status_code,
                 status=" " + self.status if self.status else "",
@@ -70,3 +70,16 @@ class ApiError(laceworksdkException):
             exception_name=self.__class__.__name__,
             status_code=self.status_code,
         )
+
+
+class MalformedResponse(LaceworkSDKException):
+    """Raised when a malformed response is received from Lacework."""
+    pass
+
+
+class RateLimitError(ApiError):
+    """LAcework Rate-Limit exceeded Error.
+
+    Raised when a rate-limit exceeded message is received and the request **will not** be retried.
+    """
+    pass

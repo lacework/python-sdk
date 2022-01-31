@@ -5,7 +5,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 
 import random
 
-from laceworksdk.api.token import TokenAPI
+from laceworksdk.api.v1.token import TokenAPI
 
 
 # Tests
