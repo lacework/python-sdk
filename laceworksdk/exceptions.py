@@ -10,14 +10,14 @@ import requests
 logger = logging.getLogger(__name__)
 
 
-class LaceworksdkException(Exception):
+class LaceworkSDKException(Exception):
     """
     Base class for all lacework package exceptions.
     """
     pass
 
 
-class ApiError(LaceworksdkException):
+class ApiError(LaceworkSDKException):
     """
     Errors returned in response to requests sent to the Lacework APIs.
     Several data attributes are available for inspection.
@@ -72,7 +72,7 @@ class ApiError(LaceworksdkException):
         )
 
 
-class MalformedResponse(LaceworksdkException):
+class MalformedResponse(LaceworkSDKException):
     """Raised when a malformed response is received from Lacework."""
     pass
 
