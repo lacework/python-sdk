@@ -1,4 +1,5 @@
 """This is an import file that runs on every startup of the Jupyter runtime."""
+# flake8: noqa
 
 import altair as alt
 import pandas as pd
