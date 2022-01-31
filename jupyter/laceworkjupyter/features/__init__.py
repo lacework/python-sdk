@@ -3,6 +3,7 @@
 from . import cache  # noqa: F401
 from . import client  # noqa: F401
 from . import date  # noqa: F401
+from . import helper  # noqa: F401
 from . import hunt  # noqa: F401
 from . import policies  # noqa: F401
 from . import query  # noqa: F401

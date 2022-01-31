@@ -141,7 +141,7 @@ def get_query_definition(table_name, filters):
     }
 
 
-def build_lql_query(query_name, query_dict, join_support=True):
+def build_lql_query(query_name, query_dict, join_support=True):  # noqa: C901
     """
     Build a LQL query and return evaluator ID and the query.
 

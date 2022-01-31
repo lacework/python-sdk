@@ -1,4 +1,5 @@
 # Configuration file for jupyter-notebook.
+# flake8: noqa
 
 ## Use a regular expression for the Access-Control-Allow-Origin header
 #  
