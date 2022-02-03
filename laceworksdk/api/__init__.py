@@ -44,6 +44,7 @@ from .v2.schemas import SchemasAPI
 from .v2.team_members import TeamMembersAPI
 from .v2.user_profile import UserProfileAPI
 from .v2.vulnerabilities import VulnerabilitiesAPI
+from .v2.vulnerability_exceptions import VulnerabilityExceptionsAPI
 
 from laceworksdk.config import (
     LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE,
@@ -163,6 +164,7 @@ class LaceworkClient:
         self.tokens = TokenAPI(self._session)
         self.user_profile = UserProfileAPI(self._session)
         self.vulnerabilities = VulnerabilitiesAPI(self._session)
+        self.vulnerability_exceptions = VulnerabilityExceptionsAPI(self._session)
 
     def set_org_level_access(self, org_level_access):
         """
