@@ -93,11 +93,14 @@ class ResourceGroupsAPI(CrudEndpoint):
         :return response json
         """
 
+        if enabled is not None:
+            enabled = int(bool(enabled))
+
         return super().update(
             id=guid,
             resource_name=resource_name,
             resource_type=resource_type,
-            enabled=int(bool(enabled)),
+            enabled=enabled,
             props=props,
             **request_params
         )

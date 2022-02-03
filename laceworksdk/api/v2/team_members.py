@@ -124,10 +124,13 @@ class TeamMembersAPI(CrudEndpoint):
         :return response json
         """
 
+        if user_enabled is not None:
+            user_enabled = int(bool(user_enabled))
+
         return super().update(
             id=guid,
             user_name=user_name,
-            user_enabled=int(bool(user_enabled)),
+            user_enabled=user_enabled,
             props=props,
             org_admin=org_admin,
             org_user=org_user,

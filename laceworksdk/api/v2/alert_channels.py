@@ -110,11 +110,14 @@ class AlertChannelsAPI(CrudEndpoint):
         :return response json
         """
 
+        if enabled is not None:
+            enabled = int(bool(enabled))
+
         return super().update(
             id=guid,
             name=name,
             type=type,
-            enabled=int(bool(enabled)),
+            enabled=enabled,
             data=data,
             **request_params
         )
