@@ -297,8 +297,8 @@ class HttpSession:
             try:
                 response_json = response.json()
                 next_page = response_json.get("paging", {}).get("urls", {}).get("nextPage")
-            except json.JSONDecodeError as e:
-                logger.error(f"Failed to decode response from Lacework as JSON.", exc_info=True)
+            except json.JSONDecodeError:
+                logger.error("Failed to decode response from Lacework as JSON.", exc_info=True)
                 logger.debug(f"Response text: {response.text}")
                 next_page = None
 
