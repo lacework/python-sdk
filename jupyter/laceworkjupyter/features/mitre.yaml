@@ -1,0 +1,5 @@
+- mitre_id: T1204
+  alertType: SuspiciousApplicationLaunched
+
+- mitre_id: T1531
+  alertType: NetworkSecurityGroupCreatedOrUpdated
