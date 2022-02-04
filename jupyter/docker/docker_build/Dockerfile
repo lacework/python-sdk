@@ -32,7 +32,7 @@ COPY --chown=1000:1000 docker/docker_build/lacework /home/lacework/lacenv/share/
 RUN pip install --upgrade pip setuptools wheel && \
     pip install --upgrade ipywidgets jupyter_contrib_nbextensions jupyter_http_over_ws ipydatetime tabulate && \
     pip install --upgrade scikit-learn matplotlib python-evtx Evtx timesketch_import_client "snowflake-connector-python[secure-local-storage,pandas]" && \
-    pip install --upgrade ipyaggrid keras nbformat numpy pandas pyparsing qgrid ruamel.yaml sklearn && \
+    pip install --upgrade ipyaggrid keras nbformat numpy pandas pyparsing qgrid ruamel.yaml sklearn mitreattack-python && \
     pip install --upgrade tensorflow tqdm traitlets xmltodict ds4n6-lib picatrix timesketch_api_client openpyxl && \
     cd /home/lacework/code && pip install -e . && \
     cd /home/lacework/code/jupyter && pip install -e . && \

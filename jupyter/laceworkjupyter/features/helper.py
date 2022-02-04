@@ -14,6 +14,36 @@ from laceworkjupyter import manager
 logger = logging.getLogger("lacework_sdk.jupyter.feature.helper")
 
 
+def extract_json_field(json_obj, item):
+    """
+    Extract a field from a JSON struct.
+
+    :param json_obj: Either a JSON string or a dict.
+    :param str item: The item string, dot delimited.
+    :return: The extracted field.
+    """
+    if isinstance(json_obj, str):
+        try:
+            json_obj = json.loads(json_obj)
+        except json.JSONDecodeError:
+            logger.error("Unable to decode JSON string: %s", json_obj)
+            return np.nan
+
+    if not isinstance(json_obj, dict):
+        logger.error("Unable to extract, not a dict: %s", type(json_obj))
+        return np.nan
+
+    data = json_obj
+    for point in item.split("."):
+        if not isinstance(data, dict):
+            logger.error(
+                "Sub-item %s is not a dict (%s)", point, type(data))
+            return np.nan
+
+        data = data.get(point)
+    return data
+
+
 @manager.register_feature
 def deep_extract_field(data_frame, column, field_string, ctx=None):
     """
@@ -31,31 +61,9 @@ def deep_extract_field(data_frame, column, field_string, ctx=None):
     :param obj ctx: The context object.
     :return: A pandas Series with the extracted value.
     """
-    def _extract_function(json_obj, item):
-        if isinstance(json_obj, str):
-            try:
-                json_obj = json.loads(json_obj)
-            except json.JSONDecodeError:
-                logger.error("Unable to decode JSON string: %s", json_obj)
-                return np.nan
-
-        if not isinstance(json_obj, dict):
-            logger.error("Unable to extract, not a dict: %s", type(json_obj))
-            return np.nan
-
-        data = json_obj
-        for point in item.split("."):
-            if not isinstance(data, dict):
-                logger.error(
-                    "Sub-item %s is not a dict (%s)", point, type(data))
-                return np.nan
-
-            data = data.get(point)
-        return data
-
     if column not in data_frame:
         logger.error("Column does not exist in the dataframe.")
         return pd.Series()
 
     return data_frame[column].apply(
-        lambda x: _extract_function(x, field_string))
+        lambda x: extract_json_field(x, field_string))

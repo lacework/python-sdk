@@ -171,7 +171,7 @@ def generate_filters(change):  # noqa: C901
     table_name = datasource['name']
     lw_ctx.add_state("query_builder", "query_custom_table_name", table_name)
 
-    table_schema = lw_ctx.client.datasources.get_datasource_schema(table_name)
+    table_schema = lw_ctx.client.datasources.get_datasource(table_name)
 
     checkboxes = []
     return_fields = []
