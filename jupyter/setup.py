@@ -36,6 +36,7 @@ setup(
         "laceworksdk",
         "ipywidgets",
         "mitreattack-python",
+        "taxii2client",
         "pandas"
     ],
     classifiers=[

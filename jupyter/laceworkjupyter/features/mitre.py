@@ -181,5 +181,3 @@ def get_alerts_data_with_mitre(start_time="", end_time="", ctx=None):
 
     alert_df = lw_client.alerts.get(start_time=start_time, end_time=end_time)
     return alert_df.merge(mitre_joined_df, how="left")
-
-
