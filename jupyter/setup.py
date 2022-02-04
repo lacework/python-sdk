@@ -35,6 +35,7 @@ setup(
         "pyyaml",
         "laceworksdk",
         "ipywidgets",
+        "mitreattack-python",
         "pandas"
     ],
     classifiers=[

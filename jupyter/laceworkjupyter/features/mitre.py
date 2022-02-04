@@ -8,6 +8,9 @@ from taxii2client.v20 import Server
 from stix2 import CompositeDataSource
 
 from laceworkjupyter import manager
+from laceworkjupyter import utils as main_utils
+from laceworkjupyter.features import client
+from laceworkjupyter.features import utils
 
 
 class MitreAttack:
@@ -144,5 +147,39 @@ def get_mitre_client(ctx=None):
         mitre_client = MitreAttack()
         ctx.add("mitre_client", mitre_client)
         return mitre_client
-    
+
     return MitreAttack()
+
+
+@manager.register_feature
+def get_alerts_data_with_mitre(start_time="", end_time="", ctx=None):
+    """
+    Returns a DataFrame from the Alerts API call with Att&ck information.
+
+    :param str start_time: The start time, in ISO format.
+    :param str end_time: The end time, in ISO format.
+    :return: A pandas DataFrame with the content of the Alerts API call
+        merged with Att&CK information, if applicable.
+    """
+    if not ctx:
+        raise ValueError("The context is required for this operation.")
+
+    attack_mappings = pd.DataFrame(utils.load_yaml_file("mitre.yaml"))
+    mitre_client = get_mitre_client(ctx=ctx)
+    mitre_enterprise = mitre_client.get_collection("enterprise")
+    mitre_joined_df = attack_mappings.merge(mitre_enterprise, how="left")
+
+    lw_client = ctx.client
+    if not lw_client:
+        lw_client = client.get_client()
+
+    default_start, default_end = main_utils.parse_date_offset("LAST 2 DAYS")
+    if not start_time:
+        start_time = ctx.get("start_time", default_start)
+    if not end_time:
+        end_time = ctx.get("end_time", default_end)
+
+    alert_df = lw_client.alerts.get(start_time=start_time, end_time=end_time)
+    return alert_df.merge(mitre_joined_df, how="left")
+
+
