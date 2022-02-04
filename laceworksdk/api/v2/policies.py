@@ -133,16 +133,22 @@ class PoliciesAPI(CrudEndpoint):
         :return response json
         """
 
+        if enabled is not None:
+            enabled = bool(enabled)
+
+        if alert_enabled is not None:
+            alert_enabled = bool(alert_enabled)
+
         return super().update(
             id=policy_id,
             policy_type=policy_type,
             query_id=query_id,
-            enabled=bool(enabled),
+            enabled=enabled,
             title=title,
             description=description,
             remediation=remediation,
             severity=severity,
-            alert_enabled=bool(alert_enabled),
+            alert_enabled=alert_enabled,
             alert_profile=alert_profile,
             limit=limit,
             eval_frequency=eval_frequency,

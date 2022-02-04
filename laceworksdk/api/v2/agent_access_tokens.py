@@ -70,9 +70,12 @@ class AgentAccessTokensAPI(CrudEndpoint):
         :return response json
         """
 
+        if token_enabled is not None:
+            token_enabled = int(bool(token_enabled))
+
         return super().update(
             id=id,
-            token_enabled=int(bool(token_enabled)),
+            token_enabled=token_enabled,
             **request_params
         )
 
