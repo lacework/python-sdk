@@ -1,5 +1,21 @@
-- mitre_id: T1204
-  alertType: SuspiciousApplicationLaunched
+- alert_fields: 
+    - name: alertType
+      value: NewUser
+      type: exact
+  id: T1136.003
 
-- mitre_id: T1531
-  alertType: NetworkSecurityGroupCreatedOrUpdated
+- alert_fields:
+    - name: alertType
+      value: MaliciousFile
+      type: exact
+  id: T1204.002
+
+- alert_fields:
+    - name: alertType
+      value: SuspiciousApplicationLaunched
+      type: exact
+    - name: keys.src.keys.exe_path
+      value: python
+      type: contains
+  condition: and
+  id: T1059.006
