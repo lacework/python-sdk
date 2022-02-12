@@ -50,13 +50,26 @@ def _get_alert_frame_from_ctx(start_time, end_time, ctx):
         start_time=start_time, end_time=end_time)
 
 
-def _merge_alert_with_mitre(alert_frame, merge_frame, ctx):
+def _merge_frame_with_mitre(data_frame, merge_frame, merge_on, ctx):
     """
-    Returns a dataframe that merges Alerts API frame with ATT&CK data.
+    Returns a dataframe that merges a data frame with ATT&CK data.
 
-    :param DataFrame alert_frame: A data frame from the Alerts API call.
+    This function takes a data frame and a merge frame and then combines
+    them with data gathered from Mitre ATT&CK pre-att&ck and enterprise
+    data sets.
+
+    The merge frame has two columns, a unique identifier from the main
+    data frame as well as a column with the appropriate mitre ID.
+    This is essential to be able to successfully merge the data frame
+    with the ATT&CK dataset.
+
+    :param DataFrame data_frame: A data frame that contains the main data
+        set.
     :param DataFrame merge_frame: A data frame with mapping between
-        alertsId and mitre_id. Used for the initial merge operation.
+        a unique identifier within the data frame and the mitre_id.
+        Used for the initial merge operation.
+    :param str merge_on: This is the unique identifier within the data
+        frame that ties the data frame to the mitre_id in the merge_frame.
     :return: A pandas data frame, the alerts frame merged with data
         gathered from Mitre ATT&CK PRE-ATT&CK and Enterprise data sets.
     """
@@ -64,7 +77,9 @@ def _merge_alert_with_mitre(alert_frame, merge_frame, ctx):
     mitre_enterprise = mitre_client.get_collection("enterprise")
     mitre_preattack = mitre_client.get_collection("pre")
 
-    first_merge = alert_frame.merge(merge_frame, on="alertId", how="left")
+    first_merge = data_frame.merge(
+        merge_frame, on=merge_on, how="left")
+
     mitre_ids = [
         x for x in first_merge.mitre_id.unique() if isinstance(x, str)]
     enterprise_slice = mitre_enterprise[
@@ -219,46 +234,70 @@ class FrameFilter:
         self._frame = frame
         self._temp_fields = []
 
-    def _exact_filter(self, field_name, value):
-        return self._frame[field_name] == value
+    def _exact_filter(self, column_name, value):
+        """
+        Returns a filter for an exact match.
+        """
+        return self._frame[column_name] == value
 
-    def _contains_filter(self, field_name, value):
-        return self._frame[field_name].str.contains(value)
+    def _contains_filter(self, column_name, value):
+        """
+        Returns a filter where a substring match is seeked, case insensitive.
+        """
+        return self._frame[column_name].str.contains(value, case=False)
 
-    def _re_filter(self, field_name, value):
-        return self._frame[field_name].str.contains(value)
+    def _re_filter(self, column_name, value):
+        """
+        Returns a filter for a string field using regular expression.
+        """
+        return self._frame[column_name].str.contains(value)
 
     def _get_random_string(self):
         return ''.join(
             random.choice(string.ascii_lowercase) for _ in range(6))
 
-    def _get_field_name(self, field_dict):
+    def _get_column_name(self, field_dict):
+        """
+        Returns a column name within a data frame to use for filtering.
+
+        If the column is a JSON field, it will extract that value out
+        into a new column and return that column name.
+        """
         frame_field = field_dict.get('name', '')
 
         frame_column, _, json_fields = frame_field.partition('.')
         if not json_fields:
             return frame_column
 
-        field_name = f'_temp_xtr_{self._get_random_string()}'
-        self._frame[field_name] = self._frame[frame_column].apply(
+        column_name = f'_temp_xtr_{self._get_random_string()}'
+        self._frame[column_name] = self._frame[frame_column].apply(
             lambda x: helper.extract_json_field(x, json_fields))
-        self._temp_fields.append(field_name)
-        return field_name
+        self._temp_fields.append(column_name)
+
+        return column_name
 
     def get_filter(self, definition):
+        """
+        Returns a filter used for filtering a data frame from a definition.
+
+        :param dict definition: A single filter definition from the mitre.yaml
+            YAML file.
+        :return: A pandas Series object used as a filter (contains
+            boolean values).
+        """
         filter_elements = []
         for field in definition.get('alert_fields', []):
             field_type = field.get('type', 'exact')
-            field_name = self._get_field_name(field)
+            column_name = self._get_column_name(field)
             value = field.get('value', '')
 
             if field_type == 'exact':
-                filter_elements.append(self._exact_filter(field_name, value))
+                filter_elements.append(self._exact_filter(column_name, value))
             elif field_type == 'contains':
                 filter_elements.append(
-                    self._contains_filter(field_name, value))
+                    self._contains_filter(column_name, value))
             elif field_type == 're':
-                filter_elements.append(self._re_filter(field_name, value))
+                filter_elements.append(self._re_filter(column_name, value))
 
         condition = definition.get('condition', 'and')
         if len(filter_elements) == 1:
@@ -272,6 +311,9 @@ class FrameFilter:
         return 'invalid'
 
     def cleanup(self):
+        """
+        Cleans up the data frame by deleting the temporary columns created.
+        """
         for field in self._temp_fields:
             del self._frame[field]
 
@@ -337,5 +379,8 @@ def get_alerts_data_with_mitre(
             new_frame["mitre_id"] = mapping.get("id", np.nan)
             merge_frame = pd.concat([merge_frame, new_frame])
 
-    return _merge_alert_with_mitre(
-        alert_frame=alert_frame, merge_frame=merge_frame, ctx=ctx)
+    return _merge_frame_with_mitre(
+        data_frame=alert_frame,
+        merge_frame=merge_frame,
+        merge_on="alertId",
+        ctx=ctx)
