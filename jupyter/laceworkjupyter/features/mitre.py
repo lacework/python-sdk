@@ -17,6 +17,77 @@ from laceworkjupyter.features import helper
 from laceworkjupyter.features import utils
 
 
+def _get_alert_frame_from_ctx(start_time, end_time, ctx):
+    """
+    Returns a dataframe resulting from calling the Alerts API.
+
+    :param str start_time: ISO formatted start time for the API call.
+        Defaults to fetching time from context, falling back to going
+        two days back in time if not provided and no time stored in cache.
+    :param str end_time: ISO formatted end time for the API call.
+        Defaults to fetching time from context, falling back to going
+        two days back in time if not provided and no time stored in cache.
+    :param obj ctx: The context object.
+    :raises ValueError: If the context object is not set, since that is
+        required for this operation.
+    :return: A pandas DataFrame with the results of callin the Alerts API.
+    """
+    if not ctx:
+        raise ValueError("The context is required for this operation.")
+
+    lw_client = ctx.client
+    if not lw_client:
+        lw_client = client.get_client(ctx=ctx)
+
+    default_start, default_end = main_utils.parse_date_offset(
+        "LAST 2 DAYS")
+    if not start_time:
+        start_time = ctx.get("start_time", default_start)
+    if not end_time:
+        end_time = ctx.get("end_time", default_end)
+
+    return lw_client.alerts.get(
+        start_time=start_time, end_time=end_time)
+
+
+def _merge_alert_with_mitre(alert_frame, merge_frame, ctx):
+    """
+    Returns a dataframe that merges Alerts API frame with ATT&CK data.
+
+    :param DataFrame alert_frame: A data frame from the Alerts API call.
+    :param DataFrame merge_frame: A data frame with mapping between
+        alertsId and mitre_id. Used for the initial merge operation.
+    :return: A pandas data frame, the alerts frame merged with data
+        gathered from Mitre ATT&CK PRE-ATT&CK and Enterprise data sets.
+    """
+    mitre_client = get_mitre_client(ctx=ctx)
+    mitre_enterprise = mitre_client.get_collection("enterprise")
+    mitre_preattack = mitre_client.get_collection("pre")
+
+    first_merge = alert_frame.merge(merge_frame, on="alertId", how="left")
+    mitre_ids = [
+        x for x in first_merge.mitre_id.unique() if isinstance(x, str)]
+    enterprise_slice = mitre_enterprise[
+        mitre_enterprise.mitre_id.isin(mitre_ids)].copy()
+    pre_slice = mitre_preattack[
+        mitre_preattack.mitre_id.isin(mitre_ids)].copy()
+
+    second_merge = pd.merge(
+        left=first_merge,
+        right=enterprise_slice,
+        how="left",
+        on="mitre_id",
+        sort=False,
+    )
+    return pd.merge(
+        left=second_merge,
+        right=pre_slice,
+        how="left",
+        on="mitre_id",
+        sort=False,
+    )
+
+
 class MitreAttack:
     """
     Simple class that controls access to Mitre Att&ck datasets.
@@ -140,7 +211,7 @@ class MitreAttack:
 
 class FrameFilter:
     """
-    Class for a frame filter.
+    Class to generate data frame filters from YAML definitions.
     """
 
     def __init__(self, ctx, frame):
@@ -248,37 +319,23 @@ def get_alerts_data_with_mitre(
     :return: A pandas DataFrame with the content of the Alerts API call
         merged with Att&CK information, if applicable.
     """
-    if not ctx:
-        raise ValueError("The context is required for this operation.")
-
     if alert_frame is None:
-        lw_client = ctx.client
-        if not lw_client:
-            lw_client = client.get_client(ctx=ctx)
-
-        default_start, default_end = main_utils.parse_date_offset(
-            "LAST 2 DAYS")
-        if not start_time:
-            start_time = ctx.get("start_time", default_start)
-        if not end_time:
-            end_time = ctx.get("end_time", default_end)
-
-        alert_df = lw_client.alerts.get(
-            start_time=start_time, end_time=end_time)
+        alert_frame = _get_alert_frame_from_ctx(
+            start_time=start_time, end_time=end_time, ctx=ctx)
 
     attack_mappings = utils.load_yaml_file("mitre.yaml")
-    alert_df["mitre_id"] = np.nan
-    with FrameFilter(ctx, alert_df) as frame_filter:
-        for mapping in attack_mappings:
+    merge_frame = pd.DataFrame()
+
+    for mapping in attack_mappings:
+        with FrameFilter(ctx, alert_frame) as frame_filter:
             my_filter = frame_filter.get_filter(mapping)
-            alert_slice = alert_df[my_filter]
+            alert_slice = alert_frame[my_filter]
             if alert_slice.empty:
                 continue
-            alert_df.loc[my_filter, "mitre_id"] = mapping.get("id", np.nan)
+            new_frame = pd.DataFrame()
+            new_frame["alertId"] = alert_slice["alertId"]
+            new_frame["mitre_id"] = mapping.get("id", np.nan)
+            merge_frame = pd.concat([merge_frame, new_frame])
 
-    mitre_client = get_mitre_client(ctx=ctx)
-    mitre_enterprise = mitre_client.get_collection("enterprise")
-    mitre_preattack = mitre_client.get_collection("pre")
-
-    first_merge = alert_df.merge(mitre_enterprise, on="mitre_id", how="left")
-    return first_merge.merge(mitre_preattaack, on="mitre_id", how="left")
+    return _merge_alert_with_mitre(
+        alert_frame=alert_frame, merge_frame=merge_frame, ctx=ctx)
