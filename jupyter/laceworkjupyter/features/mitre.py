@@ -73,6 +73,9 @@ def _merge_frame_with_mitre(data_frame, merge_frame, merge_on, ctx):
     :return: A pandas data frame, the alerts frame merged with data
         gathered from Mitre ATT&CK PRE-ATT&CK and Enterprise data sets.
     """
+    if merge_frame.empty:
+        return data_frame
+
     mitre_client = get_mitre_client(ctx=ctx)
     mitre_enterprise = mitre_client.get_collection("enterprise")
     mitre_preattack = mitre_client.get_collection("pre")
@@ -87,13 +90,20 @@ def _merge_frame_with_mitre(data_frame, merge_frame, merge_on, ctx):
     pre_slice = mitre_preattack[
         mitre_preattack.mitre_id.isin(mitre_ids)].copy()
 
-    second_merge = pd.merge(
-        left=first_merge,
-        right=enterprise_slice,
-        how="left",
-        on="mitre_id",
-        sort=False,
-    )
+    if enterprise_slice.empty:
+        second_merge = first_merge
+    else:
+        second_merge = pd.merge(
+            left=first_merge,
+            right=enterprise_slice,
+            how="left",
+            on="mitre_id",
+            sort=False,
+        )
+
+    if pre_slice.empty:
+        return second_merge
+
     return pd.merge(
         left=second_merge,
         right=pre_slice,
