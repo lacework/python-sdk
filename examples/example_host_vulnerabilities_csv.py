@@ -6,7 +6,7 @@ import csv
 import json
 
 # setup lacework cli (~/.lacework.toml)
-lw = LaceworkClient(profile="verato")
+lw = LaceworkClient()
 
 start_time_dt = datetime.now() + timedelta(days=-1)
 end_time_dt = datetime.now()
