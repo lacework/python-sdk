@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
-from laceworksdk import LaceworkClient
-from datetime import datetime, timedelta
 import csv
 import json
+
+from datetime import datetime, timedelta
+
+from laceworksdk import LaceworkClient
 
 # setup lacework cli (~/.lacework.toml)
 lw = LaceworkClient()
