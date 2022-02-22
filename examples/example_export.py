@@ -349,9 +349,9 @@ if __name__ == "__main__":
             "cve_id": "vulnId",
             # lookup all active containers matching image id and return all properties
             "containers": ReferenceLookup("imageId", None, containers, multivalue=True),
-            "image_registry": "evalCtx.imageInfo.registry",
-            "image_repo": "evalCtx.imageInfo.repo",
-            "image_status": "evalCtx.imageInfo.status",
+            "image_registry": "evalCtx.image_info.registry",
+            "image_repo": "evalCtx.image_info.repo",
+            "image_status": "evalCtx.image_info.status",
             "package_name": "featureKey.name",
             "package_namespace": "featureKey.namespace",
             "version": "featureKey.version",
