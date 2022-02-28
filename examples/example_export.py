@@ -99,11 +99,18 @@ def query(
     client,
     type,
     object,
-    start_time=datetime.now() + timedelta(days=-1),
-    end_time=datetime.now(),
-    filters=[],
+    start_time=None,
+    end_time=None,
+    filters=None,
     returns=None,
 ):
+
+    if start_time is None:
+        start_time = datetime.now(timezone.utc) + timedelta(days=-1)
+    if end_time is None:
+        end_time = datetime.now(timezone.utc)
+    if filters is None:
+        filters = []
 
     # build query string
     q = {
