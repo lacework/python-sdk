@@ -34,10 +34,12 @@ def extract_json_field(json_obj, item):
         return np.nan
 
     data = json_obj
-    for point in item.split("."):
+    data_points = item.split(".")
+    for index, point in enumerate(data_points):
         if not isinstance(data, dict):
-            logger.error(
-                "Sub-item %s is not a dict (%s)", point, type(data))
+            if index != (len(data_points) - 1):
+                logger.error(
+                    "Sub-item %s is not a dict (%s)", point, type(data))
             return np.nan
 
         data = data.get(point)
