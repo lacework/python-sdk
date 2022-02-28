@@ -5,7 +5,7 @@ Example script showing how to use the LaceworkClient class.
 
 import csv
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from dotenv import load_dotenv
 from laceworksdk import LaceworkClient
