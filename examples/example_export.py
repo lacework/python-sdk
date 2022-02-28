@@ -54,7 +54,7 @@ class DataHandler:
     def __init__(self, format, file_path="export.csv"):
         if format not in ["csv", "dict"]:
             raise Exception(
-                f"Unsupported export format, exepcted csv or dict found: {format}"
+                f"Unsupported export format, expected csv or dict found: {format}"
             )
 
         self.format = format
