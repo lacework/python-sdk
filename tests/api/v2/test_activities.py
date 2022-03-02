@@ -27,7 +27,7 @@ class TestActivitiesEndpoint(SearchEndpoint):
     OBJECT_TYPE = ActivitiesAPI
     OBJECT_MAP = {
         "changed_files": ChangedFilesAPI,
-        "connections": ConnectionsAPI,
+        # "connections": ConnectionsAPI,
         "dns": DnsAPI,
         "user_logins": UserLoginsAPI
     }
