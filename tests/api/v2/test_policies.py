@@ -29,8 +29,7 @@ def api_object_create_body(random_text, query):
         "remediation": "Policy remediation",
         "severity": "high",
         "alert_enabled": True,
-        "alert_profile": "LW_CloudTrail_Alerts",
-        "evaluator_id": query["evaluatorId"]
+        "alert_profile": "LW_CloudTrail_Alerts"
     }
 
 
@@ -44,7 +43,7 @@ def api_object_update_body():
 @pytest.fixture(scope="module")
 def query(api):
     queries = api.queries.get()
-    queries = list(filter(lambda elem: elem["owner"] == "Lacework", queries["data"]))
+    queries = list(filter(lambda elem: elem["owner"] == "Lacework" and "LW_Global_AWS_CTA" in elem["queryId"], queries["data"]))
     query = random.choice(queries)
     return query
 
