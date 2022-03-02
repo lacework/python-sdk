@@ -54,6 +54,7 @@ class TestAlertChannels(CrudEndpoint):
     def test_api_get_by_type(self, api_object):
         self._get_object_classifier_test(api_object, "type")
 
+    @pytest.mark.flaky_test
     def test_api_test(self, api_object):
         response = api_object.search(json={
             "filters": [
