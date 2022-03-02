@@ -21,7 +21,6 @@ def api_object(api):
 @pytest.fixture(scope="module")
 def api_object_create_body(random_text):
     return {
-        "evaluator_id": "Cloudtrail",
         "query_id": random_text,
         "query_text": f"""{random_text} {{
             source {{CloudTrailRawEvents e}}
@@ -45,7 +44,7 @@ def api_object_update_body(random_text):
 @pytest.fixture(scope="module")
 def query(api):
     queries = api.queries.get()
-    queries = list(filter(lambda elem: elem["owner"] == "Lacework", queries["data"]))
+    queries = list(filter(lambda elem: elem["owner"] == "Lacework" and "LW_Global_AWS_CTA" in elem["queryId"], queries["data"]))
     query = random.choice(queries)
     return query
 
@@ -70,7 +69,7 @@ class TestQueries(CrudEndpoint):
         assert "data" in response.keys()
 
     def test_queries_api_validate(self, api_object, query):
-        response = api_object.validate(evaluator_id=query["evaluatorId"], query_text=query["queryText"])
+        response = api_object.validate(query_text=query["queryText"])
         assert "data" in response.keys()
 
     def test_api_search(self):

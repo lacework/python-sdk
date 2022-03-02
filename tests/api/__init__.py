@@ -63,7 +63,7 @@ def api_env():
 
 @pytest.fixture(scope="session")
 def random_text():
-    return "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+    return "".join(random.choice(string.ascii_uppercase) for _ in range(8))
 
 
 @pytest.fixture(scope="session")
