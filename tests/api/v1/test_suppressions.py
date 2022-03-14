@@ -6,6 +6,8 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import random
 import string
 
+import pytest
+
 from laceworksdk.api.v1.suppressions import SuppressionsAPI
 
 RANDOM_TEXT = "".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
@@ -56,11 +58,13 @@ def test_suppressions_api_get_gcp(api):
     assert response["ok"]
 
 
+@pytest.mark.flaky_test
 def test_suppressions_api_create_aws(api):
     response = api.suppressions.create(type="aws", data=suppression_data)
     assert response["ok"]
 
 
+@pytest.mark.flaky_test
 def test_suppressions_api_delete_aws(api):
     response = api.suppressions.delete(type="aws", data=suppression_data)
     assert response.status_code == 204
