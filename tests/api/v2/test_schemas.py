@@ -28,7 +28,17 @@ class TestSchemas(BaseEndpoint):
     def test_schemas_api_get_type_schema(self, api_object):
         response = api_object.get()
 
+        exempt_schemas = [
+            "Activities",
+            "Configs",
+            "Entities",
+            "Vulnerabilities"
+        ]
+
         for schema_type in response:
+            if schema_type in exempt_schemas:
+                continue
+
             response = api_object.get(type=schema_type)
 
             if type(response) is dict:
