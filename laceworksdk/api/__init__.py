@@ -35,6 +35,7 @@ from .v2.container_registries import ContainerRegistriesAPI
 from .v2.contract_info import ContractInfoAPI
 from .v2.datasources import DatasourcesAPI
 from .v2.entities import EntitiesAPI
+from .v2.evidence import EvidenceAPI
 from .v2.organization_info import OrganizationInfoAPI
 from .v2.policies import PoliciesAPI
 from .v2.queries import QueriesAPI
@@ -148,6 +149,7 @@ class LaceworkClient:
         self.contract_info = ContractInfoAPI(self._session)
         self.datasources = DatasourcesAPI(self._session)
         self.entities = EntitiesAPI(self._session)
+        self.evidence = EvidenceAPI(self._session)
         self.events = EventsAPI(self._session)
         self.files = DownloadFileAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
