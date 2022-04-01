@@ -1,4 +1,5 @@
 import functools
+import types
 
 import pandas as pd
 
@@ -9,20 +10,30 @@ def dataframe_decorator(function):
     """
     A decorator used to convert Lacework JSON API output into a dataframe.
     """
+    def _get_frame_from_dict(data):
+        if not isinstance(data, dict):
+            return
+
+        data_items = data.get('data', [])
+        if isinstance(data_items, dict):
+            data_items = [data_items]
+
+        df = pd.DataFrame(data_items)
+        if 'SEVERITY' in df:
+            df['SEVERITY'] = df.SEVERITY.apply(
+                lambda x: config.SEVERITY_DICT.get(x, x))
+        return df
+
     @functools.wraps(function)
     def get_output(*args, **kwargs):
         data = function(*args, **kwargs)
 
         if isinstance(data, dict):
-            data_items = data.get('data', [])
-            if isinstance(data_items, dict):
-                data_items = [data_items]
+            return _get_frame_from_dict(data)
 
-            df = pd.DataFrame(data_items)
-            if 'SEVERITY' in df:
-                df['SEVERITY'] = df.SEVERITY.apply(
-                    lambda x: config.SEVERITY_DICT.get(x, x))
-            return df
+        elif isinstance(data, (types.GeneratorType, list, map, filter)):
+            frames = [_get_frame_from_dict(x) for x in data]
+            return pd.concat(frames)
 
         return data
 
