@@ -23,22 +23,26 @@ class TestAlerts(ReadEndpoint):
     OBJECT_ID_NAME = "alertId"
     OBJECT_TYPE = AlertsAPI
 
+    @pytest.mark.flaky_test
     def test_get_by_date(self, api_object):
         start_time, end_time = self._get_start_end_times()
         response = api_object.get(start_time=start_time, end_time=end_time)
         assert "data" in response.keys()
 
+    @pytest.mark.flaky_test
     def test_get_by_date_camelcase(self, api_object):
         start_time, end_time = self._get_start_end_times()
         response = api_object.get(startTime=start_time, endTime=end_time)
         assert "data" in response.keys()
 
+    @pytest.mark.flaky_test
     def test_get_duplicate_key(self, api_object):
         start_time, end_time = self._get_start_end_times()
         tester = TestCase()
         with tester.assertRaises(KeyError):
             api_object.get(start_time=start_time, startTime=start_time, endTime=end_time)
 
+    @pytest.mark.flaky_test
     def test_get_details(self, api_object):
         guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
         response = api_object.get_details(guid)
