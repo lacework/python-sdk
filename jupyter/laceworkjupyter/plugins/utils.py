@@ -2,6 +2,7 @@
 Simple utility class for the helper plugins.
 """
 
+
 def get_data_dicts(data):
     """
     Yields data dicts from data input.
