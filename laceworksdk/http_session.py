@@ -234,7 +234,7 @@ class HttpSession:
         data = kwargs.get("data", "")
         json = kwargs.get("json", "")
         if data or json:
-            logger.debug(f"{method} request data:\n{data}{json}")
+            logger.debug(f"{method} request data:\nData: {data}\nJSON: {json}")
 
         # TODO: Remove this on v1.0 release - this is done for back compat
         if data and not json:
