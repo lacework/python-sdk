@@ -2,6 +2,8 @@
 
 import datetime
 
+import pandas as pd
+
 from laceworkjupyter import helper
 from laceworkjupyter import manager
 
