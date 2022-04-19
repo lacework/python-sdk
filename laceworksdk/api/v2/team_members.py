@@ -36,10 +36,10 @@ class TeamMembersAPI(CrudEndpoint):
             (0 or 1)
         :param props: An object containing object configuration
             obj:
-                :param firstName: The first name of the object.
-                :param lastName: The last name of the team m.
-                :param company: The company of the object.
-                :param accountAdmin: A boolean representing if the object is an account admin.
+                :param firstName: The first name of the team member.
+                :param lastName: The last name of the team member.
+                :param company: The company of the team member.
+                :param accountAdmin: A boolean representing if the team member is an account admin.
         :param org_admin: A boolean representing if the object is an organization admin.
             (Organization-level Access Required)
         :param org_user: A boolean representing if the object is an organization user.
@@ -106,10 +106,10 @@ class TeamMembersAPI(CrudEndpoint):
             (0 or 1)
         :param props: An object containing object configuration
             obj:
-                :param firstName: The first name of the object.
-                :param lastName: The last name of the team m.
-                :param company: The company of the object.
-                :param accountAdmin: A boolean representing if the object is an account admin.
+                :param firstName: The first name of the team member.
+                :param lastName: The last name of the team member.
+                :param company: The company of the team member.
+                :param accountAdmin: A boolean representing if the team member is an account admin.
         :param org_admin: A boolean representing if the object is an organization admin.
             (Organization-level Access Required)
         :param org_user: A boolean representing if the object is an organization user.
