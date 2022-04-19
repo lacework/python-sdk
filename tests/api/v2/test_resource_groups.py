@@ -24,7 +24,7 @@ def api_object_create_body(random_text):
         "enabled": True,
         "props": {
             "description": f"Test Description {random_text}",
-            "accountIds": [123456789012]
+            "accountIds": ["123456789012"]
         }
     }
 
@@ -36,12 +36,12 @@ def api_object_update_body(random_text):
         "enabled": 0,
         "props": {
             "description": f"Test Description {random_text} (Updated)",
-            "accountIds": [123456789012]
+            "accountIds": ["123456789012"]
         }
     }
 
 
-class TestAlertRules(CrudEndpoint):
+class TestResourceGroups(CrudEndpoint):
 
     OBJECT_ID_NAME = "resourceGuid"
     OBJECT_TYPE = ResourceGroupsAPI
