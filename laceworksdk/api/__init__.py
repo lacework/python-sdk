@@ -7,6 +7,7 @@ import os
 
 from dotenv import load_dotenv
 import configparser
+from laceworksdk.api.v2.inventory import InventoryAPI
 
 from laceworksdk.http_session import HttpSession
 
@@ -23,6 +24,7 @@ from .v1.token import TokenAPI
 
 from .v2.activities import ActivitiesAPI
 from .v2.agent_access_tokens import AgentAccessTokensAPI
+from .v2.agent_info import AgentInfoAPI
 from .v2.alert_channels import AlertChannelsAPI
 from .v2.alert_profiles import AlertProfilesAPI
 from .v2.alert_rules import AlertRulesAPI
@@ -36,6 +38,7 @@ from .v2.contract_info import ContractInfoAPI
 from .v2.datasources import DatasourcesAPI
 from .v2.entities import EntitiesAPI
 from .v2.evidence import EvidenceAPI
+from .v2.inventory import InventoryAPI
 from .v2.organization_info import OrganizationInfoAPI
 from .v2.policies import PoliciesAPI
 from .v2.queries import QueriesAPI
@@ -136,6 +139,7 @@ class LaceworkClient:
         self.account = AccountAPI(self._session)
         self.activities = ActivitiesAPI(self._session)
         self.agent_access_tokens = AgentAccessTokensAPI(self._session)
+        self.agent_info = AgentInfoAPI(self._session)
         self.alert_channels = AlertChannelsAPI(self._session)
         self.alert_profiles = AlertProfilesAPI(self._session)
         self.alert_rules = AlertRulesAPI(self._session)
@@ -153,6 +157,7 @@ class LaceworkClient:
         self.events = EventsAPI(self._session)
         self.evidence = EvidenceAPI(self._session)
         self.files = DownloadFileAPI(self._session)
+        self.inventory = InventoryAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
         self.organization_info = OrganizationInfoAPI(self._session)
         self.policies = PoliciesAPI(self._session)
