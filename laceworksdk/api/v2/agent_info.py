@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Lacework Agent Info API wrapper.
+Lacework AgentInfo API wrapper.
 """
 
 from laceworksdk.api.search_endpoint import SearchEndpoint
@@ -10,11 +10,11 @@ class AgentInfoAPI(SearchEndpoint):
 
     def __init__(self, session):
         """
-        Initializes the Evidence API object.
+        Initializes the AgentInfo API object.
 
         :param session: An instance of the HttpSession class
 
-        :return EvidenceAPI object.
+        :return AgentInfoAPI object.
         """
 
         super().__init__(session, "AgentInfo")

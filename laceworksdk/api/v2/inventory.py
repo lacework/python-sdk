@@ -10,11 +10,11 @@ class InventoryAPI(SearchEndpoint):
 
     def __init__(self, session):
         """
-        Initializes the Evidence API object.
+        Initializes the Inventory API object.
 
         :param session: An instance of the HttpSession class
 
-        :return EvidenceAPI object.
+        :return InventoryAPI object.
         """
 
         super().__init__(session, "Inventory")
