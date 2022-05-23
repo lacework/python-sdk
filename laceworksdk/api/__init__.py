@@ -7,7 +7,6 @@ import os
 
 from dotenv import load_dotenv
 import configparser
-from laceworksdk.api.v2.inventory import InventoryAPI
 
 from laceworksdk.http_session import HttpSession
 
