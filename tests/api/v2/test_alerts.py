@@ -18,11 +18,19 @@ def api_object(api):
     return api.alerts
 
 
-@pytest.mark.flaky_test
 class TestAlerts(ReadEndpoint):
 
     OBJECT_ID_NAME = "alertId"
     OBJECT_TYPE = AlertsAPI
+
+    OBJECT_SCOPES = [
+        "Details",
+        "Investigation",
+        "Events",
+        "RelatedAlerts",
+        "Integrations",
+        "Timeline"
+    ]
 
     def test_get_by_date(self, api_object):
         start_time, end_time = self._get_start_end_times()
@@ -40,7 +48,24 @@ class TestAlerts(ReadEndpoint):
         with tester.assertRaises(KeyError):
             api_object.get(start_time=start_time, startTime=start_time, endTime=end_time)
 
-    def test_get_details(self, api_object):
+    @pytest.mark.flaky_test
+    @pytest.mark.parametrize("scope", OBJECT_SCOPES)
+    def test_get_details(self, api_object, scope):
         guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
-        response = api_object.get_details(guid)
+        response = api_object.get_details(guid, scope)
+        assert "data" in response.keys()
+
+    def test_comment(self, api_object):
+        guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
+        response = api_object.comment(guid, "Test Comment")
+        assert "data" in response.keys()
+
+    def test_close_fp(self, api_object):
+        guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
+        response = api_object.close(guid, 1)
+        assert "data" in response.keys()
+
+    def test_close_other(self, api_object):
+        guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
+        response = api_object.close(guid, 0, "Test Reason")
         assert "data" in response.keys()
