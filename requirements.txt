@@ -2,3 +2,4 @@ python-dotenv~=0.15
 requests~=2.25
 configparser~=5.0
 bleach~=4.0
+urllib3~=1.26
