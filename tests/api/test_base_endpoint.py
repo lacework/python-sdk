@@ -58,6 +58,18 @@ class BaseEndpoint:
         else:
             return None
 
+    def _search_random_object(self, api_object, key=None, json=None):
+        response = api_object.search(json=json)
+
+        for page in response:
+            if len(page["data"]) > 0:
+                if key:
+                    return random.choice(page["data"])[key]
+                else:
+                    return random.choice(page["data"])
+
+            return None
+
     def _get_start_end_times(self, day_delta=1):
         current_time = datetime.now(timezone.utc)
         start_time = current_time - timedelta(days=day_delta)

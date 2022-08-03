@@ -18,6 +18,15 @@ def api_object(api):
     return api.alerts
 
 
+@pytest.fixture(scope="module")
+def open_alerts_filter():
+    return {
+        "filters": [
+            {"field": "status", "expression": "eq", "value": "Open"}
+        ]
+    }
+
+
 class TestAlerts(ReadEndpoint):
 
     OBJECT_ID_NAME = "alertId"
@@ -60,12 +69,12 @@ class TestAlerts(ReadEndpoint):
         response = api_object.comment(guid, "Test Comment")
         assert "data" in response.keys()
 
-    def test_close_fp(self, api_object):
-        guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
+    def test_close_fp(self, api_object, open_alerts_filter):
+        guid = self._search_random_object(api_object, self.OBJECT_ID_NAME, open_alerts_filter)
         response = api_object.close(guid, 1)
         assert "data" in response.keys()
 
-    def test_close_other(self, api_object):
-        guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
+    def test_close_other(self, api_object, open_alerts_filter):
+        guid = self._search_random_object(api_object, self.OBJECT_ID_NAME, open_alerts_filter)
         response = api_object.close(guid, 0, "Test Reason")
         assert "data" in response.keys()

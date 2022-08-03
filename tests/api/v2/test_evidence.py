@@ -18,6 +18,7 @@ def api_object(api):
     return api.evidence
 
 
+@pytest.mark.flaky_test
 class TestEvidenceEndpoint(SearchEndpoint):
 
     OBJECT_TYPE = EvidenceAPI
