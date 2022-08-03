@@ -21,17 +21,25 @@ class SearchEndpoint:
         for attribute, object_type in self.OBJECT_MAP.items():
             assert isinstance(getattr(api_object, attribute), object_type)
 
-    def test_api_search_by_date(self, api_object):
+    def test_api_search_by_date(self, api_object, filters=None):
         start_time, end_time = self._get_start_end_times(self.DAY_DELTA)
 
-        for attribute in self.OBJECT_MAP.keys():
-            response = getattr(api_object, attribute).search(json={
-                "timeFilters": {
-                    "startTime": start_time,
-                    "endTime": end_time
-                }
-            })
+        json = {
+            "timeFilters": {
+                "startTime": start_time,
+                "endTime": end_time
+            }
+        }
 
+        if filters:
+            json = {**json, **filters}
+
+        if len(self.OBJECT_MAP) > 0:
+            for attribute in self.OBJECT_MAP.keys():
+                response = getattr(api_object, attribute).search(json=json)
+                self._assert_pages(response, self.MAX_PAGES)
+        else:
+            response = api_object.search(json=json)
             self._assert_pages(response, self.MAX_PAGES)
 
     def _assert_pages(self, response, max_pages):
