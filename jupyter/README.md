@@ -1,6 +1,6 @@
 # Lacework Jupyter Helper
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lacework/python-sdk/blob/master/jupyter/notebooks/colab_sample.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lacework/python-sdk/blob/main/jupyter/notebooks/colab_sample.ipynb)
 
 **laceworkjupyter** is a community developed Python library for interacting with the Lacework APIs in a
 Jupyter notebook environment.
@@ -46,7 +46,7 @@ The easiest way to start using the Lacework Jupyter helper is to make use of the
 `lacebook`. To run the container fetch the docker-compose file:
 
 ```shell
-$ curl -O https://raw.githubusercontent.com/lacework/python-sdk/master/jupyter/docker/docker-compose.yml
+$ curl -O https://raw.githubusercontent.com/lacework/python-sdk/main/jupyter/docker/docker-compose.yml
 ```
 
 Or you can create your own docker config file, create the file `docker-compose.yml` with the content of:
@@ -91,7 +91,7 @@ another folder of your choice. Edit the file `docker-compose.yml' and change the
 ```
 
 To a directory that persists through reboots. This can be any folder on your host system,
-the only limitations are that the folder needs to be readable and writeable by a user 
+the only limitations are that the folder needs to be readable and writeable by a user
 with UID/GID 1000:1000 for the container user to be able to make use of it.
 
 ### Upgrade Container
@@ -104,7 +104,7 @@ docker-compose pull
 docker-compose up -d
 ```
 
-(*This assumes you are running the command in the same folder as the docker-compose.yml file*)
+(_This assumes you are running the command in the same folder as the docker-compose.yml file_)
 
 ### Use Lacebook with Colab
 
@@ -114,7 +114,7 @@ and enter the backend URL: `http://localhost:8899/?token=lacework`
 ## How-To
 
 The docker container will by default initialize few things, among them is to expose a variable called `lw`, which
-is an instance of the LaceworkHelper object. 
+is an instance of the LaceworkHelper object.
 
 One way to explore what features the `lw` object has is to run inside a container:
 
@@ -127,6 +127,4 @@ Or by typing `lw.` and then hit the `<TAB>` key for an autocomplete.
 Most of the documentation will be written with notebook demonstrations. Here is a list of available notebooks to
 start exploring `lacebook`:
 
-+ [The first notebook sample](https://colab.research.google.com/github/lacework/python-sdk/blob/master/jupyter/notebooks/colab_sample.ipynb)
-
-
+- [The first notebook sample](https://colab.research.google.com/github/lacework/python-sdk/blob/main/jupyter/notebooks/colab_sample.ipynb)
