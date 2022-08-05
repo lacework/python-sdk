@@ -15,17 +15,10 @@ def process_alerts(data):
     data_dicts = data.get("data", [])
     lines = []
     for data_dict in data_dicts:
-        data_dict["alertDescription"] = helper.extract_json_field(
-            data_dict.get("alertProps", {}), "description.descriptionId")
-
-        description_dict = helper.extract_json_field(
-            data_dict.get("alertProps", {}), "description.descriptionObj")
-        data_dict.update(description_dict)
-
-        alert_context = helper.extract_json_field(
-            data_dict.get("keys", {}), "src.keys.alert")
-        if alert_context:
-            data_dict.update(alert_context)
-
+        info = data_dict.pop("alertInfo", {})
+        # Add Prefix.
+        new_info = {
+            f"info{key.capitalize()}": value for key, value in info.items()}
+        data_dict.update(new_info)
         lines.append(data_dict)
     return pd.DataFrame(lines)
