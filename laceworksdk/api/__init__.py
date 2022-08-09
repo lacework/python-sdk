@@ -14,7 +14,6 @@ from .v1.account import AccountAPI
 from .v1.compliance import ComplianceAPI
 from .v1.custom_compliance_config import CustomComplianceConfigAPI
 from .v1.download_file import DownloadFileAPI
-from .v1.events import EventsAPI
 from .v1.integrations import IntegrationsAPI
 from .v1.recommendations import RecommendationsAPI
 from .v1.run_reports import RunReportsAPI
@@ -36,7 +35,7 @@ from .v2.container_registries import ContainerRegistriesAPI
 from .v2.contract_info import ContractInfoAPI
 from .v2.datasources import DatasourcesAPI
 from .v2.entities import EntitiesAPI
-from .v2.evidence import EvidenceAPI
+from .v2.events import EventsAPIv2
 from .v2.inventory import InventoryAPI
 from .v2.organization_info import OrganizationInfoAPI
 from .v2.policies import PoliciesAPI
@@ -153,8 +152,7 @@ class LaceworkClient:
         self.contract_info = ContractInfoAPI(self._session)
         self.datasources = DatasourcesAPI(self._session)
         self.entities = EntitiesAPI(self._session)
-        self.events = EventsAPI(self._session)
-        self.evidence = EvidenceAPI(self._session)
+        self.events = EventsAPIv2(self._session)
         self.files = DownloadFileAPI(self._session)
         self.inventory = InventoryAPI(self._session)
         self.integrations = IntegrationsAPI(self._session)
