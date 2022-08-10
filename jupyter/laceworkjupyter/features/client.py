@@ -74,4 +74,4 @@ def get_evidence_from_event_id(event_id, client=None, minutes=10, ctx=None):
             'value': event_id
         }],
     }
-    return client.evidence.search(json=search_filter)
+    return client.events.search(json=search_filter)

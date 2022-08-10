@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class EventsAPI:
+class EventsAPIv1:
     """
     Lacework Events API.
     """

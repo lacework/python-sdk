@@ -5,9 +5,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 
 import pytest
 
-from laceworksdk.api.v2.evidence import (
-    EvidenceAPI
-)
+from laceworksdk.api.v2.events import EventsAPIv2 as EventsAPI
 from tests.api.test_search_endpoint import SearchEndpoint
 
 # Tests
@@ -15,10 +13,10 @@ from tests.api.test_search_endpoint import SearchEndpoint
 
 @pytest.fixture(scope="module")
 def api_object(api):
-    return api.evidence
+    return api.events
 
 
 @pytest.mark.flaky_test
 class TestEvidenceEndpoint(SearchEndpoint):
 
-    OBJECT_TYPE = EvidenceAPI
+    OBJECT_TYPE = EventsAPI
