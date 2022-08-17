@@ -27,6 +27,7 @@ def open_alerts_filter():
     }
 
 
+@pytest.mark.flaky_test
 class TestAlerts(ReadEndpoint):
 
     OBJECT_ID_NAME = "alertId"
@@ -57,7 +58,6 @@ class TestAlerts(ReadEndpoint):
         with tester.assertRaises(KeyError):
             api_object.get(start_time=start_time, startTime=start_time, endTime=end_time)
 
-    @pytest.mark.flaky_test
     @pytest.mark.parametrize("scope", OBJECT_SCOPES)
     def test_get_details(self, api_object, scope):
         guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)

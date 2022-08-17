@@ -1,5 +1,5 @@
 autopep8~=1.5
-flake8~=3.9
+flake8~=5.0
 flake8-quotes~=3.2
 pytest~=6.2
 pytest-lazy-fixture~=0.6
