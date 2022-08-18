@@ -40,6 +40,7 @@ from .v2.inventory import InventoryAPI
 from .v2.organization_info import OrganizationInfoAPI
 from .v2.policies import PoliciesAPI
 from .v2.queries import QueriesAPI
+from .v2.report_definitions import ReportDefinitionsAPI
 from .v2.report_rules import ReportRulesAPI
 from .v2.reports import ReportsAPI
 from .v2.resource_groups import ResourceGroupsAPI
@@ -161,6 +162,7 @@ class LaceworkClient:
         self.policies = PoliciesAPI(self._session)
         self.queries = QueriesAPI(self._session)
         self.recommendations = RecommendationsAPI(self._session)
+        self.report_definitions = ReportDefinitionsAPI(self._session)
         self.report_rules = ReportRulesAPI(self._session)
         self.reports = ReportsAPI(self._session)
         self.resource_groups = ResourceGroupsAPI(self._session)
