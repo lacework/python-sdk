@@ -1,0 +1,40 @@
+name: docs-website
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  # Build the documentation and upload the static HTML files as an artifact.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+
+      - run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - run: if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+      - run: SETUPTOOLS_SCM_DEBUG=1 python3 setup.py --version
+      - run: pdoc laceworksdk --logo https://techally-content.s3-us-west-1.amazonaws.com/public-content/lacework_logo_full.png -o docs/
+
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: docs/
+
+  # Deploy the artifact to GitHub pages.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v1
