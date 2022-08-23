@@ -24,7 +24,6 @@ class BaseEndpoint:
         """
         A method to build a dictionary based on inputs, pruning items that are None.
 
-        :raises KeyError: In case there is a duplicate key name in the dictionary.
         :returns: A single dict built from the input.
         """
 
@@ -32,15 +31,8 @@ class BaseEndpoint:
         dict_list.append(items)
         result = {}
 
-        for d in dict_list:
-            for key, value in d.items():
-                camel_key = self._convert_lower_camel_case(key)
-                if value is None:
-                    continue
-                if camel_key in result.keys():
-                    raise KeyError(f"Attempted to insert duplicate key '{camel_key}'")
-
-                result[camel_key] = value
+        for dictionary in dict_list:
+            result = {**result, **self._convert_dictionary(dictionary, list(result.keys()))}
 
         return result
 
@@ -83,6 +75,31 @@ class BaseEndpoint:
         word_string = "".join([x.capitalize() or "_" for x in words[1:]])
 
         return f"{first_word}{word_string}"
+
+    def _convert_dictionary(self, dictionary, existing_keys):
+        """
+        Iteratively process a dictionary to convert it to expected JSON
+
+        :raises KeyError: In case there is a duplicate key name in the dictionary.
+        :returns: A single dictionary of lowerCamelCase key/value pairs.
+        """
+
+        result = {}
+
+        for key, value in dictionary.items():
+            camel_key = self._convert_lower_camel_case(key)
+
+            if value is None:
+                continue
+            if camel_key in existing_keys:
+                raise KeyError(f"Attempted to insert duplicate key '{camel_key}'")
+            if isinstance(value, dict):
+                value = self._convert_dictionary(value, [])
+
+            existing_keys.append(camel_key)
+            result[camel_key] = value
+
+        return result
 
     def _get_schema(self, subtype=None):
         """
