@@ -39,6 +39,7 @@ from .v2.events import EventsAPIv2
 from .v2.inventory import InventoryAPI
 from .v2.organization_info import OrganizationInfoAPI
 from .v2.policies import PoliciesAPI
+from .v2.policy_exceptions import PolicyExceptionsAPI
 from .v2.queries import QueriesAPI
 from .v2.report_definitions import ReportDefinitionsAPI
 from .v2.report_rules import ReportRulesAPI
@@ -160,6 +161,7 @@ class LaceworkClient:
         self.integrations = IntegrationsAPI(self._session)
         self.organization_info = OrganizationInfoAPI(self._session)
         self.policies = PoliciesAPI(self._session)
+        self.policy_exceptions = PolicyExceptionsAPI(self._session)
         self.queries = QueriesAPI(self._session)
         self.recommendations = RecommendationsAPI(self._session)
         self.report_definitions = ReportDefinitionsAPI(self._session)
