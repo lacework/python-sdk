@@ -20,7 +20,7 @@ class CrudEndpoint(BaseEndpoint):
 
         super().__init__(session, object_type, endpoint_root)
 
-    def create(self, **request_params):
+    def create(self, params=None, **request_params):
         """
         A method to create a new object.
 
@@ -33,7 +33,7 @@ class CrudEndpoint(BaseEndpoint):
             request_params
         )
 
-        response = self._session.post(self.build_url(), json=json)
+        response = self._session.post(self.build_url(), json=json, params=params)
 
         return response.json()
 
@@ -70,7 +70,7 @@ class CrudEndpoint(BaseEndpoint):
 
         return response.json()
 
-    def update(self, id=None, **request_params):
+    def update(self, id=None, params=None, **request_params):
         """
         A method to update an object.
 
@@ -84,11 +84,11 @@ class CrudEndpoint(BaseEndpoint):
             request_params
         )
 
-        response = self._session.patch(self.build_url(id=id), json=json)
+        response = self._session.patch(self.build_url(id=id), json=json, params=params)
 
         return response.json()
 
-    def delete(self, id):
+    def delete(self, id, params=None):
         """
         A method to delete an object.
 
@@ -97,7 +97,7 @@ class CrudEndpoint(BaseEndpoint):
         :return response json
         """
 
-        response = self._session.delete(self.build_url(id=id))
+        response = self._session.delete(self.build_url(id=id), params=params)
 
         return response
 
