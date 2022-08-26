@@ -98,7 +98,7 @@
 </span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>
 </span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">object_type</span><span class="p">,</span> <span class="n">endpoint_root</span><span class="p">)</span>
 </span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>
-</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
 </span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a><span class="sd">        A method to create a new object.</span>
 </span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>
@@ -111,7 +111,7 @@
 </span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>            <span class="n">request_params</span>
 </span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>        <span class="p">)</span>
 </span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>
-</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>
 </span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>
@@ -148,7 +148,7 @@
 </span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>
 </span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>
-</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
 </span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a><span class="sd">        A method to update an object.</span>
 </span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>
@@ -162,11 +162,11 @@
 </span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>            <span class="n">request_params</span>
 </span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>        <span class="p">)</span>
 </span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>
-</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>
 </span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>
-</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 </span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a><span class="sd">        A method to delete an object.</span>
 </span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>
@@ -175,7 +175,7 @@
 </span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a><span class="sd">        :return response json</span>
 </span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">))</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>
 </span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="n">response</span>
 </span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>
@@ -225,7 +225,7 @@
 </span><span id="CrudEndpoint-21"><a href="#CrudEndpoint-21"><span class="linenos"> 21</span></a>
 </span><span id="CrudEndpoint-22"><a href="#CrudEndpoint-22"><span class="linenos"> 22</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">object_type</span><span class="p">,</span> <span class="n">endpoint_root</span><span class="p">)</span>
 </span><span id="CrudEndpoint-23"><a href="#CrudEndpoint-23"><span class="linenos"> 23</span></a>
-</span><span id="CrudEndpoint-24"><a href="#CrudEndpoint-24"><span class="linenos"> 24</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="CrudEndpoint-24"><a href="#CrudEndpoint-24"><span class="linenos"> 24</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
 </span><span id="CrudEndpoint-25"><a href="#CrudEndpoint-25"><span class="linenos"> 25</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="CrudEndpoint-26"><a href="#CrudEndpoint-26"><span class="linenos"> 26</span></a><span class="sd">        A method to create a new object.</span>
 </span><span id="CrudEndpoint-27"><a href="#CrudEndpoint-27"><span class="linenos"> 27</span></a>
@@ -238,7 +238,7 @@
 </span><span id="CrudEndpoint-34"><a href="#CrudEndpoint-34"><span class="linenos"> 34</span></a>            <span class="n">request_params</span>
 </span><span id="CrudEndpoint-35"><a href="#CrudEndpoint-35"><span class="linenos"> 35</span></a>        <span class="p">)</span>
 </span><span id="CrudEndpoint-36"><a href="#CrudEndpoint-36"><span class="linenos"> 36</span></a>
-</span><span id="CrudEndpoint-37"><a href="#CrudEndpoint-37"><span class="linenos"> 37</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="CrudEndpoint-37"><a href="#CrudEndpoint-37"><span class="linenos"> 37</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="CrudEndpoint-38"><a href="#CrudEndpoint-38"><span class="linenos"> 38</span></a>
 </span><span id="CrudEndpoint-39"><a href="#CrudEndpoint-39"><span class="linenos"> 39</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span><span id="CrudEndpoint-40"><a href="#CrudEndpoint-40"><span class="linenos"> 40</span></a>
@@ -275,7 +275,7 @@
 </span><span id="CrudEndpoint-71"><a href="#CrudEndpoint-71"><span class="linenos"> 71</span></a>
 </span><span id="CrudEndpoint-72"><a href="#CrudEndpoint-72"><span class="linenos"> 72</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span><span id="CrudEndpoint-73"><a href="#CrudEndpoint-73"><span class="linenos"> 73</span></a>
-</span><span id="CrudEndpoint-74"><a href="#CrudEndpoint-74"><span class="linenos"> 74</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="CrudEndpoint-74"><a href="#CrudEndpoint-74"><span class="linenos"> 74</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
 </span><span id="CrudEndpoint-75"><a href="#CrudEndpoint-75"><span class="linenos"> 75</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="CrudEndpoint-76"><a href="#CrudEndpoint-76"><span class="linenos"> 76</span></a><span class="sd">        A method to update an object.</span>
 </span><span id="CrudEndpoint-77"><a href="#CrudEndpoint-77"><span class="linenos"> 77</span></a>
@@ -289,11 +289,11 @@
 </span><span id="CrudEndpoint-85"><a href="#CrudEndpoint-85"><span class="linenos"> 85</span></a>            <span class="n">request_params</span>
 </span><span id="CrudEndpoint-86"><a href="#CrudEndpoint-86"><span class="linenos"> 86</span></a>        <span class="p">)</span>
 </span><span id="CrudEndpoint-87"><a href="#CrudEndpoint-87"><span class="linenos"> 87</span></a>
-</span><span id="CrudEndpoint-88"><a href="#CrudEndpoint-88"><span class="linenos"> 88</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="CrudEndpoint-88"><a href="#CrudEndpoint-88"><span class="linenos"> 88</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="CrudEndpoint-89"><a href="#CrudEndpoint-89"><span class="linenos"> 89</span></a>
 </span><span id="CrudEndpoint-90"><a href="#CrudEndpoint-90"><span class="linenos"> 90</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span><span id="CrudEndpoint-91"><a href="#CrudEndpoint-91"><span class="linenos"> 91</span></a>
-</span><span id="CrudEndpoint-92"><a href="#CrudEndpoint-92"><span class="linenos"> 92</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span id="CrudEndpoint-92"><a href="#CrudEndpoint-92"><span class="linenos"> 92</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 </span><span id="CrudEndpoint-93"><a href="#CrudEndpoint-93"><span class="linenos"> 93</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="CrudEndpoint-94"><a href="#CrudEndpoint-94"><span class="linenos"> 94</span></a><span class="sd">        A method to delete an object.</span>
 </span><span id="CrudEndpoint-95"><a href="#CrudEndpoint-95"><span class="linenos"> 95</span></a>
@@ -302,7 +302,7 @@
 </span><span id="CrudEndpoint-98"><a href="#CrudEndpoint-98"><span class="linenos"> 98</span></a><span class="sd">        :return response json</span>
 </span><span id="CrudEndpoint-99"><a href="#CrudEndpoint-99"><span class="linenos"> 99</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="CrudEndpoint-100"><a href="#CrudEndpoint-100"><span class="linenos">100</span></a>
-</span><span id="CrudEndpoint-101"><a href="#CrudEndpoint-101"><span class="linenos">101</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">))</span>
+</span><span id="CrudEndpoint-101"><a href="#CrudEndpoint-101"><span class="linenos">101</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="CrudEndpoint-102"><a href="#CrudEndpoint-102"><span class="linenos">102</span></a>
 </span><span id="CrudEndpoint-103"><a href="#CrudEndpoint-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="n">response</span>
 </span><span id="CrudEndpoint-104"><a href="#CrudEndpoint-104"><span class="linenos">104</span></a>
@@ -367,13 +367,13 @@
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">create</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
+        <span class="name">create</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">params</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
 
                 <label class="view-source-button" for="CrudEndpoint.create-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#CrudEndpoint.create"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CrudEndpoint.create-24"><a href="#CrudEndpoint.create-24"><span class="linenos">24</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CrudEndpoint.create-24"><a href="#CrudEndpoint.create-24"><span class="linenos">24</span></a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
 </span><span id="CrudEndpoint.create-25"><a href="#CrudEndpoint.create-25"><span class="linenos">25</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="CrudEndpoint.create-26"><a href="#CrudEndpoint.create-26"><span class="linenos">26</span></a><span class="sd">        A method to create a new object.</span>
 </span><span id="CrudEndpoint.create-27"><a href="#CrudEndpoint.create-27"><span class="linenos">27</span></a>
@@ -386,7 +386,7 @@
 </span><span id="CrudEndpoint.create-34"><a href="#CrudEndpoint.create-34"><span class="linenos">34</span></a>            <span class="n">request_params</span>
 </span><span id="CrudEndpoint.create-35"><a href="#CrudEndpoint.create-35"><span class="linenos">35</span></a>        <span class="p">)</span>
 </span><span id="CrudEndpoint.create-36"><a href="#CrudEndpoint.create-36"><span class="linenos">36</span></a>
-</span><span id="CrudEndpoint.create-37"><a href="#CrudEndpoint.create-37"><span class="linenos">37</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="CrudEndpoint.create-37"><a href="#CrudEndpoint.create-37"><span class="linenos">37</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="CrudEndpoint.create-38"><a href="#CrudEndpoint.create-38"><span class="linenos">38</span></a>
 </span><span id="CrudEndpoint.create-39"><a href="#CrudEndpoint.create-39"><span class="linenos">39</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
@@ -498,13 +498,13 @@
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">update</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
+        <span class="name">update</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">params</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
 
                 <label class="view-source-button" for="CrudEndpoint.update-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#CrudEndpoint.update"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CrudEndpoint.update-74"><a href="#CrudEndpoint.update-74"><span class="linenos">74</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CrudEndpoint.update-74"><a href="#CrudEndpoint.update-74"><span class="linenos">74</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
 </span><span id="CrudEndpoint.update-75"><a href="#CrudEndpoint.update-75"><span class="linenos">75</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="CrudEndpoint.update-76"><a href="#CrudEndpoint.update-76"><span class="linenos">76</span></a><span class="sd">        A method to update an object.</span>
 </span><span id="CrudEndpoint.update-77"><a href="#CrudEndpoint.update-77"><span class="linenos">77</span></a>
@@ -518,7 +518,7 @@
 </span><span id="CrudEndpoint.update-85"><a href="#CrudEndpoint.update-85"><span class="linenos">85</span></a>            <span class="n">request_params</span>
 </span><span id="CrudEndpoint.update-86"><a href="#CrudEndpoint.update-86"><span class="linenos">86</span></a>        <span class="p">)</span>
 </span><span id="CrudEndpoint.update-87"><a href="#CrudEndpoint.update-87"><span class="linenos">87</span></a>
-</span><span id="CrudEndpoint.update-88"><a href="#CrudEndpoint.update-88"><span class="linenos">88</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="CrudEndpoint.update-88"><a href="#CrudEndpoint.update-88"><span class="linenos">88</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="CrudEndpoint.update-89"><a href="#CrudEndpoint.update-89"><span class="linenos">89</span></a>
 </span><span id="CrudEndpoint.update-90"><a href="#CrudEndpoint.update-90"><span class="linenos">90</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
@@ -543,13 +543,13 @@
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">delete</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span></span><span class="return-annotation">):</span></span>
+        <span class="name">delete</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span>, </span><span class="param"><span class="n">params</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
 
                 <label class="view-source-button" for="CrudEndpoint.delete-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#CrudEndpoint.delete"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CrudEndpoint.delete-92"><a href="#CrudEndpoint.delete-92"><span class="linenos"> 92</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CrudEndpoint.delete-92"><a href="#CrudEndpoint.delete-92"><span class="linenos"> 92</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 </span><span id="CrudEndpoint.delete-93"><a href="#CrudEndpoint.delete-93"><span class="linenos"> 93</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="CrudEndpoint.delete-94"><a href="#CrudEndpoint.delete-94"><span class="linenos"> 94</span></a><span class="sd">        A method to delete an object.</span>
 </span><span id="CrudEndpoint.delete-95"><a href="#CrudEndpoint.delete-95"><span class="linenos"> 95</span></a>
@@ -558,7 +558,7 @@
 </span><span id="CrudEndpoint.delete-98"><a href="#CrudEndpoint.delete-98"><span class="linenos"> 98</span></a><span class="sd">        :return response json</span>
 </span><span id="CrudEndpoint.delete-99"><a href="#CrudEndpoint.delete-99"><span class="linenos"> 99</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="CrudEndpoint.delete-100"><a href="#CrudEndpoint.delete-100"><span class="linenos">100</span></a>
-</span><span id="CrudEndpoint.delete-101"><a href="#CrudEndpoint.delete-101"><span class="linenos">101</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">))</span>
+</span><span id="CrudEndpoint.delete-101"><a href="#CrudEndpoint.delete-101"><span class="linenos">101</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="CrudEndpoint.delete-102"><a href="#CrudEndpoint.delete-102"><span class="linenos">102</span></a>
 </span><span id="CrudEndpoint.delete-103"><a href="#CrudEndpoint.delete-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="n">response</span>
 </span></pre></div>
