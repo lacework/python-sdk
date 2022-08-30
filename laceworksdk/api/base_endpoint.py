@@ -5,6 +5,10 @@ class BaseEndpoint:
     A class used to implement base functionality for Lacework API Endpoints
     """
 
+    KEY_CONVERSION_EXCLUDES = [
+        "integration_mappings"
+    ]
+
     def __init__(self,
                  session,
                  object_type,
@@ -87,6 +91,9 @@ class BaseEndpoint:
         result = {}
 
         for key, value in dictionary.items():
+            if key in self.KEY_CONVERSION_EXCLUDES:
+                continue
+
             camel_key = self._convert_lower_camel_case(key)
 
             if value is None:
