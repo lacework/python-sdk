@@ -1,6 +1,8 @@
 import logging
 
 from laceworksdk import LaceworkClient
+from laceworksdk.api import base_endpoint
+
 
 from . import decorators
 from . import plugins
@@ -56,7 +58,23 @@ class LaceworkJupyterClient:
         for wrapper in wrappers:
             wrapper_object = getattr(self.sdk, wrapper)
             api_wrapper = APIWrapper(wrapper_object, wrapper_name=wrapper)
-            setattr(self, wrapper, api_wrapper)
+
+            save_wrapper = True
+
+            for subwrapper in dir(wrapper_object):
+                if subwrapper.startswith("_"):
+                    continue
+                subwrapper_object = getattr(wrapper_object, subwrapper)
+                if isinstance(subwrapper_object, base_endpoint.BaseEndpoint):
+                    save_wrapper = False
+                    subapi_wrapper = APIWrapper(
+                        subwrapper_object, wrapper_name=f"{wrapper}/{subwrapper}")
+                    setattr(wrapper_object, subwrapper, subapi_wrapper)
+
+            if save_wrapper:
+                setattr(self, wrapper, api_wrapper)
+            else:
+                setattr(self, wrapper, wrapper_object)
 
     def __enter__(self):
         """

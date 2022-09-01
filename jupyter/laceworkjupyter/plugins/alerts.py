@@ -3,8 +3,6 @@
 
 import pandas as pd
 
-from laceworkjupyter.features import helper
-
 
 def process_alerts(data):
     """
