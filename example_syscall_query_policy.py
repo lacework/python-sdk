@@ -60,7 +60,7 @@ if __name__ == "__main__":
         remediation="Policy remediation here..",
         severity="high",
         alert_enabled=True,
-        #alert_profile="LW_HA_SYSCALLS_EXEC_DEFAULT_PROFILE",
-        #alert_profile="LW_HE_SYSCALLS_PROCESSES_DEFAULT_PROFILE",
+        #alert_profile="LW_HA_SYSCALLS_EXEC_DEFAULT_PROFILE.Violation",
+        #alert_profile="LW_HE_SYSCALLS_PROCESSES_DEFAULT_PROFILE.Violation",
         alert_profile="LW_HA_SYSCALLS_FILE_DEFAULT_PROFILE.Violation"
     )
