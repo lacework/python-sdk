@@ -45,8 +45,7 @@ if __name__ == "__main__":
                 TARGET_OP,
                 TARGET_PATH
           }}
-
-  		}}
+        }}
         """
     )
 
