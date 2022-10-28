@@ -230,6 +230,9 @@ class HttpSession:
 
         logger.info(f"{method} request to URI: {uri}")
 
+        if "/api/v1/" in uri:
+            logger.warning("Lacework's v1 APIs are scheduled to be deprecated and will not allow usage of after December 2022.")
+
         # Check for 'org' - if True, make an organization-level API call
         # TODO: Remove this on v1.0 release - this is done for back compat
         org = kwargs.pop("org", None)
