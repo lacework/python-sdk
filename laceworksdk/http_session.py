@@ -266,6 +266,20 @@ class HttpSession:
 
         return response
 
+    @property
+    def subaccount(self):
+        """
+        Returns the current subaccount for the session.
+        """
+        return self._subaccount
+
+    @subaccount.setter
+    def subaccount(self, subaccount):
+        """
+        Modifies the value of the sessions's subaccount.
+        """
+        self._subaccount = subaccount
+
     def get(self, uri, params=None, **kwargs):
         """
         A method to build a GET request to interact with Lacework.
