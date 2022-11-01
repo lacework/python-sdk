@@ -178,6 +178,13 @@ class LaceworkClient:
         self.vulnerability_exceptions = VulnerabilityExceptionsAPI(self._session)
         self.vulnerability_policies = VulnerabilityPoliciesAPI(self._session)
 
+    @property
+    def subaccount(self):
+        """
+        Returns the value of the session's subaccount.
+        """
+        return self._session.subaccount
+
     def set_org_level_access(self, org_level_access):
         """
         A method to set whether the client should use organization-level API calls.
@@ -193,4 +200,4 @@ class LaceworkClient:
         A method to update the subaccount the client should use for API calls.
         """
 
-        self._session._subaccount = subaccount
+        self._session.subaccount = subaccount

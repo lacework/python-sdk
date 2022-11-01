@@ -76,6 +76,19 @@ class LaceworkJupyterClient:
             else:
                 setattr(self, wrapper, wrapper_object)
 
+    @property
+    def subaccount(self):
+        """Returns the subaccount that is in use."""
+        return self.sdk.subaccount
+
+    @subaccount.setter
+    def subaccount(self, subaccount):
+        """Changes the subaccount that is in use."""
+        if subaccount == self.subaccount:
+            return
+
+        self.sdk.set_subaccount(subaccount)
+
     def __enter__(self):
         """
         Support the with statement in python.
