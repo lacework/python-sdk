@@ -56,6 +56,9 @@ class LaceworkJupyterClient:
 
         wrappers = [w for w in dir(self.sdk) if not w.startswith("_")]
         for wrapper in wrappers:
+            if wrapper == 'subaccount':
+                continue
+
             wrapper_object = getattr(self.sdk, wrapper)
             api_wrapper = APIWrapper(wrapper_object, wrapper_name=wrapper)
 
