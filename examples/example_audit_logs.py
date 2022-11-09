@@ -4,7 +4,6 @@ Example script showing how to use the LaceworkClient class.
 """
 
 import logging
-import os
 
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
@@ -16,10 +15,8 @@ load_dotenv()
 
 if __name__ == "__main__":
 
-    # Use enviroment variables to instantiate a LaceworkClient instance
-    lacework_client = LaceworkClient(api_key=os.getenv("LW_API_KEY"),
-                                     api_secret=os.getenv("LW_API_SECRET"),
-                                     account=os.getenv("LW_ACCOUNT"))
+    # Instantiate a LaceworkClient instance
+    lacework_client = LaceworkClient()
 
     # Build start/end times
     current_time = datetime.now(timezone.utc)
