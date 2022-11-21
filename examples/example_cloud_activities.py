@@ -4,7 +4,6 @@ Example script showing how to use the LaceworkClient class.
 """
 
 import logging
-import os
 
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
@@ -16,10 +15,8 @@ load_dotenv()
 
 if __name__ == "__main__":
 
-    # Use enviroment variables to instantiate a LaceworkClient instance
-    lacework_client = LaceworkClient(api_key=os.getenv("LW_API_KEY"),
-                                     api_secret=os.getenv("LW_API_SECRET"),
-                                     account=os.getenv("LW_ACCOUNT"))
+    # Instantiate a LaceworkClient instance
+    lacework_client = LaceworkClient()
 
     # Build start/end times
     current_time = datetime.now(timezone.utc)
@@ -27,16 +24,16 @@ if __name__ == "__main__":
     start_time = start_time.strftime("%Y-%m-%dT%H:%M:%SZ")
     end_time = current_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    # CloudTrail API
+    # Cloud Activities API
 
-    # Get CloudTrail
-    lacework_client.cloudtrail.get()
+    # Get Cloud Activities
+    lacework_client.cloud_activities.get()
 
-    # Get CloudTrail by date range
-    lacework_client.cloudtrail.get(start_time=start_time, end_time=end_time)
+    # Get Cloud Activities by date range
+    lacework_client.cloud_activities.get(start_time=start_time, end_time=end_time)
 
-    # Search CloudTrail
-    lacework_client.cloudtrail.search(json={
+    # Search Cloud Activities
+    lacework_client.cloud_activities.search(json={
         "timeFilter": {
             "startTime": start_time,
             "endTime": end_time

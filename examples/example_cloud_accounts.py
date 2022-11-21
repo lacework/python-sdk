@@ -18,10 +18,10 @@ if __name__ == "__main__":
     # Instantiate a LaceworkClient instance
     lacework_client = LaceworkClient()
 
-    # Agent Access Token API
+    # Cloud Accounts API
 
-    # Get all Agent Access Tokens
-    agent_api_tokens = lacework_client.agent_access_tokens.get()
+    # Get all Cloud Accounts
+    integrations = lacework_client.cloud_accounts.get()
 
-    # Get specified Agent Access Token
-    api_token = lacework_client.agent_access_tokens.get_by_id(random.choice(agent_api_tokens["data"])["ACCESS_TOKEN"])
+    # Get Cloud Account by ID
+    integration_by_id = lacework_client.cloud_accounts.get_by_guid((random.choice(integrations["data"])["INTG_GUID"]))

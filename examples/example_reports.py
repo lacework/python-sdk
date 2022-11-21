@@ -4,7 +4,6 @@ Example script showing how to use the LaceworkClient class.
 """
 
 import logging
-import random
 
 from dotenv import load_dotenv
 from laceworksdk import LaceworkClient
@@ -18,10 +17,9 @@ if __name__ == "__main__":
     # Instantiate a LaceworkClient instance
     lacework_client = LaceworkClient()
 
-    # Agent Access Token API
+    # Reports API
 
-    # Get all Agent Access Tokens
-    agent_api_tokens = lacework_client.agent_access_tokens.get()
-
-    # Get specified Agent Access Token
-    api_token = lacework_client.agent_access_tokens.get_by_id(random.choice(agent_api_tokens["data"])["ACCESS_TOKEN"])
+    # Get latest compliance report in JSON format for AWS account
+    lacework_client.reports.get(
+        primary_query_id="123456798012", format="json", report_type="AWS_CIS_14"
+    )

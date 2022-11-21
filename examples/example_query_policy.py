@@ -4,7 +4,6 @@ Example script showing how to use the LaceworkClient class.
 """
 
 import logging
-import os
 import random
 import string
 
@@ -21,10 +20,8 @@ POLICY_TITLE = f"Custom_Policy_{RANDOM_TEXT}"
 
 if __name__ == "__main__":
 
-    # Use enviroment variables to instantiate a LaceworkClient instance
-    lacework_client = LaceworkClient(api_key=os.getenv("LW_API_KEY"),
-                                     api_secret=os.getenv("LW_API_SECRET"),
-                                     account=os.getenv("LW_ACCOUNT"))
+    # Instantiate a LaceworkClient instance
+    lacework_client = LaceworkClient()
 
     # Queries/Policies API
 
@@ -32,7 +29,7 @@ if __name__ == "__main__":
     query_response = lacework_client.queries.create(
         evaluator_id="Cloudtrail",
         query_id=QUERY_ID,
-        query_text=f"""{QUERY_ID} {{
+        query_text=f"""{{
             source {{CloudTrailRawEvents e}}
             filter {{EVENT_SOURCE = 'iam.amazonaws.com' AND
                      EVENT:userIdentity.name::String NOT LIKE 'Terraform-Service-Acct'}}

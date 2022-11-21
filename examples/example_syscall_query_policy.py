@@ -5,7 +5,6 @@ Note: As of this commit, the Lacework Syscall agent is not GA. Please contact yo
 """
 
 import logging
-import os
 import random
 import string
 
@@ -22,17 +21,15 @@ POLICY_TITLE = f"Custom_Syscall_Policy_{RANDOM_TEXT}"
 
 if __name__ == "__main__":
 
-    # Use enviroment variables to instantiate a LaceworkClient instance
-    lacework_client = LaceworkClient(api_key=os.getenv("LW_API_KEY"),
-                                     api_secret=os.getenv("LW_API_SECRET"),
-                                     account=os.getenv("LW_ACCOUNT"))
+    # Instantiate a LaceworkClient instance
+    lacework_client = LaceworkClient()
 
     # Queries/Policies API
 
     # Create a Query
     query_response = lacework_client.queries.create(
         query_id=QUERY_ID,
-        query_text=f"""{QUERY_ID} {{
+        query_text=f"""{{
           source {{
                 LW_HA_SYSCALLS_FILE
           }}
