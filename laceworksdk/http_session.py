@@ -54,11 +54,8 @@ class HttpSession:
         self._api_secret = api_secret
         self._base_domain = base_domain or DEFAULT_BASE_DOMAIN
 
-        domain_string = f".{self._base_domain}"
-        if account.endswith(domain_string):
-            account = account[:-len(domain_string)]
-
         self._base_url = f"https://{account}.{self._base_domain}"
+        self._account = account
         self._subaccount = subaccount
         self._org_level_access = False
 
@@ -265,6 +262,13 @@ class HttpSession:
                 response._content = b'{"data": []}'
 
         return response
+
+    @property
+    def account(self):
+        """
+        Returns the current account for the session.
+        """
+        return self._account
 
     @property
     def subaccount(self):

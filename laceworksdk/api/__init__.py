@@ -127,6 +127,10 @@ class LaceworkClient:
                 if not self._subaccount and subaccount:
                     self._subaccount = subaccount
 
+        domain_string = f".{self._base_domain}"
+        if self._account.endswith(domain_string):
+            self._account = self._account[:-len(domain_string)]
+
         # Create an HttpSession instance
         self._session = HttpSession(
             self._account,
