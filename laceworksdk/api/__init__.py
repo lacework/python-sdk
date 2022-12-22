@@ -119,13 +119,13 @@ class LaceworkClient:
                 if not self._api_secret and api_secret:
                     self._api_secret = api_secret
 
+                subaccount = config_section.get("subaccount", "").strip('""')
+                if not self._account and not self._subaccount and subaccount:
+                    self._subaccount = subaccount
+
                 account = config_section.get("account", "").strip('""')
                 if not self._account and account:
                     self._account = account
-
-                subaccount = config_section.get("subaccount", "").strip('""')
-                if not self._subaccount and subaccount:
-                    self._subaccount = subaccount
 
         domain_string = f".{self._base_domain}"
         if self._account.endswith(domain_string):
