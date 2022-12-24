@@ -45,4 +45,3 @@ class TestConfigsLookups(ReadEndpoint):
 
     def test_api_search(self, api_object):
         pass
-
