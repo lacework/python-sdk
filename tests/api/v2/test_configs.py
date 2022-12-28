@@ -7,8 +7,11 @@ import pytest
 
 from laceworksdk.api.v2.configs import (
     ConfigsAPI,
-    ComplianceEvaluationsAPI
+    ComplianceEvaluationsAPI,
+    AzureSubscriptions,
+    GcpProjects
 )
+from tests.api.test_read_endpoint import ReadEndpoint
 from tests.api.test_search_endpoint import SearchEndpoint
 
 # Tests
@@ -30,3 +33,15 @@ class TestConfigsEndpoint(SearchEndpoint):
     def test_api_search_by_date(self, api_object, dataset):
 
         return super().test_api_search_by_date(api_object=api_object, filters={"dataset": dataset})
+
+
+class TestConfigsLookups(ReadEndpoint):
+
+    OBJECT_TYPE = ConfigsAPI
+    OBJECT_MAP = {
+        "azure_subscriptions": AzureSubscriptions,
+        "gcp_projects": GcpProjects
+    }
+
+    def test_api_search(self, api_object):
+        pass

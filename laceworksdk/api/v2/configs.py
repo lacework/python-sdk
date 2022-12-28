@@ -3,6 +3,7 @@
 Lacework Configs API wrapper.
 """
 
+from laceworksdk.api.read_endpoint import ReadEndpoint
 from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
@@ -29,7 +30,33 @@ class ConfigsAPI:
         super().__init__()
         self._base_path = "Configs"
 
+        self.azure_subscriptions = AzureSubscriptions(session, self._base_path)
         self.compliance_evaluations = ComplianceEvaluationsAPI(session, self._base_path)
+        self.gcp_projects = GcpProjects(session, self._base_path)
+
+
+class AzureSubscriptions(ReadEndpoint):
+    """A class used to represent the Azure Subscriptions API endpoint.
+
+    Methods
+    -------
+    get(request_params=None)
+        A method to get AzureSubscription objects.
+        (tenantId is an optional parameter)
+    """
+    RESOURCE = "AzureSubscriptions"
+
+
+class GcpProjects(ReadEndpoint):
+    """A class used to represent the GCP Projects API endpoint.
+
+    Methods
+    -------
+    get(request_params=None)
+        A method to get GcpProjects objects.
+        (orgId is an optional parameter)
+    """
+    RESOURCE = "GcpProjects"
 
 
 class ComplianceEvaluationsAPI(SearchEndpoint):

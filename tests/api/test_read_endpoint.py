@@ -10,10 +10,26 @@ from tests.api.test_base_endpoint import BaseEndpoint
 
 class ReadEndpoint(BaseEndpoint):
 
-    def test_api_get(self, api_object):
-        response = api_object.get()
+    OBJECT_TYPE = None
+    OBJECT_MAP = {}
 
-        assert "data" in response.keys()
+    def test_object_creation(self, api_object):
+
+        if self.OBJECT_TYPE:
+            assert isinstance(api_object, self.OBJECT_TYPE)
+
+        if len(self.OBJECT_MAP) > 0:
+            for attribute, object_type in self.OBJECT_MAP.items():
+                assert isinstance(getattr(api_object, attribute), object_type)
+
+    def test_api_get(self, api_object):
+        if len(self.OBJECT_MAP) > 0:
+            for attribute in self.OBJECT_MAP.keys():
+                response = getattr(api_object, attribute).get()
+                assert "data" in response.keys()
+        else:
+            response = api_object.get()
+            assert "data" in response.keys()
 
     def test_api_search(self, api_object):
         random_object_id = self._get_random_object(api_object, self.OBJECT_ID_NAME)
