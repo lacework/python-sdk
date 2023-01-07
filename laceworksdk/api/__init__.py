@@ -53,6 +53,7 @@ from .v2.vulnerability_exceptions import VulnerabilityExceptionsAPI
 from .v2.vulnerability_policies import VulnerabilityPoliciesAPI
 
 from laceworksdk.config import (
+    DEFAULT_BASE_DOMAIN,
     LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE,
     LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE,
     LACEWORK_API_KEY_ENVIRONMENT_VARIABLE,
@@ -99,7 +100,8 @@ class LaceworkClient:
         self._api_secret = api_secret or os.getenv(
             LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE)
         self._base_domain = base_domain or os.getenv(
-            LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE)
+            LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE
+        ) or DEFAULT_BASE_DOMAIN
 
         config_file_path = os.path.join(
             os.path.expanduser("~"), LACEWORK_CLI_CONFIG_RELATIVE_PATH)

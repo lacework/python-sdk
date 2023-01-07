@@ -13,7 +13,6 @@ from urllib3.util.retry import Retry
 
 from laceworksdk import version
 from laceworksdk.config import (
-    DEFAULT_BASE_DOMAIN,
     DEFAULT_ACCESS_TOKEN_EXPIRATION,
     DEFAULT_SUCCESS_RESPONSE_CODES,
     RATE_LIMIT_RESPONSE_CODE
@@ -52,7 +51,7 @@ class HttpSession:
         # Set the base parameters
         self._api_key = api_key
         self._api_secret = api_secret
-        self._base_domain = base_domain or DEFAULT_BASE_DOMAIN
+        self._base_domain = base_domain
 
         self._base_url = f"https://{account}.{self._base_domain}"
         self._account = account
