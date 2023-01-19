@@ -41,6 +41,21 @@ def api_object_update_body():
 
 
 @pytest.fixture(scope="module")
+def api_object_bulk_update_body():
+    return [
+        {
+            "policyId": "lacework-global-24",
+            "enabled": True,
+            "severity": "medium"
+        },
+        {
+            "policyId": "lacework-global-218",
+            "enabled": True
+        }
+    ]
+
+
+@pytest.fixture(scope="module")
 def query(api):
     queries = api.queries.get()
     queries = list(filter(lambda elem: elem["owner"] == "Lacework" and "LW_Global_AWS_CTA" in elem["queryId"], queries["data"]))
@@ -55,6 +70,10 @@ class TestPolicies(CrudEndpoint):
 
     def test_api_get_by_id(self, api_object):
         self._get_object_classifier_test(api_object, "id", self.OBJECT_ID_NAME)
+
+    def test_api_bulk_update(self, api_object, api_object_bulk_update_body):
+        response = api_object.bulk_update(api_object_bulk_update_body)
+        assert "data" in response.keys()
 
     def test_api_search(self):
         pass

@@ -37,23 +37,35 @@ class PoliciesAPI(CrudEndpoint):
         A method to create a new Policies object.
 
         :param policy_type: A string representing the object policy type.
+        :type policy_type: str
         :param query_id: A string representing the object query ID.
+        :type query_id: str
         :param enabled: A boolean representing whether the object is enabled.
+        :type enabled: bool
         :param title: A string representing the object title.
+        :type title: str
         :param description: A string representing the object description.
+        :type description: str
         :param remediation: A string representing the remediation strategy for the object.
+        :type remediation: str
         :param severity: A string representing the object severity.
             ("info", "low", "medium", "high", "critical")
+        :type severity: str
         :param alert_enabled: A boolean representing whether alerting is enabled.
+        :type alert_enabled: bool
         :param alert_profile: A string representing the alert profile.
+        :type alert_profile: str
         :param evaluator_id: A string representing the evaluator in which the object is to be run.
+        :type evaluator_id: str
         :param limit: An integer representing the number of results to return.
+        :type limit: int
         :param eval_frequency: A string representing the frequency in which to evaluate the object.
             ("Hourly", "Daily")
+        :type eval_frequency: str
         :param request_params: Additional request parameters.
             (provides support for parameters that may be added in the future)
 
-        :return response json
+        :return: response json
         """
 
         return super().create(
@@ -78,8 +90,9 @@ class PoliciesAPI(CrudEndpoint):
         A method to get Policies objects.
 
         :param policy_id: A string representing the object policy ID.
+        :type policy_id: str
 
-        :return response json
+        :return: response json
         """
 
         return super().get(id=policy_id)
@@ -90,8 +103,9 @@ class PoliciesAPI(CrudEndpoint):
         A method to get a Policies object by policy ID.
 
         :param policy_id: A string representing the object policy ID.
+        :type policy_id: str
 
-        :return response json
+        :return: response json
         """
 
         return self.get(policy_id=policy_id)
@@ -114,23 +128,35 @@ class PoliciesAPI(CrudEndpoint):
         A method to update a Lacework Query Language (LQL) policy.
 
         :param policy_id: A string representing the object policy ID.
+        :type policy_id: str
         :param policy_type: A string representing the object policy type.
+        :type policy_type: str
         :param query_id: A string representing the object query ID.
+        :type query_id: str
         :param enabled: A boolean representing whether the object is enabled.
+        :type enabled: bool
         :param title: A string representing the object title.
+        :type title: str
         :param description: A string representing the object description.
+        :type description: str
         :param remediation: A string representing the remediation strategy for the object.
+        :type remediation: str
         :param severity: A string representing the object severity.
             ("info", "low", "medium", "high", "critical")
+        :type severity: str
         :param alert_enabled: A boolean representing whether alerting is enabled.
+        :type alert_enabled: bool
         :param alert_profile: A string representing the alert profile.
+        :type alert_profile: str
         :param limit: An integer representing the number of results to return.
+        :type limit: int
         :param eval_frequency: A string representing the frequency in which to evaluate the object.
             ("Hourly", "Daily")
+        :type eval_frequency: str
         :param request_params: Additional request parameters.
             (provides support for parameters that may be added in the future)
 
-        :return response json
+        :return: response json
         """
 
         if enabled is not None:
@@ -155,14 +181,35 @@ class PoliciesAPI(CrudEndpoint):
             **request_params
         )
 
+    def bulk_update(self,
+                    json):
+        """
+        A method to update Policy objects in bulk
+
+        :param json: A list of JSON objects containing policy configuration.
+        :type json: list(dict(str, Any))
+            obj:
+                :param policyId: A string representing the ID of the policy.
+                :param enabled: A boolean representing the status of the policy.
+                :param severity: A string representing the severity of the policy.
+                    ("info", "low", "medium", "high", "critical")
+
+        :return: response json
+        """
+
+        response = self._session.patch(self.build_url(), json=json)
+
+        return response.json()
+
     def delete(self,
                policy_id):
         """
         A method to delete a Policies object.
 
         :param policy_id: A string representing the object policy ID.
+        :type policy_id: str
 
-        :return response json
+        :return: response json
         """
 
         return super().delete(id=policy_id)
