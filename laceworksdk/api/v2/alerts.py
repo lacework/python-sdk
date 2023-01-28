@@ -39,10 +39,19 @@ class AlertsAPI(SearchEndpoint):
             start_time=start_time,
             end_time=end_time
         )
-
+        results = {'data':[]}
         response = self._session.get(self.build_url(), params=params)
-
-        return response.json()
+        while True:
+            response_json = response.json()
+            results['paging'] = response_json['paging']
+            results['data'].extend(response_json['data'])
+            next_page_url = response_json['paging']['urls']['nextPage']
+            if next_page_url:
+                response = self._session.get(next_page_url, params=params)
+            else:
+                break
+        results['paging']['rows'] = results['paging']['totalRows']
+        return results
 
     def get_details(self,
                     id,
