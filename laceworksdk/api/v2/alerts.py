@@ -22,7 +22,7 @@ class AlertsAPI(SearchEndpoint):
     def get(self,
             start_time=None,
             end_time=None,
-            limit=500,
+            limit=None,
             **request_params):
         """
         A method to get Alerts objects.
@@ -30,7 +30,6 @@ class AlertsAPI(SearchEndpoint):
         :param start_time: A "%Y-%m-%dT%H:%M:%SZ" structured timestamp to begin from.
         :param end_time: A "%Y-%m-%dT%H:%M:%S%Z" structured timestamp to end at.
         :param limit: An integer representing the number of Alerts to return.
-            (Default is 500 / Maximum is 500,000)
         :param request_params: Additional request parameters.
             (provides support for parameters that may be added in the future)
 
@@ -45,17 +44,22 @@ class AlertsAPI(SearchEndpoint):
 
         response = self._session.get(self.build_url(), params=params)
 
-        response_data = {"data": []}
+        return_data = {"data": []}
         current_rows = 0
 
         while True:
             response_json = response.json()
 
-            take = limit - current_rows
-            response_data["data"].extend(response_json["data"][:take])
-            current_rows = len(response_data["data"])
+            return_data["paging"] = response_json["paging"]
 
-            if current_rows >= limit:
+            if limit:
+                take = limit - current_rows
+                return_data["data"].extend(response_json["data"][:take])
+            else:
+                return_data["data"].extend(response_json["data"])
+            current_rows = len(return_data["data"])
+
+            if limit and current_rows >= limit:
                 break
 
             try:
@@ -68,7 +72,7 @@ class AlertsAPI(SearchEndpoint):
             else:
                 break
 
-        return response_data
+        return return_data
 
     def get_details(self,
                     id,
