@@ -25,14 +25,14 @@ lw = LaceworkClient(account="ACCOUNT",
 events = lw.events.get_for_date_range(start_time=start_time, end_time=end_time)
 
 host_vulns = lw.vulnerabilities.hosts.search(json={
-    "timeFilters": {
+    "timeFilter": {
         "startTime": start_time,
         "endTime": end_time
     }
 })
 
 container_vulns = lw.vulnerabilities.containers.search(json={
-    "timeFilters": {
+    "timeFilter": {
         "startTime": start_time,
         "endTime": end_time
     },
