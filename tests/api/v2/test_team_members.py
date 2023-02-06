@@ -37,6 +37,7 @@ def api_object_update_body():
     }
 
 
+@pytest.mark.flaky_test
 class TestTeamMembers(CrudEndpoint):
 
     OBJECT_ID_NAME = "userGuid"
