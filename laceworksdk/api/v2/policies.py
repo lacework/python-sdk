@@ -71,7 +71,7 @@ class PoliciesAPI(CrudEndpoint):
         return super().create(
             policy_type=policy_type,
             query_id=query_id,
-            enabled=int(bool(enabled)),
+            enabled=enabled,
             title=title,
             description=description,
             remediation=remediation,
