@@ -29,7 +29,7 @@ if __name__ == "__main__":
     # Create a Query
     query_response = lacework_client.queries.create(
         query_id=QUERY_ID,
-        query_text=f"""{{
+        query_text="""{{
           source {{
                 LW_HA_SYSCALLS_FILE
           }}

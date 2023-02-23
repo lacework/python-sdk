@@ -5,7 +5,6 @@ Example script showing how to use the LaceworkClient class.
 
 import logging
 
-from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv
 from laceworksdk import LaceworkClient
 
@@ -22,7 +21,7 @@ if __name__ == "__main__":
 
     # Scan each CSP (cloud service provider)
 
-    for csp in ["AWS","GCP","Azure"]:
+    for csp in ["AWS", "GCP", "Azure"]:
         inventory_scan = lacework_client.inventory.scan(csp=csp)
 
         inventory_scan_status = lacework_client.inventory.status(csp=csp)
