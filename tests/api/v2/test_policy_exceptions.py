@@ -43,7 +43,9 @@ def api_object_update_body(random_text):
         "constraints": [
             {
                 "fieldKey": "resourceLabel",
-                "fieldValues": []
+                "fieldValues": [
+                    {"key": "TestKey", "value": "UpdatedTestValue"}
+                ]
             }
         ]
     }
