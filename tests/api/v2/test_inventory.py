@@ -31,3 +31,18 @@ class TestConfigsEndpoint(SearchEndpoint):
     def test_api_search_by_date_deprecated(self, api_object, dataset):
 
         return super().test_api_search_by_date(api_object=api_object, filters={"dataset": dataset})
+    
+    def test_inventory_scan(self, api_object, request):
+        response = api_object.inventory.scan(csp="AWS")
+
+        assert "data" in response.keys()
+        if isinstance(response["data"], list):
+            scan_status = response["data"].get("status")
+        elif isinstance(response["data"], dict):
+            scan_details = response["data"].get("details")
+
+    def test_inventory_status(self, api_object, request):
+        response = api_object.inventory.scan(csp="AWS")
+
+        assert "data" in response.keys()
+
