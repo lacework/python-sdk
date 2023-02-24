@@ -31,3 +31,13 @@ class TestConfigsEndpoint(SearchEndpoint):
     def test_api_search_by_date_deprecated(self, api_object, dataset):
 
         return super().test_api_search_by_date(api_object=api_object, filters={"dataset": dataset})
+
+    def test_inventory_scan(self, api_object, request):
+        response = api_object.scan(csp="AWS")
+
+        assert "data" in response.keys()
+
+    def test_inventory_status(self, api_object, request):
+        response = api_object.scan(csp="AWS")
+
+        assert "data" in response.keys()
