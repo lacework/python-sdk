@@ -47,6 +47,8 @@ from .v2.reports import ReportsAPI
 from .v2.resource_groups import ResourceGroupsAPI
 from .v2.schemas import SchemasAPI
 from .v2.team_members import TeamMembersAPI
+from .v2.team_users import TeamUsersAPI
+from .v2.user_groups import UserGroupsAPI
 from .v2.user_profile import UserProfileAPI
 from .v2.vulnerabilities import VulnerabilitiesAPI
 from .v2.vulnerability_exceptions import VulnerabilityExceptionsAPI
@@ -178,6 +180,8 @@ class LaceworkClient:
         self.schemas = SchemasAPI(self._session)
         self.suppressions = SuppressionsAPI(self._session)
         self.team_members = TeamMembersAPI(self._session)
+        self.team_users = TeamUsersAPI(self._session)
+        self.user_groups = UserGroupsAPI(self._session)
         self.tokens = TokenAPI(self._session)
         self.user_profile = UserProfileAPI(self._session)
         self.vulnerabilities = VulnerabilitiesAPI(self._session)

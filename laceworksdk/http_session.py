@@ -229,6 +229,12 @@ class HttpSession:
         if "/api/v1/" in uri:
             logger.warning("Lacework's v1 APIs are scheduled to be deprecated and will not allow usage of after December 2022.")
 
+        if "/api/v2/TeamUsers" in uri:
+            logger.warning("TeamUsers APIs is currently experimental and subject to change")
+
+        if "/api/v2/UserGroups" in uri:
+            logger.warning("UserGroups API is currently experimental and subject to change")
+
         # Check for 'org' - if True, make an organization-level API call
         # TODO: Remove this on v1.0 release - this is done for back compat
         org = kwargs.pop("org", None)
