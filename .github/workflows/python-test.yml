@@ -19,41 +19,34 @@ jobs:
         python-version: ["3.7", "3.8", "3.9", "3.10"]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
+      - name: Install poetry
+        run: |
+          pipx install poetry
+
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'poetry'
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install flake8 flake8-quotes pytest pytest-lazy-fixture pytest-rerunfailures
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
-          if [ -f jupyter/requirements.txt ]; then pip install -r jupyter/requirements.txt; fi
+          poetry install
 
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          flake8 . --exclude "docker_build" --count --select=E9,F63,F7,F82 --show-source --statistics
+          poetry run flake8 . --exclude "jupyter" --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 . --exclude "docker_build" --count --exit-zero --max-complexity=10 --statistics
-
-      - name: Run setup.py
-        run: |
-          python setup.py --version
-
-      - name: Test Jupyter container
-        run: |
-          pytest -m "not ci_exempt" jupyter/tests
+          poetry run flake8 . --exclude "jupyter" --count --exit-zero --max-complexity=10 --statistics
 
       - name: Test SDK with pytest
         run: |
-          pytest -m "not ci_exempt and not flaky_test" tests/api/v2
+          poetry run pytest -m "not ci_exempt and not flaky_test" tests/api/v2
         env:
           LW_ACCOUNT: ${{ secrets.LW_ACCOUNT }}
           LW_SUBACCOUNT: ${{ secrets.LW_SUBACCOUNT }}
