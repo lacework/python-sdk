@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 12.1.0"/>
+    <meta name="generator" content="pdoc 12.3.1"/>
     <title>laceworksdk.api.v2.alerts API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
@@ -74,9 +74,9 @@
                         <div class="docstring"><p>Lacework Alerts API wrapper.</p>
 </div>
 
-                        <input id="alerts-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                        <input id="mod-alerts-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
-                        <label class="view-source-button" for="alerts-view-source"><span>View Source</span></label>
+                        <label class="view-source-button" for="mod-alerts-view-source"><span>View Source</span></label>
 
                         <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="c1"># -*- coding: utf-8 -*-</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="sd">&quot;&quot;&quot;</span>
@@ -89,7 +89,7 @@
 </span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a><span class="k">class</span> <span class="nc">AlertsAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
 </span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>
 </span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a><span class="sd">        Initializes the AlertsAPI object.</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a>
 </span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a><span class="sd">        :param session: An instance of the HttpSession class</span>
@@ -102,113 +102,143 @@
 </span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
 </span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a><span class="sd">        A method to get Alerts objects.</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>
-</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a><span class="sd">        :param start_time: A &quot;%Y-%m-%dT%H:%M:%SZ&quot; structured timestamp to begin from.</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a><span class="sd">        :param end_time: A &quot;%Y-%m-%dT%H:%M:%S%Z&quot; structured timestamp to end at.</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>
-</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a><span class="sd">        :return response json</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>
-</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>            <span class="n">request_params</span><span class="p">,</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="n">start_time</span><span class="p">,</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="n">end_time</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>        <span class="p">)</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>
-</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>            <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a><span class="sd">        A method to get Alerts objects.</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a><span class="sd">        :param start_time: A &quot;%Y-%m-%dT%H:%M:%SZ&quot; structured timestamp to begin from.</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a><span class="sd">        :param end_time: A &quot;%Y-%m-%dT%H:%M:%S%Z&quot; structured timestamp to end at.</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a><span class="sd">        :param limit: An integer representing the number of Alerts to return.</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a><span class="sd">        :return: response json</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>            <span class="n">request_params</span><span class="p">,</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="n">start_time</span><span class="p">,</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="n">end_time</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>        <span class="p">)</span>
 </span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>
-</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>
-</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>                    <span class="nb">id</span><span class="p">,</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>                    <span class="n">scope</span><span class="p">,</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a>                    <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="sd">        A method to get Alerts objects by ID.</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>
-</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="sd">        :param scope: A string representing the scope of the detailst to return.</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="sd">            (&quot;Details&quot;, &quot;Investigation&quot;, &quot;Events&quot;, &quot;RelatedAlerts&quot;, &quot;Integrations&quot;, &quot;Timeline&quot;)</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>
-</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a><span class="sd">        :return response json</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>
-</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>            <span class="n">request_params</span><span class="p">,</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>            <span class="n">scope</span><span class="o">=</span><span class="n">scope</span>
-</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>        <span class="p">)</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>
-</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>        <span class="n">return_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>        <span class="n">current_rows</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>            <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>            <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;paging&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;paging&quot;</span><span class="p">]</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>            <span class="k">if</span> <span class="n">limit</span><span class="p">:</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>                <span class="n">take</span> <span class="o">=</span> <span class="n">limit</span> <span class="o">-</span> <span class="n">current_rows</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>                <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][:</span><span class="n">take</span><span class="p">])</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>                <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>            <span class="n">current_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>            <span class="k">if</span> <span class="n">limit</span> <span class="ow">and</span> <span class="n">current_rows</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">:</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>                <span class="k">break</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>            <span class="k">try</span><span class="p">:</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>                <span class="n">next_page</span> <span class="o">=</span> <span class="n">response_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;paging&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;urls&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nextPage&quot;</span><span class="p">)</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>                <span class="n">next_page</span> <span class="o">=</span> <span class="kc">None</span>
 </span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>
-</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>
-</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>               <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a><span class="sd">        A method to search Alerts objects.</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>            <span class="k">if</span> <span class="n">next_page</span><span class="p">:</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">next_page</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>                <span class="k">break</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>        <span class="k">return</span> <span class="n">return_data</span>
 </span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>
-</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a><span class="sd">        :param json: A dictionary containing the necessary search parameters.</span>
-</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a><span class="sd">            (timeFilter, filters, returns)</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>
-</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a><span class="sd">        :return response json</span>
-</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>
-</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>
-</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>                <span class="nb">id</span><span class="p">,</span>
-</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>                <span class="n">comment</span><span class="p">):</span>
-</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a><span class="sd">        A method to comment on an Alerts object.</span>
-</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>
-</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
-</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>
-</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a><span class="sd">        :return response json</span>
-</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>
-</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
-</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>        <span class="p">)</span>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;comment&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>
-</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>
-</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>              <span class="nb">id</span><span class="p">,</span>
-</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>              <span class="n">reason</span><span class="p">,</span>
-</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a>              <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a><span class="sd">        A method to close an Alerts object.</span>
-</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>
-</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a><span class="sd">        :param reason: An integer representing the close reason.</span>
-</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a><span class="sd">            0: Other</span>
-</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a><span class="sd">            1: False positive</span>
-</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="sd">            2: Not enough information</span>
-</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a><span class="sd">            3: Malicious and have resolution in place</span>
-</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a><span class="sd">            4: Expected because of routine testing</span>
-</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>                    <span class="nb">id</span><span class="p">,</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>                    <span class="n">scope</span><span class="p">,</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>                    <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a><span class="sd">        A method to get Alerts objects by ID.</span>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a><span class="sd">        :param scope: A string representing the scope of the detailst to return.</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a><span class="sd">            (&quot;Details&quot;, &quot;Investigation&quot;, &quot;Events&quot;, &quot;RelatedAlerts&quot;, &quot;Integrations&quot;, &quot;Timeline&quot;)</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="sd">        :return response json</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>            <span class="n">request_params</span><span class="p">,</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>            <span class="n">scope</span><span class="o">=</span><span class="n">scope</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>        <span class="p">)</span>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>               <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="sd">        A method to search Alerts objects.</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a><span class="sd">        :param json: A dictionary containing the necessary search parameters.</span>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">            (timeFilter, filters, returns)</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a><span class="sd">        :return response json</span>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a>                <span class="nb">id</span><span class="p">,</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>                <span class="n">comment</span><span class="p">):</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="sd">        A method to comment on an Alerts object.</span>
 </span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a>
-</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a><span class="sd">        :return response json</span>
-</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
 </span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>
-</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>            <span class="n">reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
-</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
-</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>        <span class="p">)</span>
-</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a>
-</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;close&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a><span class="sd">        :return response json</span>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>
+</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>        <span class="p">)</span>
 </span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>
-</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;comment&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a>
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a>              <span class="nb">id</span><span class="p">,</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a>              <span class="n">reason</span><span class="p">,</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a>              <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a><span class="sd">        A method to close an Alerts object.</span>
+</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a><span class="sd">        :param reason: An integer representing the close reason.</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a><span class="sd">            0: Other</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a><span class="sd">            1: False positive</span>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a><span class="sd">            2: Not enough information</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a><span class="sd">            3: Malicious and have resolution in place</span>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a><span class="sd">            4: Expected because of routine testing</span>
+</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
+</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a>
+</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a><span class="sd">        :return response json</span>
+</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a>
+</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a>            <span class="n">reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
+</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
+</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a>        <span class="p">)</span>
+</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a>
+</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;close&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a>
+</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -216,7 +246,7 @@
                 <section id="AlertsAPI">
                             <input id="AlertsAPI-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">AlertsAPI</span><wbr>(<span class="base"><a href="../search_endpoint.html#SearchEndpoint">laceworksdk.api.search_endpoint.SearchEndpoint</a></span>):
 
@@ -227,7 +257,7 @@
             <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI-10"><a href="#AlertsAPI-10"><span class="linenos"> 10</span></a><span class="k">class</span> <span class="nc">AlertsAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
 </span><span id="AlertsAPI-11"><a href="#AlertsAPI-11"><span class="linenos"> 11</span></a>
 </span><span id="AlertsAPI-12"><a href="#AlertsAPI-12"><span class="linenos"> 12</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-</span><span id="AlertsAPI-13"><a href="#AlertsAPI-13"><span class="linenos"> 13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-13"><a href="#AlertsAPI-13"><span class="linenos"> 13</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="AlertsAPI-14"><a href="#AlertsAPI-14"><span class="linenos"> 14</span></a><span class="sd">        Initializes the AlertsAPI object.</span>
 </span><span id="AlertsAPI-15"><a href="#AlertsAPI-15"><span class="linenos"> 15</span></a>
 </span><span id="AlertsAPI-16"><a href="#AlertsAPI-16"><span class="linenos"> 16</span></a><span class="sd">        :param session: An instance of the HttpSession class</span>
@@ -240,113 +270,143 @@
 </span><span id="AlertsAPI-23"><a href="#AlertsAPI-23"><span class="linenos"> 23</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
 </span><span id="AlertsAPI-24"><a href="#AlertsAPI-24"><span class="linenos"> 24</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="AlertsAPI-25"><a href="#AlertsAPI-25"><span class="linenos"> 25</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="AlertsAPI-26"><a href="#AlertsAPI-26"><span class="linenos"> 26</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="AlertsAPI-27"><a href="#AlertsAPI-27"><span class="linenos"> 27</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-28"><a href="#AlertsAPI-28"><span class="linenos"> 28</span></a><span class="sd">        A method to get Alerts objects.</span>
-</span><span id="AlertsAPI-29"><a href="#AlertsAPI-29"><span class="linenos"> 29</span></a>
-</span><span id="AlertsAPI-30"><a href="#AlertsAPI-30"><span class="linenos"> 30</span></a><span class="sd">        :param start_time: A &quot;%Y-%m-%dT%H:%M:%SZ&quot; structured timestamp to begin from.</span>
-</span><span id="AlertsAPI-31"><a href="#AlertsAPI-31"><span class="linenos"> 31</span></a><span class="sd">        :param end_time: A &quot;%Y-%m-%dT%H:%M:%S%Z&quot; structured timestamp to end at.</span>
-</span><span id="AlertsAPI-32"><a href="#AlertsAPI-32"><span class="linenos"> 32</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="AlertsAPI-33"><a href="#AlertsAPI-33"><span class="linenos"> 33</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="AlertsAPI-34"><a href="#AlertsAPI-34"><span class="linenos"> 34</span></a>
-</span><span id="AlertsAPI-35"><a href="#AlertsAPI-35"><span class="linenos"> 35</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI-36"><a href="#AlertsAPI-36"><span class="linenos"> 36</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-37"><a href="#AlertsAPI-37"><span class="linenos"> 37</span></a>
-</span><span id="AlertsAPI-38"><a href="#AlertsAPI-38"><span class="linenos"> 38</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="AlertsAPI-39"><a href="#AlertsAPI-39"><span class="linenos"> 39</span></a>            <span class="n">request_params</span><span class="p">,</span>
-</span><span id="AlertsAPI-40"><a href="#AlertsAPI-40"><span class="linenos"> 40</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="n">start_time</span><span class="p">,</span>
-</span><span id="AlertsAPI-41"><a href="#AlertsAPI-41"><span class="linenos"> 41</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="n">end_time</span>
-</span><span id="AlertsAPI-42"><a href="#AlertsAPI-42"><span class="linenos"> 42</span></a>        <span class="p">)</span>
-</span><span id="AlertsAPI-43"><a href="#AlertsAPI-43"><span class="linenos"> 43</span></a>
-</span><span id="AlertsAPI-44"><a href="#AlertsAPI-44"><span class="linenos"> 44</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="AlertsAPI-26"><a href="#AlertsAPI-26"><span class="linenos"> 26</span></a>            <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="AlertsAPI-27"><a href="#AlertsAPI-27"><span class="linenos"> 27</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="AlertsAPI-28"><a href="#AlertsAPI-28"><span class="linenos"> 28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-29"><a href="#AlertsAPI-29"><span class="linenos"> 29</span></a><span class="sd">        A method to get Alerts objects.</span>
+</span><span id="AlertsAPI-30"><a href="#AlertsAPI-30"><span class="linenos"> 30</span></a>
+</span><span id="AlertsAPI-31"><a href="#AlertsAPI-31"><span class="linenos"> 31</span></a><span class="sd">        :param start_time: A &quot;%Y-%m-%dT%H:%M:%SZ&quot; structured timestamp to begin from.</span>
+</span><span id="AlertsAPI-32"><a href="#AlertsAPI-32"><span class="linenos"> 32</span></a><span class="sd">        :param end_time: A &quot;%Y-%m-%dT%H:%M:%S%Z&quot; structured timestamp to end at.</span>
+</span><span id="AlertsAPI-33"><a href="#AlertsAPI-33"><span class="linenos"> 33</span></a><span class="sd">        :param limit: An integer representing the number of Alerts to return.</span>
+</span><span id="AlertsAPI-34"><a href="#AlertsAPI-34"><span class="linenos"> 34</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="AlertsAPI-35"><a href="#AlertsAPI-35"><span class="linenos"> 35</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="AlertsAPI-36"><a href="#AlertsAPI-36"><span class="linenos"> 36</span></a>
+</span><span id="AlertsAPI-37"><a href="#AlertsAPI-37"><span class="linenos"> 37</span></a><span class="sd">        :return: response json</span>
+</span><span id="AlertsAPI-38"><a href="#AlertsAPI-38"><span class="linenos"> 38</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-39"><a href="#AlertsAPI-39"><span class="linenos"> 39</span></a>
+</span><span id="AlertsAPI-40"><a href="#AlertsAPI-40"><span class="linenos"> 40</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="AlertsAPI-41"><a href="#AlertsAPI-41"><span class="linenos"> 41</span></a>            <span class="n">request_params</span><span class="p">,</span>
+</span><span id="AlertsAPI-42"><a href="#AlertsAPI-42"><span class="linenos"> 42</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="n">start_time</span><span class="p">,</span>
+</span><span id="AlertsAPI-43"><a href="#AlertsAPI-43"><span class="linenos"> 43</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="n">end_time</span>
+</span><span id="AlertsAPI-44"><a href="#AlertsAPI-44"><span class="linenos"> 44</span></a>        <span class="p">)</span>
 </span><span id="AlertsAPI-45"><a href="#AlertsAPI-45"><span class="linenos"> 45</span></a>
-</span><span id="AlertsAPI-46"><a href="#AlertsAPI-46"><span class="linenos"> 46</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="AlertsAPI-46"><a href="#AlertsAPI-46"><span class="linenos"> 46</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 </span><span id="AlertsAPI-47"><a href="#AlertsAPI-47"><span class="linenos"> 47</span></a>
-</span><span id="AlertsAPI-48"><a href="#AlertsAPI-48"><span class="linenos"> 48</span></a>    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="AlertsAPI-49"><a href="#AlertsAPI-49"><span class="linenos"> 49</span></a>                    <span class="nb">id</span><span class="p">,</span>
-</span><span id="AlertsAPI-50"><a href="#AlertsAPI-50"><span class="linenos"> 50</span></a>                    <span class="n">scope</span><span class="p">,</span>
-</span><span id="AlertsAPI-51"><a href="#AlertsAPI-51"><span class="linenos"> 51</span></a>                    <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="AlertsAPI-52"><a href="#AlertsAPI-52"><span class="linenos"> 52</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-53"><a href="#AlertsAPI-53"><span class="linenos"> 53</span></a><span class="sd">        A method to get Alerts objects by ID.</span>
-</span><span id="AlertsAPI-54"><a href="#AlertsAPI-54"><span class="linenos"> 54</span></a>
-</span><span id="AlertsAPI-55"><a href="#AlertsAPI-55"><span class="linenos"> 55</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="AlertsAPI-56"><a href="#AlertsAPI-56"><span class="linenos"> 56</span></a><span class="sd">        :param scope: A string representing the scope of the detailst to return.</span>
-</span><span id="AlertsAPI-57"><a href="#AlertsAPI-57"><span class="linenos"> 57</span></a><span class="sd">            (&quot;Details&quot;, &quot;Investigation&quot;, &quot;Events&quot;, &quot;RelatedAlerts&quot;, &quot;Integrations&quot;, &quot;Timeline&quot;)</span>
-</span><span id="AlertsAPI-58"><a href="#AlertsAPI-58"><span class="linenos"> 58</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="AlertsAPI-59"><a href="#AlertsAPI-59"><span class="linenos"> 59</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="AlertsAPI-60"><a href="#AlertsAPI-60"><span class="linenos"> 60</span></a>
-</span><span id="AlertsAPI-61"><a href="#AlertsAPI-61"><span class="linenos"> 61</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI-62"><a href="#AlertsAPI-62"><span class="linenos"> 62</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-63"><a href="#AlertsAPI-63"><span class="linenos"> 63</span></a>
-</span><span id="AlertsAPI-64"><a href="#AlertsAPI-64"><span class="linenos"> 64</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="AlertsAPI-65"><a href="#AlertsAPI-65"><span class="linenos"> 65</span></a>            <span class="n">request_params</span><span class="p">,</span>
-</span><span id="AlertsAPI-66"><a href="#AlertsAPI-66"><span class="linenos"> 66</span></a>            <span class="n">scope</span><span class="o">=</span><span class="n">scope</span>
-</span><span id="AlertsAPI-67"><a href="#AlertsAPI-67"><span class="linenos"> 67</span></a>        <span class="p">)</span>
-</span><span id="AlertsAPI-68"><a href="#AlertsAPI-68"><span class="linenos"> 68</span></a>
-</span><span id="AlertsAPI-69"><a href="#AlertsAPI-69"><span class="linenos"> 69</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="AlertsAPI-48"><a href="#AlertsAPI-48"><span class="linenos"> 48</span></a>        <span class="n">return_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+</span><span id="AlertsAPI-49"><a href="#AlertsAPI-49"><span class="linenos"> 49</span></a>        <span class="n">current_rows</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="AlertsAPI-50"><a href="#AlertsAPI-50"><span class="linenos"> 50</span></a>
+</span><span id="AlertsAPI-51"><a href="#AlertsAPI-51"><span class="linenos"> 51</span></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="AlertsAPI-52"><a href="#AlertsAPI-52"><span class="linenos"> 52</span></a>            <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="AlertsAPI-53"><a href="#AlertsAPI-53"><span class="linenos"> 53</span></a>
+</span><span id="AlertsAPI-54"><a href="#AlertsAPI-54"><span class="linenos"> 54</span></a>            <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;paging&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;paging&quot;</span><span class="p">]</span>
+</span><span id="AlertsAPI-55"><a href="#AlertsAPI-55"><span class="linenos"> 55</span></a>
+</span><span id="AlertsAPI-56"><a href="#AlertsAPI-56"><span class="linenos"> 56</span></a>            <span class="k">if</span> <span class="n">limit</span><span class="p">:</span>
+</span><span id="AlertsAPI-57"><a href="#AlertsAPI-57"><span class="linenos"> 57</span></a>                <span class="n">take</span> <span class="o">=</span> <span class="n">limit</span> <span class="o">-</span> <span class="n">current_rows</span>
+</span><span id="AlertsAPI-58"><a href="#AlertsAPI-58"><span class="linenos"> 58</span></a>                <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][:</span><span class="n">take</span><span class="p">])</span>
+</span><span id="AlertsAPI-59"><a href="#AlertsAPI-59"><span class="linenos"> 59</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="AlertsAPI-60"><a href="#AlertsAPI-60"><span class="linenos"> 60</span></a>                <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+</span><span id="AlertsAPI-61"><a href="#AlertsAPI-61"><span class="linenos"> 61</span></a>            <span class="n">current_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+</span><span id="AlertsAPI-62"><a href="#AlertsAPI-62"><span class="linenos"> 62</span></a>
+</span><span id="AlertsAPI-63"><a href="#AlertsAPI-63"><span class="linenos"> 63</span></a>            <span class="k">if</span> <span class="n">limit</span> <span class="ow">and</span> <span class="n">current_rows</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">:</span>
+</span><span id="AlertsAPI-64"><a href="#AlertsAPI-64"><span class="linenos"> 64</span></a>                <span class="k">break</span>
+</span><span id="AlertsAPI-65"><a href="#AlertsAPI-65"><span class="linenos"> 65</span></a>
+</span><span id="AlertsAPI-66"><a href="#AlertsAPI-66"><span class="linenos"> 66</span></a>            <span class="k">try</span><span class="p">:</span>
+</span><span id="AlertsAPI-67"><a href="#AlertsAPI-67"><span class="linenos"> 67</span></a>                <span class="n">next_page</span> <span class="o">=</span> <span class="n">response_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;paging&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;urls&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nextPage&quot;</span><span class="p">)</span>
+</span><span id="AlertsAPI-68"><a href="#AlertsAPI-68"><span class="linenos"> 68</span></a>            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span><span id="AlertsAPI-69"><a href="#AlertsAPI-69"><span class="linenos"> 69</span></a>                <span class="n">next_page</span> <span class="o">=</span> <span class="kc">None</span>
 </span><span id="AlertsAPI-70"><a href="#AlertsAPI-70"><span class="linenos"> 70</span></a>
-</span><span id="AlertsAPI-71"><a href="#AlertsAPI-71"><span class="linenos"> 71</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="AlertsAPI-72"><a href="#AlertsAPI-72"><span class="linenos"> 72</span></a>
-</span><span id="AlertsAPI-73"><a href="#AlertsAPI-73"><span class="linenos"> 73</span></a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="AlertsAPI-74"><a href="#AlertsAPI-74"><span class="linenos"> 74</span></a>               <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="AlertsAPI-75"><a href="#AlertsAPI-75"><span class="linenos"> 75</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-76"><a href="#AlertsAPI-76"><span class="linenos"> 76</span></a><span class="sd">        A method to search Alerts objects.</span>
+</span><span id="AlertsAPI-71"><a href="#AlertsAPI-71"><span class="linenos"> 71</span></a>            <span class="k">if</span> <span class="n">next_page</span><span class="p">:</span>
+</span><span id="AlertsAPI-72"><a href="#AlertsAPI-72"><span class="linenos"> 72</span></a>                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">next_page</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="AlertsAPI-73"><a href="#AlertsAPI-73"><span class="linenos"> 73</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="AlertsAPI-74"><a href="#AlertsAPI-74"><span class="linenos"> 74</span></a>                <span class="k">break</span>
+</span><span id="AlertsAPI-75"><a href="#AlertsAPI-75"><span class="linenos"> 75</span></a>
+</span><span id="AlertsAPI-76"><a href="#AlertsAPI-76"><span class="linenos"> 76</span></a>        <span class="k">return</span> <span class="n">return_data</span>
 </span><span id="AlertsAPI-77"><a href="#AlertsAPI-77"><span class="linenos"> 77</span></a>
-</span><span id="AlertsAPI-78"><a href="#AlertsAPI-78"><span class="linenos"> 78</span></a><span class="sd">        :param json: A dictionary containing the necessary search parameters.</span>
-</span><span id="AlertsAPI-79"><a href="#AlertsAPI-79"><span class="linenos"> 79</span></a><span class="sd">            (timeFilter, filters, returns)</span>
-</span><span id="AlertsAPI-80"><a href="#AlertsAPI-80"><span class="linenos"> 80</span></a>
-</span><span id="AlertsAPI-81"><a href="#AlertsAPI-81"><span class="linenos"> 81</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI-82"><a href="#AlertsAPI-82"><span class="linenos"> 82</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-83"><a href="#AlertsAPI-83"><span class="linenos"> 83</span></a>
-</span><span id="AlertsAPI-84"><a href="#AlertsAPI-84"><span class="linenos"> 84</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="AlertsAPI-85"><a href="#AlertsAPI-85"><span class="linenos"> 85</span></a>
-</span><span id="AlertsAPI-86"><a href="#AlertsAPI-86"><span class="linenos"> 86</span></a>    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="AlertsAPI-87"><a href="#AlertsAPI-87"><span class="linenos"> 87</span></a>                <span class="nb">id</span><span class="p">,</span>
-</span><span id="AlertsAPI-88"><a href="#AlertsAPI-88"><span class="linenos"> 88</span></a>                <span class="n">comment</span><span class="p">):</span>
-</span><span id="AlertsAPI-89"><a href="#AlertsAPI-89"><span class="linenos"> 89</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-90"><a href="#AlertsAPI-90"><span class="linenos"> 90</span></a><span class="sd">        A method to comment on an Alerts object.</span>
-</span><span id="AlertsAPI-91"><a href="#AlertsAPI-91"><span class="linenos"> 91</span></a>
-</span><span id="AlertsAPI-92"><a href="#AlertsAPI-92"><span class="linenos"> 92</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="AlertsAPI-93"><a href="#AlertsAPI-93"><span class="linenos"> 93</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
-</span><span id="AlertsAPI-94"><a href="#AlertsAPI-94"><span class="linenos"> 94</span></a>
-</span><span id="AlertsAPI-95"><a href="#AlertsAPI-95"><span class="linenos"> 95</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI-96"><a href="#AlertsAPI-96"><span class="linenos"> 96</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-97"><a href="#AlertsAPI-97"><span class="linenos"> 97</span></a>
-</span><span id="AlertsAPI-98"><a href="#AlertsAPI-98"><span class="linenos"> 98</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="AlertsAPI-99"><a href="#AlertsAPI-99"><span class="linenos"> 99</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
-</span><span id="AlertsAPI-100"><a href="#AlertsAPI-100"><span class="linenos">100</span></a>        <span class="p">)</span>
-</span><span id="AlertsAPI-101"><a href="#AlertsAPI-101"><span class="linenos">101</span></a>
-</span><span id="AlertsAPI-102"><a href="#AlertsAPI-102"><span class="linenos">102</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;comment&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="AlertsAPI-103"><a href="#AlertsAPI-103"><span class="linenos">103</span></a>
-</span><span id="AlertsAPI-104"><a href="#AlertsAPI-104"><span class="linenos">104</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="AlertsAPI-105"><a href="#AlertsAPI-105"><span class="linenos">105</span></a>
-</span><span id="AlertsAPI-106"><a href="#AlertsAPI-106"><span class="linenos">106</span></a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="AlertsAPI-107"><a href="#AlertsAPI-107"><span class="linenos">107</span></a>              <span class="nb">id</span><span class="p">,</span>
-</span><span id="AlertsAPI-108"><a href="#AlertsAPI-108"><span class="linenos">108</span></a>              <span class="n">reason</span><span class="p">,</span>
-</span><span id="AlertsAPI-109"><a href="#AlertsAPI-109"><span class="linenos">109</span></a>              <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="AlertsAPI-110"><a href="#AlertsAPI-110"><span class="linenos">110</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI-111"><a href="#AlertsAPI-111"><span class="linenos">111</span></a><span class="sd">        A method to close an Alerts object.</span>
-</span><span id="AlertsAPI-112"><a href="#AlertsAPI-112"><span class="linenos">112</span></a>
-</span><span id="AlertsAPI-113"><a href="#AlertsAPI-113"><span class="linenos">113</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="AlertsAPI-114"><a href="#AlertsAPI-114"><span class="linenos">114</span></a><span class="sd">        :param reason: An integer representing the close reason.</span>
-</span><span id="AlertsAPI-115"><a href="#AlertsAPI-115"><span class="linenos">115</span></a><span class="sd">            0: Other</span>
-</span><span id="AlertsAPI-116"><a href="#AlertsAPI-116"><span class="linenos">116</span></a><span class="sd">            1: False positive</span>
-</span><span id="AlertsAPI-117"><a href="#AlertsAPI-117"><span class="linenos">117</span></a><span class="sd">            2: Not enough information</span>
-</span><span id="AlertsAPI-118"><a href="#AlertsAPI-118"><span class="linenos">118</span></a><span class="sd">            3: Malicious and have resolution in place</span>
-</span><span id="AlertsAPI-119"><a href="#AlertsAPI-119"><span class="linenos">119</span></a><span class="sd">            4: Expected because of routine testing</span>
-</span><span id="AlertsAPI-120"><a href="#AlertsAPI-120"><span class="linenos">120</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
+</span><span id="AlertsAPI-78"><a href="#AlertsAPI-78"><span class="linenos"> 78</span></a>    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="AlertsAPI-79"><a href="#AlertsAPI-79"><span class="linenos"> 79</span></a>                    <span class="nb">id</span><span class="p">,</span>
+</span><span id="AlertsAPI-80"><a href="#AlertsAPI-80"><span class="linenos"> 80</span></a>                    <span class="n">scope</span><span class="p">,</span>
+</span><span id="AlertsAPI-81"><a href="#AlertsAPI-81"><span class="linenos"> 81</span></a>                    <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="AlertsAPI-82"><a href="#AlertsAPI-82"><span class="linenos"> 82</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-83"><a href="#AlertsAPI-83"><span class="linenos"> 83</span></a><span class="sd">        A method to get Alerts objects by ID.</span>
+</span><span id="AlertsAPI-84"><a href="#AlertsAPI-84"><span class="linenos"> 84</span></a>
+</span><span id="AlertsAPI-85"><a href="#AlertsAPI-85"><span class="linenos"> 85</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="AlertsAPI-86"><a href="#AlertsAPI-86"><span class="linenos"> 86</span></a><span class="sd">        :param scope: A string representing the scope of the detailst to return.</span>
+</span><span id="AlertsAPI-87"><a href="#AlertsAPI-87"><span class="linenos"> 87</span></a><span class="sd">            (&quot;Details&quot;, &quot;Investigation&quot;, &quot;Events&quot;, &quot;RelatedAlerts&quot;, &quot;Integrations&quot;, &quot;Timeline&quot;)</span>
+</span><span id="AlertsAPI-88"><a href="#AlertsAPI-88"><span class="linenos"> 88</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="AlertsAPI-89"><a href="#AlertsAPI-89"><span class="linenos"> 89</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="AlertsAPI-90"><a href="#AlertsAPI-90"><span class="linenos"> 90</span></a>
+</span><span id="AlertsAPI-91"><a href="#AlertsAPI-91"><span class="linenos"> 91</span></a><span class="sd">        :return response json</span>
+</span><span id="AlertsAPI-92"><a href="#AlertsAPI-92"><span class="linenos"> 92</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-93"><a href="#AlertsAPI-93"><span class="linenos"> 93</span></a>
+</span><span id="AlertsAPI-94"><a href="#AlertsAPI-94"><span class="linenos"> 94</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="AlertsAPI-95"><a href="#AlertsAPI-95"><span class="linenos"> 95</span></a>            <span class="n">request_params</span><span class="p">,</span>
+</span><span id="AlertsAPI-96"><a href="#AlertsAPI-96"><span class="linenos"> 96</span></a>            <span class="n">scope</span><span class="o">=</span><span class="n">scope</span>
+</span><span id="AlertsAPI-97"><a href="#AlertsAPI-97"><span class="linenos"> 97</span></a>        <span class="p">)</span>
+</span><span id="AlertsAPI-98"><a href="#AlertsAPI-98"><span class="linenos"> 98</span></a>
+</span><span id="AlertsAPI-99"><a href="#AlertsAPI-99"><span class="linenos"> 99</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="AlertsAPI-100"><a href="#AlertsAPI-100"><span class="linenos">100</span></a>
+</span><span id="AlertsAPI-101"><a href="#AlertsAPI-101"><span class="linenos">101</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="AlertsAPI-102"><a href="#AlertsAPI-102"><span class="linenos">102</span></a>
+</span><span id="AlertsAPI-103"><a href="#AlertsAPI-103"><span class="linenos">103</span></a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="AlertsAPI-104"><a href="#AlertsAPI-104"><span class="linenos">104</span></a>               <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="AlertsAPI-105"><a href="#AlertsAPI-105"><span class="linenos">105</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-106"><a href="#AlertsAPI-106"><span class="linenos">106</span></a><span class="sd">        A method to search Alerts objects.</span>
+</span><span id="AlertsAPI-107"><a href="#AlertsAPI-107"><span class="linenos">107</span></a>
+</span><span id="AlertsAPI-108"><a href="#AlertsAPI-108"><span class="linenos">108</span></a><span class="sd">        :param json: A dictionary containing the necessary search parameters.</span>
+</span><span id="AlertsAPI-109"><a href="#AlertsAPI-109"><span class="linenos">109</span></a><span class="sd">            (timeFilter, filters, returns)</span>
+</span><span id="AlertsAPI-110"><a href="#AlertsAPI-110"><span class="linenos">110</span></a>
+</span><span id="AlertsAPI-111"><a href="#AlertsAPI-111"><span class="linenos">111</span></a><span class="sd">        :return response json</span>
+</span><span id="AlertsAPI-112"><a href="#AlertsAPI-112"><span class="linenos">112</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-113"><a href="#AlertsAPI-113"><span class="linenos">113</span></a>
+</span><span id="AlertsAPI-114"><a href="#AlertsAPI-114"><span class="linenos">114</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="AlertsAPI-115"><a href="#AlertsAPI-115"><span class="linenos">115</span></a>
+</span><span id="AlertsAPI-116"><a href="#AlertsAPI-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="AlertsAPI-117"><a href="#AlertsAPI-117"><span class="linenos">117</span></a>                <span class="nb">id</span><span class="p">,</span>
+</span><span id="AlertsAPI-118"><a href="#AlertsAPI-118"><span class="linenos">118</span></a>                <span class="n">comment</span><span class="p">):</span>
+</span><span id="AlertsAPI-119"><a href="#AlertsAPI-119"><span class="linenos">119</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-120"><a href="#AlertsAPI-120"><span class="linenos">120</span></a><span class="sd">        A method to comment on an Alerts object.</span>
 </span><span id="AlertsAPI-121"><a href="#AlertsAPI-121"><span class="linenos">121</span></a>
-</span><span id="AlertsAPI-122"><a href="#AlertsAPI-122"><span class="linenos">122</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI-123"><a href="#AlertsAPI-123"><span class="linenos">123</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-122"><a href="#AlertsAPI-122"><span class="linenos">122</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="AlertsAPI-123"><a href="#AlertsAPI-123"><span class="linenos">123</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
 </span><span id="AlertsAPI-124"><a href="#AlertsAPI-124"><span class="linenos">124</span></a>
-</span><span id="AlertsAPI-125"><a href="#AlertsAPI-125"><span class="linenos">125</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="AlertsAPI-126"><a href="#AlertsAPI-126"><span class="linenos">126</span></a>            <span class="n">reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
-</span><span id="AlertsAPI-127"><a href="#AlertsAPI-127"><span class="linenos">127</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
-</span><span id="AlertsAPI-128"><a href="#AlertsAPI-128"><span class="linenos">128</span></a>        <span class="p">)</span>
-</span><span id="AlertsAPI-129"><a href="#AlertsAPI-129"><span class="linenos">129</span></a>
-</span><span id="AlertsAPI-130"><a href="#AlertsAPI-130"><span class="linenos">130</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;close&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="AlertsAPI-125"><a href="#AlertsAPI-125"><span class="linenos">125</span></a><span class="sd">        :return response json</span>
+</span><span id="AlertsAPI-126"><a href="#AlertsAPI-126"><span class="linenos">126</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-127"><a href="#AlertsAPI-127"><span class="linenos">127</span></a>
+</span><span id="AlertsAPI-128"><a href="#AlertsAPI-128"><span class="linenos">128</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="AlertsAPI-129"><a href="#AlertsAPI-129"><span class="linenos">129</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
+</span><span id="AlertsAPI-130"><a href="#AlertsAPI-130"><span class="linenos">130</span></a>        <span class="p">)</span>
 </span><span id="AlertsAPI-131"><a href="#AlertsAPI-131"><span class="linenos">131</span></a>
-</span><span id="AlertsAPI-132"><a href="#AlertsAPI-132"><span class="linenos">132</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="AlertsAPI-132"><a href="#AlertsAPI-132"><span class="linenos">132</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;comment&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="AlertsAPI-133"><a href="#AlertsAPI-133"><span class="linenos">133</span></a>
+</span><span id="AlertsAPI-134"><a href="#AlertsAPI-134"><span class="linenos">134</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="AlertsAPI-135"><a href="#AlertsAPI-135"><span class="linenos">135</span></a>
+</span><span id="AlertsAPI-136"><a href="#AlertsAPI-136"><span class="linenos">136</span></a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="AlertsAPI-137"><a href="#AlertsAPI-137"><span class="linenos">137</span></a>              <span class="nb">id</span><span class="p">,</span>
+</span><span id="AlertsAPI-138"><a href="#AlertsAPI-138"><span class="linenos">138</span></a>              <span class="n">reason</span><span class="p">,</span>
+</span><span id="AlertsAPI-139"><a href="#AlertsAPI-139"><span class="linenos">139</span></a>              <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="AlertsAPI-140"><a href="#AlertsAPI-140"><span class="linenos">140</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-141"><a href="#AlertsAPI-141"><span class="linenos">141</span></a><span class="sd">        A method to close an Alerts object.</span>
+</span><span id="AlertsAPI-142"><a href="#AlertsAPI-142"><span class="linenos">142</span></a>
+</span><span id="AlertsAPI-143"><a href="#AlertsAPI-143"><span class="linenos">143</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="AlertsAPI-144"><a href="#AlertsAPI-144"><span class="linenos">144</span></a><span class="sd">        :param reason: An integer representing the close reason.</span>
+</span><span id="AlertsAPI-145"><a href="#AlertsAPI-145"><span class="linenos">145</span></a><span class="sd">            0: Other</span>
+</span><span id="AlertsAPI-146"><a href="#AlertsAPI-146"><span class="linenos">146</span></a><span class="sd">            1: False positive</span>
+</span><span id="AlertsAPI-147"><a href="#AlertsAPI-147"><span class="linenos">147</span></a><span class="sd">            2: Not enough information</span>
+</span><span id="AlertsAPI-148"><a href="#AlertsAPI-148"><span class="linenos">148</span></a><span class="sd">            3: Malicious and have resolution in place</span>
+</span><span id="AlertsAPI-149"><a href="#AlertsAPI-149"><span class="linenos">149</span></a><span class="sd">            4: Expected because of routine testing</span>
+</span><span id="AlertsAPI-150"><a href="#AlertsAPI-150"><span class="linenos">150</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
+</span><span id="AlertsAPI-151"><a href="#AlertsAPI-151"><span class="linenos">151</span></a>
+</span><span id="AlertsAPI-152"><a href="#AlertsAPI-152"><span class="linenos">152</span></a><span class="sd">        :return response json</span>
+</span><span id="AlertsAPI-153"><a href="#AlertsAPI-153"><span class="linenos">153</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI-154"><a href="#AlertsAPI-154"><span class="linenos">154</span></a>
+</span><span id="AlertsAPI-155"><a href="#AlertsAPI-155"><span class="linenos">155</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="AlertsAPI-156"><a href="#AlertsAPI-156"><span class="linenos">156</span></a>            <span class="n">reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
+</span><span id="AlertsAPI-157"><a href="#AlertsAPI-157"><span class="linenos">157</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
+</span><span id="AlertsAPI-158"><a href="#AlertsAPI-158"><span class="linenos">158</span></a>        <span class="p">)</span>
+</span><span id="AlertsAPI-159"><a href="#AlertsAPI-159"><span class="linenos">159</span></a>
+</span><span id="AlertsAPI-160"><a href="#AlertsAPI-160"><span class="linenos">160</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;close&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="AlertsAPI-161"><a href="#AlertsAPI-161"><span class="linenos">161</span></a>
+</span><span id="AlertsAPI-162"><a href="#AlertsAPI-162"><span class="linenos">162</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -357,7 +417,7 @@
                             <div id="AlertsAPI.__init__" class="classattr">
                                         <input id="AlertsAPI.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="name">AlertsAPI</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">session</span></span>)</span>
 
                 <label class="view-source-button" for="AlertsAPI.__init__-view-source"><span>View Source</span></label>
@@ -365,7 +425,7 @@
     </div>
     <a class="headerlink" href="#AlertsAPI.__init__"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.__init__-12"><a href="#AlertsAPI.__init__-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-</span><span id="AlertsAPI.__init__-13"><a href="#AlertsAPI.__init__-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.__init__-13"><a href="#AlertsAPI.__init__-13"><span class="linenos">13</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="AlertsAPI.__init__-14"><a href="#AlertsAPI.__init__-14"><span class="linenos">14</span></a><span class="sd">        Initializes the AlertsAPI object.</span>
 </span><span id="AlertsAPI.__init__-15"><a href="#AlertsAPI.__init__-15"><span class="linenos">15</span></a>
 </span><span id="AlertsAPI.__init__-16"><a href="#AlertsAPI.__init__-16"><span class="linenos">16</span></a><span class="sd">        :param session: An instance of the HttpSession class</span>
@@ -393,9 +453,9 @@
                             <div id="AlertsAPI.get" class="classattr">
                                         <input id="AlertsAPI.get-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
-        <span class="name">get</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">start_time</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">end_time</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
+        <span class="name">get</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">start_time</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">end_time</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="n">limit</span><span class="o">=</span><span class="kc">None</span>, </span><span class="param"><span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
 
                 <label class="view-source-button" for="AlertsAPI.get-view-source"><span>View Source</span></label>
 
@@ -404,27 +464,57 @@
             <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.get-23"><a href="#AlertsAPI.get-23"><span class="linenos">23</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
 </span><span id="AlertsAPI.get-24"><a href="#AlertsAPI.get-24"><span class="linenos">24</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="AlertsAPI.get-25"><a href="#AlertsAPI.get-25"><span class="linenos">25</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="AlertsAPI.get-26"><a href="#AlertsAPI.get-26"><span class="linenos">26</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="AlertsAPI.get-27"><a href="#AlertsAPI.get-27"><span class="linenos">27</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.get-28"><a href="#AlertsAPI.get-28"><span class="linenos">28</span></a><span class="sd">        A method to get Alerts objects.</span>
-</span><span id="AlertsAPI.get-29"><a href="#AlertsAPI.get-29"><span class="linenos">29</span></a>
-</span><span id="AlertsAPI.get-30"><a href="#AlertsAPI.get-30"><span class="linenos">30</span></a><span class="sd">        :param start_time: A &quot;%Y-%m-%dT%H:%M:%SZ&quot; structured timestamp to begin from.</span>
-</span><span id="AlertsAPI.get-31"><a href="#AlertsAPI.get-31"><span class="linenos">31</span></a><span class="sd">        :param end_time: A &quot;%Y-%m-%dT%H:%M:%S%Z&quot; structured timestamp to end at.</span>
-</span><span id="AlertsAPI.get-32"><a href="#AlertsAPI.get-32"><span class="linenos">32</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="AlertsAPI.get-33"><a href="#AlertsAPI.get-33"><span class="linenos">33</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="AlertsAPI.get-34"><a href="#AlertsAPI.get-34"><span class="linenos">34</span></a>
-</span><span id="AlertsAPI.get-35"><a href="#AlertsAPI.get-35"><span class="linenos">35</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI.get-36"><a href="#AlertsAPI.get-36"><span class="linenos">36</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.get-37"><a href="#AlertsAPI.get-37"><span class="linenos">37</span></a>
-</span><span id="AlertsAPI.get-38"><a href="#AlertsAPI.get-38"><span class="linenos">38</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="AlertsAPI.get-39"><a href="#AlertsAPI.get-39"><span class="linenos">39</span></a>            <span class="n">request_params</span><span class="p">,</span>
-</span><span id="AlertsAPI.get-40"><a href="#AlertsAPI.get-40"><span class="linenos">40</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="n">start_time</span><span class="p">,</span>
-</span><span id="AlertsAPI.get-41"><a href="#AlertsAPI.get-41"><span class="linenos">41</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="n">end_time</span>
-</span><span id="AlertsAPI.get-42"><a href="#AlertsAPI.get-42"><span class="linenos">42</span></a>        <span class="p">)</span>
-</span><span id="AlertsAPI.get-43"><a href="#AlertsAPI.get-43"><span class="linenos">43</span></a>
-</span><span id="AlertsAPI.get-44"><a href="#AlertsAPI.get-44"><span class="linenos">44</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="AlertsAPI.get-26"><a href="#AlertsAPI.get-26"><span class="linenos">26</span></a>            <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="AlertsAPI.get-27"><a href="#AlertsAPI.get-27"><span class="linenos">27</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="AlertsAPI.get-28"><a href="#AlertsAPI.get-28"><span class="linenos">28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.get-29"><a href="#AlertsAPI.get-29"><span class="linenos">29</span></a><span class="sd">        A method to get Alerts objects.</span>
+</span><span id="AlertsAPI.get-30"><a href="#AlertsAPI.get-30"><span class="linenos">30</span></a>
+</span><span id="AlertsAPI.get-31"><a href="#AlertsAPI.get-31"><span class="linenos">31</span></a><span class="sd">        :param start_time: A &quot;%Y-%m-%dT%H:%M:%SZ&quot; structured timestamp to begin from.</span>
+</span><span id="AlertsAPI.get-32"><a href="#AlertsAPI.get-32"><span class="linenos">32</span></a><span class="sd">        :param end_time: A &quot;%Y-%m-%dT%H:%M:%S%Z&quot; structured timestamp to end at.</span>
+</span><span id="AlertsAPI.get-33"><a href="#AlertsAPI.get-33"><span class="linenos">33</span></a><span class="sd">        :param limit: An integer representing the number of Alerts to return.</span>
+</span><span id="AlertsAPI.get-34"><a href="#AlertsAPI.get-34"><span class="linenos">34</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="AlertsAPI.get-35"><a href="#AlertsAPI.get-35"><span class="linenos">35</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="AlertsAPI.get-36"><a href="#AlertsAPI.get-36"><span class="linenos">36</span></a>
+</span><span id="AlertsAPI.get-37"><a href="#AlertsAPI.get-37"><span class="linenos">37</span></a><span class="sd">        :return: response json</span>
+</span><span id="AlertsAPI.get-38"><a href="#AlertsAPI.get-38"><span class="linenos">38</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.get-39"><a href="#AlertsAPI.get-39"><span class="linenos">39</span></a>
+</span><span id="AlertsAPI.get-40"><a href="#AlertsAPI.get-40"><span class="linenos">40</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="AlertsAPI.get-41"><a href="#AlertsAPI.get-41"><span class="linenos">41</span></a>            <span class="n">request_params</span><span class="p">,</span>
+</span><span id="AlertsAPI.get-42"><a href="#AlertsAPI.get-42"><span class="linenos">42</span></a>            <span class="n">start_time</span><span class="o">=</span><span class="n">start_time</span><span class="p">,</span>
+</span><span id="AlertsAPI.get-43"><a href="#AlertsAPI.get-43"><span class="linenos">43</span></a>            <span class="n">end_time</span><span class="o">=</span><span class="n">end_time</span>
+</span><span id="AlertsAPI.get-44"><a href="#AlertsAPI.get-44"><span class="linenos">44</span></a>        <span class="p">)</span>
 </span><span id="AlertsAPI.get-45"><a href="#AlertsAPI.get-45"><span class="linenos">45</span></a>
-</span><span id="AlertsAPI.get-46"><a href="#AlertsAPI.get-46"><span class="linenos">46</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="AlertsAPI.get-46"><a href="#AlertsAPI.get-46"><span class="linenos">46</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="AlertsAPI.get-47"><a href="#AlertsAPI.get-47"><span class="linenos">47</span></a>
+</span><span id="AlertsAPI.get-48"><a href="#AlertsAPI.get-48"><span class="linenos">48</span></a>        <span class="n">return_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+</span><span id="AlertsAPI.get-49"><a href="#AlertsAPI.get-49"><span class="linenos">49</span></a>        <span class="n">current_rows</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="AlertsAPI.get-50"><a href="#AlertsAPI.get-50"><span class="linenos">50</span></a>
+</span><span id="AlertsAPI.get-51"><a href="#AlertsAPI.get-51"><span class="linenos">51</span></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="AlertsAPI.get-52"><a href="#AlertsAPI.get-52"><span class="linenos">52</span></a>            <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="AlertsAPI.get-53"><a href="#AlertsAPI.get-53"><span class="linenos">53</span></a>
+</span><span id="AlertsAPI.get-54"><a href="#AlertsAPI.get-54"><span class="linenos">54</span></a>            <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;paging&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;paging&quot;</span><span class="p">]</span>
+</span><span id="AlertsAPI.get-55"><a href="#AlertsAPI.get-55"><span class="linenos">55</span></a>
+</span><span id="AlertsAPI.get-56"><a href="#AlertsAPI.get-56"><span class="linenos">56</span></a>            <span class="k">if</span> <span class="n">limit</span><span class="p">:</span>
+</span><span id="AlertsAPI.get-57"><a href="#AlertsAPI.get-57"><span class="linenos">57</span></a>                <span class="n">take</span> <span class="o">=</span> <span class="n">limit</span> <span class="o">-</span> <span class="n">current_rows</span>
+</span><span id="AlertsAPI.get-58"><a href="#AlertsAPI.get-58"><span class="linenos">58</span></a>                <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][:</span><span class="n">take</span><span class="p">])</span>
+</span><span id="AlertsAPI.get-59"><a href="#AlertsAPI.get-59"><span class="linenos">59</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="AlertsAPI.get-60"><a href="#AlertsAPI.get-60"><span class="linenos">60</span></a>                <span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">response_json</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+</span><span id="AlertsAPI.get-61"><a href="#AlertsAPI.get-61"><span class="linenos">61</span></a>            <span class="n">current_rows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">return_data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+</span><span id="AlertsAPI.get-62"><a href="#AlertsAPI.get-62"><span class="linenos">62</span></a>
+</span><span id="AlertsAPI.get-63"><a href="#AlertsAPI.get-63"><span class="linenos">63</span></a>            <span class="k">if</span> <span class="n">limit</span> <span class="ow">and</span> <span class="n">current_rows</span> <span class="o">&gt;=</span> <span class="n">limit</span><span class="p">:</span>
+</span><span id="AlertsAPI.get-64"><a href="#AlertsAPI.get-64"><span class="linenos">64</span></a>                <span class="k">break</span>
+</span><span id="AlertsAPI.get-65"><a href="#AlertsAPI.get-65"><span class="linenos">65</span></a>
+</span><span id="AlertsAPI.get-66"><a href="#AlertsAPI.get-66"><span class="linenos">66</span></a>            <span class="k">try</span><span class="p">:</span>
+</span><span id="AlertsAPI.get-67"><a href="#AlertsAPI.get-67"><span class="linenos">67</span></a>                <span class="n">next_page</span> <span class="o">=</span> <span class="n">response_json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;paging&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;urls&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nextPage&quot;</span><span class="p">)</span>
+</span><span id="AlertsAPI.get-68"><a href="#AlertsAPI.get-68"><span class="linenos">68</span></a>            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span><span id="AlertsAPI.get-69"><a href="#AlertsAPI.get-69"><span class="linenos">69</span></a>                <span class="n">next_page</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="AlertsAPI.get-70"><a href="#AlertsAPI.get-70"><span class="linenos">70</span></a>
+</span><span id="AlertsAPI.get-71"><a href="#AlertsAPI.get-71"><span class="linenos">71</span></a>            <span class="k">if</span> <span class="n">next_page</span><span class="p">:</span>
+</span><span id="AlertsAPI.get-72"><a href="#AlertsAPI.get-72"><span class="linenos">72</span></a>                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">next_page</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="AlertsAPI.get-73"><a href="#AlertsAPI.get-73"><span class="linenos">73</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="AlertsAPI.get-74"><a href="#AlertsAPI.get-74"><span class="linenos">74</span></a>                <span class="k">break</span>
+</span><span id="AlertsAPI.get-75"><a href="#AlertsAPI.get-75"><span class="linenos">75</span></a>
+</span><span id="AlertsAPI.get-76"><a href="#AlertsAPI.get-76"><span class="linenos">76</span></a>        <span class="k">return</span> <span class="n">return_data</span>
 </span></pre></div>
 
 
@@ -435,11 +525,16 @@
 <ul>
 <li><strong>start_time: A "%Y-%m-%dT%H:%M</strong>: %SZ" structured timestamp to begin from.</li>
 <li><strong>end_time: A "%Y-%m-%dT%H:%M</strong>: %S%Z" structured timestamp to end at.</li>
+<li><strong>limit</strong>:  An integer representing the number of Alerts to return.</li>
 <li><strong>request_params</strong>:  Additional request parameters.
 (provides support for parameters that may be added in the future)</li>
 </ul>
 
-<p>:return response json</p>
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>response json</p>
+</blockquote>
 </div>
 
 
@@ -447,7 +542,7 @@
                             <div id="AlertsAPI.get_details" class="classattr">
                                         <input id="AlertsAPI.get_details-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">get_details</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span>, </span><span class="param"><span class="n">scope</span>, </span><span class="param"><span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
 
@@ -455,30 +550,30 @@
 
     </div>
     <a class="headerlink" href="#AlertsAPI.get_details"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.get_details-48"><a href="#AlertsAPI.get_details-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="AlertsAPI.get_details-49"><a href="#AlertsAPI.get_details-49"><span class="linenos">49</span></a>                    <span class="nb">id</span><span class="p">,</span>
-</span><span id="AlertsAPI.get_details-50"><a href="#AlertsAPI.get_details-50"><span class="linenos">50</span></a>                    <span class="n">scope</span><span class="p">,</span>
-</span><span id="AlertsAPI.get_details-51"><a href="#AlertsAPI.get_details-51"><span class="linenos">51</span></a>                    <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="AlertsAPI.get_details-52"><a href="#AlertsAPI.get_details-52"><span class="linenos">52</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.get_details-53"><a href="#AlertsAPI.get_details-53"><span class="linenos">53</span></a><span class="sd">        A method to get Alerts objects by ID.</span>
-</span><span id="AlertsAPI.get_details-54"><a href="#AlertsAPI.get_details-54"><span class="linenos">54</span></a>
-</span><span id="AlertsAPI.get_details-55"><a href="#AlertsAPI.get_details-55"><span class="linenos">55</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="AlertsAPI.get_details-56"><a href="#AlertsAPI.get_details-56"><span class="linenos">56</span></a><span class="sd">        :param scope: A string representing the scope of the detailst to return.</span>
-</span><span id="AlertsAPI.get_details-57"><a href="#AlertsAPI.get_details-57"><span class="linenos">57</span></a><span class="sd">            (&quot;Details&quot;, &quot;Investigation&quot;, &quot;Events&quot;, &quot;RelatedAlerts&quot;, &quot;Integrations&quot;, &quot;Timeline&quot;)</span>
-</span><span id="AlertsAPI.get_details-58"><a href="#AlertsAPI.get_details-58"><span class="linenos">58</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="AlertsAPI.get_details-59"><a href="#AlertsAPI.get_details-59"><span class="linenos">59</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="AlertsAPI.get_details-60"><a href="#AlertsAPI.get_details-60"><span class="linenos">60</span></a>
-</span><span id="AlertsAPI.get_details-61"><a href="#AlertsAPI.get_details-61"><span class="linenos">61</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI.get_details-62"><a href="#AlertsAPI.get_details-62"><span class="linenos">62</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.get_details-63"><a href="#AlertsAPI.get_details-63"><span class="linenos">63</span></a>
-</span><span id="AlertsAPI.get_details-64"><a href="#AlertsAPI.get_details-64"><span class="linenos">64</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="AlertsAPI.get_details-65"><a href="#AlertsAPI.get_details-65"><span class="linenos">65</span></a>            <span class="n">request_params</span><span class="p">,</span>
-</span><span id="AlertsAPI.get_details-66"><a href="#AlertsAPI.get_details-66"><span class="linenos">66</span></a>            <span class="n">scope</span><span class="o">=</span><span class="n">scope</span>
-</span><span id="AlertsAPI.get_details-67"><a href="#AlertsAPI.get_details-67"><span class="linenos">67</span></a>        <span class="p">)</span>
-</span><span id="AlertsAPI.get_details-68"><a href="#AlertsAPI.get_details-68"><span class="linenos">68</span></a>
-</span><span id="AlertsAPI.get_details-69"><a href="#AlertsAPI.get_details-69"><span class="linenos">69</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-</span><span id="AlertsAPI.get_details-70"><a href="#AlertsAPI.get_details-70"><span class="linenos">70</span></a>
-</span><span id="AlertsAPI.get_details-71"><a href="#AlertsAPI.get_details-71"><span class="linenos">71</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.get_details-78"><a href="#AlertsAPI.get_details-78"><span class="linenos"> 78</span></a>    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="AlertsAPI.get_details-79"><a href="#AlertsAPI.get_details-79"><span class="linenos"> 79</span></a>                    <span class="nb">id</span><span class="p">,</span>
+</span><span id="AlertsAPI.get_details-80"><a href="#AlertsAPI.get_details-80"><span class="linenos"> 80</span></a>                    <span class="n">scope</span><span class="p">,</span>
+</span><span id="AlertsAPI.get_details-81"><a href="#AlertsAPI.get_details-81"><span class="linenos"> 81</span></a>                    <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="AlertsAPI.get_details-82"><a href="#AlertsAPI.get_details-82"><span class="linenos"> 82</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.get_details-83"><a href="#AlertsAPI.get_details-83"><span class="linenos"> 83</span></a><span class="sd">        A method to get Alerts objects by ID.</span>
+</span><span id="AlertsAPI.get_details-84"><a href="#AlertsAPI.get_details-84"><span class="linenos"> 84</span></a>
+</span><span id="AlertsAPI.get_details-85"><a href="#AlertsAPI.get_details-85"><span class="linenos"> 85</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="AlertsAPI.get_details-86"><a href="#AlertsAPI.get_details-86"><span class="linenos"> 86</span></a><span class="sd">        :param scope: A string representing the scope of the detailst to return.</span>
+</span><span id="AlertsAPI.get_details-87"><a href="#AlertsAPI.get_details-87"><span class="linenos"> 87</span></a><span class="sd">            (&quot;Details&quot;, &quot;Investigation&quot;, &quot;Events&quot;, &quot;RelatedAlerts&quot;, &quot;Integrations&quot;, &quot;Timeline&quot;)</span>
+</span><span id="AlertsAPI.get_details-88"><a href="#AlertsAPI.get_details-88"><span class="linenos"> 88</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="AlertsAPI.get_details-89"><a href="#AlertsAPI.get_details-89"><span class="linenos"> 89</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="AlertsAPI.get_details-90"><a href="#AlertsAPI.get_details-90"><span class="linenos"> 90</span></a>
+</span><span id="AlertsAPI.get_details-91"><a href="#AlertsAPI.get_details-91"><span class="linenos"> 91</span></a><span class="sd">        :return response json</span>
+</span><span id="AlertsAPI.get_details-92"><a href="#AlertsAPI.get_details-92"><span class="linenos"> 92</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.get_details-93"><a href="#AlertsAPI.get_details-93"><span class="linenos"> 93</span></a>
+</span><span id="AlertsAPI.get_details-94"><a href="#AlertsAPI.get_details-94"><span class="linenos"> 94</span></a>        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="AlertsAPI.get_details-95"><a href="#AlertsAPI.get_details-95"><span class="linenos"> 95</span></a>            <span class="n">request_params</span><span class="p">,</span>
+</span><span id="AlertsAPI.get_details-96"><a href="#AlertsAPI.get_details-96"><span class="linenos"> 96</span></a>            <span class="n">scope</span><span class="o">=</span><span class="n">scope</span>
+</span><span id="AlertsAPI.get_details-97"><a href="#AlertsAPI.get_details-97"><span class="linenos"> 97</span></a>        <span class="p">)</span>
+</span><span id="AlertsAPI.get_details-98"><a href="#AlertsAPI.get_details-98"><span class="linenos"> 98</span></a>
+</span><span id="AlertsAPI.get_details-99"><a href="#AlertsAPI.get_details-99"><span class="linenos"> 99</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+</span><span id="AlertsAPI.get_details-100"><a href="#AlertsAPI.get_details-100"><span class="linenos">100</span></a>
+</span><span id="AlertsAPI.get_details-101"><a href="#AlertsAPI.get_details-101"><span class="linenos">101</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -502,7 +597,7 @@
                             <div id="AlertsAPI.search" class="classattr">
                                         <input id="AlertsAPI.search-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">search</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">json</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
 
@@ -510,18 +605,18 @@
 
     </div>
     <a class="headerlink" href="#AlertsAPI.search"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.search-73"><a href="#AlertsAPI.search-73"><span class="linenos">73</span></a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="AlertsAPI.search-74"><a href="#AlertsAPI.search-74"><span class="linenos">74</span></a>               <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="AlertsAPI.search-75"><a href="#AlertsAPI.search-75"><span class="linenos">75</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.search-76"><a href="#AlertsAPI.search-76"><span class="linenos">76</span></a><span class="sd">        A method to search Alerts objects.</span>
-</span><span id="AlertsAPI.search-77"><a href="#AlertsAPI.search-77"><span class="linenos">77</span></a>
-</span><span id="AlertsAPI.search-78"><a href="#AlertsAPI.search-78"><span class="linenos">78</span></a><span class="sd">        :param json: A dictionary containing the necessary search parameters.</span>
-</span><span id="AlertsAPI.search-79"><a href="#AlertsAPI.search-79"><span class="linenos">79</span></a><span class="sd">            (timeFilter, filters, returns)</span>
-</span><span id="AlertsAPI.search-80"><a href="#AlertsAPI.search-80"><span class="linenos">80</span></a>
-</span><span id="AlertsAPI.search-81"><a href="#AlertsAPI.search-81"><span class="linenos">81</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI.search-82"><a href="#AlertsAPI.search-82"><span class="linenos">82</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.search-83"><a href="#AlertsAPI.search-83"><span class="linenos">83</span></a>
-</span><span id="AlertsAPI.search-84"><a href="#AlertsAPI.search-84"><span class="linenos">84</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.search-103"><a href="#AlertsAPI.search-103"><span class="linenos">103</span></a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="AlertsAPI.search-104"><a href="#AlertsAPI.search-104"><span class="linenos">104</span></a>               <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="AlertsAPI.search-105"><a href="#AlertsAPI.search-105"><span class="linenos">105</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.search-106"><a href="#AlertsAPI.search-106"><span class="linenos">106</span></a><span class="sd">        A method to search Alerts objects.</span>
+</span><span id="AlertsAPI.search-107"><a href="#AlertsAPI.search-107"><span class="linenos">107</span></a>
+</span><span id="AlertsAPI.search-108"><a href="#AlertsAPI.search-108"><span class="linenos">108</span></a><span class="sd">        :param json: A dictionary containing the necessary search parameters.</span>
+</span><span id="AlertsAPI.search-109"><a href="#AlertsAPI.search-109"><span class="linenos">109</span></a><span class="sd">            (timeFilter, filters, returns)</span>
+</span><span id="AlertsAPI.search-110"><a href="#AlertsAPI.search-110"><span class="linenos">110</span></a>
+</span><span id="AlertsAPI.search-111"><a href="#AlertsAPI.search-111"><span class="linenos">111</span></a><span class="sd">        :return response json</span>
+</span><span id="AlertsAPI.search-112"><a href="#AlertsAPI.search-112"><span class="linenos">112</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.search-113"><a href="#AlertsAPI.search-113"><span class="linenos">113</span></a>
+</span><span id="AlertsAPI.search-114"><a href="#AlertsAPI.search-114"><span class="linenos">114</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -542,7 +637,7 @@
                             <div id="AlertsAPI.comment" class="classattr">
                                         <input id="AlertsAPI.comment-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">comment</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span>, </span><span class="param"><span class="n">comment</span></span><span class="return-annotation">):</span></span>
 
@@ -550,25 +645,25 @@
 
     </div>
     <a class="headerlink" href="#AlertsAPI.comment"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.comment-86"><a href="#AlertsAPI.comment-86"><span class="linenos"> 86</span></a>    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="AlertsAPI.comment-87"><a href="#AlertsAPI.comment-87"><span class="linenos"> 87</span></a>                <span class="nb">id</span><span class="p">,</span>
-</span><span id="AlertsAPI.comment-88"><a href="#AlertsAPI.comment-88"><span class="linenos"> 88</span></a>                <span class="n">comment</span><span class="p">):</span>
-</span><span id="AlertsAPI.comment-89"><a href="#AlertsAPI.comment-89"><span class="linenos"> 89</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.comment-90"><a href="#AlertsAPI.comment-90"><span class="linenos"> 90</span></a><span class="sd">        A method to comment on an Alerts object.</span>
-</span><span id="AlertsAPI.comment-91"><a href="#AlertsAPI.comment-91"><span class="linenos"> 91</span></a>
-</span><span id="AlertsAPI.comment-92"><a href="#AlertsAPI.comment-92"><span class="linenos"> 92</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="AlertsAPI.comment-93"><a href="#AlertsAPI.comment-93"><span class="linenos"> 93</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
-</span><span id="AlertsAPI.comment-94"><a href="#AlertsAPI.comment-94"><span class="linenos"> 94</span></a>
-</span><span id="AlertsAPI.comment-95"><a href="#AlertsAPI.comment-95"><span class="linenos"> 95</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI.comment-96"><a href="#AlertsAPI.comment-96"><span class="linenos"> 96</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.comment-97"><a href="#AlertsAPI.comment-97"><span class="linenos"> 97</span></a>
-</span><span id="AlertsAPI.comment-98"><a href="#AlertsAPI.comment-98"><span class="linenos"> 98</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="AlertsAPI.comment-99"><a href="#AlertsAPI.comment-99"><span class="linenos"> 99</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
-</span><span id="AlertsAPI.comment-100"><a href="#AlertsAPI.comment-100"><span class="linenos">100</span></a>        <span class="p">)</span>
-</span><span id="AlertsAPI.comment-101"><a href="#AlertsAPI.comment-101"><span class="linenos">101</span></a>
-</span><span id="AlertsAPI.comment-102"><a href="#AlertsAPI.comment-102"><span class="linenos">102</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;comment&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="AlertsAPI.comment-103"><a href="#AlertsAPI.comment-103"><span class="linenos">103</span></a>
-</span><span id="AlertsAPI.comment-104"><a href="#AlertsAPI.comment-104"><span class="linenos">104</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.comment-116"><a href="#AlertsAPI.comment-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="nf">comment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="AlertsAPI.comment-117"><a href="#AlertsAPI.comment-117"><span class="linenos">117</span></a>                <span class="nb">id</span><span class="p">,</span>
+</span><span id="AlertsAPI.comment-118"><a href="#AlertsAPI.comment-118"><span class="linenos">118</span></a>                <span class="n">comment</span><span class="p">):</span>
+</span><span id="AlertsAPI.comment-119"><a href="#AlertsAPI.comment-119"><span class="linenos">119</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.comment-120"><a href="#AlertsAPI.comment-120"><span class="linenos">120</span></a><span class="sd">        A method to comment on an Alerts object.</span>
+</span><span id="AlertsAPI.comment-121"><a href="#AlertsAPI.comment-121"><span class="linenos">121</span></a>
+</span><span id="AlertsAPI.comment-122"><a href="#AlertsAPI.comment-122"><span class="linenos">122</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="AlertsAPI.comment-123"><a href="#AlertsAPI.comment-123"><span class="linenos">123</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
+</span><span id="AlertsAPI.comment-124"><a href="#AlertsAPI.comment-124"><span class="linenos">124</span></a>
+</span><span id="AlertsAPI.comment-125"><a href="#AlertsAPI.comment-125"><span class="linenos">125</span></a><span class="sd">        :return response json</span>
+</span><span id="AlertsAPI.comment-126"><a href="#AlertsAPI.comment-126"><span class="linenos">126</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.comment-127"><a href="#AlertsAPI.comment-127"><span class="linenos">127</span></a>
+</span><span id="AlertsAPI.comment-128"><a href="#AlertsAPI.comment-128"><span class="linenos">128</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="AlertsAPI.comment-129"><a href="#AlertsAPI.comment-129"><span class="linenos">129</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
+</span><span id="AlertsAPI.comment-130"><a href="#AlertsAPI.comment-130"><span class="linenos">130</span></a>        <span class="p">)</span>
+</span><span id="AlertsAPI.comment-131"><a href="#AlertsAPI.comment-131"><span class="linenos">131</span></a>
+</span><span id="AlertsAPI.comment-132"><a href="#AlertsAPI.comment-132"><span class="linenos">132</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;comment&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="AlertsAPI.comment-133"><a href="#AlertsAPI.comment-133"><span class="linenos">133</span></a>
+</span><span id="AlertsAPI.comment-134"><a href="#AlertsAPI.comment-134"><span class="linenos">134</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -589,7 +684,7 @@
                             <div id="AlertsAPI.close" class="classattr">
                                         <input id="AlertsAPI.close-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">close</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="nb">id</span>, </span><span class="param"><span class="n">reason</span>, </span><span class="param"><span class="n">comment</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
 
@@ -597,33 +692,33 @@
 
     </div>
     <a class="headerlink" href="#AlertsAPI.close"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.close-106"><a href="#AlertsAPI.close-106"><span class="linenos">106</span></a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="AlertsAPI.close-107"><a href="#AlertsAPI.close-107"><span class="linenos">107</span></a>              <span class="nb">id</span><span class="p">,</span>
-</span><span id="AlertsAPI.close-108"><a href="#AlertsAPI.close-108"><span class="linenos">108</span></a>              <span class="n">reason</span><span class="p">,</span>
-</span><span id="AlertsAPI.close-109"><a href="#AlertsAPI.close-109"><span class="linenos">109</span></a>              <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="AlertsAPI.close-110"><a href="#AlertsAPI.close-110"><span class="linenos">110</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.close-111"><a href="#AlertsAPI.close-111"><span class="linenos">111</span></a><span class="sd">        A method to close an Alerts object.</span>
-</span><span id="AlertsAPI.close-112"><a href="#AlertsAPI.close-112"><span class="linenos">112</span></a>
-</span><span id="AlertsAPI.close-113"><a href="#AlertsAPI.close-113"><span class="linenos">113</span></a><span class="sd">        :param id: A string representing the object ID.</span>
-</span><span id="AlertsAPI.close-114"><a href="#AlertsAPI.close-114"><span class="linenos">114</span></a><span class="sd">        :param reason: An integer representing the close reason.</span>
-</span><span id="AlertsAPI.close-115"><a href="#AlertsAPI.close-115"><span class="linenos">115</span></a><span class="sd">            0: Other</span>
-</span><span id="AlertsAPI.close-116"><a href="#AlertsAPI.close-116"><span class="linenos">116</span></a><span class="sd">            1: False positive</span>
-</span><span id="AlertsAPI.close-117"><a href="#AlertsAPI.close-117"><span class="linenos">117</span></a><span class="sd">            2: Not enough information</span>
-</span><span id="AlertsAPI.close-118"><a href="#AlertsAPI.close-118"><span class="linenos">118</span></a><span class="sd">            3: Malicious and have resolution in place</span>
-</span><span id="AlertsAPI.close-119"><a href="#AlertsAPI.close-119"><span class="linenos">119</span></a><span class="sd">            4: Expected because of routine testing</span>
-</span><span id="AlertsAPI.close-120"><a href="#AlertsAPI.close-120"><span class="linenos">120</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
-</span><span id="AlertsAPI.close-121"><a href="#AlertsAPI.close-121"><span class="linenos">121</span></a>
-</span><span id="AlertsAPI.close-122"><a href="#AlertsAPI.close-122"><span class="linenos">122</span></a><span class="sd">        :return response json</span>
-</span><span id="AlertsAPI.close-123"><a href="#AlertsAPI.close-123"><span class="linenos">123</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="AlertsAPI.close-124"><a href="#AlertsAPI.close-124"><span class="linenos">124</span></a>
-</span><span id="AlertsAPI.close-125"><a href="#AlertsAPI.close-125"><span class="linenos">125</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="AlertsAPI.close-126"><a href="#AlertsAPI.close-126"><span class="linenos">126</span></a>            <span class="n">reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
-</span><span id="AlertsAPI.close-127"><a href="#AlertsAPI.close-127"><span class="linenos">127</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
-</span><span id="AlertsAPI.close-128"><a href="#AlertsAPI.close-128"><span class="linenos">128</span></a>        <span class="p">)</span>
-</span><span id="AlertsAPI.close-129"><a href="#AlertsAPI.close-129"><span class="linenos">129</span></a>
-</span><span id="AlertsAPI.close-130"><a href="#AlertsAPI.close-130"><span class="linenos">130</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;close&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="AlertsAPI.close-131"><a href="#AlertsAPI.close-131"><span class="linenos">131</span></a>
-</span><span id="AlertsAPI.close-132"><a href="#AlertsAPI.close-132"><span class="linenos">132</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AlertsAPI.close-136"><a href="#AlertsAPI.close-136"><span class="linenos">136</span></a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="AlertsAPI.close-137"><a href="#AlertsAPI.close-137"><span class="linenos">137</span></a>              <span class="nb">id</span><span class="p">,</span>
+</span><span id="AlertsAPI.close-138"><a href="#AlertsAPI.close-138"><span class="linenos">138</span></a>              <span class="n">reason</span><span class="p">,</span>
+</span><span id="AlertsAPI.close-139"><a href="#AlertsAPI.close-139"><span class="linenos">139</span></a>              <span class="n">comment</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="AlertsAPI.close-140"><a href="#AlertsAPI.close-140"><span class="linenos">140</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.close-141"><a href="#AlertsAPI.close-141"><span class="linenos">141</span></a><span class="sd">        A method to close an Alerts object.</span>
+</span><span id="AlertsAPI.close-142"><a href="#AlertsAPI.close-142"><span class="linenos">142</span></a>
+</span><span id="AlertsAPI.close-143"><a href="#AlertsAPI.close-143"><span class="linenos">143</span></a><span class="sd">        :param id: A string representing the object ID.</span>
+</span><span id="AlertsAPI.close-144"><a href="#AlertsAPI.close-144"><span class="linenos">144</span></a><span class="sd">        :param reason: An integer representing the close reason.</span>
+</span><span id="AlertsAPI.close-145"><a href="#AlertsAPI.close-145"><span class="linenos">145</span></a><span class="sd">            0: Other</span>
+</span><span id="AlertsAPI.close-146"><a href="#AlertsAPI.close-146"><span class="linenos">146</span></a><span class="sd">            1: False positive</span>
+</span><span id="AlertsAPI.close-147"><a href="#AlertsAPI.close-147"><span class="linenos">147</span></a><span class="sd">            2: Not enough information</span>
+</span><span id="AlertsAPI.close-148"><a href="#AlertsAPI.close-148"><span class="linenos">148</span></a><span class="sd">            3: Malicious and have resolution in place</span>
+</span><span id="AlertsAPI.close-149"><a href="#AlertsAPI.close-149"><span class="linenos">149</span></a><span class="sd">            4: Expected because of routine testing</span>
+</span><span id="AlertsAPI.close-150"><a href="#AlertsAPI.close-150"><span class="linenos">150</span></a><span class="sd">        :param comment: A string representing the comment to post.</span>
+</span><span id="AlertsAPI.close-151"><a href="#AlertsAPI.close-151"><span class="linenos">151</span></a>
+</span><span id="AlertsAPI.close-152"><a href="#AlertsAPI.close-152"><span class="linenos">152</span></a><span class="sd">        :return response json</span>
+</span><span id="AlertsAPI.close-153"><a href="#AlertsAPI.close-153"><span class="linenos">153</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="AlertsAPI.close-154"><a href="#AlertsAPI.close-154"><span class="linenos">154</span></a>
+</span><span id="AlertsAPI.close-155"><a href="#AlertsAPI.close-155"><span class="linenos">155</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="AlertsAPI.close-156"><a href="#AlertsAPI.close-156"><span class="linenos">156</span></a>            <span class="n">reason</span><span class="o">=</span><span class="n">reason</span><span class="p">,</span>
+</span><span id="AlertsAPI.close-157"><a href="#AlertsAPI.close-157"><span class="linenos">157</span></a>            <span class="n">comment</span><span class="o">=</span><span class="n">comment</span>
+</span><span id="AlertsAPI.close-158"><a href="#AlertsAPI.close-158"><span class="linenos">158</span></a>        <span class="p">)</span>
+</span><span id="AlertsAPI.close-159"><a href="#AlertsAPI.close-159"><span class="linenos">159</span></a>
+</span><span id="AlertsAPI.close-160"><a href="#AlertsAPI.close-160"><span class="linenos">160</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;close&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="AlertsAPI.close-161"><a href="#AlertsAPI.close-161"><span class="linenos">161</span></a>
+</span><span id="AlertsAPI.close-162"><a href="#AlertsAPI.close-162"><span class="linenos">162</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -650,11 +745,7 @@
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
-                                    <div><dt><a href="../search_endpoint.html#SearchEndpoint">laceworksdk.api.search_endpoint.SearchEndpoint</a></dt>
-                                <dd id="AlertsAPI.RESOURCE" class="variable"><a href="../search_endpoint.html#SearchEndpoint.RESOURCE">RESOURCE</a></dd>
-
-            </div>
-            <div><dt><a href="../base_endpoint.html#BaseEndpoint">laceworksdk.api.base_endpoint.BaseEndpoint</a></dt>
+                                    <div><dt><a href="../base_endpoint.html#BaseEndpoint">laceworksdk.api.base_endpoint.BaseEndpoint</a></dt>
                                 <dd id="AlertsAPI.build_dict_from_items" class="function"><a href="../base_endpoint.html#BaseEndpoint.build_dict_from_items">build_dict_from_items</a></dd>
                 <dd id="AlertsAPI.build_url" class="function"><a href="../base_endpoint.html#BaseEndpoint.build_url">build_url</a></dd>
                 <dd id="AlertsAPI.session" class="variable"><a href="../base_endpoint.html#BaseEndpoint.session">session</a></dd>
@@ -765,7 +856,7 @@
                 }
 
                 let heading;
-                switch (result.doc.type) {
+                switch (result.doc.kind) {
                     case "function":
                         if (doc.fullname.endsWith(".__init__")) {
                             heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
@@ -792,7 +883,7 @@
                 }
                 html += `
                         <section class="search-result">
-                        <a href="${url}" class="attr ${doc.type}">${heading}</a>
+                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
                         <div class="docstring">${doc.doc}</div>
                         </section>
                     `;

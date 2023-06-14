@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 12.1.0"/>
+    <meta name="generator" content="pdoc 12.3.1"/>
     <title>laceworksdk.api.v2.policies API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
@@ -50,6 +50,9 @@
                                 <a class="function" href="#PoliciesAPI.update">update</a>
                         </li>
                         <li>
+                                <a class="function" href="#PoliciesAPI.bulk_update">bulk_update</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#PoliciesAPI.delete">delete</a>
                         </li>
                 </ul>
@@ -74,9 +77,9 @@
                         <div class="docstring"><p>Lacework Policies API wrapper.</p>
 </div>
 
-                        <input id="policies-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                        <input id="mod-policies-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
-                        <label class="view-source-button" for="policies-view-source"><span>View Source</span></label>
+                        <label class="view-source-button" for="mod-policies-view-source"><span>View Source</span></label>
 
                         <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="c1"># -*- coding: utf-8 -*-</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="sd">&quot;&quot;&quot;</span>
@@ -89,7 +92,7 @@
 </span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a><span class="k">class</span> <span class="nc">PoliciesAPI</span><span class="p">(</span><span class="n">CrudEndpoint</span><span class="p">):</span>
 </span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>
 </span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a><span class="sd">        Initializes the PoliciesAPI object.</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a>
 </span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a><span class="sd">        :param session: An instance of the HttpSession class</span>
@@ -113,139 +116,186 @@
 </span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a><span class="sd">        A method to create a new Policies object.</span>
 </span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>
 </span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a><span class="sd">        :param title: A string representing the object title.</span>
-</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="sd">        :param description: A string representing the object description.</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
-</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
-</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a><span class="sd">        :param evaluator_id: A string representing the evaluator in which the object is to be run.</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>
-</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="sd">        :return response json</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>
-</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)),</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
-</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
-</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
-</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>            <span class="n">evaluator_id</span><span class="o">=</span><span class="n">evaluator_id</span><span class="p">,</span>
-</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
-</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>            <span class="o">**</span><span class="n">request_params</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>        <span class="p">)</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>
-</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>            <span class="n">policy_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a><span class="sd">        A method to get Policies objects.</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>
-</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>
-</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a><span class="sd">        :return response json</span>
-</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>
-</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a><span class="sd">        :type policy_type: str</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a><span class="sd">        :type query_id: str</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a><span class="sd">        :type enabled: bool</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="sd">        :param title: A string representing the object title.</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="sd">        :type title: str</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="sd">        :param description: A string representing the object description.</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="sd">        :type description: str</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="sd">        :type remediation: str</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a><span class="sd">        :type severity: str</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="sd">        :type alert_enabled: bool</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a><span class="sd">        :type alert_profile: str</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a><span class="sd">        :param evaluator_id: A string representing the evaluator in which the object is to be run.</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a><span class="sd">        :type evaluator_id: str</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a><span class="sd">        :type limit: int</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a><span class="sd">        :type eval_frequency: str</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a><span class="sd">        :return: response json</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>            <span class="n">evaluator_id</span><span class="o">=</span><span class="n">evaluator_id</span><span class="p">,</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>            <span class="o">**</span><span class="n">request_params</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>        <span class="p">)</span>
 </span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>
-</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>    <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>                  <span class="n">policy_id</span><span class="p">):</span>
-</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="sd">        A method to get a Policies object by policy ID.</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>            <span class="n">policy_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="sd">        A method to get Policies objects.</span>
 </span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>
 </span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>
-</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a><span class="sd">        :return response json</span>
-</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>
-</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">policy_id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
-</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>
-</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># noqa: C901</span>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>               <span class="n">policy_id</span><span class="p">,</span>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>               <span class="n">policy_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>               <span class="n">query_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>               <span class="n">enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>               <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>               <span class="n">remediation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>               <span class="n">severity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a>               <span class="n">alert_enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>               <span class="n">alert_profile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a><span class="sd">        A method to update a Lacework Query Language (LQL) policy.</span>
-</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>
-</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
-</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
-</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
-</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a><span class="sd">        :param title: A string representing the object title.</span>
-</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a><span class="sd">        :param description: A string representing the object description.</span>
-</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
-</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
-</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
-</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
-</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
-</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
-</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
-</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
-</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>
-</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a><span class="sd">        :return response json</span>
-</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>
-</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a>        <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a>            <span class="n">enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
-</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a>
-</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>        <span class="k">if</span> <span class="n">alert_enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a>            <span class="n">alert_enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">alert_enabled</span><span class="p">)</span>
-</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>
-</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>            <span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">,</span>
-</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
-</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
-</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
-</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
-</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
-</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
-</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
-</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
-</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
-</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
-</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a>            <span class="o">**</span><span class="n">request_params</span>
-</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a>        <span class="p">)</span>
-</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a>
-</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a>               <span class="n">policy_id</span><span class="p">):</span>
-</span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a><span class="sd">        A method to delete a Policies object.</span>
-</span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a>
-</span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a><span class="sd">        :return: response json</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>    <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>                  <span class="n">policy_id</span><span class="p">):</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a><span class="sd">        A method to get a Policies object by policy ID.</span>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">        :return: response json</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">policy_id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># noqa: C901</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>               <span class="n">policy_id</span><span class="p">,</span>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>               <span class="n">policy_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a>               <span class="n">query_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>               <span class="n">enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a>               <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a>               <span class="n">remediation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>               <span class="n">severity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a>               <span class="n">alert_enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>               <span class="n">alert_profile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a><span class="sd">        A method to update a Lacework Query Language (LQL) policy.</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>
+</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a><span class="sd">        :type policy_type: str</span>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a><span class="sd">        :type query_id: str</span>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a><span class="sd">        :type enabled: bool</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a><span class="sd">        :param title: A string representing the object title.</span>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a><span class="sd">        :type title: str</span>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a><span class="sd">        :param description: A string representing the object description.</span>
+</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a><span class="sd">        :type description: str</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a><span class="sd">        :type remediation: str</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a><span class="sd">        :type severity: str</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a><span class="sd">        :type alert_enabled: bool</span>
+</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
+</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a><span class="sd">        :type alert_profile: str</span>
+</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
+</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a><span class="sd">        :type limit: int</span>
+</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
+</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
+</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a><span class="sd">        :type eval_frequency: str</span>
+</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a>
+</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a><span class="sd">        :return: response json</span>
+</span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a>
+</span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a>        <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a>            <span class="n">enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
 </span><span id="L-164"><a href="#L-164"><span class="linenos">164</span></a>
-</span><span id="L-165"><a href="#L-165"><span class="linenos">165</span></a><span class="sd">        :return response json</span>
-</span><span id="L-166"><a href="#L-166"><span class="linenos">166</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-165"><a href="#L-165"><span class="linenos">165</span></a>        <span class="k">if</span> <span class="n">alert_enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="L-166"><a href="#L-166"><span class="linenos">166</span></a>            <span class="n">alert_enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">alert_enabled</span><span class="p">)</span>
 </span><span id="L-167"><a href="#L-167"><span class="linenos">167</span></a>
-</span><span id="L-168"><a href="#L-168"><span class="linenos">168</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+</span><span id="L-168"><a href="#L-168"><span class="linenos">168</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+</span><span id="L-169"><a href="#L-169"><span class="linenos">169</span></a>            <span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">,</span>
+</span><span id="L-170"><a href="#L-170"><span class="linenos">170</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
+</span><span id="L-171"><a href="#L-171"><span class="linenos">171</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
+</span><span id="L-172"><a href="#L-172"><span class="linenos">172</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
+</span><span id="L-173"><a href="#L-173"><span class="linenos">173</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+</span><span id="L-174"><a href="#L-174"><span class="linenos">174</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+</span><span id="L-175"><a href="#L-175"><span class="linenos">175</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
+</span><span id="L-176"><a href="#L-176"><span class="linenos">176</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
+</span><span id="L-177"><a href="#L-177"><span class="linenos">177</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
+</span><span id="L-178"><a href="#L-178"><span class="linenos">178</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
+</span><span id="L-179"><a href="#L-179"><span class="linenos">179</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+</span><span id="L-180"><a href="#L-180"><span class="linenos">180</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
+</span><span id="L-181"><a href="#L-181"><span class="linenos">181</span></a>            <span class="o">**</span><span class="n">request_params</span>
+</span><span id="L-182"><a href="#L-182"><span class="linenos">182</span></a>        <span class="p">)</span>
+</span><span id="L-183"><a href="#L-183"><span class="linenos">183</span></a>
+</span><span id="L-184"><a href="#L-184"><span class="linenos">184</span></a>    <span class="k">def</span> <span class="nf">bulk_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-185"><a href="#L-185"><span class="linenos">185</span></a>                    <span class="n">json</span><span class="p">):</span>
+</span><span id="L-186"><a href="#L-186"><span class="linenos">186</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-187"><a href="#L-187"><span class="linenos">187</span></a><span class="sd">        A method to update Policy objects in bulk</span>
+</span><span id="L-188"><a href="#L-188"><span class="linenos">188</span></a>
+</span><span id="L-189"><a href="#L-189"><span class="linenos">189</span></a><span class="sd">        :param json: A list of JSON objects containing policy configuration.</span>
+</span><span id="L-190"><a href="#L-190"><span class="linenos">190</span></a><span class="sd">        :type json: list(dict(str, Any))</span>
+</span><span id="L-191"><a href="#L-191"><span class="linenos">191</span></a><span class="sd">            obj:</span>
+</span><span id="L-192"><a href="#L-192"><span class="linenos">192</span></a><span class="sd">                :param policyId: A string representing the ID of the policy.</span>
+</span><span id="L-193"><a href="#L-193"><span class="linenos">193</span></a><span class="sd">                :param enabled: A boolean representing the status of the policy.</span>
+</span><span id="L-194"><a href="#L-194"><span class="linenos">194</span></a><span class="sd">                :param severity: A string representing the severity of the policy.</span>
+</span><span id="L-195"><a href="#L-195"><span class="linenos">195</span></a><span class="sd">                    (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="L-196"><a href="#L-196"><span class="linenos">196</span></a>
+</span><span id="L-197"><a href="#L-197"><span class="linenos">197</span></a><span class="sd">        :return: response json</span>
+</span><span id="L-198"><a href="#L-198"><span class="linenos">198</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-199"><a href="#L-199"><span class="linenos">199</span></a>
+</span><span id="L-200"><a href="#L-200"><span class="linenos">200</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-201"><a href="#L-201"><span class="linenos">201</span></a>
+</span><span id="L-202"><a href="#L-202"><span class="linenos">202</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="L-203"><a href="#L-203"><span class="linenos">203</span></a>
+</span><span id="L-204"><a href="#L-204"><span class="linenos">204</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-205"><a href="#L-205"><span class="linenos">205</span></a>               <span class="n">policy_id</span><span class="p">):</span>
+</span><span id="L-206"><a href="#L-206"><span class="linenos">206</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-207"><a href="#L-207"><span class="linenos">207</span></a><span class="sd">        A method to delete a Policies object.</span>
+</span><span id="L-208"><a href="#L-208"><span class="linenos">208</span></a>
+</span><span id="L-209"><a href="#L-209"><span class="linenos">209</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="L-210"><a href="#L-210"><span class="linenos">210</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="L-211"><a href="#L-211"><span class="linenos">211</span></a>
+</span><span id="L-212"><a href="#L-212"><span class="linenos">212</span></a><span class="sd">        :return: response json</span>
+</span><span id="L-213"><a href="#L-213"><span class="linenos">213</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-214"><a href="#L-214"><span class="linenos">214</span></a>
+</span><span id="L-215"><a href="#L-215"><span class="linenos">215</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -253,7 +303,7 @@
                 <section id="PoliciesAPI">
                             <input id="PoliciesAPI-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
-            
+
     <span class="def">class</span>
     <span class="name">PoliciesAPI</span><wbr>(<span class="base"><a href="../crud_endpoint.html#CrudEndpoint">laceworksdk.api.crud_endpoint.CrudEndpoint</a></span>):
 
@@ -264,7 +314,7 @@
             <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI-10"><a href="#PoliciesAPI-10"><span class="linenos"> 10</span></a><span class="k">class</span> <span class="nc">PoliciesAPI</span><span class="p">(</span><span class="n">CrudEndpoint</span><span class="p">):</span>
 </span><span id="PoliciesAPI-11"><a href="#PoliciesAPI-11"><span class="linenos"> 11</span></a>
 </span><span id="PoliciesAPI-12"><a href="#PoliciesAPI-12"><span class="linenos"> 12</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-</span><span id="PoliciesAPI-13"><a href="#PoliciesAPI-13"><span class="linenos"> 13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-13"><a href="#PoliciesAPI-13"><span class="linenos"> 13</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="PoliciesAPI-14"><a href="#PoliciesAPI-14"><span class="linenos"> 14</span></a><span class="sd">        Initializes the PoliciesAPI object.</span>
 </span><span id="PoliciesAPI-15"><a href="#PoliciesAPI-15"><span class="linenos"> 15</span></a>
 </span><span id="PoliciesAPI-16"><a href="#PoliciesAPI-16"><span class="linenos"> 16</span></a><span class="sd">        :param session: An instance of the HttpSession class</span>
@@ -288,139 +338,186 @@
 </span><span id="PoliciesAPI-34"><a href="#PoliciesAPI-34"><span class="linenos"> 34</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="PoliciesAPI-35"><a href="#PoliciesAPI-35"><span class="linenos"> 35</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="PoliciesAPI-36"><a href="#PoliciesAPI-36"><span class="linenos"> 36</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="PoliciesAPI-37"><a href="#PoliciesAPI-37"><span class="linenos"> 37</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-37"><a href="#PoliciesAPI-37"><span class="linenos"> 37</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="PoliciesAPI-38"><a href="#PoliciesAPI-38"><span class="linenos"> 38</span></a><span class="sd">        A method to create a new Policies object.</span>
 </span><span id="PoliciesAPI-39"><a href="#PoliciesAPI-39"><span class="linenos"> 39</span></a>
 </span><span id="PoliciesAPI-40"><a href="#PoliciesAPI-40"><span class="linenos"> 40</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
-</span><span id="PoliciesAPI-41"><a href="#PoliciesAPI-41"><span class="linenos"> 41</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
-</span><span id="PoliciesAPI-42"><a href="#PoliciesAPI-42"><span class="linenos"> 42</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
-</span><span id="PoliciesAPI-43"><a href="#PoliciesAPI-43"><span class="linenos"> 43</span></a><span class="sd">        :param title: A string representing the object title.</span>
-</span><span id="PoliciesAPI-44"><a href="#PoliciesAPI-44"><span class="linenos"> 44</span></a><span class="sd">        :param description: A string representing the object description.</span>
-</span><span id="PoliciesAPI-45"><a href="#PoliciesAPI-45"><span class="linenos"> 45</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
-</span><span id="PoliciesAPI-46"><a href="#PoliciesAPI-46"><span class="linenos"> 46</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
-</span><span id="PoliciesAPI-47"><a href="#PoliciesAPI-47"><span class="linenos"> 47</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
-</span><span id="PoliciesAPI-48"><a href="#PoliciesAPI-48"><span class="linenos"> 48</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
-</span><span id="PoliciesAPI-49"><a href="#PoliciesAPI-49"><span class="linenos"> 49</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
-</span><span id="PoliciesAPI-50"><a href="#PoliciesAPI-50"><span class="linenos"> 50</span></a><span class="sd">        :param evaluator_id: A string representing the evaluator in which the object is to be run.</span>
-</span><span id="PoliciesAPI-51"><a href="#PoliciesAPI-51"><span class="linenos"> 51</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
-</span><span id="PoliciesAPI-52"><a href="#PoliciesAPI-52"><span class="linenos"> 52</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
-</span><span id="PoliciesAPI-53"><a href="#PoliciesAPI-53"><span class="linenos"> 53</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
-</span><span id="PoliciesAPI-54"><a href="#PoliciesAPI-54"><span class="linenos"> 54</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="PoliciesAPI-55"><a href="#PoliciesAPI-55"><span class="linenos"> 55</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="PoliciesAPI-56"><a href="#PoliciesAPI-56"><span class="linenos"> 56</span></a>
-</span><span id="PoliciesAPI-57"><a href="#PoliciesAPI-57"><span class="linenos"> 57</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI-58"><a href="#PoliciesAPI-58"><span class="linenos"> 58</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI-59"><a href="#PoliciesAPI-59"><span class="linenos"> 59</span></a>
-</span><span id="PoliciesAPI-60"><a href="#PoliciesAPI-60"><span class="linenos"> 60</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-</span><span id="PoliciesAPI-61"><a href="#PoliciesAPI-61"><span class="linenos"> 61</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
-</span><span id="PoliciesAPI-62"><a href="#PoliciesAPI-62"><span class="linenos"> 62</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI-63"><a href="#PoliciesAPI-63"><span class="linenos"> 63</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)),</span>
-</span><span id="PoliciesAPI-64"><a href="#PoliciesAPI-64"><span class="linenos"> 64</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-</span><span id="PoliciesAPI-65"><a href="#PoliciesAPI-65"><span class="linenos"> 65</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
-</span><span id="PoliciesAPI-66"><a href="#PoliciesAPI-66"><span class="linenos"> 66</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
-</span><span id="PoliciesAPI-67"><a href="#PoliciesAPI-67"><span class="linenos"> 67</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
-</span><span id="PoliciesAPI-68"><a href="#PoliciesAPI-68"><span class="linenos"> 68</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
-</span><span id="PoliciesAPI-69"><a href="#PoliciesAPI-69"><span class="linenos"> 69</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
-</span><span id="PoliciesAPI-70"><a href="#PoliciesAPI-70"><span class="linenos"> 70</span></a>            <span class="n">evaluator_id</span><span class="o">=</span><span class="n">evaluator_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI-71"><a href="#PoliciesAPI-71"><span class="linenos"> 71</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
-</span><span id="PoliciesAPI-72"><a href="#PoliciesAPI-72"><span class="linenos"> 72</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
-</span><span id="PoliciesAPI-73"><a href="#PoliciesAPI-73"><span class="linenos"> 73</span></a>            <span class="o">**</span><span class="n">request_params</span>
-</span><span id="PoliciesAPI-74"><a href="#PoliciesAPI-74"><span class="linenos"> 74</span></a>        <span class="p">)</span>
-</span><span id="PoliciesAPI-75"><a href="#PoliciesAPI-75"><span class="linenos"> 75</span></a>
-</span><span id="PoliciesAPI-76"><a href="#PoliciesAPI-76"><span class="linenos"> 76</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="PoliciesAPI-77"><a href="#PoliciesAPI-77"><span class="linenos"> 77</span></a>            <span class="n">policy_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="PoliciesAPI-78"><a href="#PoliciesAPI-78"><span class="linenos"> 78</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI-79"><a href="#PoliciesAPI-79"><span class="linenos"> 79</span></a><span class="sd">        A method to get Policies objects.</span>
-</span><span id="PoliciesAPI-80"><a href="#PoliciesAPI-80"><span class="linenos"> 80</span></a>
-</span><span id="PoliciesAPI-81"><a href="#PoliciesAPI-81"><span class="linenos"> 81</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="PoliciesAPI-82"><a href="#PoliciesAPI-82"><span class="linenos"> 82</span></a>
-</span><span id="PoliciesAPI-83"><a href="#PoliciesAPI-83"><span class="linenos"> 83</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI-84"><a href="#PoliciesAPI-84"><span class="linenos"> 84</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI-85"><a href="#PoliciesAPI-85"><span class="linenos"> 85</span></a>
-</span><span id="PoliciesAPI-86"><a href="#PoliciesAPI-86"><span class="linenos"> 86</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+</span><span id="PoliciesAPI-41"><a href="#PoliciesAPI-41"><span class="linenos"> 41</span></a><span class="sd">        :type policy_type: str</span>
+</span><span id="PoliciesAPI-42"><a href="#PoliciesAPI-42"><span class="linenos"> 42</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
+</span><span id="PoliciesAPI-43"><a href="#PoliciesAPI-43"><span class="linenos"> 43</span></a><span class="sd">        :type query_id: str</span>
+</span><span id="PoliciesAPI-44"><a href="#PoliciesAPI-44"><span class="linenos"> 44</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
+</span><span id="PoliciesAPI-45"><a href="#PoliciesAPI-45"><span class="linenos"> 45</span></a><span class="sd">        :type enabled: bool</span>
+</span><span id="PoliciesAPI-46"><a href="#PoliciesAPI-46"><span class="linenos"> 46</span></a><span class="sd">        :param title: A string representing the object title.</span>
+</span><span id="PoliciesAPI-47"><a href="#PoliciesAPI-47"><span class="linenos"> 47</span></a><span class="sd">        :type title: str</span>
+</span><span id="PoliciesAPI-48"><a href="#PoliciesAPI-48"><span class="linenos"> 48</span></a><span class="sd">        :param description: A string representing the object description.</span>
+</span><span id="PoliciesAPI-49"><a href="#PoliciesAPI-49"><span class="linenos"> 49</span></a><span class="sd">        :type description: str</span>
+</span><span id="PoliciesAPI-50"><a href="#PoliciesAPI-50"><span class="linenos"> 50</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
+</span><span id="PoliciesAPI-51"><a href="#PoliciesAPI-51"><span class="linenos"> 51</span></a><span class="sd">        :type remediation: str</span>
+</span><span id="PoliciesAPI-52"><a href="#PoliciesAPI-52"><span class="linenos"> 52</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
+</span><span id="PoliciesAPI-53"><a href="#PoliciesAPI-53"><span class="linenos"> 53</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="PoliciesAPI-54"><a href="#PoliciesAPI-54"><span class="linenos"> 54</span></a><span class="sd">        :type severity: str</span>
+</span><span id="PoliciesAPI-55"><a href="#PoliciesAPI-55"><span class="linenos"> 55</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
+</span><span id="PoliciesAPI-56"><a href="#PoliciesAPI-56"><span class="linenos"> 56</span></a><span class="sd">        :type alert_enabled: bool</span>
+</span><span id="PoliciesAPI-57"><a href="#PoliciesAPI-57"><span class="linenos"> 57</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
+</span><span id="PoliciesAPI-58"><a href="#PoliciesAPI-58"><span class="linenos"> 58</span></a><span class="sd">        :type alert_profile: str</span>
+</span><span id="PoliciesAPI-59"><a href="#PoliciesAPI-59"><span class="linenos"> 59</span></a><span class="sd">        :param evaluator_id: A string representing the evaluator in which the object is to be run.</span>
+</span><span id="PoliciesAPI-60"><a href="#PoliciesAPI-60"><span class="linenos"> 60</span></a><span class="sd">        :type evaluator_id: str</span>
+</span><span id="PoliciesAPI-61"><a href="#PoliciesAPI-61"><span class="linenos"> 61</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
+</span><span id="PoliciesAPI-62"><a href="#PoliciesAPI-62"><span class="linenos"> 62</span></a><span class="sd">        :type limit: int</span>
+</span><span id="PoliciesAPI-63"><a href="#PoliciesAPI-63"><span class="linenos"> 63</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
+</span><span id="PoliciesAPI-64"><a href="#PoliciesAPI-64"><span class="linenos"> 64</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
+</span><span id="PoliciesAPI-65"><a href="#PoliciesAPI-65"><span class="linenos"> 65</span></a><span class="sd">        :type eval_frequency: str</span>
+</span><span id="PoliciesAPI-66"><a href="#PoliciesAPI-66"><span class="linenos"> 66</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="PoliciesAPI-67"><a href="#PoliciesAPI-67"><span class="linenos"> 67</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="PoliciesAPI-68"><a href="#PoliciesAPI-68"><span class="linenos"> 68</span></a>
+</span><span id="PoliciesAPI-69"><a href="#PoliciesAPI-69"><span class="linenos"> 69</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI-70"><a href="#PoliciesAPI-70"><span class="linenos"> 70</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-71"><a href="#PoliciesAPI-71"><span class="linenos"> 71</span></a>
+</span><span id="PoliciesAPI-72"><a href="#PoliciesAPI-72"><span class="linenos"> 72</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="PoliciesAPI-73"><a href="#PoliciesAPI-73"><span class="linenos"> 73</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
+</span><span id="PoliciesAPI-74"><a href="#PoliciesAPI-74"><span class="linenos"> 74</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI-75"><a href="#PoliciesAPI-75"><span class="linenos"> 75</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
+</span><span id="PoliciesAPI-76"><a href="#PoliciesAPI-76"><span class="linenos"> 76</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+</span><span id="PoliciesAPI-77"><a href="#PoliciesAPI-77"><span class="linenos"> 77</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+</span><span id="PoliciesAPI-78"><a href="#PoliciesAPI-78"><span class="linenos"> 78</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
+</span><span id="PoliciesAPI-79"><a href="#PoliciesAPI-79"><span class="linenos"> 79</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
+</span><span id="PoliciesAPI-80"><a href="#PoliciesAPI-80"><span class="linenos"> 80</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
+</span><span id="PoliciesAPI-81"><a href="#PoliciesAPI-81"><span class="linenos"> 81</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
+</span><span id="PoliciesAPI-82"><a href="#PoliciesAPI-82"><span class="linenos"> 82</span></a>            <span class="n">evaluator_id</span><span class="o">=</span><span class="n">evaluator_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI-83"><a href="#PoliciesAPI-83"><span class="linenos"> 83</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+</span><span id="PoliciesAPI-84"><a href="#PoliciesAPI-84"><span class="linenos"> 84</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
+</span><span id="PoliciesAPI-85"><a href="#PoliciesAPI-85"><span class="linenos"> 85</span></a>            <span class="o">**</span><span class="n">request_params</span>
+</span><span id="PoliciesAPI-86"><a href="#PoliciesAPI-86"><span class="linenos"> 86</span></a>        <span class="p">)</span>
 </span><span id="PoliciesAPI-87"><a href="#PoliciesAPI-87"><span class="linenos"> 87</span></a>
-</span><span id="PoliciesAPI-88"><a href="#PoliciesAPI-88"><span class="linenos"> 88</span></a>    <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="PoliciesAPI-89"><a href="#PoliciesAPI-89"><span class="linenos"> 89</span></a>                  <span class="n">policy_id</span><span class="p">):</span>
-</span><span id="PoliciesAPI-90"><a href="#PoliciesAPI-90"><span class="linenos"> 90</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI-91"><a href="#PoliciesAPI-91"><span class="linenos"> 91</span></a><span class="sd">        A method to get a Policies object by policy ID.</span>
+</span><span id="PoliciesAPI-88"><a href="#PoliciesAPI-88"><span class="linenos"> 88</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="PoliciesAPI-89"><a href="#PoliciesAPI-89"><span class="linenos"> 89</span></a>            <span class="n">policy_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="PoliciesAPI-90"><a href="#PoliciesAPI-90"><span class="linenos"> 90</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-91"><a href="#PoliciesAPI-91"><span class="linenos"> 91</span></a><span class="sd">        A method to get Policies objects.</span>
 </span><span id="PoliciesAPI-92"><a href="#PoliciesAPI-92"><span class="linenos"> 92</span></a>
 </span><span id="PoliciesAPI-93"><a href="#PoliciesAPI-93"><span class="linenos"> 93</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="PoliciesAPI-94"><a href="#PoliciesAPI-94"><span class="linenos"> 94</span></a>
-</span><span id="PoliciesAPI-95"><a href="#PoliciesAPI-95"><span class="linenos"> 95</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI-96"><a href="#PoliciesAPI-96"><span class="linenos"> 96</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI-97"><a href="#PoliciesAPI-97"><span class="linenos"> 97</span></a>
-</span><span id="PoliciesAPI-98"><a href="#PoliciesAPI-98"><span class="linenos"> 98</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">policy_id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
-</span><span id="PoliciesAPI-99"><a href="#PoliciesAPI-99"><span class="linenos"> 99</span></a>
-</span><span id="PoliciesAPI-100"><a href="#PoliciesAPI-100"><span class="linenos">100</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># noqa: C901</span>
-</span><span id="PoliciesAPI-101"><a href="#PoliciesAPI-101"><span class="linenos">101</span></a>               <span class="n">policy_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI-102"><a href="#PoliciesAPI-102"><span class="linenos">102</span></a>               <span class="n">policy_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-103"><a href="#PoliciesAPI-103"><span class="linenos">103</span></a>               <span class="n">query_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-104"><a href="#PoliciesAPI-104"><span class="linenos">104</span></a>               <span class="n">enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-105"><a href="#PoliciesAPI-105"><span class="linenos">105</span></a>               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-106"><a href="#PoliciesAPI-106"><span class="linenos">106</span></a>               <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-107"><a href="#PoliciesAPI-107"><span class="linenos">107</span></a>               <span class="n">remediation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-108"><a href="#PoliciesAPI-108"><span class="linenos">108</span></a>               <span class="n">severity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-109"><a href="#PoliciesAPI-109"><span class="linenos">109</span></a>               <span class="n">alert_enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-110"><a href="#PoliciesAPI-110"><span class="linenos">110</span></a>               <span class="n">alert_profile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-111"><a href="#PoliciesAPI-111"><span class="linenos">111</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-112"><a href="#PoliciesAPI-112"><span class="linenos">112</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI-113"><a href="#PoliciesAPI-113"><span class="linenos">113</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="PoliciesAPI-114"><a href="#PoliciesAPI-114"><span class="linenos">114</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI-115"><a href="#PoliciesAPI-115"><span class="linenos">115</span></a><span class="sd">        A method to update a Lacework Query Language (LQL) policy.</span>
-</span><span id="PoliciesAPI-116"><a href="#PoliciesAPI-116"><span class="linenos">116</span></a>
-</span><span id="PoliciesAPI-117"><a href="#PoliciesAPI-117"><span class="linenos">117</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="PoliciesAPI-118"><a href="#PoliciesAPI-118"><span class="linenos">118</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
-</span><span id="PoliciesAPI-119"><a href="#PoliciesAPI-119"><span class="linenos">119</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
-</span><span id="PoliciesAPI-120"><a href="#PoliciesAPI-120"><span class="linenos">120</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
-</span><span id="PoliciesAPI-121"><a href="#PoliciesAPI-121"><span class="linenos">121</span></a><span class="sd">        :param title: A string representing the object title.</span>
-</span><span id="PoliciesAPI-122"><a href="#PoliciesAPI-122"><span class="linenos">122</span></a><span class="sd">        :param description: A string representing the object description.</span>
-</span><span id="PoliciesAPI-123"><a href="#PoliciesAPI-123"><span class="linenos">123</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
-</span><span id="PoliciesAPI-124"><a href="#PoliciesAPI-124"><span class="linenos">124</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
-</span><span id="PoliciesAPI-125"><a href="#PoliciesAPI-125"><span class="linenos">125</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
-</span><span id="PoliciesAPI-126"><a href="#PoliciesAPI-126"><span class="linenos">126</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
-</span><span id="PoliciesAPI-127"><a href="#PoliciesAPI-127"><span class="linenos">127</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
-</span><span id="PoliciesAPI-128"><a href="#PoliciesAPI-128"><span class="linenos">128</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
-</span><span id="PoliciesAPI-129"><a href="#PoliciesAPI-129"><span class="linenos">129</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
-</span><span id="PoliciesAPI-130"><a href="#PoliciesAPI-130"><span class="linenos">130</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
-</span><span id="PoliciesAPI-131"><a href="#PoliciesAPI-131"><span class="linenos">131</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="PoliciesAPI-132"><a href="#PoliciesAPI-132"><span class="linenos">132</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="PoliciesAPI-133"><a href="#PoliciesAPI-133"><span class="linenos">133</span></a>
-</span><span id="PoliciesAPI-134"><a href="#PoliciesAPI-134"><span class="linenos">134</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI-135"><a href="#PoliciesAPI-135"><span class="linenos">135</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI-136"><a href="#PoliciesAPI-136"><span class="linenos">136</span></a>
-</span><span id="PoliciesAPI-137"><a href="#PoliciesAPI-137"><span class="linenos">137</span></a>        <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="PoliciesAPI-138"><a href="#PoliciesAPI-138"><span class="linenos">138</span></a>            <span class="n">enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
-</span><span id="PoliciesAPI-139"><a href="#PoliciesAPI-139"><span class="linenos">139</span></a>
-</span><span id="PoliciesAPI-140"><a href="#PoliciesAPI-140"><span class="linenos">140</span></a>        <span class="k">if</span> <span class="n">alert_enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="PoliciesAPI-141"><a href="#PoliciesAPI-141"><span class="linenos">141</span></a>            <span class="n">alert_enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">alert_enabled</span><span class="p">)</span>
-</span><span id="PoliciesAPI-142"><a href="#PoliciesAPI-142"><span class="linenos">142</span></a>
-</span><span id="PoliciesAPI-143"><a href="#PoliciesAPI-143"><span class="linenos">143</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-</span><span id="PoliciesAPI-144"><a href="#PoliciesAPI-144"><span class="linenos">144</span></a>            <span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI-145"><a href="#PoliciesAPI-145"><span class="linenos">145</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
-</span><span id="PoliciesAPI-146"><a href="#PoliciesAPI-146"><span class="linenos">146</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI-147"><a href="#PoliciesAPI-147"><span class="linenos">147</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
-</span><span id="PoliciesAPI-148"><a href="#PoliciesAPI-148"><span class="linenos">148</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-</span><span id="PoliciesAPI-149"><a href="#PoliciesAPI-149"><span class="linenos">149</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
-</span><span id="PoliciesAPI-150"><a href="#PoliciesAPI-150"><span class="linenos">150</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
-</span><span id="PoliciesAPI-151"><a href="#PoliciesAPI-151"><span class="linenos">151</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
-</span><span id="PoliciesAPI-152"><a href="#PoliciesAPI-152"><span class="linenos">152</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
-</span><span id="PoliciesAPI-153"><a href="#PoliciesAPI-153"><span class="linenos">153</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
-</span><span id="PoliciesAPI-154"><a href="#PoliciesAPI-154"><span class="linenos">154</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
-</span><span id="PoliciesAPI-155"><a href="#PoliciesAPI-155"><span class="linenos">155</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
-</span><span id="PoliciesAPI-156"><a href="#PoliciesAPI-156"><span class="linenos">156</span></a>            <span class="o">**</span><span class="n">request_params</span>
-</span><span id="PoliciesAPI-157"><a href="#PoliciesAPI-157"><span class="linenos">157</span></a>        <span class="p">)</span>
-</span><span id="PoliciesAPI-158"><a href="#PoliciesAPI-158"><span class="linenos">158</span></a>
-</span><span id="PoliciesAPI-159"><a href="#PoliciesAPI-159"><span class="linenos">159</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="PoliciesAPI-160"><a href="#PoliciesAPI-160"><span class="linenos">160</span></a>               <span class="n">policy_id</span><span class="p">):</span>
-</span><span id="PoliciesAPI-161"><a href="#PoliciesAPI-161"><span class="linenos">161</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI-162"><a href="#PoliciesAPI-162"><span class="linenos">162</span></a><span class="sd">        A method to delete a Policies object.</span>
-</span><span id="PoliciesAPI-163"><a href="#PoliciesAPI-163"><span class="linenos">163</span></a>
-</span><span id="PoliciesAPI-164"><a href="#PoliciesAPI-164"><span class="linenos">164</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="PoliciesAPI-94"><a href="#PoliciesAPI-94"><span class="linenos"> 94</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="PoliciesAPI-95"><a href="#PoliciesAPI-95"><span class="linenos"> 95</span></a>
+</span><span id="PoliciesAPI-96"><a href="#PoliciesAPI-96"><span class="linenos"> 96</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI-97"><a href="#PoliciesAPI-97"><span class="linenos"> 97</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-98"><a href="#PoliciesAPI-98"><span class="linenos"> 98</span></a>
+</span><span id="PoliciesAPI-99"><a href="#PoliciesAPI-99"><span class="linenos"> 99</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+</span><span id="PoliciesAPI-100"><a href="#PoliciesAPI-100"><span class="linenos">100</span></a>
+</span><span id="PoliciesAPI-101"><a href="#PoliciesAPI-101"><span class="linenos">101</span></a>    <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="PoliciesAPI-102"><a href="#PoliciesAPI-102"><span class="linenos">102</span></a>                  <span class="n">policy_id</span><span class="p">):</span>
+</span><span id="PoliciesAPI-103"><a href="#PoliciesAPI-103"><span class="linenos">103</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-104"><a href="#PoliciesAPI-104"><span class="linenos">104</span></a><span class="sd">        A method to get a Policies object by policy ID.</span>
+</span><span id="PoliciesAPI-105"><a href="#PoliciesAPI-105"><span class="linenos">105</span></a>
+</span><span id="PoliciesAPI-106"><a href="#PoliciesAPI-106"><span class="linenos">106</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="PoliciesAPI-107"><a href="#PoliciesAPI-107"><span class="linenos">107</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="PoliciesAPI-108"><a href="#PoliciesAPI-108"><span class="linenos">108</span></a>
+</span><span id="PoliciesAPI-109"><a href="#PoliciesAPI-109"><span class="linenos">109</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI-110"><a href="#PoliciesAPI-110"><span class="linenos">110</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-111"><a href="#PoliciesAPI-111"><span class="linenos">111</span></a>
+</span><span id="PoliciesAPI-112"><a href="#PoliciesAPI-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">policy_id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+</span><span id="PoliciesAPI-113"><a href="#PoliciesAPI-113"><span class="linenos">113</span></a>
+</span><span id="PoliciesAPI-114"><a href="#PoliciesAPI-114"><span class="linenos">114</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># noqa: C901</span>
+</span><span id="PoliciesAPI-115"><a href="#PoliciesAPI-115"><span class="linenos">115</span></a>               <span class="n">policy_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI-116"><a href="#PoliciesAPI-116"><span class="linenos">116</span></a>               <span class="n">policy_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-117"><a href="#PoliciesAPI-117"><span class="linenos">117</span></a>               <span class="n">query_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-118"><a href="#PoliciesAPI-118"><span class="linenos">118</span></a>               <span class="n">enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-119"><a href="#PoliciesAPI-119"><span class="linenos">119</span></a>               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-120"><a href="#PoliciesAPI-120"><span class="linenos">120</span></a>               <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-121"><a href="#PoliciesAPI-121"><span class="linenos">121</span></a>               <span class="n">remediation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-122"><a href="#PoliciesAPI-122"><span class="linenos">122</span></a>               <span class="n">severity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-123"><a href="#PoliciesAPI-123"><span class="linenos">123</span></a>               <span class="n">alert_enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-124"><a href="#PoliciesAPI-124"><span class="linenos">124</span></a>               <span class="n">alert_profile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-125"><a href="#PoliciesAPI-125"><span class="linenos">125</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-126"><a href="#PoliciesAPI-126"><span class="linenos">126</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI-127"><a href="#PoliciesAPI-127"><span class="linenos">127</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="PoliciesAPI-128"><a href="#PoliciesAPI-128"><span class="linenos">128</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-129"><a href="#PoliciesAPI-129"><span class="linenos">129</span></a><span class="sd">        A method to update a Lacework Query Language (LQL) policy.</span>
+</span><span id="PoliciesAPI-130"><a href="#PoliciesAPI-130"><span class="linenos">130</span></a>
+</span><span id="PoliciesAPI-131"><a href="#PoliciesAPI-131"><span class="linenos">131</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="PoliciesAPI-132"><a href="#PoliciesAPI-132"><span class="linenos">132</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="PoliciesAPI-133"><a href="#PoliciesAPI-133"><span class="linenos">133</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
+</span><span id="PoliciesAPI-134"><a href="#PoliciesAPI-134"><span class="linenos">134</span></a><span class="sd">        :type policy_type: str</span>
+</span><span id="PoliciesAPI-135"><a href="#PoliciesAPI-135"><span class="linenos">135</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
+</span><span id="PoliciesAPI-136"><a href="#PoliciesAPI-136"><span class="linenos">136</span></a><span class="sd">        :type query_id: str</span>
+</span><span id="PoliciesAPI-137"><a href="#PoliciesAPI-137"><span class="linenos">137</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
+</span><span id="PoliciesAPI-138"><a href="#PoliciesAPI-138"><span class="linenos">138</span></a><span class="sd">        :type enabled: bool</span>
+</span><span id="PoliciesAPI-139"><a href="#PoliciesAPI-139"><span class="linenos">139</span></a><span class="sd">        :param title: A string representing the object title.</span>
+</span><span id="PoliciesAPI-140"><a href="#PoliciesAPI-140"><span class="linenos">140</span></a><span class="sd">        :type title: str</span>
+</span><span id="PoliciesAPI-141"><a href="#PoliciesAPI-141"><span class="linenos">141</span></a><span class="sd">        :param description: A string representing the object description.</span>
+</span><span id="PoliciesAPI-142"><a href="#PoliciesAPI-142"><span class="linenos">142</span></a><span class="sd">        :type description: str</span>
+</span><span id="PoliciesAPI-143"><a href="#PoliciesAPI-143"><span class="linenos">143</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
+</span><span id="PoliciesAPI-144"><a href="#PoliciesAPI-144"><span class="linenos">144</span></a><span class="sd">        :type remediation: str</span>
+</span><span id="PoliciesAPI-145"><a href="#PoliciesAPI-145"><span class="linenos">145</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
+</span><span id="PoliciesAPI-146"><a href="#PoliciesAPI-146"><span class="linenos">146</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="PoliciesAPI-147"><a href="#PoliciesAPI-147"><span class="linenos">147</span></a><span class="sd">        :type severity: str</span>
+</span><span id="PoliciesAPI-148"><a href="#PoliciesAPI-148"><span class="linenos">148</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
+</span><span id="PoliciesAPI-149"><a href="#PoliciesAPI-149"><span class="linenos">149</span></a><span class="sd">        :type alert_enabled: bool</span>
+</span><span id="PoliciesAPI-150"><a href="#PoliciesAPI-150"><span class="linenos">150</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
+</span><span id="PoliciesAPI-151"><a href="#PoliciesAPI-151"><span class="linenos">151</span></a><span class="sd">        :type alert_profile: str</span>
+</span><span id="PoliciesAPI-152"><a href="#PoliciesAPI-152"><span class="linenos">152</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
+</span><span id="PoliciesAPI-153"><a href="#PoliciesAPI-153"><span class="linenos">153</span></a><span class="sd">        :type limit: int</span>
+</span><span id="PoliciesAPI-154"><a href="#PoliciesAPI-154"><span class="linenos">154</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
+</span><span id="PoliciesAPI-155"><a href="#PoliciesAPI-155"><span class="linenos">155</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
+</span><span id="PoliciesAPI-156"><a href="#PoliciesAPI-156"><span class="linenos">156</span></a><span class="sd">        :type eval_frequency: str</span>
+</span><span id="PoliciesAPI-157"><a href="#PoliciesAPI-157"><span class="linenos">157</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="PoliciesAPI-158"><a href="#PoliciesAPI-158"><span class="linenos">158</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="PoliciesAPI-159"><a href="#PoliciesAPI-159"><span class="linenos">159</span></a>
+</span><span id="PoliciesAPI-160"><a href="#PoliciesAPI-160"><span class="linenos">160</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI-161"><a href="#PoliciesAPI-161"><span class="linenos">161</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-162"><a href="#PoliciesAPI-162"><span class="linenos">162</span></a>
+</span><span id="PoliciesAPI-163"><a href="#PoliciesAPI-163"><span class="linenos">163</span></a>        <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="PoliciesAPI-164"><a href="#PoliciesAPI-164"><span class="linenos">164</span></a>            <span class="n">enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
 </span><span id="PoliciesAPI-165"><a href="#PoliciesAPI-165"><span class="linenos">165</span></a>
-</span><span id="PoliciesAPI-166"><a href="#PoliciesAPI-166"><span class="linenos">166</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI-167"><a href="#PoliciesAPI-167"><span class="linenos">167</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-166"><a href="#PoliciesAPI-166"><span class="linenos">166</span></a>        <span class="k">if</span> <span class="n">alert_enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="PoliciesAPI-167"><a href="#PoliciesAPI-167"><span class="linenos">167</span></a>            <span class="n">alert_enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">alert_enabled</span><span class="p">)</span>
 </span><span id="PoliciesAPI-168"><a href="#PoliciesAPI-168"><span class="linenos">168</span></a>
-</span><span id="PoliciesAPI-169"><a href="#PoliciesAPI-169"><span class="linenos">169</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+</span><span id="PoliciesAPI-169"><a href="#PoliciesAPI-169"><span class="linenos">169</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+</span><span id="PoliciesAPI-170"><a href="#PoliciesAPI-170"><span class="linenos">170</span></a>            <span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI-171"><a href="#PoliciesAPI-171"><span class="linenos">171</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
+</span><span id="PoliciesAPI-172"><a href="#PoliciesAPI-172"><span class="linenos">172</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI-173"><a href="#PoliciesAPI-173"><span class="linenos">173</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
+</span><span id="PoliciesAPI-174"><a href="#PoliciesAPI-174"><span class="linenos">174</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+</span><span id="PoliciesAPI-175"><a href="#PoliciesAPI-175"><span class="linenos">175</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+</span><span id="PoliciesAPI-176"><a href="#PoliciesAPI-176"><span class="linenos">176</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
+</span><span id="PoliciesAPI-177"><a href="#PoliciesAPI-177"><span class="linenos">177</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
+</span><span id="PoliciesAPI-178"><a href="#PoliciesAPI-178"><span class="linenos">178</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
+</span><span id="PoliciesAPI-179"><a href="#PoliciesAPI-179"><span class="linenos">179</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
+</span><span id="PoliciesAPI-180"><a href="#PoliciesAPI-180"><span class="linenos">180</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+</span><span id="PoliciesAPI-181"><a href="#PoliciesAPI-181"><span class="linenos">181</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
+</span><span id="PoliciesAPI-182"><a href="#PoliciesAPI-182"><span class="linenos">182</span></a>            <span class="o">**</span><span class="n">request_params</span>
+</span><span id="PoliciesAPI-183"><a href="#PoliciesAPI-183"><span class="linenos">183</span></a>        <span class="p">)</span>
+</span><span id="PoliciesAPI-184"><a href="#PoliciesAPI-184"><span class="linenos">184</span></a>
+</span><span id="PoliciesAPI-185"><a href="#PoliciesAPI-185"><span class="linenos">185</span></a>    <span class="k">def</span> <span class="nf">bulk_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="PoliciesAPI-186"><a href="#PoliciesAPI-186"><span class="linenos">186</span></a>                    <span class="n">json</span><span class="p">):</span>
+</span><span id="PoliciesAPI-187"><a href="#PoliciesAPI-187"><span class="linenos">187</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-188"><a href="#PoliciesAPI-188"><span class="linenos">188</span></a><span class="sd">        A method to update Policy objects in bulk</span>
+</span><span id="PoliciesAPI-189"><a href="#PoliciesAPI-189"><span class="linenos">189</span></a>
+</span><span id="PoliciesAPI-190"><a href="#PoliciesAPI-190"><span class="linenos">190</span></a><span class="sd">        :param json: A list of JSON objects containing policy configuration.</span>
+</span><span id="PoliciesAPI-191"><a href="#PoliciesAPI-191"><span class="linenos">191</span></a><span class="sd">        :type json: list(dict(str, Any))</span>
+</span><span id="PoliciesAPI-192"><a href="#PoliciesAPI-192"><span class="linenos">192</span></a><span class="sd">            obj:</span>
+</span><span id="PoliciesAPI-193"><a href="#PoliciesAPI-193"><span class="linenos">193</span></a><span class="sd">                :param policyId: A string representing the ID of the policy.</span>
+</span><span id="PoliciesAPI-194"><a href="#PoliciesAPI-194"><span class="linenos">194</span></a><span class="sd">                :param enabled: A boolean representing the status of the policy.</span>
+</span><span id="PoliciesAPI-195"><a href="#PoliciesAPI-195"><span class="linenos">195</span></a><span class="sd">                :param severity: A string representing the severity of the policy.</span>
+</span><span id="PoliciesAPI-196"><a href="#PoliciesAPI-196"><span class="linenos">196</span></a><span class="sd">                    (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="PoliciesAPI-197"><a href="#PoliciesAPI-197"><span class="linenos">197</span></a>
+</span><span id="PoliciesAPI-198"><a href="#PoliciesAPI-198"><span class="linenos">198</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI-199"><a href="#PoliciesAPI-199"><span class="linenos">199</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-200"><a href="#PoliciesAPI-200"><span class="linenos">200</span></a>
+</span><span id="PoliciesAPI-201"><a href="#PoliciesAPI-201"><span class="linenos">201</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="PoliciesAPI-202"><a href="#PoliciesAPI-202"><span class="linenos">202</span></a>
+</span><span id="PoliciesAPI-203"><a href="#PoliciesAPI-203"><span class="linenos">203</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="PoliciesAPI-204"><a href="#PoliciesAPI-204"><span class="linenos">204</span></a>
+</span><span id="PoliciesAPI-205"><a href="#PoliciesAPI-205"><span class="linenos">205</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="PoliciesAPI-206"><a href="#PoliciesAPI-206"><span class="linenos">206</span></a>               <span class="n">policy_id</span><span class="p">):</span>
+</span><span id="PoliciesAPI-207"><a href="#PoliciesAPI-207"><span class="linenos">207</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-208"><a href="#PoliciesAPI-208"><span class="linenos">208</span></a><span class="sd">        A method to delete a Policies object.</span>
+</span><span id="PoliciesAPI-209"><a href="#PoliciesAPI-209"><span class="linenos">209</span></a>
+</span><span id="PoliciesAPI-210"><a href="#PoliciesAPI-210"><span class="linenos">210</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="PoliciesAPI-211"><a href="#PoliciesAPI-211"><span class="linenos">211</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="PoliciesAPI-212"><a href="#PoliciesAPI-212"><span class="linenos">212</span></a>
+</span><span id="PoliciesAPI-213"><a href="#PoliciesAPI-213"><span class="linenos">213</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI-214"><a href="#PoliciesAPI-214"><span class="linenos">214</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI-215"><a href="#PoliciesAPI-215"><span class="linenos">215</span></a>
+</span><span id="PoliciesAPI-216"><a href="#PoliciesAPI-216"><span class="linenos">216</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -431,7 +528,7 @@
                             <div id="PoliciesAPI.__init__" class="classattr">
                                         <input id="PoliciesAPI.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="name">PoliciesAPI</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">session</span></span>)</span>
 
                 <label class="view-source-button" for="PoliciesAPI.__init__-view-source"><span>View Source</span></label>
@@ -439,7 +536,7 @@
     </div>
     <a class="headerlink" href="#PoliciesAPI.__init__"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.__init__-12"><a href="#PoliciesAPI.__init__-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">):</span>
-</span><span id="PoliciesAPI.__init__-13"><a href="#PoliciesAPI.__init__-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.__init__-13"><a href="#PoliciesAPI.__init__-13"><span class="linenos">13</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="PoliciesAPI.__init__-14"><a href="#PoliciesAPI.__init__-14"><span class="linenos">14</span></a><span class="sd">        Initializes the PoliciesAPI object.</span>
 </span><span id="PoliciesAPI.__init__-15"><a href="#PoliciesAPI.__init__-15"><span class="linenos">15</span></a>
 </span><span id="PoliciesAPI.__init__-16"><a href="#PoliciesAPI.__init__-16"><span class="linenos">16</span></a><span class="sd">        :param session: An instance of the HttpSession class</span>
@@ -467,7 +564,7 @@
                             <div id="PoliciesAPI.create" class="classattr">
                                         <input id="PoliciesAPI.create-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">create</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">policy_type</span>,</span><span class="param">	<span class="n">query_id</span>,</span><span class="param">	<span class="n">enabled</span>,</span><span class="param">	<span class="n">title</span>,</span><span class="param">	<span class="n">description</span>,</span><span class="param">	<span class="n">remediation</span>,</span><span class="param">	<span class="n">severity</span>,</span><span class="param">	<span class="n">alert_enabled</span>,</span><span class="param">	<span class="n">alert_profile</span>,</span><span class="param">	<span class="n">evaluator_id</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">limit</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
 
@@ -489,44 +586,56 @@
 </span><span id="PoliciesAPI.create-34"><a href="#PoliciesAPI.create-34"><span class="linenos">34</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="PoliciesAPI.create-35"><a href="#PoliciesAPI.create-35"><span class="linenos">35</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
 </span><span id="PoliciesAPI.create-36"><a href="#PoliciesAPI.create-36"><span class="linenos">36</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="PoliciesAPI.create-37"><a href="#PoliciesAPI.create-37"><span class="linenos">37</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.create-37"><a href="#PoliciesAPI.create-37"><span class="linenos">37</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="PoliciesAPI.create-38"><a href="#PoliciesAPI.create-38"><span class="linenos">38</span></a><span class="sd">        A method to create a new Policies object.</span>
 </span><span id="PoliciesAPI.create-39"><a href="#PoliciesAPI.create-39"><span class="linenos">39</span></a>
 </span><span id="PoliciesAPI.create-40"><a href="#PoliciesAPI.create-40"><span class="linenos">40</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
-</span><span id="PoliciesAPI.create-41"><a href="#PoliciesAPI.create-41"><span class="linenos">41</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
-</span><span id="PoliciesAPI.create-42"><a href="#PoliciesAPI.create-42"><span class="linenos">42</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
-</span><span id="PoliciesAPI.create-43"><a href="#PoliciesAPI.create-43"><span class="linenos">43</span></a><span class="sd">        :param title: A string representing the object title.</span>
-</span><span id="PoliciesAPI.create-44"><a href="#PoliciesAPI.create-44"><span class="linenos">44</span></a><span class="sd">        :param description: A string representing the object description.</span>
-</span><span id="PoliciesAPI.create-45"><a href="#PoliciesAPI.create-45"><span class="linenos">45</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
-</span><span id="PoliciesAPI.create-46"><a href="#PoliciesAPI.create-46"><span class="linenos">46</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
-</span><span id="PoliciesAPI.create-47"><a href="#PoliciesAPI.create-47"><span class="linenos">47</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
-</span><span id="PoliciesAPI.create-48"><a href="#PoliciesAPI.create-48"><span class="linenos">48</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
-</span><span id="PoliciesAPI.create-49"><a href="#PoliciesAPI.create-49"><span class="linenos">49</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
-</span><span id="PoliciesAPI.create-50"><a href="#PoliciesAPI.create-50"><span class="linenos">50</span></a><span class="sd">        :param evaluator_id: A string representing the evaluator in which the object is to be run.</span>
-</span><span id="PoliciesAPI.create-51"><a href="#PoliciesAPI.create-51"><span class="linenos">51</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
-</span><span id="PoliciesAPI.create-52"><a href="#PoliciesAPI.create-52"><span class="linenos">52</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
-</span><span id="PoliciesAPI.create-53"><a href="#PoliciesAPI.create-53"><span class="linenos">53</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
-</span><span id="PoliciesAPI.create-54"><a href="#PoliciesAPI.create-54"><span class="linenos">54</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="PoliciesAPI.create-55"><a href="#PoliciesAPI.create-55"><span class="linenos">55</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="PoliciesAPI.create-56"><a href="#PoliciesAPI.create-56"><span class="linenos">56</span></a>
-</span><span id="PoliciesAPI.create-57"><a href="#PoliciesAPI.create-57"><span class="linenos">57</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI.create-58"><a href="#PoliciesAPI.create-58"><span class="linenos">58</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.create-59"><a href="#PoliciesAPI.create-59"><span class="linenos">59</span></a>
-</span><span id="PoliciesAPI.create-60"><a href="#PoliciesAPI.create-60"><span class="linenos">60</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-</span><span id="PoliciesAPI.create-61"><a href="#PoliciesAPI.create-61"><span class="linenos">61</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-62"><a href="#PoliciesAPI.create-62"><span class="linenos">62</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-63"><a href="#PoliciesAPI.create-63"><span class="linenos">63</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)),</span>
-</span><span id="PoliciesAPI.create-64"><a href="#PoliciesAPI.create-64"><span class="linenos">64</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-65"><a href="#PoliciesAPI.create-65"><span class="linenos">65</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-66"><a href="#PoliciesAPI.create-66"><span class="linenos">66</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-67"><a href="#PoliciesAPI.create-67"><span class="linenos">67</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-68"><a href="#PoliciesAPI.create-68"><span class="linenos">68</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-69"><a href="#PoliciesAPI.create-69"><span class="linenos">69</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-70"><a href="#PoliciesAPI.create-70"><span class="linenos">70</span></a>            <span class="n">evaluator_id</span><span class="o">=</span><span class="n">evaluator_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-71"><a href="#PoliciesAPI.create-71"><span class="linenos">71</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-72"><a href="#PoliciesAPI.create-72"><span class="linenos">72</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
-</span><span id="PoliciesAPI.create-73"><a href="#PoliciesAPI.create-73"><span class="linenos">73</span></a>            <span class="o">**</span><span class="n">request_params</span>
-</span><span id="PoliciesAPI.create-74"><a href="#PoliciesAPI.create-74"><span class="linenos">74</span></a>        <span class="p">)</span>
+</span><span id="PoliciesAPI.create-41"><a href="#PoliciesAPI.create-41"><span class="linenos">41</span></a><span class="sd">        :type policy_type: str</span>
+</span><span id="PoliciesAPI.create-42"><a href="#PoliciesAPI.create-42"><span class="linenos">42</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
+</span><span id="PoliciesAPI.create-43"><a href="#PoliciesAPI.create-43"><span class="linenos">43</span></a><span class="sd">        :type query_id: str</span>
+</span><span id="PoliciesAPI.create-44"><a href="#PoliciesAPI.create-44"><span class="linenos">44</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
+</span><span id="PoliciesAPI.create-45"><a href="#PoliciesAPI.create-45"><span class="linenos">45</span></a><span class="sd">        :type enabled: bool</span>
+</span><span id="PoliciesAPI.create-46"><a href="#PoliciesAPI.create-46"><span class="linenos">46</span></a><span class="sd">        :param title: A string representing the object title.</span>
+</span><span id="PoliciesAPI.create-47"><a href="#PoliciesAPI.create-47"><span class="linenos">47</span></a><span class="sd">        :type title: str</span>
+</span><span id="PoliciesAPI.create-48"><a href="#PoliciesAPI.create-48"><span class="linenos">48</span></a><span class="sd">        :param description: A string representing the object description.</span>
+</span><span id="PoliciesAPI.create-49"><a href="#PoliciesAPI.create-49"><span class="linenos">49</span></a><span class="sd">        :type description: str</span>
+</span><span id="PoliciesAPI.create-50"><a href="#PoliciesAPI.create-50"><span class="linenos">50</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
+</span><span id="PoliciesAPI.create-51"><a href="#PoliciesAPI.create-51"><span class="linenos">51</span></a><span class="sd">        :type remediation: str</span>
+</span><span id="PoliciesAPI.create-52"><a href="#PoliciesAPI.create-52"><span class="linenos">52</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
+</span><span id="PoliciesAPI.create-53"><a href="#PoliciesAPI.create-53"><span class="linenos">53</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="PoliciesAPI.create-54"><a href="#PoliciesAPI.create-54"><span class="linenos">54</span></a><span class="sd">        :type severity: str</span>
+</span><span id="PoliciesAPI.create-55"><a href="#PoliciesAPI.create-55"><span class="linenos">55</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
+</span><span id="PoliciesAPI.create-56"><a href="#PoliciesAPI.create-56"><span class="linenos">56</span></a><span class="sd">        :type alert_enabled: bool</span>
+</span><span id="PoliciesAPI.create-57"><a href="#PoliciesAPI.create-57"><span class="linenos">57</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
+</span><span id="PoliciesAPI.create-58"><a href="#PoliciesAPI.create-58"><span class="linenos">58</span></a><span class="sd">        :type alert_profile: str</span>
+</span><span id="PoliciesAPI.create-59"><a href="#PoliciesAPI.create-59"><span class="linenos">59</span></a><span class="sd">        :param evaluator_id: A string representing the evaluator in which the object is to be run.</span>
+</span><span id="PoliciesAPI.create-60"><a href="#PoliciesAPI.create-60"><span class="linenos">60</span></a><span class="sd">        :type evaluator_id: str</span>
+</span><span id="PoliciesAPI.create-61"><a href="#PoliciesAPI.create-61"><span class="linenos">61</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
+</span><span id="PoliciesAPI.create-62"><a href="#PoliciesAPI.create-62"><span class="linenos">62</span></a><span class="sd">        :type limit: int</span>
+</span><span id="PoliciesAPI.create-63"><a href="#PoliciesAPI.create-63"><span class="linenos">63</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
+</span><span id="PoliciesAPI.create-64"><a href="#PoliciesAPI.create-64"><span class="linenos">64</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
+</span><span id="PoliciesAPI.create-65"><a href="#PoliciesAPI.create-65"><span class="linenos">65</span></a><span class="sd">        :type eval_frequency: str</span>
+</span><span id="PoliciesAPI.create-66"><a href="#PoliciesAPI.create-66"><span class="linenos">66</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="PoliciesAPI.create-67"><a href="#PoliciesAPI.create-67"><span class="linenos">67</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="PoliciesAPI.create-68"><a href="#PoliciesAPI.create-68"><span class="linenos">68</span></a>
+</span><span id="PoliciesAPI.create-69"><a href="#PoliciesAPI.create-69"><span class="linenos">69</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI.create-70"><a href="#PoliciesAPI.create-70"><span class="linenos">70</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.create-71"><a href="#PoliciesAPI.create-71"><span class="linenos">71</span></a>
+</span><span id="PoliciesAPI.create-72"><a href="#PoliciesAPI.create-72"><span class="linenos">72</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="PoliciesAPI.create-73"><a href="#PoliciesAPI.create-73"><span class="linenos">73</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-74"><a href="#PoliciesAPI.create-74"><span class="linenos">74</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-75"><a href="#PoliciesAPI.create-75"><span class="linenos">75</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-76"><a href="#PoliciesAPI.create-76"><span class="linenos">76</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-77"><a href="#PoliciesAPI.create-77"><span class="linenos">77</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-78"><a href="#PoliciesAPI.create-78"><span class="linenos">78</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-79"><a href="#PoliciesAPI.create-79"><span class="linenos">79</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-80"><a href="#PoliciesAPI.create-80"><span class="linenos">80</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-81"><a href="#PoliciesAPI.create-81"><span class="linenos">81</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-82"><a href="#PoliciesAPI.create-82"><span class="linenos">82</span></a>            <span class="n">evaluator_id</span><span class="o">=</span><span class="n">evaluator_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-83"><a href="#PoliciesAPI.create-83"><span class="linenos">83</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-84"><a href="#PoliciesAPI.create-84"><span class="linenos">84</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
+</span><span id="PoliciesAPI.create-85"><a href="#PoliciesAPI.create-85"><span class="linenos">85</span></a>            <span class="o">**</span><span class="n">request_params</span>
+</span><span id="PoliciesAPI.create-86"><a href="#PoliciesAPI.create-86"><span class="linenos">86</span></a>        <span class="p">)</span>
 </span></pre></div>
 
 
@@ -553,7 +662,11 @@
 (provides support for parameters that may be added in the future)</li>
 </ul>
 
-<p>:return response json</p>
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>response json</p>
+</blockquote>
 </div>
 
 
@@ -561,7 +674,7 @@
                             <div id="PoliciesAPI.get" class="classattr">
                                         <input id="PoliciesAPI.get-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">get</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">policy_id</span><span class="o">=</span><span class="kc">None</span></span><span class="return-annotation">):</span></span>
 
@@ -569,17 +682,18 @@
 
     </div>
     <a class="headerlink" href="#PoliciesAPI.get"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.get-76"><a href="#PoliciesAPI.get-76"><span class="linenos">76</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="PoliciesAPI.get-77"><a href="#PoliciesAPI.get-77"><span class="linenos">77</span></a>            <span class="n">policy_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="PoliciesAPI.get-78"><a href="#PoliciesAPI.get-78"><span class="linenos">78</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.get-79"><a href="#PoliciesAPI.get-79"><span class="linenos">79</span></a><span class="sd">        A method to get Policies objects.</span>
-</span><span id="PoliciesAPI.get-80"><a href="#PoliciesAPI.get-80"><span class="linenos">80</span></a>
-</span><span id="PoliciesAPI.get-81"><a href="#PoliciesAPI.get-81"><span class="linenos">81</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="PoliciesAPI.get-82"><a href="#PoliciesAPI.get-82"><span class="linenos">82</span></a>
-</span><span id="PoliciesAPI.get-83"><a href="#PoliciesAPI.get-83"><span class="linenos">83</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI.get-84"><a href="#PoliciesAPI.get-84"><span class="linenos">84</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.get-85"><a href="#PoliciesAPI.get-85"><span class="linenos">85</span></a>
-</span><span id="PoliciesAPI.get-86"><a href="#PoliciesAPI.get-86"><span class="linenos">86</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.get-88"><a href="#PoliciesAPI.get-88"><span class="linenos">88</span></a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="PoliciesAPI.get-89"><a href="#PoliciesAPI.get-89"><span class="linenos">89</span></a>            <span class="n">policy_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="PoliciesAPI.get-90"><a href="#PoliciesAPI.get-90"><span class="linenos">90</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.get-91"><a href="#PoliciesAPI.get-91"><span class="linenos">91</span></a><span class="sd">        A method to get Policies objects.</span>
+</span><span id="PoliciesAPI.get-92"><a href="#PoliciesAPI.get-92"><span class="linenos">92</span></a>
+</span><span id="PoliciesAPI.get-93"><a href="#PoliciesAPI.get-93"><span class="linenos">93</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="PoliciesAPI.get-94"><a href="#PoliciesAPI.get-94"><span class="linenos">94</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="PoliciesAPI.get-95"><a href="#PoliciesAPI.get-95"><span class="linenos">95</span></a>
+</span><span id="PoliciesAPI.get-96"><a href="#PoliciesAPI.get-96"><span class="linenos">96</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI.get-97"><a href="#PoliciesAPI.get-97"><span class="linenos">97</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.get-98"><a href="#PoliciesAPI.get-98"><span class="linenos">98</span></a>
+</span><span id="PoliciesAPI.get-99"><a href="#PoliciesAPI.get-99"><span class="linenos">99</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -591,7 +705,11 @@
 <li><strong>policy_id</strong>:  A string representing the object policy ID.</li>
 </ul>
 
-<p>:return response json</p>
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>response json</p>
+</blockquote>
 </div>
 
 
@@ -599,7 +717,7 @@
                             <div id="PoliciesAPI.get_by_id" class="classattr">
                                         <input id="PoliciesAPI.get_by_id-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">get_by_id</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">policy_id</span></span><span class="return-annotation">):</span></span>
 
@@ -607,17 +725,18 @@
 
     </div>
     <a class="headerlink" href="#PoliciesAPI.get_by_id"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.get_by_id-88"><a href="#PoliciesAPI.get_by_id-88"><span class="linenos">88</span></a>    <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="PoliciesAPI.get_by_id-89"><a href="#PoliciesAPI.get_by_id-89"><span class="linenos">89</span></a>                  <span class="n">policy_id</span><span class="p">):</span>
-</span><span id="PoliciesAPI.get_by_id-90"><a href="#PoliciesAPI.get_by_id-90"><span class="linenos">90</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.get_by_id-91"><a href="#PoliciesAPI.get_by_id-91"><span class="linenos">91</span></a><span class="sd">        A method to get a Policies object by policy ID.</span>
-</span><span id="PoliciesAPI.get_by_id-92"><a href="#PoliciesAPI.get_by_id-92"><span class="linenos">92</span></a>
-</span><span id="PoliciesAPI.get_by_id-93"><a href="#PoliciesAPI.get_by_id-93"><span class="linenos">93</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="PoliciesAPI.get_by_id-94"><a href="#PoliciesAPI.get_by_id-94"><span class="linenos">94</span></a>
-</span><span id="PoliciesAPI.get_by_id-95"><a href="#PoliciesAPI.get_by_id-95"><span class="linenos">95</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI.get_by_id-96"><a href="#PoliciesAPI.get_by_id-96"><span class="linenos">96</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.get_by_id-97"><a href="#PoliciesAPI.get_by_id-97"><span class="linenos">97</span></a>
-</span><span id="PoliciesAPI.get_by_id-98"><a href="#PoliciesAPI.get_by_id-98"><span class="linenos">98</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">policy_id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.get_by_id-101"><a href="#PoliciesAPI.get_by_id-101"><span class="linenos">101</span></a>    <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="PoliciesAPI.get_by_id-102"><a href="#PoliciesAPI.get_by_id-102"><span class="linenos">102</span></a>                  <span class="n">policy_id</span><span class="p">):</span>
+</span><span id="PoliciesAPI.get_by_id-103"><a href="#PoliciesAPI.get_by_id-103"><span class="linenos">103</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.get_by_id-104"><a href="#PoliciesAPI.get_by_id-104"><span class="linenos">104</span></a><span class="sd">        A method to get a Policies object by policy ID.</span>
+</span><span id="PoliciesAPI.get_by_id-105"><a href="#PoliciesAPI.get_by_id-105"><span class="linenos">105</span></a>
+</span><span id="PoliciesAPI.get_by_id-106"><a href="#PoliciesAPI.get_by_id-106"><span class="linenos">106</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="PoliciesAPI.get_by_id-107"><a href="#PoliciesAPI.get_by_id-107"><span class="linenos">107</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="PoliciesAPI.get_by_id-108"><a href="#PoliciesAPI.get_by_id-108"><span class="linenos">108</span></a>
+</span><span id="PoliciesAPI.get_by_id-109"><a href="#PoliciesAPI.get_by_id-109"><span class="linenos">109</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI.get_by_id-110"><a href="#PoliciesAPI.get_by_id-110"><span class="linenos">110</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.get_by_id-111"><a href="#PoliciesAPI.get_by_id-111"><span class="linenos">111</span></a>
+</span><span id="PoliciesAPI.get_by_id-112"><a href="#PoliciesAPI.get_by_id-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">policy_id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -629,7 +748,11 @@
 <li><strong>policy_id</strong>:  A string representing the object policy ID.</li>
 </ul>
 
-<p>:return response json</p>
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>response json</p>
+</blockquote>
 </div>
 
 
@@ -637,7 +760,7 @@
                             <div id="PoliciesAPI.update" class="classattr">
                                         <input id="PoliciesAPI.update-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">update</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">policy_id</span>,</span><span class="param">	<span class="n">policy_type</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">query_id</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">enabled</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">title</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">description</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">remediation</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">severity</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">alert_enabled</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">alert_profile</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">limit</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span>,</span><span class="param">	<span class="o">**</span><span class="n">request_params</span></span><span class="return-annotation">):</span></span>
 
@@ -645,64 +768,76 @@
 
     </div>
     <a class="headerlink" href="#PoliciesAPI.update"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.update-100"><a href="#PoliciesAPI.update-100"><span class="linenos">100</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># noqa: C901</span>
-</span><span id="PoliciesAPI.update-101"><a href="#PoliciesAPI.update-101"><span class="linenos">101</span></a>               <span class="n">policy_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-102"><a href="#PoliciesAPI.update-102"><span class="linenos">102</span></a>               <span class="n">policy_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-103"><a href="#PoliciesAPI.update-103"><span class="linenos">103</span></a>               <span class="n">query_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-104"><a href="#PoliciesAPI.update-104"><span class="linenos">104</span></a>               <span class="n">enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-105"><a href="#PoliciesAPI.update-105"><span class="linenos">105</span></a>               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-106"><a href="#PoliciesAPI.update-106"><span class="linenos">106</span></a>               <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-107"><a href="#PoliciesAPI.update-107"><span class="linenos">107</span></a>               <span class="n">remediation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-108"><a href="#PoliciesAPI.update-108"><span class="linenos">108</span></a>               <span class="n">severity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-109"><a href="#PoliciesAPI.update-109"><span class="linenos">109</span></a>               <span class="n">alert_enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-110"><a href="#PoliciesAPI.update-110"><span class="linenos">110</span></a>               <span class="n">alert_profile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-111"><a href="#PoliciesAPI.update-111"><span class="linenos">111</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-112"><a href="#PoliciesAPI.update-112"><span class="linenos">112</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-113"><a href="#PoliciesAPI.update-113"><span class="linenos">113</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="PoliciesAPI.update-114"><a href="#PoliciesAPI.update-114"><span class="linenos">114</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.update-115"><a href="#PoliciesAPI.update-115"><span class="linenos">115</span></a><span class="sd">        A method to update a Lacework Query Language (LQL) policy.</span>
-</span><span id="PoliciesAPI.update-116"><a href="#PoliciesAPI.update-116"><span class="linenos">116</span></a>
-</span><span id="PoliciesAPI.update-117"><a href="#PoliciesAPI.update-117"><span class="linenos">117</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="PoliciesAPI.update-118"><a href="#PoliciesAPI.update-118"><span class="linenos">118</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
-</span><span id="PoliciesAPI.update-119"><a href="#PoliciesAPI.update-119"><span class="linenos">119</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
-</span><span id="PoliciesAPI.update-120"><a href="#PoliciesAPI.update-120"><span class="linenos">120</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
-</span><span id="PoliciesAPI.update-121"><a href="#PoliciesAPI.update-121"><span class="linenos">121</span></a><span class="sd">        :param title: A string representing the object title.</span>
-</span><span id="PoliciesAPI.update-122"><a href="#PoliciesAPI.update-122"><span class="linenos">122</span></a><span class="sd">        :param description: A string representing the object description.</span>
-</span><span id="PoliciesAPI.update-123"><a href="#PoliciesAPI.update-123"><span class="linenos">123</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
-</span><span id="PoliciesAPI.update-124"><a href="#PoliciesAPI.update-124"><span class="linenos">124</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
-</span><span id="PoliciesAPI.update-125"><a href="#PoliciesAPI.update-125"><span class="linenos">125</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
-</span><span id="PoliciesAPI.update-126"><a href="#PoliciesAPI.update-126"><span class="linenos">126</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
-</span><span id="PoliciesAPI.update-127"><a href="#PoliciesAPI.update-127"><span class="linenos">127</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
-</span><span id="PoliciesAPI.update-128"><a href="#PoliciesAPI.update-128"><span class="linenos">128</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
-</span><span id="PoliciesAPI.update-129"><a href="#PoliciesAPI.update-129"><span class="linenos">129</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
-</span><span id="PoliciesAPI.update-130"><a href="#PoliciesAPI.update-130"><span class="linenos">130</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
-</span><span id="PoliciesAPI.update-131"><a href="#PoliciesAPI.update-131"><span class="linenos">131</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="PoliciesAPI.update-132"><a href="#PoliciesAPI.update-132"><span class="linenos">132</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="PoliciesAPI.update-133"><a href="#PoliciesAPI.update-133"><span class="linenos">133</span></a>
-</span><span id="PoliciesAPI.update-134"><a href="#PoliciesAPI.update-134"><span class="linenos">134</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI.update-135"><a href="#PoliciesAPI.update-135"><span class="linenos">135</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.update-136"><a href="#PoliciesAPI.update-136"><span class="linenos">136</span></a>
-</span><span id="PoliciesAPI.update-137"><a href="#PoliciesAPI.update-137"><span class="linenos">137</span></a>        <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="PoliciesAPI.update-138"><a href="#PoliciesAPI.update-138"><span class="linenos">138</span></a>            <span class="n">enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
-</span><span id="PoliciesAPI.update-139"><a href="#PoliciesAPI.update-139"><span class="linenos">139</span></a>
-</span><span id="PoliciesAPI.update-140"><a href="#PoliciesAPI.update-140"><span class="linenos">140</span></a>        <span class="k">if</span> <span class="n">alert_enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="PoliciesAPI.update-141"><a href="#PoliciesAPI.update-141"><span class="linenos">141</span></a>            <span class="n">alert_enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">alert_enabled</span><span class="p">)</span>
-</span><span id="PoliciesAPI.update-142"><a href="#PoliciesAPI.update-142"><span class="linenos">142</span></a>
-</span><span id="PoliciesAPI.update-143"><a href="#PoliciesAPI.update-143"><span class="linenos">143</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-</span><span id="PoliciesAPI.update-144"><a href="#PoliciesAPI.update-144"><span class="linenos">144</span></a>            <span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-145"><a href="#PoliciesAPI.update-145"><span class="linenos">145</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-146"><a href="#PoliciesAPI.update-146"><span class="linenos">146</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-147"><a href="#PoliciesAPI.update-147"><span class="linenos">147</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-148"><a href="#PoliciesAPI.update-148"><span class="linenos">148</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-149"><a href="#PoliciesAPI.update-149"><span class="linenos">149</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-150"><a href="#PoliciesAPI.update-150"><span class="linenos">150</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-151"><a href="#PoliciesAPI.update-151"><span class="linenos">151</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-152"><a href="#PoliciesAPI.update-152"><span class="linenos">152</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-153"><a href="#PoliciesAPI.update-153"><span class="linenos">153</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-154"><a href="#PoliciesAPI.update-154"><span class="linenos">154</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-155"><a href="#PoliciesAPI.update-155"><span class="linenos">155</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
-</span><span id="PoliciesAPI.update-156"><a href="#PoliciesAPI.update-156"><span class="linenos">156</span></a>            <span class="o">**</span><span class="n">request_params</span>
-</span><span id="PoliciesAPI.update-157"><a href="#PoliciesAPI.update-157"><span class="linenos">157</span></a>        <span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.update-114"><a href="#PoliciesAPI.update-114"><span class="linenos">114</span></a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># noqa: C901</span>
+</span><span id="PoliciesAPI.update-115"><a href="#PoliciesAPI.update-115"><span class="linenos">115</span></a>               <span class="n">policy_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-116"><a href="#PoliciesAPI.update-116"><span class="linenos">116</span></a>               <span class="n">policy_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-117"><a href="#PoliciesAPI.update-117"><span class="linenos">117</span></a>               <span class="n">query_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-118"><a href="#PoliciesAPI.update-118"><span class="linenos">118</span></a>               <span class="n">enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-119"><a href="#PoliciesAPI.update-119"><span class="linenos">119</span></a>               <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-120"><a href="#PoliciesAPI.update-120"><span class="linenos">120</span></a>               <span class="n">description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-121"><a href="#PoliciesAPI.update-121"><span class="linenos">121</span></a>               <span class="n">remediation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-122"><a href="#PoliciesAPI.update-122"><span class="linenos">122</span></a>               <span class="n">severity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-123"><a href="#PoliciesAPI.update-123"><span class="linenos">123</span></a>               <span class="n">alert_enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-124"><a href="#PoliciesAPI.update-124"><span class="linenos">124</span></a>               <span class="n">alert_profile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-125"><a href="#PoliciesAPI.update-125"><span class="linenos">125</span></a>               <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-126"><a href="#PoliciesAPI.update-126"><span class="linenos">126</span></a>               <span class="n">eval_frequency</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-127"><a href="#PoliciesAPI.update-127"><span class="linenos">127</span></a>               <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="PoliciesAPI.update-128"><a href="#PoliciesAPI.update-128"><span class="linenos">128</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.update-129"><a href="#PoliciesAPI.update-129"><span class="linenos">129</span></a><span class="sd">        A method to update a Lacework Query Language (LQL) policy.</span>
+</span><span id="PoliciesAPI.update-130"><a href="#PoliciesAPI.update-130"><span class="linenos">130</span></a>
+</span><span id="PoliciesAPI.update-131"><a href="#PoliciesAPI.update-131"><span class="linenos">131</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="PoliciesAPI.update-132"><a href="#PoliciesAPI.update-132"><span class="linenos">132</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="PoliciesAPI.update-133"><a href="#PoliciesAPI.update-133"><span class="linenos">133</span></a><span class="sd">        :param policy_type: A string representing the object policy type.</span>
+</span><span id="PoliciesAPI.update-134"><a href="#PoliciesAPI.update-134"><span class="linenos">134</span></a><span class="sd">        :type policy_type: str</span>
+</span><span id="PoliciesAPI.update-135"><a href="#PoliciesAPI.update-135"><span class="linenos">135</span></a><span class="sd">        :param query_id: A string representing the object query ID.</span>
+</span><span id="PoliciesAPI.update-136"><a href="#PoliciesAPI.update-136"><span class="linenos">136</span></a><span class="sd">        :type query_id: str</span>
+</span><span id="PoliciesAPI.update-137"><a href="#PoliciesAPI.update-137"><span class="linenos">137</span></a><span class="sd">        :param enabled: A boolean representing whether the object is enabled.</span>
+</span><span id="PoliciesAPI.update-138"><a href="#PoliciesAPI.update-138"><span class="linenos">138</span></a><span class="sd">        :type enabled: bool</span>
+</span><span id="PoliciesAPI.update-139"><a href="#PoliciesAPI.update-139"><span class="linenos">139</span></a><span class="sd">        :param title: A string representing the object title.</span>
+</span><span id="PoliciesAPI.update-140"><a href="#PoliciesAPI.update-140"><span class="linenos">140</span></a><span class="sd">        :type title: str</span>
+</span><span id="PoliciesAPI.update-141"><a href="#PoliciesAPI.update-141"><span class="linenos">141</span></a><span class="sd">        :param description: A string representing the object description.</span>
+</span><span id="PoliciesAPI.update-142"><a href="#PoliciesAPI.update-142"><span class="linenos">142</span></a><span class="sd">        :type description: str</span>
+</span><span id="PoliciesAPI.update-143"><a href="#PoliciesAPI.update-143"><span class="linenos">143</span></a><span class="sd">        :param remediation: A string representing the remediation strategy for the object.</span>
+</span><span id="PoliciesAPI.update-144"><a href="#PoliciesAPI.update-144"><span class="linenos">144</span></a><span class="sd">        :type remediation: str</span>
+</span><span id="PoliciesAPI.update-145"><a href="#PoliciesAPI.update-145"><span class="linenos">145</span></a><span class="sd">        :param severity: A string representing the object severity.</span>
+</span><span id="PoliciesAPI.update-146"><a href="#PoliciesAPI.update-146"><span class="linenos">146</span></a><span class="sd">            (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="PoliciesAPI.update-147"><a href="#PoliciesAPI.update-147"><span class="linenos">147</span></a><span class="sd">        :type severity: str</span>
+</span><span id="PoliciesAPI.update-148"><a href="#PoliciesAPI.update-148"><span class="linenos">148</span></a><span class="sd">        :param alert_enabled: A boolean representing whether alerting is enabled.</span>
+</span><span id="PoliciesAPI.update-149"><a href="#PoliciesAPI.update-149"><span class="linenos">149</span></a><span class="sd">        :type alert_enabled: bool</span>
+</span><span id="PoliciesAPI.update-150"><a href="#PoliciesAPI.update-150"><span class="linenos">150</span></a><span class="sd">        :param alert_profile: A string representing the alert profile.</span>
+</span><span id="PoliciesAPI.update-151"><a href="#PoliciesAPI.update-151"><span class="linenos">151</span></a><span class="sd">        :type alert_profile: str</span>
+</span><span id="PoliciesAPI.update-152"><a href="#PoliciesAPI.update-152"><span class="linenos">152</span></a><span class="sd">        :param limit: An integer representing the number of results to return.</span>
+</span><span id="PoliciesAPI.update-153"><a href="#PoliciesAPI.update-153"><span class="linenos">153</span></a><span class="sd">        :type limit: int</span>
+</span><span id="PoliciesAPI.update-154"><a href="#PoliciesAPI.update-154"><span class="linenos">154</span></a><span class="sd">        :param eval_frequency: A string representing the frequency in which to evaluate the object.</span>
+</span><span id="PoliciesAPI.update-155"><a href="#PoliciesAPI.update-155"><span class="linenos">155</span></a><span class="sd">            (&quot;Hourly&quot;, &quot;Daily&quot;)</span>
+</span><span id="PoliciesAPI.update-156"><a href="#PoliciesAPI.update-156"><span class="linenos">156</span></a><span class="sd">        :type eval_frequency: str</span>
+</span><span id="PoliciesAPI.update-157"><a href="#PoliciesAPI.update-157"><span class="linenos">157</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="PoliciesAPI.update-158"><a href="#PoliciesAPI.update-158"><span class="linenos">158</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="PoliciesAPI.update-159"><a href="#PoliciesAPI.update-159"><span class="linenos">159</span></a>
+</span><span id="PoliciesAPI.update-160"><a href="#PoliciesAPI.update-160"><span class="linenos">160</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI.update-161"><a href="#PoliciesAPI.update-161"><span class="linenos">161</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.update-162"><a href="#PoliciesAPI.update-162"><span class="linenos">162</span></a>
+</span><span id="PoliciesAPI.update-163"><a href="#PoliciesAPI.update-163"><span class="linenos">163</span></a>        <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="PoliciesAPI.update-164"><a href="#PoliciesAPI.update-164"><span class="linenos">164</span></a>            <span class="n">enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">enabled</span><span class="p">)</span>
+</span><span id="PoliciesAPI.update-165"><a href="#PoliciesAPI.update-165"><span class="linenos">165</span></a>
+</span><span id="PoliciesAPI.update-166"><a href="#PoliciesAPI.update-166"><span class="linenos">166</span></a>        <span class="k">if</span> <span class="n">alert_enabled</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="PoliciesAPI.update-167"><a href="#PoliciesAPI.update-167"><span class="linenos">167</span></a>            <span class="n">alert_enabled</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">alert_enabled</span><span class="p">)</span>
+</span><span id="PoliciesAPI.update-168"><a href="#PoliciesAPI.update-168"><span class="linenos">168</span></a>
+</span><span id="PoliciesAPI.update-169"><a href="#PoliciesAPI.update-169"><span class="linenos">169</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+</span><span id="PoliciesAPI.update-170"><a href="#PoliciesAPI.update-170"><span class="linenos">170</span></a>            <span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-171"><a href="#PoliciesAPI.update-171"><span class="linenos">171</span></a>            <span class="n">policy_type</span><span class="o">=</span><span class="n">policy_type</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-172"><a href="#PoliciesAPI.update-172"><span class="linenos">172</span></a>            <span class="n">query_id</span><span class="o">=</span><span class="n">query_id</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-173"><a href="#PoliciesAPI.update-173"><span class="linenos">173</span></a>            <span class="n">enabled</span><span class="o">=</span><span class="n">enabled</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-174"><a href="#PoliciesAPI.update-174"><span class="linenos">174</span></a>            <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-175"><a href="#PoliciesAPI.update-175"><span class="linenos">175</span></a>            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-176"><a href="#PoliciesAPI.update-176"><span class="linenos">176</span></a>            <span class="n">remediation</span><span class="o">=</span><span class="n">remediation</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-177"><a href="#PoliciesAPI.update-177"><span class="linenos">177</span></a>            <span class="n">severity</span><span class="o">=</span><span class="n">severity</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-178"><a href="#PoliciesAPI.update-178"><span class="linenos">178</span></a>            <span class="n">alert_enabled</span><span class="o">=</span><span class="n">alert_enabled</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-179"><a href="#PoliciesAPI.update-179"><span class="linenos">179</span></a>            <span class="n">alert_profile</span><span class="o">=</span><span class="n">alert_profile</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-180"><a href="#PoliciesAPI.update-180"><span class="linenos">180</span></a>            <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-181"><a href="#PoliciesAPI.update-181"><span class="linenos">181</span></a>            <span class="n">eval_frequency</span><span class="o">=</span><span class="n">eval_frequency</span><span class="p">,</span>
+</span><span id="PoliciesAPI.update-182"><a href="#PoliciesAPI.update-182"><span class="linenos">182</span></a>            <span class="o">**</span><span class="n">request_params</span>
+</span><span id="PoliciesAPI.update-183"><a href="#PoliciesAPI.update-183"><span class="linenos">183</span></a>        <span class="p">)</span>
 </span></pre></div>
 
 
@@ -729,7 +864,61 @@
 (provides support for parameters that may be added in the future)</li>
 </ul>
 
-<p>:return response json</p>
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>response json</p>
+</blockquote>
+</div>
+
+
+                            </div>
+                            <div id="PoliciesAPI.bulk_update" class="classattr">
+                                        <input id="PoliciesAPI.bulk_update-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+
+        <span class="def">def</span>
+        <span class="name">bulk_update</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">json</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="PoliciesAPI.bulk_update-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#PoliciesAPI.bulk_update"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.bulk_update-185"><a href="#PoliciesAPI.bulk_update-185"><span class="linenos">185</span></a>    <span class="k">def</span> <span class="nf">bulk_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="PoliciesAPI.bulk_update-186"><a href="#PoliciesAPI.bulk_update-186"><span class="linenos">186</span></a>                    <span class="n">json</span><span class="p">):</span>
+</span><span id="PoliciesAPI.bulk_update-187"><a href="#PoliciesAPI.bulk_update-187"><span class="linenos">187</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.bulk_update-188"><a href="#PoliciesAPI.bulk_update-188"><span class="linenos">188</span></a><span class="sd">        A method to update Policy objects in bulk</span>
+</span><span id="PoliciesAPI.bulk_update-189"><a href="#PoliciesAPI.bulk_update-189"><span class="linenos">189</span></a>
+</span><span id="PoliciesAPI.bulk_update-190"><a href="#PoliciesAPI.bulk_update-190"><span class="linenos">190</span></a><span class="sd">        :param json: A list of JSON objects containing policy configuration.</span>
+</span><span id="PoliciesAPI.bulk_update-191"><a href="#PoliciesAPI.bulk_update-191"><span class="linenos">191</span></a><span class="sd">        :type json: list(dict(str, Any))</span>
+</span><span id="PoliciesAPI.bulk_update-192"><a href="#PoliciesAPI.bulk_update-192"><span class="linenos">192</span></a><span class="sd">            obj:</span>
+</span><span id="PoliciesAPI.bulk_update-193"><a href="#PoliciesAPI.bulk_update-193"><span class="linenos">193</span></a><span class="sd">                :param policyId: A string representing the ID of the policy.</span>
+</span><span id="PoliciesAPI.bulk_update-194"><a href="#PoliciesAPI.bulk_update-194"><span class="linenos">194</span></a><span class="sd">                :param enabled: A boolean representing the status of the policy.</span>
+</span><span id="PoliciesAPI.bulk_update-195"><a href="#PoliciesAPI.bulk_update-195"><span class="linenos">195</span></a><span class="sd">                :param severity: A string representing the severity of the policy.</span>
+</span><span id="PoliciesAPI.bulk_update-196"><a href="#PoliciesAPI.bulk_update-196"><span class="linenos">196</span></a><span class="sd">                    (&quot;info&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;critical&quot;)</span>
+</span><span id="PoliciesAPI.bulk_update-197"><a href="#PoliciesAPI.bulk_update-197"><span class="linenos">197</span></a>
+</span><span id="PoliciesAPI.bulk_update-198"><a href="#PoliciesAPI.bulk_update-198"><span class="linenos">198</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI.bulk_update-199"><a href="#PoliciesAPI.bulk_update-199"><span class="linenos">199</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.bulk_update-200"><a href="#PoliciesAPI.bulk_update-200"><span class="linenos">200</span></a>
+</span><span id="PoliciesAPI.bulk_update-201"><a href="#PoliciesAPI.bulk_update-201"><span class="linenos">201</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="PoliciesAPI.bulk_update-202"><a href="#PoliciesAPI.bulk_update-202"><span class="linenos">202</span></a>
+</span><span id="PoliciesAPI.bulk_update-203"><a href="#PoliciesAPI.bulk_update-203"><span class="linenos">203</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>A method to update Policy objects in bulk</p>
+
+<h6 id="parameters">Parameters</h6>
+
+<ul>
+<li><strong>json</strong>:  A list of JSON objects containing policy configuration.</li>
+</ul>
+
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>response json</p>
+</blockquote>
 </div>
 
 
@@ -737,7 +926,7 @@
                             <div id="PoliciesAPI.delete" class="classattr">
                                         <input id="PoliciesAPI.delete-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
+
         <span class="def">def</span>
         <span class="name">delete</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">policy_id</span></span><span class="return-annotation">):</span></span>
 
@@ -745,17 +934,18 @@
 
     </div>
     <a class="headerlink" href="#PoliciesAPI.delete"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.delete-159"><a href="#PoliciesAPI.delete-159"><span class="linenos">159</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="PoliciesAPI.delete-160"><a href="#PoliciesAPI.delete-160"><span class="linenos">160</span></a>               <span class="n">policy_id</span><span class="p">):</span>
-</span><span id="PoliciesAPI.delete-161"><a href="#PoliciesAPI.delete-161"><span class="linenos">161</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.delete-162"><a href="#PoliciesAPI.delete-162"><span class="linenos">162</span></a><span class="sd">        A method to delete a Policies object.</span>
-</span><span id="PoliciesAPI.delete-163"><a href="#PoliciesAPI.delete-163"><span class="linenos">163</span></a>
-</span><span id="PoliciesAPI.delete-164"><a href="#PoliciesAPI.delete-164"><span class="linenos">164</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
-</span><span id="PoliciesAPI.delete-165"><a href="#PoliciesAPI.delete-165"><span class="linenos">165</span></a>
-</span><span id="PoliciesAPI.delete-166"><a href="#PoliciesAPI.delete-166"><span class="linenos">166</span></a><span class="sd">        :return response json</span>
-</span><span id="PoliciesAPI.delete-167"><a href="#PoliciesAPI.delete-167"><span class="linenos">167</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="PoliciesAPI.delete-168"><a href="#PoliciesAPI.delete-168"><span class="linenos">168</span></a>
-</span><span id="PoliciesAPI.delete-169"><a href="#PoliciesAPI.delete-169"><span class="linenos">169</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="PoliciesAPI.delete-205"><a href="#PoliciesAPI.delete-205"><span class="linenos">205</span></a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="PoliciesAPI.delete-206"><a href="#PoliciesAPI.delete-206"><span class="linenos">206</span></a>               <span class="n">policy_id</span><span class="p">):</span>
+</span><span id="PoliciesAPI.delete-207"><a href="#PoliciesAPI.delete-207"><span class="linenos">207</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.delete-208"><a href="#PoliciesAPI.delete-208"><span class="linenos">208</span></a><span class="sd">        A method to delete a Policies object.</span>
+</span><span id="PoliciesAPI.delete-209"><a href="#PoliciesAPI.delete-209"><span class="linenos">209</span></a>
+</span><span id="PoliciesAPI.delete-210"><a href="#PoliciesAPI.delete-210"><span class="linenos">210</span></a><span class="sd">        :param policy_id: A string representing the object policy ID.</span>
+</span><span id="PoliciesAPI.delete-211"><a href="#PoliciesAPI.delete-211"><span class="linenos">211</span></a><span class="sd">        :type policy_id: str</span>
+</span><span id="PoliciesAPI.delete-212"><a href="#PoliciesAPI.delete-212"><span class="linenos">212</span></a>
+</span><span id="PoliciesAPI.delete-213"><a href="#PoliciesAPI.delete-213"><span class="linenos">213</span></a><span class="sd">        :return: response json</span>
+</span><span id="PoliciesAPI.delete-214"><a href="#PoliciesAPI.delete-214"><span class="linenos">214</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="PoliciesAPI.delete-215"><a href="#PoliciesAPI.delete-215"><span class="linenos">215</span></a>
+</span><span id="PoliciesAPI.delete-216"><a href="#PoliciesAPI.delete-216"><span class="linenos">216</span></a>        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">policy_id</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -767,7 +957,11 @@
 <li><strong>policy_id</strong>:  A string representing the object policy ID.</li>
 </ul>
 
-<p>:return response json</p>
+<h6 id="returns">Returns</h6>
+
+<blockquote>
+  <p>response json</p>
+</blockquote>
 </div>
 
 
@@ -890,7 +1084,7 @@
                 }
 
                 let heading;
-                switch (result.doc.type) {
+                switch (result.doc.kind) {
                     case "function":
                         if (doc.fullname.endsWith(".__init__")) {
                             heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
@@ -917,7 +1111,7 @@
                 }
                 html += `
                         <section class="search-result">
-                        <a href="${url}" class="attr ${doc.type}">${heading}</a>
+                        <a href="${url}" class="attr ${doc.kind}">${heading}</a>
                         <div class="docstring">${doc.doc}</div>
                         </section>
                     `;

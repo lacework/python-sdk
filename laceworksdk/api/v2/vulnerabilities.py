@@ -5,10 +5,9 @@ Lacework Vulnerabilities API wrapper.
 
 from laceworksdk.api.base_endpoint import BaseEndpoint
 from laceworksdk.api.search_endpoint import SearchEndpoint
-from laceworksdk.api.v1.vulnerability import VulnerabilityAPI
 
 
-class VulnerabilitiesAPI(VulnerabilityAPI):
+class VulnerabilitiesAPI:
     """A class used to represent the Vulnerabilities API endpoint.
 
     The Vulnerabilities API endpoint is simply a parent for different types of
@@ -34,8 +33,8 @@ class VulnerabilitiesAPI(VulnerabilityAPI):
 
         :return VulnerabilitiesAPI object.
         """
+        super().__init__()
 
-        super().__init__(session)
         self._base_path = "Vulnerabilities"
 
         self.containers = ContainerVulnerabilitiesAPI(session, self._base_path)
