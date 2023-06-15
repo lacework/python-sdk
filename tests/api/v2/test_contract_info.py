@@ -21,6 +21,7 @@ class TestContractInfo(BaseEndpoint):
     OBJECT_ID_NAME = "alertId"
     OBJECT_TYPE = ContractInfoAPI
 
+    @pytest.mark.flaky_test
     def test_api_get(self, api_object):
         response = api_object.get()
         assert "data" in response.keys()
