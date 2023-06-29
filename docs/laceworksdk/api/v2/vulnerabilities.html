@@ -99,7 +99,7 @@
 </span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="kn">from</span> <span class="nn">laceworksdk.api.search_endpoint</span> <span class="kn">import</span> <span class="n">SearchEndpoint</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a>
 </span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="k">class</span> <span class="nc">VulnerabilitiesAPI</span><span class="p">(</span><span class="n">BaseEndpoint</span><span class="p">):</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="k">class</span> <span class="nc">VulnerabilitiesAPI</span><span class="p">:</span>
 </span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Vulnerabilities API endpoint.</span>
 </span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>
 </span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a><span class="sd">    The Vulnerabilities API endpoint is simply a parent for different types of</span>
@@ -125,120 +125,121 @@
 </span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>
 </span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a><span class="sd">        :return VulnerabilitiesAPI object.</span>
 </span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>
-</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="s2">&quot;Vulnerabilities&quot;</span><span class="p">)</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>
-</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">containers</span> <span class="o">=</span> <span class="n">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">hosts</span> <span class="o">=</span> <span class="n">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="n">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span> <span class="o">=</span> <span class="s2">&quot;Vulnerabilities&quot;</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">containers</span> <span class="o">=</span> <span class="n">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">hosts</span> <span class="o">=</span> <span class="n">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="n">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
 </span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>
-</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a><span class="k">class</span> <span class="nc">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Container Vulnerabilities API endpoint.</span>
-</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>
-</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="sd">    Methods</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="sd">    -------</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a><span class="sd">    search(json=None)</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="sd">        A method to search Container Vulnerabilities objects.</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a><span class="sd">    scan(registry, repository, tag, **request_params)</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="sd">        A method to issue a Container Vulnerability scan.</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a><span class="sd">    status(request_id)</span>
-</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>    <span class="n">RESOURCE</span> <span class="o">=</span> <span class="s2">&quot;Containers&quot;</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>
-</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>             <span class="n">registry</span><span class="p">,</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>             <span class="n">repository</span><span class="p">,</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>             <span class="n">tag</span><span class="p">,</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a><span class="sd">        A method to issue Container Vulnerability scans.</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>
-</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="sd">        :param registry: A string representing the container registry to use.</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a><span class="sd">        :param repository: A string representing the container repository to use.</span>
-</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a><span class="sd">        :param tag: A string representing the container tag to use.</span>
-</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>
-</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a><span class="sd">        :return response json</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>
-</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
-</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>            <span class="n">registry</span><span class="o">=</span><span class="n">registry</span><span class="p">,</span>
-</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>            <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
-</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>        <span class="p">)</span>
-</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>
-</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>
-</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>
-</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>               <span class="n">request_id</span><span class="p">):</span>
-</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
-</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>
-</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="sd">        :param rquest_id: A string representing the request ID of the container scan.</span>
-</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>
-</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a><span class="sd">        :return response json</span>
-</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>
-</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>        <span class="k">if</span> <span class="n">request_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">request_id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The value &#39;request_id&#39; must be a valid container scan request ID.&quot;</span><span class="p">)</span>
-</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>
-</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request_id</span><span class="p">,</span> <span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">))</span>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="k">class</span> <span class="nc">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Container Vulnerabilities API endpoint.</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="sd">    Methods</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a><span class="sd">    -------</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="sd">    search(json=None)</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a><span class="sd">        A method to search Container Vulnerabilities objects.</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="sd">    scan(registry, repository, tag, **request_params)</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a><span class="sd">        A method to issue a Container Vulnerability scan.</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="sd">    status(request_id)</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>    <span class="n">RESOURCE</span> <span class="o">=</span> <span class="s2">&quot;Containers&quot;</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>             <span class="n">registry</span><span class="p">,</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>             <span class="n">repository</span><span class="p">,</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>             <span class="n">tag</span><span class="p">,</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a><span class="sd">        A method to issue Container Vulnerability scans.</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a><span class="sd">        :param registry: A string representing the container registry to use.</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a><span class="sd">        :param repository: A string representing the container repository to use.</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a><span class="sd">        :param tag: A string representing the container tag to use.</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="sd">        :return response json</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>            <span class="n">registry</span><span class="o">=</span><span class="n">registry</span><span class="p">,</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>            <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>        <span class="p">)</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>               <span class="n">request_id</span><span class="p">):</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="sd">        :param rquest_id: A string representing the request ID of the container scan.</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a><span class="sd">        :return response json</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>        <span class="k">if</span> <span class="n">request_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">request_id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The value &#39;request_id&#39; must be a valid container scan request ID.&quot;</span><span class="p">)</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request_id</span><span class="p">,</span> <span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">))</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>
-</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="k">class</span> <span class="nc">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
-</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Host Vulnerabilities API endpoint.</span>
-</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>
-</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a><span class="sd">    Methods</span>
-</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">    -------</span>
-</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="sd">    search(json=None)</span>
-</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a><span class="sd">        A method to search Host Vulnerabilities objects.</span>
-</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>    <span class="n">RESOURCE</span> <span class="o">=</span> <span class="s2">&quot;Hosts&quot;</span>
-</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="k">class</span> <span class="nc">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Host Vulnerabilities API endpoint.</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">    Methods</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="sd">    -------</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a><span class="sd">    search(json=None)</span>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a><span class="sd">        A method to search Host Vulnerabilities objects.</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>    <span class="n">RESOURCE</span> <span class="o">=</span> <span class="s2">&quot;Hosts&quot;</span>
 </span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>
-</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a><span class="k">class</span> <span class="nc">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">BaseEndpoint</span><span class="p">):</span>
-</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Software Packages API endpoint.</span>
-</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>
-</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a><span class="sd">    Methods</span>
-</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="sd">    -------</span>
-</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a><span class="sd">    scan(os_pkg_info_list, **request_params)</span>
-</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a><span class="sd">        A method to initiate a Software Package vulnerability scan.</span>
-</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>
-</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>             <span class="n">os_pkg_info_list</span><span class="p">,</span>
-</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a><span class="sd">        A method to initiate a software package vulnerability scan.</span>
-</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>
-</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a><span class="sd">        :param os_pkg_info_list: A list of packages to be scanned given the OS, OS Version, Package, and Package Version.</span>
-</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a><span class="sd">            :obj</span>
-</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a><span class="sd">                :param os: A string representing the name of the operating system.</span>
-</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a><span class="sd">                :param osVer: A string representing the version of the operating system.</span>
-</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a><span class="sd">                :param pkg: A string representing the name of the software package.</span>
-</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a><span class="sd">                :param pkgVer: A string representing the verion of the software package.</span>
-</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a>
-</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a><span class="sd">        :return: response json</span>
-</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>
-</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
-</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>            <span class="n">os_pkg_info_list</span><span class="o">=</span><span class="n">os_pkg_info_list</span>
-</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>        <span class="p">)</span>
-</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>
-</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;SoftwarePackages&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a>
-</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="k">class</span> <span class="nc">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">BaseEndpoint</span><span class="p">):</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Software Packages API endpoint.</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="sd">    Methods</span>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a><span class="sd">    -------</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a><span class="sd">    scan(os_pkg_info_list, **request_params)</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="sd">        A method to initiate a Software Package vulnerability scan.</span>
+</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>             <span class="n">os_pkg_info_list</span><span class="p">,</span>
+</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a><span class="sd">        A method to initiate a software package vulnerability scan.</span>
+</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>
+</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a><span class="sd">        :param os_pkg_info_list: A list of packages to be scanned given the OS, OS Version, Package, and Package Version.</span>
+</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a><span class="sd">            :obj</span>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a><span class="sd">                :param os: A string representing the name of the operating system.</span>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a><span class="sd">                :param osVer: A string representing the version of the operating system.</span>
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a><span class="sd">                :param pkg: A string representing the name of the software package.</span>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a><span class="sd">                :param pkgVer: A string representing the verion of the software package.</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a><span class="sd">        :return: response json</span>
+</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>            <span class="n">os_pkg_info_list</span><span class="o">=</span><span class="n">os_pkg_info_list</span>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>        <span class="p">)</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;SoftwarePackages&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>
+</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -248,13 +249,13 @@
 <div class="attr class">
 
     <span class="def">class</span>
-    <span class="name">VulnerabilitiesAPI</span><wbr>(<span class="base"><a href="../base_endpoint.html#BaseEndpoint">laceworksdk.api.base_endpoint.BaseEndpoint</a></span>):
+    <span class="name">VulnerabilitiesAPI</span>:
 
                 <label class="view-source-button" for="VulnerabilitiesAPI-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#VulnerabilitiesAPI"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="VulnerabilitiesAPI-11"><a href="#VulnerabilitiesAPI-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">VulnerabilitiesAPI</span><span class="p">(</span><span class="n">BaseEndpoint</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="VulnerabilitiesAPI-11"><a href="#VulnerabilitiesAPI-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">VulnerabilitiesAPI</span><span class="p">:</span>
 </span><span id="VulnerabilitiesAPI-12"><a href="#VulnerabilitiesAPI-12"><span class="linenos">12</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Vulnerabilities API endpoint.</span>
 </span><span id="VulnerabilitiesAPI-13"><a href="#VulnerabilitiesAPI-13"><span class="linenos">13</span></a>
 </span><span id="VulnerabilitiesAPI-14"><a href="#VulnerabilitiesAPI-14"><span class="linenos">14</span></a><span class="sd">    The Vulnerabilities API endpoint is simply a parent for different types of</span>
@@ -280,12 +281,13 @@
 </span><span id="VulnerabilitiesAPI-34"><a href="#VulnerabilitiesAPI-34"><span class="linenos">34</span></a>
 </span><span id="VulnerabilitiesAPI-35"><a href="#VulnerabilitiesAPI-35"><span class="linenos">35</span></a><span class="sd">        :return VulnerabilitiesAPI object.</span>
 </span><span id="VulnerabilitiesAPI-36"><a href="#VulnerabilitiesAPI-36"><span class="linenos">36</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="VulnerabilitiesAPI-37"><a href="#VulnerabilitiesAPI-37"><span class="linenos">37</span></a>
-</span><span id="VulnerabilitiesAPI-38"><a href="#VulnerabilitiesAPI-38"><span class="linenos">38</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="s2">&quot;Vulnerabilities&quot;</span><span class="p">)</span>
-</span><span id="VulnerabilitiesAPI-39"><a href="#VulnerabilitiesAPI-39"><span class="linenos">39</span></a>
-</span><span id="VulnerabilitiesAPI-40"><a href="#VulnerabilitiesAPI-40"><span class="linenos">40</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">containers</span> <span class="o">=</span> <span class="n">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
-</span><span id="VulnerabilitiesAPI-41"><a href="#VulnerabilitiesAPI-41"><span class="linenos">41</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">hosts</span> <span class="o">=</span> <span class="n">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
-</span><span id="VulnerabilitiesAPI-42"><a href="#VulnerabilitiesAPI-42"><span class="linenos">42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="n">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
+</span><span id="VulnerabilitiesAPI-37"><a href="#VulnerabilitiesAPI-37"><span class="linenos">37</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="VulnerabilitiesAPI-38"><a href="#VulnerabilitiesAPI-38"><span class="linenos">38</span></a>
+</span><span id="VulnerabilitiesAPI-39"><a href="#VulnerabilitiesAPI-39"><span class="linenos">39</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span> <span class="o">=</span> <span class="s2">&quot;Vulnerabilities&quot;</span>
+</span><span id="VulnerabilitiesAPI-40"><a href="#VulnerabilitiesAPI-40"><span class="linenos">40</span></a>
+</span><span id="VulnerabilitiesAPI-41"><a href="#VulnerabilitiesAPI-41"><span class="linenos">41</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">containers</span> <span class="o">=</span> <span class="n">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
+</span><span id="VulnerabilitiesAPI-42"><a href="#VulnerabilitiesAPI-42"><span class="linenos">42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">hosts</span> <span class="o">=</span> <span class="n">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
+</span><span id="VulnerabilitiesAPI-43"><a href="#VulnerabilitiesAPI-43"><span class="linenos">43</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="n">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -325,12 +327,13 @@ packages:
 </span><span id="VulnerabilitiesAPI.__init__-34"><a href="#VulnerabilitiesAPI.__init__-34"><span class="linenos">34</span></a>
 </span><span id="VulnerabilitiesAPI.__init__-35"><a href="#VulnerabilitiesAPI.__init__-35"><span class="linenos">35</span></a><span class="sd">        :return VulnerabilitiesAPI object.</span>
 </span><span id="VulnerabilitiesAPI.__init__-36"><a href="#VulnerabilitiesAPI.__init__-36"><span class="linenos">36</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="VulnerabilitiesAPI.__init__-37"><a href="#VulnerabilitiesAPI.__init__-37"><span class="linenos">37</span></a>
-</span><span id="VulnerabilitiesAPI.__init__-38"><a href="#VulnerabilitiesAPI.__init__-38"><span class="linenos">38</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="s2">&quot;Vulnerabilities&quot;</span><span class="p">)</span>
-</span><span id="VulnerabilitiesAPI.__init__-39"><a href="#VulnerabilitiesAPI.__init__-39"><span class="linenos">39</span></a>
-</span><span id="VulnerabilitiesAPI.__init__-40"><a href="#VulnerabilitiesAPI.__init__-40"><span class="linenos">40</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">containers</span> <span class="o">=</span> <span class="n">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
-</span><span id="VulnerabilitiesAPI.__init__-41"><a href="#VulnerabilitiesAPI.__init__-41"><span class="linenos">41</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">hosts</span> <span class="o">=</span> <span class="n">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
-</span><span id="VulnerabilitiesAPI.__init__-42"><a href="#VulnerabilitiesAPI.__init__-42"><span class="linenos">42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="n">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
+</span><span id="VulnerabilitiesAPI.__init__-37"><a href="#VulnerabilitiesAPI.__init__-37"><span class="linenos">37</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="VulnerabilitiesAPI.__init__-38"><a href="#VulnerabilitiesAPI.__init__-38"><span class="linenos">38</span></a>
+</span><span id="VulnerabilitiesAPI.__init__-39"><a href="#VulnerabilitiesAPI.__init__-39"><span class="linenos">39</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span> <span class="o">=</span> <span class="s2">&quot;Vulnerabilities&quot;</span>
+</span><span id="VulnerabilitiesAPI.__init__-40"><a href="#VulnerabilitiesAPI.__init__-40"><span class="linenos">40</span></a>
+</span><span id="VulnerabilitiesAPI.__init__-41"><a href="#VulnerabilitiesAPI.__init__-41"><span class="linenos">41</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">containers</span> <span class="o">=</span> <span class="n">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
+</span><span id="VulnerabilitiesAPI.__init__-42"><a href="#VulnerabilitiesAPI.__init__-42"><span class="linenos">42</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">hosts</span> <span class="o">=</span> <span class="n">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
+</span><span id="VulnerabilitiesAPI.__init__-43"><a href="#VulnerabilitiesAPI.__init__-43"><span class="linenos">43</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="n">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -347,18 +350,6 @@ packages:
 
 
                             </div>
-                            <div class="inherited">
-                                <h5>Inherited Members</h5>
-                                <dl>
-                                    <div><dt><a href="../base_endpoint.html#BaseEndpoint">laceworksdk.api.base_endpoint.BaseEndpoint</a></dt>
-                                <dd id="VulnerabilitiesAPI.build_dict_from_items" class="function"><a href="../base_endpoint.html#BaseEndpoint.build_dict_from_items">build_dict_from_items</a></dd>
-                <dd id="VulnerabilitiesAPI.build_url" class="function"><a href="../base_endpoint.html#BaseEndpoint.build_url">build_url</a></dd>
-                <dd id="VulnerabilitiesAPI.session" class="variable"><a href="../base_endpoint.html#BaseEndpoint.session">session</a></dd>
-                <dd id="VulnerabilitiesAPI.validate_json" class="function"><a href="../base_endpoint.html#BaseEndpoint.validate_json">validate_json</a></dd>
-
-            </div>
-                                </dl>
-                            </div>
                 </section>
                 <section id="ContainerVulnerabilitiesAPI">
                             <input id="ContainerVulnerabilitiesAPI-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
@@ -371,64 +362,64 @@ packages:
 
     </div>
     <a class="headerlink" href="#ContainerVulnerabilitiesAPI"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="ContainerVulnerabilitiesAPI-45"><a href="#ContainerVulnerabilitiesAPI-45"><span class="linenos"> 45</span></a><span class="k">class</span> <span class="nc">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
-</span><span id="ContainerVulnerabilitiesAPI-46"><a href="#ContainerVulnerabilitiesAPI-46"><span class="linenos"> 46</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Container Vulnerabilities API endpoint.</span>
-</span><span id="ContainerVulnerabilitiesAPI-47"><a href="#ContainerVulnerabilitiesAPI-47"><span class="linenos"> 47</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-48"><a href="#ContainerVulnerabilitiesAPI-48"><span class="linenos"> 48</span></a><span class="sd">    Methods</span>
-</span><span id="ContainerVulnerabilitiesAPI-49"><a href="#ContainerVulnerabilitiesAPI-49"><span class="linenos"> 49</span></a><span class="sd">    -------</span>
-</span><span id="ContainerVulnerabilitiesAPI-50"><a href="#ContainerVulnerabilitiesAPI-50"><span class="linenos"> 50</span></a><span class="sd">    search(json=None)</span>
-</span><span id="ContainerVulnerabilitiesAPI-51"><a href="#ContainerVulnerabilitiesAPI-51"><span class="linenos"> 51</span></a><span class="sd">        A method to search Container Vulnerabilities objects.</span>
-</span><span id="ContainerVulnerabilitiesAPI-52"><a href="#ContainerVulnerabilitiesAPI-52"><span class="linenos"> 52</span></a><span class="sd">    scan(registry, repository, tag, **request_params)</span>
-</span><span id="ContainerVulnerabilitiesAPI-53"><a href="#ContainerVulnerabilitiesAPI-53"><span class="linenos"> 53</span></a><span class="sd">        A method to issue a Container Vulnerability scan.</span>
-</span><span id="ContainerVulnerabilitiesAPI-54"><a href="#ContainerVulnerabilitiesAPI-54"><span class="linenos"> 54</span></a><span class="sd">    status(request_id)</span>
-</span><span id="ContainerVulnerabilitiesAPI-55"><a href="#ContainerVulnerabilitiesAPI-55"><span class="linenos"> 55</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
-</span><span id="ContainerVulnerabilitiesAPI-56"><a href="#ContainerVulnerabilitiesAPI-56"><span class="linenos"> 56</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI-57"><a href="#ContainerVulnerabilitiesAPI-57"><span class="linenos"> 57</span></a>    <span class="n">RESOURCE</span> <span class="o">=</span> <span class="s2">&quot;Containers&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI-58"><a href="#ContainerVulnerabilitiesAPI-58"><span class="linenos"> 58</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-59"><a href="#ContainerVulnerabilitiesAPI-59"><span class="linenos"> 59</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI-60"><a href="#ContainerVulnerabilitiesAPI-60"><span class="linenos"> 60</span></a>             <span class="n">registry</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI-61"><a href="#ContainerVulnerabilitiesAPI-61"><span class="linenos"> 61</span></a>             <span class="n">repository</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI-62"><a href="#ContainerVulnerabilitiesAPI-62"><span class="linenos"> 62</span></a>             <span class="n">tag</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI-63"><a href="#ContainerVulnerabilitiesAPI-63"><span class="linenos"> 63</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="ContainerVulnerabilitiesAPI-64"><a href="#ContainerVulnerabilitiesAPI-64"><span class="linenos"> 64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI-65"><a href="#ContainerVulnerabilitiesAPI-65"><span class="linenos"> 65</span></a><span class="sd">        A method to issue Container Vulnerability scans.</span>
-</span><span id="ContainerVulnerabilitiesAPI-66"><a href="#ContainerVulnerabilitiesAPI-66"><span class="linenos"> 66</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-67"><a href="#ContainerVulnerabilitiesAPI-67"><span class="linenos"> 67</span></a><span class="sd">        :param registry: A string representing the container registry to use.</span>
-</span><span id="ContainerVulnerabilitiesAPI-68"><a href="#ContainerVulnerabilitiesAPI-68"><span class="linenos"> 68</span></a><span class="sd">        :param repository: A string representing the container repository to use.</span>
-</span><span id="ContainerVulnerabilitiesAPI-69"><a href="#ContainerVulnerabilitiesAPI-69"><span class="linenos"> 69</span></a><span class="sd">        :param tag: A string representing the container tag to use.</span>
-</span><span id="ContainerVulnerabilitiesAPI-70"><a href="#ContainerVulnerabilitiesAPI-70"><span class="linenos"> 70</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="ContainerVulnerabilitiesAPI-71"><a href="#ContainerVulnerabilitiesAPI-71"><span class="linenos"> 71</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="ContainerVulnerabilitiesAPI-72"><a href="#ContainerVulnerabilitiesAPI-72"><span class="linenos"> 72</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-73"><a href="#ContainerVulnerabilitiesAPI-73"><span class="linenos"> 73</span></a><span class="sd">        :return response json</span>
-</span><span id="ContainerVulnerabilitiesAPI-74"><a href="#ContainerVulnerabilitiesAPI-74"><span class="linenos"> 74</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI-75"><a href="#ContainerVulnerabilitiesAPI-75"><span class="linenos"> 75</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-76"><a href="#ContainerVulnerabilitiesAPI-76"><span class="linenos"> 76</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="ContainerVulnerabilitiesAPI-77"><a href="#ContainerVulnerabilitiesAPI-77"><span class="linenos"> 77</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI-78"><a href="#ContainerVulnerabilitiesAPI-78"><span class="linenos"> 78</span></a>            <span class="n">registry</span><span class="o">=</span><span class="n">registry</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI-79"><a href="#ContainerVulnerabilitiesAPI-79"><span class="linenos"> 79</span></a>            <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI-80"><a href="#ContainerVulnerabilitiesAPI-80"><span class="linenos"> 80</span></a>            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
-</span><span id="ContainerVulnerabilitiesAPI-81"><a href="#ContainerVulnerabilitiesAPI-81"><span class="linenos"> 81</span></a>        <span class="p">)</span>
-</span><span id="ContainerVulnerabilitiesAPI-82"><a href="#ContainerVulnerabilitiesAPI-82"><span class="linenos"> 82</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-83"><a href="#ContainerVulnerabilitiesAPI-83"><span class="linenos"> 83</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="ContainerVulnerabilitiesAPI-84"><a href="#ContainerVulnerabilitiesAPI-84"><span class="linenos"> 84</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-85"><a href="#ContainerVulnerabilitiesAPI-85"><span class="linenos"> 85</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</span><span id="ContainerVulnerabilitiesAPI-86"><a href="#ContainerVulnerabilitiesAPI-86"><span class="linenos"> 86</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-87"><a href="#ContainerVulnerabilitiesAPI-87"><span class="linenos"> 87</span></a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI-88"><a href="#ContainerVulnerabilitiesAPI-88"><span class="linenos"> 88</span></a>               <span class="n">request_id</span><span class="p">):</span>
-</span><span id="ContainerVulnerabilitiesAPI-89"><a href="#ContainerVulnerabilitiesAPI-89"><span class="linenos"> 89</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI-90"><a href="#ContainerVulnerabilitiesAPI-90"><span class="linenos"> 90</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
-</span><span id="ContainerVulnerabilitiesAPI-91"><a href="#ContainerVulnerabilitiesAPI-91"><span class="linenos"> 91</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-92"><a href="#ContainerVulnerabilitiesAPI-92"><span class="linenos"> 92</span></a><span class="sd">        :param rquest_id: A string representing the request ID of the container scan.</span>
-</span><span id="ContainerVulnerabilitiesAPI-93"><a href="#ContainerVulnerabilitiesAPI-93"><span class="linenos"> 93</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-94"><a href="#ContainerVulnerabilitiesAPI-94"><span class="linenos"> 94</span></a><span class="sd">        :return response json</span>
-</span><span id="ContainerVulnerabilitiesAPI-95"><a href="#ContainerVulnerabilitiesAPI-95"><span class="linenos"> 95</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI-96"><a href="#ContainerVulnerabilitiesAPI-96"><span class="linenos"> 96</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-97"><a href="#ContainerVulnerabilitiesAPI-97"><span class="linenos"> 97</span></a>        <span class="k">if</span> <span class="n">request_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">request_id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="ContainerVulnerabilitiesAPI-98"><a href="#ContainerVulnerabilitiesAPI-98"><span class="linenos"> 98</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The value &#39;request_id&#39; must be a valid container scan request ID.&quot;</span><span class="p">)</span>
-</span><span id="ContainerVulnerabilitiesAPI-99"><a href="#ContainerVulnerabilitiesAPI-99"><span class="linenos"> 99</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-100"><a href="#ContainerVulnerabilitiesAPI-100"><span class="linenos">100</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request_id</span><span class="p">,</span> <span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">))</span>
-</span><span id="ContainerVulnerabilitiesAPI-101"><a href="#ContainerVulnerabilitiesAPI-101"><span class="linenos">101</span></a>
-</span><span id="ContainerVulnerabilitiesAPI-102"><a href="#ContainerVulnerabilitiesAPI-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ContainerVulnerabilitiesAPI-46"><a href="#ContainerVulnerabilitiesAPI-46"><span class="linenos"> 46</span></a><span class="k">class</span> <span class="nc">ContainerVulnerabilitiesAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
+</span><span id="ContainerVulnerabilitiesAPI-47"><a href="#ContainerVulnerabilitiesAPI-47"><span class="linenos"> 47</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Container Vulnerabilities API endpoint.</span>
+</span><span id="ContainerVulnerabilitiesAPI-48"><a href="#ContainerVulnerabilitiesAPI-48"><span class="linenos"> 48</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-49"><a href="#ContainerVulnerabilitiesAPI-49"><span class="linenos"> 49</span></a><span class="sd">    Methods</span>
+</span><span id="ContainerVulnerabilitiesAPI-50"><a href="#ContainerVulnerabilitiesAPI-50"><span class="linenos"> 50</span></a><span class="sd">    -------</span>
+</span><span id="ContainerVulnerabilitiesAPI-51"><a href="#ContainerVulnerabilitiesAPI-51"><span class="linenos"> 51</span></a><span class="sd">    search(json=None)</span>
+</span><span id="ContainerVulnerabilitiesAPI-52"><a href="#ContainerVulnerabilitiesAPI-52"><span class="linenos"> 52</span></a><span class="sd">        A method to search Container Vulnerabilities objects.</span>
+</span><span id="ContainerVulnerabilitiesAPI-53"><a href="#ContainerVulnerabilitiesAPI-53"><span class="linenos"> 53</span></a><span class="sd">    scan(registry, repository, tag, **request_params)</span>
+</span><span id="ContainerVulnerabilitiesAPI-54"><a href="#ContainerVulnerabilitiesAPI-54"><span class="linenos"> 54</span></a><span class="sd">        A method to issue a Container Vulnerability scan.</span>
+</span><span id="ContainerVulnerabilitiesAPI-55"><a href="#ContainerVulnerabilitiesAPI-55"><span class="linenos"> 55</span></a><span class="sd">    status(request_id)</span>
+</span><span id="ContainerVulnerabilitiesAPI-56"><a href="#ContainerVulnerabilitiesAPI-56"><span class="linenos"> 56</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
+</span><span id="ContainerVulnerabilitiesAPI-57"><a href="#ContainerVulnerabilitiesAPI-57"><span class="linenos"> 57</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI-58"><a href="#ContainerVulnerabilitiesAPI-58"><span class="linenos"> 58</span></a>    <span class="n">RESOURCE</span> <span class="o">=</span> <span class="s2">&quot;Containers&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI-59"><a href="#ContainerVulnerabilitiesAPI-59"><span class="linenos"> 59</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-60"><a href="#ContainerVulnerabilitiesAPI-60"><span class="linenos"> 60</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI-61"><a href="#ContainerVulnerabilitiesAPI-61"><span class="linenos"> 61</span></a>             <span class="n">registry</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI-62"><a href="#ContainerVulnerabilitiesAPI-62"><span class="linenos"> 62</span></a>             <span class="n">repository</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI-63"><a href="#ContainerVulnerabilitiesAPI-63"><span class="linenos"> 63</span></a>             <span class="n">tag</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI-64"><a href="#ContainerVulnerabilitiesAPI-64"><span class="linenos"> 64</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="ContainerVulnerabilitiesAPI-65"><a href="#ContainerVulnerabilitiesAPI-65"><span class="linenos"> 65</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI-66"><a href="#ContainerVulnerabilitiesAPI-66"><span class="linenos"> 66</span></a><span class="sd">        A method to issue Container Vulnerability scans.</span>
+</span><span id="ContainerVulnerabilitiesAPI-67"><a href="#ContainerVulnerabilitiesAPI-67"><span class="linenos"> 67</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-68"><a href="#ContainerVulnerabilitiesAPI-68"><span class="linenos"> 68</span></a><span class="sd">        :param registry: A string representing the container registry to use.</span>
+</span><span id="ContainerVulnerabilitiesAPI-69"><a href="#ContainerVulnerabilitiesAPI-69"><span class="linenos"> 69</span></a><span class="sd">        :param repository: A string representing the container repository to use.</span>
+</span><span id="ContainerVulnerabilitiesAPI-70"><a href="#ContainerVulnerabilitiesAPI-70"><span class="linenos"> 70</span></a><span class="sd">        :param tag: A string representing the container tag to use.</span>
+</span><span id="ContainerVulnerabilitiesAPI-71"><a href="#ContainerVulnerabilitiesAPI-71"><span class="linenos"> 71</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="ContainerVulnerabilitiesAPI-72"><a href="#ContainerVulnerabilitiesAPI-72"><span class="linenos"> 72</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="ContainerVulnerabilitiesAPI-73"><a href="#ContainerVulnerabilitiesAPI-73"><span class="linenos"> 73</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-74"><a href="#ContainerVulnerabilitiesAPI-74"><span class="linenos"> 74</span></a><span class="sd">        :return response json</span>
+</span><span id="ContainerVulnerabilitiesAPI-75"><a href="#ContainerVulnerabilitiesAPI-75"><span class="linenos"> 75</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI-76"><a href="#ContainerVulnerabilitiesAPI-76"><span class="linenos"> 76</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-77"><a href="#ContainerVulnerabilitiesAPI-77"><span class="linenos"> 77</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="ContainerVulnerabilitiesAPI-78"><a href="#ContainerVulnerabilitiesAPI-78"><span class="linenos"> 78</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI-79"><a href="#ContainerVulnerabilitiesAPI-79"><span class="linenos"> 79</span></a>            <span class="n">registry</span><span class="o">=</span><span class="n">registry</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI-80"><a href="#ContainerVulnerabilitiesAPI-80"><span class="linenos"> 80</span></a>            <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI-81"><a href="#ContainerVulnerabilitiesAPI-81"><span class="linenos"> 81</span></a>            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
+</span><span id="ContainerVulnerabilitiesAPI-82"><a href="#ContainerVulnerabilitiesAPI-82"><span class="linenos"> 82</span></a>        <span class="p">)</span>
+</span><span id="ContainerVulnerabilitiesAPI-83"><a href="#ContainerVulnerabilitiesAPI-83"><span class="linenos"> 83</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-84"><a href="#ContainerVulnerabilitiesAPI-84"><span class="linenos"> 84</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="ContainerVulnerabilitiesAPI-85"><a href="#ContainerVulnerabilitiesAPI-85"><span class="linenos"> 85</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-86"><a href="#ContainerVulnerabilitiesAPI-86"><span class="linenos"> 86</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span id="ContainerVulnerabilitiesAPI-87"><a href="#ContainerVulnerabilitiesAPI-87"><span class="linenos"> 87</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-88"><a href="#ContainerVulnerabilitiesAPI-88"><span class="linenos"> 88</span></a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI-89"><a href="#ContainerVulnerabilitiesAPI-89"><span class="linenos"> 89</span></a>               <span class="n">request_id</span><span class="p">):</span>
+</span><span id="ContainerVulnerabilitiesAPI-90"><a href="#ContainerVulnerabilitiesAPI-90"><span class="linenos"> 90</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI-91"><a href="#ContainerVulnerabilitiesAPI-91"><span class="linenos"> 91</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
+</span><span id="ContainerVulnerabilitiesAPI-92"><a href="#ContainerVulnerabilitiesAPI-92"><span class="linenos"> 92</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-93"><a href="#ContainerVulnerabilitiesAPI-93"><span class="linenos"> 93</span></a><span class="sd">        :param rquest_id: A string representing the request ID of the container scan.</span>
+</span><span id="ContainerVulnerabilitiesAPI-94"><a href="#ContainerVulnerabilitiesAPI-94"><span class="linenos"> 94</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-95"><a href="#ContainerVulnerabilitiesAPI-95"><span class="linenos"> 95</span></a><span class="sd">        :return response json</span>
+</span><span id="ContainerVulnerabilitiesAPI-96"><a href="#ContainerVulnerabilitiesAPI-96"><span class="linenos"> 96</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI-97"><a href="#ContainerVulnerabilitiesAPI-97"><span class="linenos"> 97</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-98"><a href="#ContainerVulnerabilitiesAPI-98"><span class="linenos"> 98</span></a>        <span class="k">if</span> <span class="n">request_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">request_id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="ContainerVulnerabilitiesAPI-99"><a href="#ContainerVulnerabilitiesAPI-99"><span class="linenos"> 99</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The value &#39;request_id&#39; must be a valid container scan request ID.&quot;</span><span class="p">)</span>
+</span><span id="ContainerVulnerabilitiesAPI-100"><a href="#ContainerVulnerabilitiesAPI-100"><span class="linenos">100</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-101"><a href="#ContainerVulnerabilitiesAPI-101"><span class="linenos">101</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request_id</span><span class="p">,</span> <span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">))</span>
+</span><span id="ContainerVulnerabilitiesAPI-102"><a href="#ContainerVulnerabilitiesAPI-102"><span class="linenos">102</span></a>
+</span><span id="ContainerVulnerabilitiesAPI-103"><a href="#ContainerVulnerabilitiesAPI-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -456,33 +447,33 @@ status(request_id)
 
     </div>
     <a class="headerlink" href="#ContainerVulnerabilitiesAPI.scan"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="ContainerVulnerabilitiesAPI.scan-59"><a href="#ContainerVulnerabilitiesAPI.scan-59"><span class="linenos">59</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-60"><a href="#ContainerVulnerabilitiesAPI.scan-60"><span class="linenos">60</span></a>             <span class="n">registry</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-61"><a href="#ContainerVulnerabilitiesAPI.scan-61"><span class="linenos">61</span></a>             <span class="n">repository</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-62"><a href="#ContainerVulnerabilitiesAPI.scan-62"><span class="linenos">62</span></a>             <span class="n">tag</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-63"><a href="#ContainerVulnerabilitiesAPI.scan-63"><span class="linenos">63</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-64"><a href="#ContainerVulnerabilitiesAPI.scan-64"><span class="linenos">64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-65"><a href="#ContainerVulnerabilitiesAPI.scan-65"><span class="linenos">65</span></a><span class="sd">        A method to issue Container Vulnerability scans.</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-66"><a href="#ContainerVulnerabilitiesAPI.scan-66"><span class="linenos">66</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.scan-67"><a href="#ContainerVulnerabilitiesAPI.scan-67"><span class="linenos">67</span></a><span class="sd">        :param registry: A string representing the container registry to use.</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-68"><a href="#ContainerVulnerabilitiesAPI.scan-68"><span class="linenos">68</span></a><span class="sd">        :param repository: A string representing the container repository to use.</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-69"><a href="#ContainerVulnerabilitiesAPI.scan-69"><span class="linenos">69</span></a><span class="sd">        :param tag: A string representing the container tag to use.</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-70"><a href="#ContainerVulnerabilitiesAPI.scan-70"><span class="linenos">70</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-71"><a href="#ContainerVulnerabilitiesAPI.scan-71"><span class="linenos">71</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-72"><a href="#ContainerVulnerabilitiesAPI.scan-72"><span class="linenos">72</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.scan-73"><a href="#ContainerVulnerabilitiesAPI.scan-73"><span class="linenos">73</span></a><span class="sd">        :return response json</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-74"><a href="#ContainerVulnerabilitiesAPI.scan-74"><span class="linenos">74</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-75"><a href="#ContainerVulnerabilitiesAPI.scan-75"><span class="linenos">75</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.scan-76"><a href="#ContainerVulnerabilitiesAPI.scan-76"><span class="linenos">76</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-77"><a href="#ContainerVulnerabilitiesAPI.scan-77"><span class="linenos">77</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-78"><a href="#ContainerVulnerabilitiesAPI.scan-78"><span class="linenos">78</span></a>            <span class="n">registry</span><span class="o">=</span><span class="n">registry</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-79"><a href="#ContainerVulnerabilitiesAPI.scan-79"><span class="linenos">79</span></a>            <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-80"><a href="#ContainerVulnerabilitiesAPI.scan-80"><span class="linenos">80</span></a>            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-81"><a href="#ContainerVulnerabilitiesAPI.scan-81"><span class="linenos">81</span></a>        <span class="p">)</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-82"><a href="#ContainerVulnerabilitiesAPI.scan-82"><span class="linenos">82</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.scan-83"><a href="#ContainerVulnerabilitiesAPI.scan-83"><span class="linenos">83</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="ContainerVulnerabilitiesAPI.scan-84"><a href="#ContainerVulnerabilitiesAPI.scan-84"><span class="linenos">84</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.scan-85"><a href="#ContainerVulnerabilitiesAPI.scan-85"><span class="linenos">85</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ContainerVulnerabilitiesAPI.scan-60"><a href="#ContainerVulnerabilitiesAPI.scan-60"><span class="linenos">60</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-61"><a href="#ContainerVulnerabilitiesAPI.scan-61"><span class="linenos">61</span></a>             <span class="n">registry</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-62"><a href="#ContainerVulnerabilitiesAPI.scan-62"><span class="linenos">62</span></a>             <span class="n">repository</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-63"><a href="#ContainerVulnerabilitiesAPI.scan-63"><span class="linenos">63</span></a>             <span class="n">tag</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-64"><a href="#ContainerVulnerabilitiesAPI.scan-64"><span class="linenos">64</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-65"><a href="#ContainerVulnerabilitiesAPI.scan-65"><span class="linenos">65</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-66"><a href="#ContainerVulnerabilitiesAPI.scan-66"><span class="linenos">66</span></a><span class="sd">        A method to issue Container Vulnerability scans.</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-67"><a href="#ContainerVulnerabilitiesAPI.scan-67"><span class="linenos">67</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.scan-68"><a href="#ContainerVulnerabilitiesAPI.scan-68"><span class="linenos">68</span></a><span class="sd">        :param registry: A string representing the container registry to use.</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-69"><a href="#ContainerVulnerabilitiesAPI.scan-69"><span class="linenos">69</span></a><span class="sd">        :param repository: A string representing the container repository to use.</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-70"><a href="#ContainerVulnerabilitiesAPI.scan-70"><span class="linenos">70</span></a><span class="sd">        :param tag: A string representing the container tag to use.</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-71"><a href="#ContainerVulnerabilitiesAPI.scan-71"><span class="linenos">71</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-72"><a href="#ContainerVulnerabilitiesAPI.scan-72"><span class="linenos">72</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-73"><a href="#ContainerVulnerabilitiesAPI.scan-73"><span class="linenos">73</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.scan-74"><a href="#ContainerVulnerabilitiesAPI.scan-74"><span class="linenos">74</span></a><span class="sd">        :return response json</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-75"><a href="#ContainerVulnerabilitiesAPI.scan-75"><span class="linenos">75</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-76"><a href="#ContainerVulnerabilitiesAPI.scan-76"><span class="linenos">76</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.scan-77"><a href="#ContainerVulnerabilitiesAPI.scan-77"><span class="linenos">77</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-78"><a href="#ContainerVulnerabilitiesAPI.scan-78"><span class="linenos">78</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-79"><a href="#ContainerVulnerabilitiesAPI.scan-79"><span class="linenos">79</span></a>            <span class="n">registry</span><span class="o">=</span><span class="n">registry</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-80"><a href="#ContainerVulnerabilitiesAPI.scan-80"><span class="linenos">80</span></a>            <span class="n">repository</span><span class="o">=</span><span class="n">repository</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-81"><a href="#ContainerVulnerabilitiesAPI.scan-81"><span class="linenos">81</span></a>            <span class="n">tag</span><span class="o">=</span><span class="n">tag</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-82"><a href="#ContainerVulnerabilitiesAPI.scan-82"><span class="linenos">82</span></a>        <span class="p">)</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-83"><a href="#ContainerVulnerabilitiesAPI.scan-83"><span class="linenos">83</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.scan-84"><a href="#ContainerVulnerabilitiesAPI.scan-84"><span class="linenos">84</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="ContainerVulnerabilitiesAPI.scan-85"><a href="#ContainerVulnerabilitiesAPI.scan-85"><span class="linenos">85</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.scan-86"><a href="#ContainerVulnerabilitiesAPI.scan-86"><span class="linenos">86</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -514,22 +505,22 @@ status(request_id)
 
     </div>
     <a class="headerlink" href="#ContainerVulnerabilitiesAPI.status"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="ContainerVulnerabilitiesAPI.status-87"><a href="#ContainerVulnerabilitiesAPI.status-87"><span class="linenos"> 87</span></a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-88"><a href="#ContainerVulnerabilitiesAPI.status-88"><span class="linenos"> 88</span></a>               <span class="n">request_id</span><span class="p">):</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-89"><a href="#ContainerVulnerabilitiesAPI.status-89"><span class="linenos"> 89</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-90"><a href="#ContainerVulnerabilitiesAPI.status-90"><span class="linenos"> 90</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-91"><a href="#ContainerVulnerabilitiesAPI.status-91"><span class="linenos"> 91</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.status-92"><a href="#ContainerVulnerabilitiesAPI.status-92"><span class="linenos"> 92</span></a><span class="sd">        :param rquest_id: A string representing the request ID of the container scan.</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-93"><a href="#ContainerVulnerabilitiesAPI.status-93"><span class="linenos"> 93</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.status-94"><a href="#ContainerVulnerabilitiesAPI.status-94"><span class="linenos"> 94</span></a><span class="sd">        :return response json</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-95"><a href="#ContainerVulnerabilitiesAPI.status-95"><span class="linenos"> 95</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-96"><a href="#ContainerVulnerabilitiesAPI.status-96"><span class="linenos"> 96</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.status-97"><a href="#ContainerVulnerabilitiesAPI.status-97"><span class="linenos"> 97</span></a>        <span class="k">if</span> <span class="n">request_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">request_id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-98"><a href="#ContainerVulnerabilitiesAPI.status-98"><span class="linenos"> 98</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The value &#39;request_id&#39; must be a valid container scan request ID.&quot;</span><span class="p">)</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-99"><a href="#ContainerVulnerabilitiesAPI.status-99"><span class="linenos"> 99</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.status-100"><a href="#ContainerVulnerabilitiesAPI.status-100"><span class="linenos">100</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request_id</span><span class="p">,</span> <span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">))</span>
-</span><span id="ContainerVulnerabilitiesAPI.status-101"><a href="#ContainerVulnerabilitiesAPI.status-101"><span class="linenos">101</span></a>
-</span><span id="ContainerVulnerabilitiesAPI.status-102"><a href="#ContainerVulnerabilitiesAPI.status-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="ContainerVulnerabilitiesAPI.status-88"><a href="#ContainerVulnerabilitiesAPI.status-88"><span class="linenos"> 88</span></a>    <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-89"><a href="#ContainerVulnerabilitiesAPI.status-89"><span class="linenos"> 89</span></a>               <span class="n">request_id</span><span class="p">):</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-90"><a href="#ContainerVulnerabilitiesAPI.status-90"><span class="linenos"> 90</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-91"><a href="#ContainerVulnerabilitiesAPI.status-91"><span class="linenos"> 91</span></a><span class="sd">        A method to get the status of a Container Vulnerability scan.</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-92"><a href="#ContainerVulnerabilitiesAPI.status-92"><span class="linenos"> 92</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.status-93"><a href="#ContainerVulnerabilitiesAPI.status-93"><span class="linenos"> 93</span></a><span class="sd">        :param rquest_id: A string representing the request ID of the container scan.</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-94"><a href="#ContainerVulnerabilitiesAPI.status-94"><span class="linenos"> 94</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.status-95"><a href="#ContainerVulnerabilitiesAPI.status-95"><span class="linenos"> 95</span></a><span class="sd">        :return response json</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-96"><a href="#ContainerVulnerabilitiesAPI.status-96"><span class="linenos"> 96</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-97"><a href="#ContainerVulnerabilitiesAPI.status-97"><span class="linenos"> 97</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.status-98"><a href="#ContainerVulnerabilitiesAPI.status-98"><span class="linenos"> 98</span></a>        <span class="k">if</span> <span class="n">request_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">request_id</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-99"><a href="#ContainerVulnerabilitiesAPI.status-99"><span class="linenos"> 99</span></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The value &#39;request_id&#39; must be a valid container scan request ID.&quot;</span><span class="p">)</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-100"><a href="#ContainerVulnerabilitiesAPI.status-100"><span class="linenos">100</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.status-101"><a href="#ContainerVulnerabilitiesAPI.status-101"><span class="linenos">101</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">request_id</span><span class="p">,</span> <span class="n">resource</span><span class="o">=</span><span class="s2">&quot;Containers&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">))</span>
+</span><span id="ContainerVulnerabilitiesAPI.status-102"><a href="#ContainerVulnerabilitiesAPI.status-102"><span class="linenos">102</span></a>
+</span><span id="ContainerVulnerabilitiesAPI.status-103"><a href="#ContainerVulnerabilitiesAPI.status-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -575,15 +566,15 @@ status(request_id)
 
     </div>
     <a class="headerlink" href="#HostVulnerabilitiesAPI"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="HostVulnerabilitiesAPI-105"><a href="#HostVulnerabilitiesAPI-105"><span class="linenos">105</span></a><span class="k">class</span> <span class="nc">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
-</span><span id="HostVulnerabilitiesAPI-106"><a href="#HostVulnerabilitiesAPI-106"><span class="linenos">106</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Host Vulnerabilities API endpoint.</span>
-</span><span id="HostVulnerabilitiesAPI-107"><a href="#HostVulnerabilitiesAPI-107"><span class="linenos">107</span></a>
-</span><span id="HostVulnerabilitiesAPI-108"><a href="#HostVulnerabilitiesAPI-108"><span class="linenos">108</span></a><span class="sd">    Methods</span>
-</span><span id="HostVulnerabilitiesAPI-109"><a href="#HostVulnerabilitiesAPI-109"><span class="linenos">109</span></a><span class="sd">    -------</span>
-</span><span id="HostVulnerabilitiesAPI-110"><a href="#HostVulnerabilitiesAPI-110"><span class="linenos">110</span></a><span class="sd">    search(json=None)</span>
-</span><span id="HostVulnerabilitiesAPI-111"><a href="#HostVulnerabilitiesAPI-111"><span class="linenos">111</span></a><span class="sd">        A method to search Host Vulnerabilities objects.</span>
-</span><span id="HostVulnerabilitiesAPI-112"><a href="#HostVulnerabilitiesAPI-112"><span class="linenos">112</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="HostVulnerabilitiesAPI-113"><a href="#HostVulnerabilitiesAPI-113"><span class="linenos">113</span></a>    <span class="n">RESOURCE</span> <span class="o">=</span> <span class="s2">&quot;Hosts&quot;</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="HostVulnerabilitiesAPI-106"><a href="#HostVulnerabilitiesAPI-106"><span class="linenos">106</span></a><span class="k">class</span> <span class="nc">HostVulnerabilitiesAPI</span><span class="p">(</span><span class="n">SearchEndpoint</span><span class="p">):</span>
+</span><span id="HostVulnerabilitiesAPI-107"><a href="#HostVulnerabilitiesAPI-107"><span class="linenos">107</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Host Vulnerabilities API endpoint.</span>
+</span><span id="HostVulnerabilitiesAPI-108"><a href="#HostVulnerabilitiesAPI-108"><span class="linenos">108</span></a>
+</span><span id="HostVulnerabilitiesAPI-109"><a href="#HostVulnerabilitiesAPI-109"><span class="linenos">109</span></a><span class="sd">    Methods</span>
+</span><span id="HostVulnerabilitiesAPI-110"><a href="#HostVulnerabilitiesAPI-110"><span class="linenos">110</span></a><span class="sd">    -------</span>
+</span><span id="HostVulnerabilitiesAPI-111"><a href="#HostVulnerabilitiesAPI-111"><span class="linenos">111</span></a><span class="sd">    search(json=None)</span>
+</span><span id="HostVulnerabilitiesAPI-112"><a href="#HostVulnerabilitiesAPI-112"><span class="linenos">112</span></a><span class="sd">        A method to search Host Vulnerabilities objects.</span>
+</span><span id="HostVulnerabilitiesAPI-113"><a href="#HostVulnerabilitiesAPI-113"><span class="linenos">113</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="HostVulnerabilitiesAPI-114"><a href="#HostVulnerabilitiesAPI-114"><span class="linenos">114</span></a>    <span class="n">RESOURCE</span> <span class="o">=</span> <span class="s2">&quot;Hosts&quot;</span>
 </span></pre></div>
 
 
@@ -625,41 +616,41 @@ status(request_id)
 
     </div>
     <a class="headerlink" href="#SoftwarePackagesAPI"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="SoftwarePackagesAPI-116"><a href="#SoftwarePackagesAPI-116"><span class="linenos">116</span></a><span class="k">class</span> <span class="nc">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">BaseEndpoint</span><span class="p">):</span>
-</span><span id="SoftwarePackagesAPI-117"><a href="#SoftwarePackagesAPI-117"><span class="linenos">117</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Software Packages API endpoint.</span>
-</span><span id="SoftwarePackagesAPI-118"><a href="#SoftwarePackagesAPI-118"><span class="linenos">118</span></a>
-</span><span id="SoftwarePackagesAPI-119"><a href="#SoftwarePackagesAPI-119"><span class="linenos">119</span></a><span class="sd">    Methods</span>
-</span><span id="SoftwarePackagesAPI-120"><a href="#SoftwarePackagesAPI-120"><span class="linenos">120</span></a><span class="sd">    -------</span>
-</span><span id="SoftwarePackagesAPI-121"><a href="#SoftwarePackagesAPI-121"><span class="linenos">121</span></a><span class="sd">    scan(os_pkg_info_list, **request_params)</span>
-</span><span id="SoftwarePackagesAPI-122"><a href="#SoftwarePackagesAPI-122"><span class="linenos">122</span></a><span class="sd">        A method to initiate a Software Package vulnerability scan.</span>
-</span><span id="SoftwarePackagesAPI-123"><a href="#SoftwarePackagesAPI-123"><span class="linenos">123</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="SoftwarePackagesAPI-124"><a href="#SoftwarePackagesAPI-124"><span class="linenos">124</span></a>
-</span><span id="SoftwarePackagesAPI-125"><a href="#SoftwarePackagesAPI-125"><span class="linenos">125</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="SoftwarePackagesAPI-126"><a href="#SoftwarePackagesAPI-126"><span class="linenos">126</span></a>             <span class="n">os_pkg_info_list</span><span class="p">,</span>
-</span><span id="SoftwarePackagesAPI-127"><a href="#SoftwarePackagesAPI-127"><span class="linenos">127</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="SoftwarePackagesAPI-128"><a href="#SoftwarePackagesAPI-128"><span class="linenos">128</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SoftwarePackagesAPI-129"><a href="#SoftwarePackagesAPI-129"><span class="linenos">129</span></a><span class="sd">        A method to initiate a software package vulnerability scan.</span>
-</span><span id="SoftwarePackagesAPI-130"><a href="#SoftwarePackagesAPI-130"><span class="linenos">130</span></a>
-</span><span id="SoftwarePackagesAPI-131"><a href="#SoftwarePackagesAPI-131"><span class="linenos">131</span></a><span class="sd">        :param os_pkg_info_list: A list of packages to be scanned given the OS, OS Version, Package, and Package Version.</span>
-</span><span id="SoftwarePackagesAPI-132"><a href="#SoftwarePackagesAPI-132"><span class="linenos">132</span></a><span class="sd">            :obj</span>
-</span><span id="SoftwarePackagesAPI-133"><a href="#SoftwarePackagesAPI-133"><span class="linenos">133</span></a><span class="sd">                :param os: A string representing the name of the operating system.</span>
-</span><span id="SoftwarePackagesAPI-134"><a href="#SoftwarePackagesAPI-134"><span class="linenos">134</span></a><span class="sd">                :param osVer: A string representing the version of the operating system.</span>
-</span><span id="SoftwarePackagesAPI-135"><a href="#SoftwarePackagesAPI-135"><span class="linenos">135</span></a><span class="sd">                :param pkg: A string representing the name of the software package.</span>
-</span><span id="SoftwarePackagesAPI-136"><a href="#SoftwarePackagesAPI-136"><span class="linenos">136</span></a><span class="sd">                :param pkgVer: A string representing the verion of the software package.</span>
-</span><span id="SoftwarePackagesAPI-137"><a href="#SoftwarePackagesAPI-137"><span class="linenos">137</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="SoftwarePackagesAPI-138"><a href="#SoftwarePackagesAPI-138"><span class="linenos">138</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="SoftwarePackagesAPI-139"><a href="#SoftwarePackagesAPI-139"><span class="linenos">139</span></a>
-</span><span id="SoftwarePackagesAPI-140"><a href="#SoftwarePackagesAPI-140"><span class="linenos">140</span></a><span class="sd">        :return: response json</span>
-</span><span id="SoftwarePackagesAPI-141"><a href="#SoftwarePackagesAPI-141"><span class="linenos">141</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SoftwarePackagesAPI-142"><a href="#SoftwarePackagesAPI-142"><span class="linenos">142</span></a>
-</span><span id="SoftwarePackagesAPI-143"><a href="#SoftwarePackagesAPI-143"><span class="linenos">143</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="SoftwarePackagesAPI-144"><a href="#SoftwarePackagesAPI-144"><span class="linenos">144</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
-</span><span id="SoftwarePackagesAPI-145"><a href="#SoftwarePackagesAPI-145"><span class="linenos">145</span></a>            <span class="n">os_pkg_info_list</span><span class="o">=</span><span class="n">os_pkg_info_list</span>
-</span><span id="SoftwarePackagesAPI-146"><a href="#SoftwarePackagesAPI-146"><span class="linenos">146</span></a>        <span class="p">)</span>
-</span><span id="SoftwarePackagesAPI-147"><a href="#SoftwarePackagesAPI-147"><span class="linenos">147</span></a>
-</span><span id="SoftwarePackagesAPI-148"><a href="#SoftwarePackagesAPI-148"><span class="linenos">148</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;SoftwarePackages&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="SoftwarePackagesAPI-149"><a href="#SoftwarePackagesAPI-149"><span class="linenos">149</span></a>
-</span><span id="SoftwarePackagesAPI-150"><a href="#SoftwarePackagesAPI-150"><span class="linenos">150</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SoftwarePackagesAPI-117"><a href="#SoftwarePackagesAPI-117"><span class="linenos">117</span></a><span class="k">class</span> <span class="nc">SoftwarePackagesAPI</span><span class="p">(</span><span class="n">BaseEndpoint</span><span class="p">):</span>
+</span><span id="SoftwarePackagesAPI-118"><a href="#SoftwarePackagesAPI-118"><span class="linenos">118</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A class used to represent the Software Packages API endpoint.</span>
+</span><span id="SoftwarePackagesAPI-119"><a href="#SoftwarePackagesAPI-119"><span class="linenos">119</span></a>
+</span><span id="SoftwarePackagesAPI-120"><a href="#SoftwarePackagesAPI-120"><span class="linenos">120</span></a><span class="sd">    Methods</span>
+</span><span id="SoftwarePackagesAPI-121"><a href="#SoftwarePackagesAPI-121"><span class="linenos">121</span></a><span class="sd">    -------</span>
+</span><span id="SoftwarePackagesAPI-122"><a href="#SoftwarePackagesAPI-122"><span class="linenos">122</span></a><span class="sd">    scan(os_pkg_info_list, **request_params)</span>
+</span><span id="SoftwarePackagesAPI-123"><a href="#SoftwarePackagesAPI-123"><span class="linenos">123</span></a><span class="sd">        A method to initiate a Software Package vulnerability scan.</span>
+</span><span id="SoftwarePackagesAPI-124"><a href="#SoftwarePackagesAPI-124"><span class="linenos">124</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="SoftwarePackagesAPI-125"><a href="#SoftwarePackagesAPI-125"><span class="linenos">125</span></a>
+</span><span id="SoftwarePackagesAPI-126"><a href="#SoftwarePackagesAPI-126"><span class="linenos">126</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="SoftwarePackagesAPI-127"><a href="#SoftwarePackagesAPI-127"><span class="linenos">127</span></a>             <span class="n">os_pkg_info_list</span><span class="p">,</span>
+</span><span id="SoftwarePackagesAPI-128"><a href="#SoftwarePackagesAPI-128"><span class="linenos">128</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="SoftwarePackagesAPI-129"><a href="#SoftwarePackagesAPI-129"><span class="linenos">129</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SoftwarePackagesAPI-130"><a href="#SoftwarePackagesAPI-130"><span class="linenos">130</span></a><span class="sd">        A method to initiate a software package vulnerability scan.</span>
+</span><span id="SoftwarePackagesAPI-131"><a href="#SoftwarePackagesAPI-131"><span class="linenos">131</span></a>
+</span><span id="SoftwarePackagesAPI-132"><a href="#SoftwarePackagesAPI-132"><span class="linenos">132</span></a><span class="sd">        :param os_pkg_info_list: A list of packages to be scanned given the OS, OS Version, Package, and Package Version.</span>
+</span><span id="SoftwarePackagesAPI-133"><a href="#SoftwarePackagesAPI-133"><span class="linenos">133</span></a><span class="sd">            :obj</span>
+</span><span id="SoftwarePackagesAPI-134"><a href="#SoftwarePackagesAPI-134"><span class="linenos">134</span></a><span class="sd">                :param os: A string representing the name of the operating system.</span>
+</span><span id="SoftwarePackagesAPI-135"><a href="#SoftwarePackagesAPI-135"><span class="linenos">135</span></a><span class="sd">                :param osVer: A string representing the version of the operating system.</span>
+</span><span id="SoftwarePackagesAPI-136"><a href="#SoftwarePackagesAPI-136"><span class="linenos">136</span></a><span class="sd">                :param pkg: A string representing the name of the software package.</span>
+</span><span id="SoftwarePackagesAPI-137"><a href="#SoftwarePackagesAPI-137"><span class="linenos">137</span></a><span class="sd">                :param pkgVer: A string representing the verion of the software package.</span>
+</span><span id="SoftwarePackagesAPI-138"><a href="#SoftwarePackagesAPI-138"><span class="linenos">138</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="SoftwarePackagesAPI-139"><a href="#SoftwarePackagesAPI-139"><span class="linenos">139</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="SoftwarePackagesAPI-140"><a href="#SoftwarePackagesAPI-140"><span class="linenos">140</span></a>
+</span><span id="SoftwarePackagesAPI-141"><a href="#SoftwarePackagesAPI-141"><span class="linenos">141</span></a><span class="sd">        :return: response json</span>
+</span><span id="SoftwarePackagesAPI-142"><a href="#SoftwarePackagesAPI-142"><span class="linenos">142</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SoftwarePackagesAPI-143"><a href="#SoftwarePackagesAPI-143"><span class="linenos">143</span></a>
+</span><span id="SoftwarePackagesAPI-144"><a href="#SoftwarePackagesAPI-144"><span class="linenos">144</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="SoftwarePackagesAPI-145"><a href="#SoftwarePackagesAPI-145"><span class="linenos">145</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
+</span><span id="SoftwarePackagesAPI-146"><a href="#SoftwarePackagesAPI-146"><span class="linenos">146</span></a>            <span class="n">os_pkg_info_list</span><span class="o">=</span><span class="n">os_pkg_info_list</span>
+</span><span id="SoftwarePackagesAPI-147"><a href="#SoftwarePackagesAPI-147"><span class="linenos">147</span></a>        <span class="p">)</span>
+</span><span id="SoftwarePackagesAPI-148"><a href="#SoftwarePackagesAPI-148"><span class="linenos">148</span></a>
+</span><span id="SoftwarePackagesAPI-149"><a href="#SoftwarePackagesAPI-149"><span class="linenos">149</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;SoftwarePackages&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="SoftwarePackagesAPI-150"><a href="#SoftwarePackagesAPI-150"><span class="linenos">150</span></a>
+</span><span id="SoftwarePackagesAPI-151"><a href="#SoftwarePackagesAPI-151"><span class="linenos">151</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -683,32 +674,32 @@ status(request_id)
 
     </div>
     <a class="headerlink" href="#SoftwarePackagesAPI.scan"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="SoftwarePackagesAPI.scan-125"><a href="#SoftwarePackagesAPI.scan-125"><span class="linenos">125</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span id="SoftwarePackagesAPI.scan-126"><a href="#SoftwarePackagesAPI.scan-126"><span class="linenos">126</span></a>             <span class="n">os_pkg_info_list</span><span class="p">,</span>
-</span><span id="SoftwarePackagesAPI.scan-127"><a href="#SoftwarePackagesAPI.scan-127"><span class="linenos">127</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
-</span><span id="SoftwarePackagesAPI.scan-128"><a href="#SoftwarePackagesAPI.scan-128"><span class="linenos">128</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="SoftwarePackagesAPI.scan-129"><a href="#SoftwarePackagesAPI.scan-129"><span class="linenos">129</span></a><span class="sd">        A method to initiate a software package vulnerability scan.</span>
-</span><span id="SoftwarePackagesAPI.scan-130"><a href="#SoftwarePackagesAPI.scan-130"><span class="linenos">130</span></a>
-</span><span id="SoftwarePackagesAPI.scan-131"><a href="#SoftwarePackagesAPI.scan-131"><span class="linenos">131</span></a><span class="sd">        :param os_pkg_info_list: A list of packages to be scanned given the OS, OS Version, Package, and Package Version.</span>
-</span><span id="SoftwarePackagesAPI.scan-132"><a href="#SoftwarePackagesAPI.scan-132"><span class="linenos">132</span></a><span class="sd">            :obj</span>
-</span><span id="SoftwarePackagesAPI.scan-133"><a href="#SoftwarePackagesAPI.scan-133"><span class="linenos">133</span></a><span class="sd">                :param os: A string representing the name of the operating system.</span>
-</span><span id="SoftwarePackagesAPI.scan-134"><a href="#SoftwarePackagesAPI.scan-134"><span class="linenos">134</span></a><span class="sd">                :param osVer: A string representing the version of the operating system.</span>
-</span><span id="SoftwarePackagesAPI.scan-135"><a href="#SoftwarePackagesAPI.scan-135"><span class="linenos">135</span></a><span class="sd">                :param pkg: A string representing the name of the software package.</span>
-</span><span id="SoftwarePackagesAPI.scan-136"><a href="#SoftwarePackagesAPI.scan-136"><span class="linenos">136</span></a><span class="sd">                :param pkgVer: A string representing the verion of the software package.</span>
-</span><span id="SoftwarePackagesAPI.scan-137"><a href="#SoftwarePackagesAPI.scan-137"><span class="linenos">137</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
-</span><span id="SoftwarePackagesAPI.scan-138"><a href="#SoftwarePackagesAPI.scan-138"><span class="linenos">138</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
-</span><span id="SoftwarePackagesAPI.scan-139"><a href="#SoftwarePackagesAPI.scan-139"><span class="linenos">139</span></a>
-</span><span id="SoftwarePackagesAPI.scan-140"><a href="#SoftwarePackagesAPI.scan-140"><span class="linenos">140</span></a><span class="sd">        :return: response json</span>
-</span><span id="SoftwarePackagesAPI.scan-141"><a href="#SoftwarePackagesAPI.scan-141"><span class="linenos">141</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="SoftwarePackagesAPI.scan-142"><a href="#SoftwarePackagesAPI.scan-142"><span class="linenos">142</span></a>
-</span><span id="SoftwarePackagesAPI.scan-143"><a href="#SoftwarePackagesAPI.scan-143"><span class="linenos">143</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
-</span><span id="SoftwarePackagesAPI.scan-144"><a href="#SoftwarePackagesAPI.scan-144"><span class="linenos">144</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
-</span><span id="SoftwarePackagesAPI.scan-145"><a href="#SoftwarePackagesAPI.scan-145"><span class="linenos">145</span></a>            <span class="n">os_pkg_info_list</span><span class="o">=</span><span class="n">os_pkg_info_list</span>
-</span><span id="SoftwarePackagesAPI.scan-146"><a href="#SoftwarePackagesAPI.scan-146"><span class="linenos">146</span></a>        <span class="p">)</span>
-</span><span id="SoftwarePackagesAPI.scan-147"><a href="#SoftwarePackagesAPI.scan-147"><span class="linenos">147</span></a>
-</span><span id="SoftwarePackagesAPI.scan-148"><a href="#SoftwarePackagesAPI.scan-148"><span class="linenos">148</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;SoftwarePackages&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
-</span><span id="SoftwarePackagesAPI.scan-149"><a href="#SoftwarePackagesAPI.scan-149"><span class="linenos">149</span></a>
-</span><span id="SoftwarePackagesAPI.scan-150"><a href="#SoftwarePackagesAPI.scan-150"><span class="linenos">150</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="SoftwarePackagesAPI.scan-126"><a href="#SoftwarePackagesAPI.scan-126"><span class="linenos">126</span></a>    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+</span><span id="SoftwarePackagesAPI.scan-127"><a href="#SoftwarePackagesAPI.scan-127"><span class="linenos">127</span></a>             <span class="n">os_pkg_info_list</span><span class="p">,</span>
+</span><span id="SoftwarePackagesAPI.scan-128"><a href="#SoftwarePackagesAPI.scan-128"><span class="linenos">128</span></a>             <span class="o">**</span><span class="n">request_params</span><span class="p">):</span>
+</span><span id="SoftwarePackagesAPI.scan-129"><a href="#SoftwarePackagesAPI.scan-129"><span class="linenos">129</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="SoftwarePackagesAPI.scan-130"><a href="#SoftwarePackagesAPI.scan-130"><span class="linenos">130</span></a><span class="sd">        A method to initiate a software package vulnerability scan.</span>
+</span><span id="SoftwarePackagesAPI.scan-131"><a href="#SoftwarePackagesAPI.scan-131"><span class="linenos">131</span></a>
+</span><span id="SoftwarePackagesAPI.scan-132"><a href="#SoftwarePackagesAPI.scan-132"><span class="linenos">132</span></a><span class="sd">        :param os_pkg_info_list: A list of packages to be scanned given the OS, OS Version, Package, and Package Version.</span>
+</span><span id="SoftwarePackagesAPI.scan-133"><a href="#SoftwarePackagesAPI.scan-133"><span class="linenos">133</span></a><span class="sd">            :obj</span>
+</span><span id="SoftwarePackagesAPI.scan-134"><a href="#SoftwarePackagesAPI.scan-134"><span class="linenos">134</span></a><span class="sd">                :param os: A string representing the name of the operating system.</span>
+</span><span id="SoftwarePackagesAPI.scan-135"><a href="#SoftwarePackagesAPI.scan-135"><span class="linenos">135</span></a><span class="sd">                :param osVer: A string representing the version of the operating system.</span>
+</span><span id="SoftwarePackagesAPI.scan-136"><a href="#SoftwarePackagesAPI.scan-136"><span class="linenos">136</span></a><span class="sd">                :param pkg: A string representing the name of the software package.</span>
+</span><span id="SoftwarePackagesAPI.scan-137"><a href="#SoftwarePackagesAPI.scan-137"><span class="linenos">137</span></a><span class="sd">                :param pkgVer: A string representing the verion of the software package.</span>
+</span><span id="SoftwarePackagesAPI.scan-138"><a href="#SoftwarePackagesAPI.scan-138"><span class="linenos">138</span></a><span class="sd">        :param request_params: Additional request parameters.</span>
+</span><span id="SoftwarePackagesAPI.scan-139"><a href="#SoftwarePackagesAPI.scan-139"><span class="linenos">139</span></a><span class="sd">            (provides support for parameters that may be added in the future)</span>
+</span><span id="SoftwarePackagesAPI.scan-140"><a href="#SoftwarePackagesAPI.scan-140"><span class="linenos">140</span></a>
+</span><span id="SoftwarePackagesAPI.scan-141"><a href="#SoftwarePackagesAPI.scan-141"><span class="linenos">141</span></a><span class="sd">        :return: response json</span>
+</span><span id="SoftwarePackagesAPI.scan-142"><a href="#SoftwarePackagesAPI.scan-142"><span class="linenos">142</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="SoftwarePackagesAPI.scan-143"><a href="#SoftwarePackagesAPI.scan-143"><span class="linenos">143</span></a>
+</span><span id="SoftwarePackagesAPI.scan-144"><a href="#SoftwarePackagesAPI.scan-144"><span class="linenos">144</span></a>        <span class="n">json</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_dict_from_items</span><span class="p">(</span>
+</span><span id="SoftwarePackagesAPI.scan-145"><a href="#SoftwarePackagesAPI.scan-145"><span class="linenos">145</span></a>            <span class="o">**</span><span class="n">request_params</span><span class="p">,</span>
+</span><span id="SoftwarePackagesAPI.scan-146"><a href="#SoftwarePackagesAPI.scan-146"><span class="linenos">146</span></a>            <span class="n">os_pkg_info_list</span><span class="o">=</span><span class="n">os_pkg_info_list</span>
+</span><span id="SoftwarePackagesAPI.scan-147"><a href="#SoftwarePackagesAPI.scan-147"><span class="linenos">147</span></a>        <span class="p">)</span>
+</span><span id="SoftwarePackagesAPI.scan-148"><a href="#SoftwarePackagesAPI.scan-148"><span class="linenos">148</span></a>
+</span><span id="SoftwarePackagesAPI.scan-149"><a href="#SoftwarePackagesAPI.scan-149"><span class="linenos">149</span></a>        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">build_url</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="s2">&quot;SoftwarePackages&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;scan&quot;</span><span class="p">),</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span>
+</span><span id="SoftwarePackagesAPI.scan-150"><a href="#SoftwarePackagesAPI.scan-150"><span class="linenos">150</span></a>
+</span><span id="SoftwarePackagesAPI.scan-151"><a href="#SoftwarePackagesAPI.scan-151"><span class="linenos">151</span></a>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </span></pre></div>
 
 

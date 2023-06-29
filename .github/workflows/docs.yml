@@ -14,12 +14,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
 
-      - run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - run: if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
-      - run: SETUPTOOLS_SCM_DEBUG=1 python3 setup.py --version
-      - run: pdoc laceworksdk --logo https://techally-content.s3-us-west-1.amazonaws.com/public-content/lacework_logo_full.png -o docs/
+      - name: Install poetry
+        run: |
+          pipx install poetry
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'poetry'
+
+      - name: Install dependencies
+        run: |
+          poetry install
+
+      - run: poetry run pdoc laceworksdk --logo https://techally-content.s3-us-west-1.amazonaws.com/public-content/lacework_logo_full.png -o docs/
 
       - uses: actions/upload-pages-artifact@v1
         with:
