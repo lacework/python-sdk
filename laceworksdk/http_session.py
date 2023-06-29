@@ -226,9 +226,6 @@ class HttpSession:
 
         logger.info(f"{method} request to URI: {uri}")
 
-        if "/api/v1/" in uri:
-            logger.warning("Lacework's v1 APIs are scheduled to be deprecated and will not allow usage of after December 2022.")
-
         if "/api/v2/TeamUsers" in uri:
             logger.warning("TeamUsers APIs is currently experimental and subject to change")
 

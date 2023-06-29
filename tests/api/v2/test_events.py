@@ -5,7 +5,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 
 import pytest
 
-from laceworksdk.api.v2.events import EventsAPIv2 as EventsAPI
+from laceworksdk.api.v2.events import EventsAPI
 from tests.api.test_search_endpoint import SearchEndpoint
 
 # Tests

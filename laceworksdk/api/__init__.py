@@ -10,16 +10,6 @@ import configparser
 
 from laceworksdk.http_session import HttpSession
 
-from .v1.account import AccountAPI
-from .v1.compliance import ComplianceAPI
-from .v1.custom_compliance_config import CustomComplianceConfigAPI
-from .v1.download_file import DownloadFileAPI
-from .v1.integrations import IntegrationsAPI
-from .v1.recommendations import RecommendationsAPI
-from .v1.run_reports import RunReportsAPI
-from .v1.suppressions import SuppressionsAPI
-from .v1.token import TokenAPI
-
 from .v2.activities import ActivitiesAPI
 from .v2.agent_access_tokens import AgentAccessTokensAPI
 from .v2.agent_info import AgentInfoAPI
@@ -35,7 +25,7 @@ from .v2.container_registries import ContainerRegistriesAPI
 from .v2.contract_info import ContractInfoAPI
 from .v2.datasources import DatasourcesAPI
 from .v2.entities import EntitiesAPI
-from .v2.events import EventsAPIv2
+from .v2.events import EventsAPI
 from .v2.inventory import InventoryAPI
 from .v2.organization_info import OrganizationInfoAPI
 from .v2.policies import PoliciesAPI
@@ -145,7 +135,6 @@ class LaceworkClient:
         )
 
         # API Wrappers
-        self.account = AccountAPI(self._session)
         self.activities = ActivitiesAPI(self._session)
         self.agent_access_tokens = AgentAccessTokensAPI(self._session)
         self.agent_info = AgentInfoAPI(self._session)
@@ -156,32 +145,24 @@ class LaceworkClient:
         self.audit_logs = AuditLogsAPI(self._session)
         self.cloud_accounts = CloudAccountsAPI(self._session)
         self.cloud_activities = CloudActivitiesAPI(self._session)
-        self.compliance = ComplianceAPI(self._session)
-        self.compliance.config = CustomComplianceConfigAPI(self._session)
         self.configs = ConfigsAPI(self._session)
         self.container_registries = ContainerRegistriesAPI(self._session)
         self.contract_info = ContractInfoAPI(self._session)
         self.datasources = DatasourcesAPI(self._session)
         self.entities = EntitiesAPI(self._session)
-        self.events = EventsAPIv2(self._session)
-        self.files = DownloadFileAPI(self._session)
+        self.events = EventsAPI(self._session)
         self.inventory = InventoryAPI(self._session)
-        self.integrations = IntegrationsAPI(self._session)
         self.organization_info = OrganizationInfoAPI(self._session)
         self.policies = PoliciesAPI(self._session)
         self.policy_exceptions = PolicyExceptionsAPI(self._session)
         self.queries = QueriesAPI(self._session)
-        self.recommendations = RecommendationsAPI(self._session)
         self.report_definitions = ReportDefinitionsAPI(self._session)
         self.report_rules = ReportRulesAPI(self._session)
         self.reports = ReportsAPI(self._session)
         self.resource_groups = ResourceGroupsAPI(self._session)
-        self.run_reports = RunReportsAPI(self._session)
         self.schemas = SchemasAPI(self._session)
-        self.suppressions = SuppressionsAPI(self._session)
         self.team_members = TeamMembersAPI(self._session)
         self.team_users = TeamUsersAPI(self._session)
-        self.tokens = TokenAPI(self._session)
         self.user_groups = UserGroupsAPI(self._session)
         self.user_profile = UserProfileAPI(self._session)
         self.vulnerabilities = VulnerabilitiesAPI(self._session)
