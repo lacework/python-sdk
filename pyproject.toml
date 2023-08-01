@@ -25,13 +25,13 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7.16"
-python-dotenv = "^0.20.0"
-requests = "^2.27.1"
-configparser = "^5.2.0"
-bleach = "^4.1.0"
-urllib3 = "^1.26.15"
-importlib-metadata = "4.2"
+python = ">=3.8,<4"
+python-dotenv = ">=0.20.0"
+requests = ">=2.27.1"
+configparser = ">=5.2.0"
+bleach = ">=4.1.0"
+urllib3 = ">=1.26.15"
+importlib-metadata = ">=4.2"
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^1.7"
