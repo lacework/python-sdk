@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "laceworksdk"
-version = "2.0.0"
+version = "2.1.0"
 description = "Community-developed Python SDK for the Lacework APIs"
 authors = ["Jon Stewart <jon.stewart@lacework.net>"]
 maintainers = ["Jon Stewart <jon.stewart@lacework.net>", "Matthew Cadorette <matthew.cadorette@lacework.net>"]
@@ -16,8 +16,6 @@ classifiers = [
   "Topic :: Software Development :: Build Tools",
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.6",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
@@ -25,13 +23,13 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7.16"
-python-dotenv = "^0.20.0"
-requests = "^2.27.1"
-configparser = "^5.2.0"
-bleach = "^4.1.0"
-urllib3 = "^1.26.15"
-importlib-metadata = "4.2"
+python = ">=3.8,<4"
+python-dotenv = ">=0.20.0"
+requests = ">=2.27.1"
+configparser = ">=5.2.0"
+bleach = ">=4.1.0"
+urllib3 = ">=1.26.15"
+importlib-metadata = ">=4.2"
 
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^1.7"
