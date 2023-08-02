@@ -53,7 +53,7 @@ container_vulns = lw.vulnerabilities.containers.search(json={
 
 ## Requirements
 
-- Python 3.6 or higher
+- Python 3.8 or higher
 - Lacework API Credentials
   - Account Name
   - API Key
