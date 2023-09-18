@@ -70,7 +70,8 @@ class LaceworkClient:
                  api_secret=None,
                  instance=None,
                  base_domain=None,
-                 profile=None):
+                 profile=None,
+                 http_client_timeout=None):
         """
         Initializes the Lacework Client object.
 
@@ -131,7 +132,8 @@ class LaceworkClient:
             self._subaccount,
             self._api_key,
             self._api_secret,
-            self._base_domain
+            self._base_domain,
+            http_client_timeout
         )
 
         # API Wrappers
