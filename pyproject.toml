@@ -44,7 +44,13 @@ types-urllib3 = "^1.26"
 pre-commit = "^2.21.0"
 commitizen = "^2.42.1"
 pdoc = "^12.3"
+poethepoet = "^0.24.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+test        = "poetry run pytest -m 'not ci_exempt and not flaky_test' tests/api/v2"
+flaky_test  = "poetry run pytest -m 'flaky_test' tests"
+lint        = "poetry run flake8 . --exclude 'jupyter' --count --select=E9,F63,F7,F82 --show-source --statistics"
