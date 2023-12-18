@@ -24,8 +24,6 @@ def api_object_create_body(random_text, email_alert_channel_guid):
             "name": f"Test Alert Rule {random_text}",
             "description": f"Test Alert Rule Description {random_text}",
             "enabled": 1,
-#            "resourceGroups": [],
-#            "eventCategory": ["Compliance"],
             "severity": [1, 2, 3]
         },
         "intg_guid_list": [email_alert_channel_guid]

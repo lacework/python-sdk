@@ -46,4 +46,4 @@ class TestUserProfile(BaseEndpoint):
     def test_remove_user_should_fail_with_invalid_data(self, api_object):
         with pytest.raises(ApiError) as e:
             api_object.remove_users("LACEWORK_USER_GROUP_POWER_USER", ["fake"])
-        assert "500" in str(e.value)
+        assert "400" in str(e.value)
