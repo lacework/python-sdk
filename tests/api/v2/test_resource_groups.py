@@ -49,3 +49,24 @@ class TestResourceGroups(CrudEndpoint):
 
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)
+
+    def test_api_search(self, api_object, request):
+        guid = request.config.cache.get(self.OBJECT_ID_NAME, None)
+
+        if guid is None:
+            guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
+
+        assert guid is not None
+        if guid:
+            response = api_object.search(json={
+                "filters": [
+                    {
+                        "expression": "eq",
+                        "field": self.OBJECT_ID_NAME,
+                        "value": guid
+                    }
+                ],
+                "returns": [
+                     self.OBJECT_ID_NAME
+                ]
+            })
