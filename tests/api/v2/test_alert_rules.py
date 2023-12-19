@@ -24,8 +24,6 @@ def api_object_create_body(random_text, email_alert_channel_guid):
             "name": f"Test Alert Rule {random_text}",
             "description": f"Test Alert Rule Description {random_text}",
             "enabled": 1,
-            "resourceGroups": [],
-            "eventCategory": ["Compliance"],
             "severity": [1, 2, 3]
         },
         "intg_guid_list": [email_alert_channel_guid]
@@ -49,3 +47,25 @@ class TestAlertRules(CrudEndpoint):
 
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)
+
+    # Ovveriding test due to API bug with "returns": ["mcGuid"]
+    def test_api_search(self, api_object, request):
+        guid = request.config.cache.get(self.OBJECT_ID_NAME, None)
+
+        if guid is None:
+            guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
+
+        assert guid is not None
+        if guid:
+            response = api_object.search(json={
+                "filters": [
+                    {
+                        "expression": "eq",
+                        "field": self.OBJECT_ID_NAME,
+                        "value": guid
+                    }
+                ],
+                "returns": [
+                    "filters"
+                ]
+            })
