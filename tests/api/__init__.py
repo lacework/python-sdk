@@ -85,6 +85,25 @@ def email_alert_channel_guid(api):
     alert_channel_guid = response["data"][0]["intgGuid"]
     return alert_channel_guid
 
+@pytest.fixture(scope="session")
+def s3_alert_channel_guid(api):
+    response = api.alert_channels.search(
+        json={
+            "filters": [
+                {
+                    "expression": "eq",
+                    "field": "type",
+                    "value": "AwsS3"
+                }
+            ],
+            "returns": [
+                "intgGuid"
+            ]
+        }
+    )
+    alert_channel_guid = response["data"][0]["intgGuid"]
+    return alert_channel_guid
+
 
 @pytest.fixture(scope="session")
 def aws_resource_group_guid(api):

@@ -20,40 +20,29 @@ class DataExportRulesAPI(CrudEndpoint):
         super().__init__(session, "DataExportRules")
 
     def create(self,
-               name,
-               enabled,
-               int_guid_list,
-               rule_type,
-               description='',
-               profile_versions=[],
+               type,
+               filters,
+               intg_guid_list,
                **request_params):
         """
         A method to create a new DataExportRules object.
 
         Args:
-            name(str): A string representing the rule name.
-            description(str): A string representing the rule description. (optional)
-            enabled(bool): A boolean/integer representing whether the object is enabled.
-            rule_type(str): A string representing the type of rule to be added.
-            profile_version(list): A list of strings representing profile versions. (optional)
-            int_guid_list(str): A list of strings representing the guids of the alert channels to use.
-
+            type(str): A string representing the type of rule to be added.
+            filters(dict): A dictionary containing the name(string), description(string), enabled(bool), and
+                           profile_version(list[string]) fields.
+            intg_guid_list(str): A list of strings representing the guids of the alert channels to use (s3 only).
             request_params(any): Additional request parameters.
             (provides support for parameters that may be added in the future)
 
         Return:
             response(json)
         """
-        filters = {
-            'name': name,
-            'description': description,
-            'enabled': int(bool(enabled)),
-            'profileVersions': profile_versions
-        }
+
         return super().create(
-            filters=filters,
-            type=rule_type,
-            int_guid_list=int_guid_list,
+            filters=self._format_filters(filters),
+            type=type,
+            intg_guid_list=intg_guid_list,
             **request_params
         )
 
@@ -62,34 +51,48 @@ class DataExportRulesAPI(CrudEndpoint):
         """
         A method to get DataExportRules objects.
 
-        :param guid: A string representing the object GUID.
-        :param type: A string representing the object type.
+        Args:
 
-        :return response json
+            guid(str): A string representing the object GUID.
+
+
+        Return:
+             response(json)
         """
 
         return super().get(id=guid)
 
-
-    def update(self,
-               name,
-               enabled,
-               int_guid_list,
-               rule_type,
-               description='',
-               profile_versions=[],
-               **request_params):
+    def get_by_guid(self,
+                    guid):
         """
-        A method to create a new DataExportRules object.
+        A method to get an DataExportRules object by GUID.
 
         Args:
-            name(str): A string representing the rule name.
-            description(str): A string representing the rule description. (optional)
-            enabled(bool): A boolean/integer representing whether the object is enabled.
-            rule_type(str): A string representing the type of rule to be added.
-            profile_version(list): A list of strings representing profile versions. (optional)
-            int_guid_list(str): A list of strings representing the guids of the alert channels to use.
 
+            guid(str): A string representing the object GUID.
+
+
+        Return:
+             response(json)
+        """
+
+        return self.get(guid=guid)
+
+    def update(self,
+               guid,
+               filters=None,
+               intg_guid_list=None,
+               type=None,
+               **request_params):
+        """
+        A method to update an existing DataExportRules object.
+
+        Args:
+            guid(str): A string representing the object GUID.
+            type(str): A string representing the type of rule.
+            filters(dict): A dictionary containing the name(string), description(string), enabled(bool), and
+                           profile_version(list[string]) fields.
+            intg_guid_list(str): A list of strings representing the guids of the alert channels to use (s3 only).
             request_params(any): Additional request parameters.
             (provides support for parameters that may be added in the future)
 
@@ -97,20 +100,11 @@ class DataExportRulesAPI(CrudEndpoint):
             response(json)
         """
 
-        if enabled is not None:
-            enabled = int(bool(enabled))
-
-        filters = {
-            'name': name,
-            'description': description,
-            'enabled': enabled,
-            'profileVersions': profile_versions
-        }
-
         return super().update(
-            filters=filters,
-            type=rule_type,
-            int_guid_list=int_guid_list,
+            id=guid,
+            filters=self._format_filters(filters),
+            type=type,
+            intg_guid_list=intg_guid_list,
             **request_params
         )
 
@@ -119,9 +113,11 @@ class DataExportRulesAPI(CrudEndpoint):
         """
         A method to delete a DataExportRules object.
 
-        :param guid: A string representing the object GUID.
+        Args:
+            guid(str): A string representing the object GUID.
 
-        :return response json
+        Return:
+            response(json)
         """
 
         return super().delete(id=guid)

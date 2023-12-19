@@ -24,6 +24,7 @@ from .v2.configs import ConfigsAPI
 from .v2.container_registries import ContainerRegistriesAPI
 from .v2.contract_info import ContractInfoAPI
 from .v2.datasources import DatasourcesAPI
+from .v2.data_export_rules import DataExportRulesAPI
 from .v2.entities import EntitiesAPI
 from .v2.events import EventsAPI
 from .v2.inventory import InventoryAPI
@@ -149,6 +150,7 @@ class LaceworkClient:
         self.container_registries = ContainerRegistriesAPI(self._session)
         self.contract_info = ContractInfoAPI(self._session)
         self.datasources = DatasourcesAPI(self._session)
+        self.data_export_rules = DataExportRulesAPI(self._session)
         self.entities = EntitiesAPI(self._session)
         self.events = EventsAPI(self._session)
         self.inventory = InventoryAPI(self._session)
