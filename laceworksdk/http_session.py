@@ -20,6 +20,7 @@ from laceworksdk.config import (
 from laceworksdk.exceptions import ApiError, MalformedResponse, RateLimitError
 
 logger = logging.getLogger(__name__)
+HTTP_REQUEST_DEFAULT_TIMEOUT_SEC = 30
 
 
 class HttpSession:
@@ -30,7 +31,7 @@ class HttpSession:
     _access_token = None
     _access_token_expiry = None
 
-    def __init__(self, account, subaccount, api_key, api_secret, base_domain):
+    def __init__(self, account, subaccount, api_key, api_secret, base_domain, http_timeout=None):
         """
         Initializes the HttpSession object.
 
@@ -39,6 +40,7 @@ class HttpSession:
         :param api_key: a Lacework API Key
         :param api_secret: a Lacework API Secret
         :param base_domain: a Lacework Domain (defaults to "lacework.net")
+        :param timeout: a client timeout for every HTTP request
 
         :return HttpSession object.
         """
@@ -52,6 +54,7 @@ class HttpSession:
         self._api_key = api_key
         self._api_secret = api_secret
         self._base_domain = base_domain
+        self._timeout = http_timeout or HTTP_REQUEST_DEFAULT_TIMEOUT_SEC
 
         self._base_url = f"https://{account}.{self._base_domain}"
         self._account = account
@@ -164,7 +167,7 @@ class HttpSession:
         response = None
 
         try:
-            response = self._session.post(uri, json=data, headers=headers)
+            response = self._session.post(uri, json=data, headers=headers, timeout=self._timeout)
 
             # Validate the response
             self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
@@ -249,7 +252,7 @@ class HttpSession:
             kwargs.pop("data")
 
         # Make the HTTP request to the API endpoint
-        response = self._session.request(method, uri, headers=headers, **kwargs)
+        response = self._session.request(method, uri, headers=headers, timeout=self._timeout, **kwargs)
 
         # Validate the response
         self._check_response_code(response, DEFAULT_SUCCESS_RESPONSE_CODES)
