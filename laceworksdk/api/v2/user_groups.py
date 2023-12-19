@@ -5,6 +5,7 @@ Lacework UserGroups API wrapper (Experimental).
 
 from laceworksdk.api.base_endpoint import BaseEndpoint
 
+
 class UserGroupsAPI(BaseEndpoint):
     def __init__(self, session):
         super().__init__(session, "UserGroups")

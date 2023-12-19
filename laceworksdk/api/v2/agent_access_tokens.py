@@ -16,8 +16,9 @@ class AgentAccessTokensAPI(CrudEndpoint):
 
         :return AgentAccessTokensAPI object.
         """
-
+        
         super().__init__(session, "AgentAccessTokens")
+
 
     def create(self,
                alias=None,
