@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath('../laceworksdk'))
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Lacework Python SDK'
-copyright = '2023, Jon Stewart, Tim MacDonald'
+copyright = '2023, Lacework'
 author = 'Jon Stewart, Tim MacDonald'
 
 # -- General configuration ---------------------------------------------------
