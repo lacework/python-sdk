@@ -29,11 +29,11 @@ jobs:
         run: |
           poetry install
 
-      - run: poetry run pdoc laceworksdk --logo https://techally-content.s3-us-west-1.amazonaws.com/public-content/lacework_logo_full.png -o docs/
+      - run: poetry run poe docs
 
       - uses: actions/upload-pages-artifact@v1
         with:
-          path: docs/
+          path: docs/html
 
   # Deploy the artifact to GitHub pages.
   deploy:

@@ -1,0 +1,2 @@
+# The Lacework SDK docs are hosted on Github Pages [here](https://lacework.github.io/python-sdk/)
+
