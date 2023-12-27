@@ -82,3 +82,7 @@ class TestAlertChannelsOrg(TestAlertChannels):
     @pytest.mark.flaky_test
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)
+
+    @pytest.mark.flaky_test
+    def test_api_get_by_type(self, api_object):
+        self._get_object_classifier_test(api_object, "type")
