@@ -69,6 +69,8 @@ class TestPolicyExceptions(CrudEndpoint):
 
         request.config.cache.set(self.OBJECT_ID_NAME, response["data"][self.OBJECT_ID_NAME])
 
+    @pytest.mark.flaky_test
+    @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object, policy_id, request):
         guid = request.config.cache.get(self.OBJECT_ID_NAME, None)
         assert guid is not None

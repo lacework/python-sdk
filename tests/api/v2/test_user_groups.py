@@ -26,7 +26,7 @@ def test_user(api, random_text):
     api.team_users.delete(guid)
 
 
-class TestUserProfile(BaseEndpoint):
+class TestUserGroups(BaseEndpoint):
 
     OBJECT_TYPE = UserGroupsAPI
 

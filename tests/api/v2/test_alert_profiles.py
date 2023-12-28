@@ -58,5 +58,6 @@ class TestAlertProfiles(CrudEndpoint):
         """
         pass
 
+    @pytest.mark.order("first")
     def test_api_get_by_id(self, api_object):
         self._get_object_classifier_test(api_object, "id", self.OBJECT_ID_NAME)

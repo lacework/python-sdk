@@ -18,6 +18,6 @@ def api_object(api):
     return api.agent_info
 
 
-class TestConfigsEndpoint(SearchEndpoint):
+class TestAgentInfo(SearchEndpoint):
 
     OBJECT_TYPE = AgentInfoAPI

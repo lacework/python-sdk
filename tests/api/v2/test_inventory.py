@@ -18,7 +18,7 @@ def api_object(api):
     return api.inventory
 
 
-class TestConfigsEndpoint(SearchEndpoint):
+class TestInventory(SearchEndpoint):
 
     OBJECT_TYPE = InventoryAPI
 

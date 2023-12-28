@@ -48,10 +48,11 @@ class TestAlertChannels(CrudEndpoint):
     OBJECT_ID_NAME = "intgGuid"
     OBJECT_TYPE = AlertChannelsAPI
 
-    @pytest.mark.flaky_test
+    @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)
 
+    @pytest.mark.order("second")
     def test_api_get_by_type(self, api_object):
         self._get_object_classifier_test(api_object, "type")
 
@@ -79,10 +80,10 @@ class TestAlertChannels(CrudEndpoint):
 @pytest.mark.parametrize("api_object", [pytest.lazy_fixture("api_object_org")])
 class TestAlertChannelsOrg(TestAlertChannels):
 
-    @pytest.mark.flaky_test
+    @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)
 
-    @pytest.mark.flaky_test
+    @pytest.mark.order("second")
     def test_api_get_by_type(self, api_object):
         self._get_object_classifier_test(api_object, "type")

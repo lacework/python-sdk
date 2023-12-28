@@ -4,6 +4,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 """
 
 from tests.api.test_base_endpoint import BaseEndpoint
+import pytest
 
 
 class CrudEndpoint(BaseEndpoint):
@@ -60,6 +61,8 @@ class CrudEndpoint(BaseEndpoint):
 
             self._check_object_values(api_object_update_body, response)
 
+    # if you don't run delete last you can run into some race conditions with the API
+    @pytest.mark.order("last")
     def test_api_delete(self, api_object, request):
         guid = request.config.cache.get(self.OBJECT_ID_NAME, None)
         assert guid is not None

@@ -53,14 +53,14 @@ jobs:
           LW_API_KEY: ${{ secrets.LW_API_KEY }}
           LW_API_SECRET: ${{ secrets.LW_API_SECRET }}
           LW_BASE_DOMAIN: ${{ secrets.LW_BASE_DOMAIN }}
-      - name: Report Status
-        if: always()
-        uses: ravsamhq/notify-slack-action@v2
-        with:
-          status: ${{ job.status }}
-          notify_when: "failure"
-          notification_title: "{workflow} has {status_message}"
-          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
-          footer: "Linked Repo <{repo_url}|{repo}> | <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow>"
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#      - name: Report Status
+#        if: always()
+#        uses: ravsamhq/notify-slack-action@v2
+#        with:
+#          status: ${{ job.status }}
+#          notify_when: "failure"
+#          notification_title: "{workflow} has {status_message}"
+#          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+#          footer: "Linked Repo <{repo_url}|{repo}> | <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow>"
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
