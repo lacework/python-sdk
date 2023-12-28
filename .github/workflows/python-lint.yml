@@ -1,4 +1,4 @@
-name: Run Python Tests/Linting
+name: Run Python Linting/Docstring Linting
 
 on:
   push:
