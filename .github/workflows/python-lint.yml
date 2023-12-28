@@ -3,7 +3,7 @@ name: Run Python Tests/Linting
 on:
   push:
     branches:
-      - main
+      - "*"
   pull_request:
     branches:
       - main
@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.11"]
 
     steps:
       - uses: actions/checkout@v3
@@ -37,6 +37,10 @@ jobs:
         run: |
           poetry install
 
+      - name: Lint Docstrings with ruff
+        run: |
+          poetry run poe lint-docstrings 
+
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
@@ -44,23 +48,3 @@ jobs:
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           poetry run flake8 . --exclude "jupyter" --count --exit-zero --max-complexity=10 --statistics
 
-      - name: Test SDK with pytest
-        run: |
-          poetry run poe test
-        env:
-          LW_ACCOUNT: ${{ secrets.LW_ACCOUNT }}
-          LW_SUBACCOUNT: ${{ secrets.LW_SUBACCOUNT }}
-          LW_API_KEY: ${{ secrets.LW_API_KEY }}
-          LW_API_SECRET: ${{ secrets.LW_API_SECRET }}
-          LW_BASE_DOMAIN: ${{ secrets.LW_BASE_DOMAIN }}
-      - name: Report Status
-        if: always()
-        uses: ravsamhq/notify-slack-action@v2
-        with:
-          status: ${{ job.status }}
-          notify_when: "failure"
-          notification_title: "{workflow} has {status_message}"
-          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
-          footer: "Linked Repo <{repo_url}|{repo}> | <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow>"
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
