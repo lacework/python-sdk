@@ -3,7 +3,7 @@ name: Run Python Tests/Linting
 on:
   push:
     branches:
-      - main
+      - "*"
   pull_request:
     branches:
       - main
