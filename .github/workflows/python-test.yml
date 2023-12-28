@@ -37,6 +37,10 @@ jobs:
         run: |
           poetry install
 
+      - name: Lint Docstrings with ruff
+        run: |
+          poetry run poe lint-docstrings 
+
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
