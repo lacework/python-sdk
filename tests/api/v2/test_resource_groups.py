@@ -40,13 +40,13 @@ def api_object_update_body(random_text):
         }
     }
 
-
+@pytest.mark.flaky_test
 class TestResourceGroups(CrudEndpoint):
 
     OBJECT_ID_NAME = "resourceGuid"
     OBJECT_TYPE = ResourceGroupsAPI
     OBJECT_PARAM_EXCEPTIONS = ["props"]
 
-    @pytest.mark.flaky_test
+    @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)

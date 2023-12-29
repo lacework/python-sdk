@@ -37,11 +37,11 @@ def api_object_update_body():
     }
 
 
-@pytest.mark.flaky_test
 class TestTeamMembers(CrudEndpoint):
 
     OBJECT_ID_NAME = "userGuid"
     OBJECT_TYPE = TeamMembersAPI
 
+    @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)

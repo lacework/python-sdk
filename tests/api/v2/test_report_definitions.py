@@ -93,7 +93,7 @@ def api_object_update_body(random_text):
 
 
 @pytest.mark.flaky_test
-class TestAlertProfiles(CrudEndpoint):
+class TestReportDefinitions(CrudEndpoint):
 
     OBJECT_ID_NAME = "reportDefinitionGuid"
     OBJECT_TYPE = ReportDefinitionsAPI
@@ -105,5 +105,6 @@ class TestAlertProfiles(CrudEndpoint):
         """
         pass
 
+    @pytest.mark.order("first")
     def test_api_get_by_id(self, api_object):
         self._get_object_classifier_test(api_object, "id", self.OBJECT_ID_NAME)

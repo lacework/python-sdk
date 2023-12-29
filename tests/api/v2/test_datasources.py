@@ -25,5 +25,6 @@ class TestDatasources(BaseEndpoint):
         response = api_object.get()
         assert "data" in response.keys()
 
+    @pytest.mark.order("first")
     def test_api_get_by_type(self, api_object):
         self._get_object_classifier_test(api_object, "type", self.OBJECT_ID_NAME)

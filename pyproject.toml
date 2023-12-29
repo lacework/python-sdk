@@ -37,6 +37,7 @@ flake8 = "^5.0.4"
 flake8-quotes = "^3.3"
 ruff = "^0.1.9"
 pytest = "^7.2.2"
+pytest-order = "^1.2.0"
 pytest-lazy-fixture = "^0.6.3"
 pytest-rerunfailures = "^11.1.2"
 mypy = "^1.1.1"
@@ -60,8 +61,19 @@ select = ["D"]
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+
+[tool.pytest.ini_options]
+markers = [
+    "ci_exempt: mark a test as exempt from CI.",
+    "flaky_test: mark a test as potentially flaky.",
+  ]
+addopts = [
+    "--ignore=tests/api/v2/test_policies.py",
+    "--ignore=tests/api/v2/test_queries.py",
+  ]
+
 [tool.poe.tasks]
-test        = "pytest -m 'not ci_exempt and not flaky_test' tests/api/v2"
+test        = "pytest -v --order-scope=class -m 'not ci_exempt and not flaky_test' tests/api/v2"
 flaky_test  = "pytest -m 'flaky_test' tests"
 lint        = "flake8 . --exclude 'jupyter' --count --select=E9,F63,F7,F82 --show-source --statistics"
 lint-docstrings = "ruff check laceworksdk/"

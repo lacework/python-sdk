@@ -45,10 +45,12 @@ def api_object_update_body(random_text):
     }
 
 
-class TestAlertRules(CrudEndpoint):
+class TestReportRules(CrudEndpoint):
 
     OBJECT_ID_NAME = "mcGuid"
     OBJECT_TYPE = ReportRulesAPI
 
+    @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)
+

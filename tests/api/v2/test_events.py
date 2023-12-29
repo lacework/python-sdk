@@ -17,6 +17,6 @@ def api_object(api):
 
 
 @pytest.mark.flaky_test
-class TestEvidenceEndpoint(SearchEndpoint):
+class TestEventsEndpoint(SearchEndpoint):
 
     OBJECT_TYPE = EventsAPI

@@ -16,7 +16,7 @@ def api_object(api):
     return api.organization_info
 
 
-class TestDatasources(BaseEndpoint):
+class TestOrganizationInfo(BaseEndpoint):
 
     OBJECT_ID_NAME = "name"
     OBJECT_TYPE = OrganizationInfoAPI
