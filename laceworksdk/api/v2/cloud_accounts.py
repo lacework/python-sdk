@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework CloudAccounts API wrapper.
-"""
+"""Lacework CloudAccounts API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
@@ -9,14 +7,16 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 class CloudAccountsAPI(CrudEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the CloudAccountsAPI object.
+        """Initializes the CloudAccountsAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
         :return CloudAccountsAPI object.
-        """
 
+        Returns:
+
+        """
         super().__init__(session, "CloudAccounts")
 
     def create(self,
@@ -25,20 +25,23 @@ class CloudAccountsAPI(CrudEndpoint):
                enabled,
                data,
                **request_params):
-        """
-        A method to create a new CloudAccounts object.
+        """A method to create a new CloudAccounts object.
 
-        :param name: A string representing the object name.
-        :param type: A string representing the object type.
-        :param enabled: A boolean/integer representing whether the object is enabled.
-            (0 or 1)
-        :param data: A JSON object matching the schema for the specified type.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          name: A string representing the object name.
+          type: A string representing the object type.
+          enabled: A boolean/integer representing whether the object is enabled.
+        (0 or 1)
+          data: A JSON object matching the schema for the specified type.
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         return super().create(
             name=name,
             type=type,
@@ -50,39 +53,45 @@ class CloudAccountsAPI(CrudEndpoint):
     def get(self,
             guid=None,
             type=None):
+        """A method to get CloudAccounts objects.
+
+        Args:
+          guid: A string representing the object GUID. (Default value = None)
+          type: A string representing the object type.
+        
+        :return response json (Default value = None)
+
+        Returns:
+
         """
-        A method to get CloudAccounts objects.
-
-        :param guid: A string representing the object GUID.
-        :param type: A string representing the object type.
-
-        :return response json
-        """
-
         return super().get(id=guid, resource=type)
 
     def get_by_guid(self,
                     guid):
-        """
-        A method to get CloudAccounts objects by GUID.
+        """A method to get CloudAccounts objects by GUID.
 
-        :param guid: A string representing the object GUID.
-
+        Args:
+          guid: A string representing the object GUID.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         return self.get(guid=guid)
 
     def get_by_type(self,
                     type):
-        """
-        A method to get CloudAccounts objects by type.
+        """A method to get CloudAccounts objects by type.
 
-        :param type: A string representing the object type.
-
+        Args:
+          type: A string representing the object type.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         return self.get(type=type)
 
     def update(self,
@@ -92,21 +101,24 @@ class CloudAccountsAPI(CrudEndpoint):
                enabled=None,
                data=None,
                **request_params):
-        """
-        A method to update an CloudAccounts object.
+        """A method to update an CloudAccounts object.
 
-        :param guid: A string representing the object GUID.
-        :param name: A string representing the object name.
-        :param type: A string representing the object type.
-        :param enabled: A boolean/integer representing whether the object is enabled.
-            (0 or 1)
-        :param data: A JSON object matching the schema for the specified type.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          guid: A string representing the object GUID.
+          name: A string representing the object name. (Default value = None)
+          type: A string representing the object type. (Default value = None)
+          enabled: A boolean/integer representing whether the object is enabled.
+        (0 or 1) (Default value = None)
+          data: A JSON object matching the schema for the specified type. (Default value = None)
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         if enabled is not None:
             enabled = int(bool(enabled))
 
@@ -121,12 +133,14 @@ class CloudAccountsAPI(CrudEndpoint):
 
     def delete(self,
                guid):
-        """
-        A method to delete an CloudAccounts object.
+        """A method to delete an CloudAccounts object.
 
-        :param guid: A string representing the object GUID.
-
+        Args:
+          guid: A string representing the object GUID.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         return super().delete(id=guid)

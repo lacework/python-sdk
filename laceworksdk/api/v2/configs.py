@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Configs API wrapper.
-"""
+"""Lacework Configs API wrapper."""
 
 from laceworksdk.api.read_endpoint import ReadEndpoint
 from laceworksdk.api.search_endpoint import SearchEndpoint
@@ -9,14 +7,20 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 
 class ConfigsAPI:
     """A class used to represent the Configs API endpoint.
-
+    
     The Configs API endpoint is simply a parent for different types of
     configs that can be queried.
-
-    Attributes
+    
+    Attributes:
     ----------
     compliance_evaluations:
         A ComplianceEvaluationsAPI instance.
+
+    Args:
+
+    Returns:
+
+    
     """
 
     def __init__(self, session):
@@ -26,7 +30,6 @@ class ConfigsAPI:
 
         :return ConfigsAPI object.
         """
-
         super().__init__()
         self._base_path = "Configs"
 
@@ -37,34 +40,52 @@ class ConfigsAPI:
 
 class AzureSubscriptions(ReadEndpoint):
     """A class used to represent the Azure Subscriptions API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     get(request_params=None)
         A method to get AzureSubscription objects.
         (tenantId is an optional parameter)
+
+    Args:
+
+    Returns:
+
+    
     """
     RESOURCE = "AzureSubscriptions"
 
 
 class GcpProjects(ReadEndpoint):
     """A class used to represent the GCP Projects API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     get(request_params=None)
         A method to get GcpProjects objects.
         (orgId is an optional parameter)
+
+    Args:
+
+    Returns:
+
+    
     """
     RESOURCE = "GcpProjects"
 
 
 class ComplianceEvaluationsAPI(SearchEndpoint):
     """A class used to represent the Compliance Evaluations API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search ComplianceEvaluations objects.
+
+    Args:
+
+    Returns:
+
+    
     """
     RESOURCE = "ComplianceEvaluations"

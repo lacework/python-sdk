@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Vulnerabilities API wrapper.
-"""
+"""Lacework Vulnerabilities API wrapper."""
 
 from laceworksdk.api.base_endpoint import BaseEndpoint
 from laceworksdk.api.search_endpoint import SearchEndpoint
@@ -9,13 +7,13 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 
 class VulnerabilitiesAPI:
     """A class used to represent the Vulnerabilities API endpoint.
-
+    
     The Vulnerabilities API endpoint is simply a parent for different types of
     vulnerabilities that can be queried.  Due to namespace overlap with the v1
     API, this class is a subclass of VulnerabilityAPI to expose those methods
     and provide backwards compatibility.
-
-    Attributes
+    
+    Attributes:
     ----------
     containers:
         A ContainerVulnerabilitiesAPI instance.
@@ -23,11 +21,16 @@ class VulnerabilitiesAPI:
         A HostVulnerabilitiesAPI instance.
     packages:
         A SoftwarePackagesAPI instance.
+
+    Args:
+
+    Returns:
+
+    
     """
 
     def __init__(self, session):
-        """
-        Initializes the VulnerabilitiesAPI object.
+        """Initializes the VulnerabilitiesAPI object.
 
         :param session: An instance of the HttpSession class
 
@@ -44,8 +47,8 @@ class VulnerabilitiesAPI:
 
 class ContainerVulnerabilitiesAPI(SearchEndpoint):
     """A class used to represent the Container Vulnerabilities API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Container Vulnerabilities objects.
@@ -53,6 +56,12 @@ class ContainerVulnerabilitiesAPI(SearchEndpoint):
         A method to issue a Container Vulnerability scan.
     status(request_id)
         A method to get the status of a Container Vulnerability scan.
+
+    Args:
+
+    Returns:
+
+    
     """
     RESOURCE = "Containers"
 
@@ -61,18 +70,21 @@ class ContainerVulnerabilitiesAPI(SearchEndpoint):
              repository,
              tag,
              **request_params):
-        """
-        A method to issue Container Vulnerability scans.
+        """A method to issue Container Vulnerability scans.
 
-        :param registry: A string representing the container registry to use.
-        :param repository: A string representing the container repository to use.
-        :param tag: A string representing the container tag to use.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          registry: A string representing the container registry to use.
+          repository: A string representing the container repository to use.
+          tag: A string representing the container tag to use.
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         json = self.build_dict_from_items(
             **request_params,
             registry=registry,
@@ -86,14 +98,17 @@ class ContainerVulnerabilitiesAPI(SearchEndpoint):
 
     def status(self,
                request_id):
-        """
-        A method to get the status of a Container Vulnerability scan.
+        """A method to get the status of a Container Vulnerability scan.
 
-        :param rquest_id: A string representing the request ID of the container scan.
-
+        Args:
+          rquest_id: A string representing the request ID of the container scan.
+        
         :return response json
-        """
+          request_id: 
 
+        Returns:
+
+        """
         if request_id is None or len(request_id) == 0:
             raise ValueError("The value 'request_id' must be a valid container scan request ID.")
 
@@ -104,42 +119,56 @@ class ContainerVulnerabilitiesAPI(SearchEndpoint):
 
 class HostVulnerabilitiesAPI(SearchEndpoint):
     """A class used to represent the Host Vulnerabilities API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Host Vulnerabilities objects.
+
+    Args:
+
+    Returns:
+
+    
     """
     RESOURCE = "Hosts"
 
 
 class SoftwarePackagesAPI(BaseEndpoint):
     """A class used to represent the Software Packages API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     scan(os_pkg_info_list, **request_params)
         A method to initiate a Software Package vulnerability scan.
+
+    Args:
+
+    Returns:
+
+    
     """
 
     def scan(self,
              os_pkg_info_list,
              **request_params):
+        """A method to initiate a software package vulnerability scan.
+
+        Args:
+          os_pkg_info_list: A list of packages to be scanned given the OS, OS Version, Package, and Package Version.
+        :obj
+          os: A string representing the name of the operating system.
+          osVer: A string representing the version of the operating system.
+          pkg: A string representing the name of the software package.
+          pkgVer: A string representing the verion of the software package.
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+          **request_params: 
+
+        Returns:
+          response json
+
         """
-        A method to initiate a software package vulnerability scan.
-
-        :param os_pkg_info_list: A list of packages to be scanned given the OS, OS Version, Package, and Package Version.
-            :obj
-                :param os: A string representing the name of the operating system.
-                :param osVer: A string representing the version of the operating system.
-                :param pkg: A string representing the name of the software package.
-                :param pkgVer: A string representing the verion of the software package.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return: response json
-        """
-
         json = self.build_dict_from_items(
             **request_params,
             os_pkg_info_list=os_pkg_info_list

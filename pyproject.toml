@@ -77,6 +77,6 @@ test        = "pytest -v --order-scope=class -m 'not ci_exempt and not flaky_tes
 flaky_test  = "pytest -m 'flaky_test' tests"
 lint        = "flake8 . --exclude 'jupyter' --count --select=E9,F63,F7,F82 --show-source --statistics"
 lint-docstrings = "ruff check laceworksdk/"
-docs-clean.shell  = "rm -r docs-source/auto; rm -r docs/*"
+docs-clean.shell  = "rm -r docs-source/auto; rm -r docs/doctrees; rm -r docs/html"
 docs-build.shell  = "sphinx-apidoc -e -f -d 5 -o docs-source/auto laceworksdk && sphinx-build -M html docs-source docs"
 docs        = ["docs-clean", "docs-build"]

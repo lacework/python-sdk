@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Alerts API wrapper.
-"""
+"""Lacework Alerts API wrapper."""
 
 from laceworksdk.api.search_endpoint import SearchEndpoint
 
@@ -9,14 +7,16 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 class AlertsAPI(SearchEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the AlertsAPI object.
+        """Initializes the AlertsAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
         :return AlertsAPI object.
-        """
 
+        Returns:
+
+        """
         super().__init__(session, "Alerts")
 
     def get(self,
@@ -24,18 +24,20 @@ class AlertsAPI(SearchEndpoint):
             end_time=None,
             limit=None,
             **request_params):
+        """A method to get Alerts objects.
+
+        Args:
+          start_time: A "%Y-%m-%dT%H:%M:%SZ" structured timestamp to begin from. (Default value = None)
+          end_time: A "%Y-%m-%dT%H:%M:%S%Z" structured timestamp to end at. (Default value = None)
+          limit: An integer representing the number of Alerts to return. (Default value = None)
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+          **request_params: 
+
+        Returns:
+          response json
+
         """
-        A method to get Alerts objects.
-
-        :param start_time: A "%Y-%m-%dT%H:%M:%SZ" structured timestamp to begin from.
-        :param end_time: A "%Y-%m-%dT%H:%M:%S%Z" structured timestamp to end at.
-        :param limit: An integer representing the number of Alerts to return.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return: response json
-        """
-
         params = self.build_dict_from_items(
             request_params,
             start_time=start_time,
@@ -78,18 +80,21 @@ class AlertsAPI(SearchEndpoint):
                     id,
                     scope,
                     **request_params):
-        """
-        A method to get Alerts objects by ID.
+        """A method to get Alerts objects by ID.
 
-        :param id: A string representing the object ID.
-        :param scope: A string representing the scope of the detailst to return.
-            ("Details", "Investigation", "Events", "RelatedAlerts", "Integrations", "Timeline")
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          id: A string representing the object ID.
+          scope: A string representing the scope of the detailst to return.
+        ("Details", "Investigation", "Events", "RelatedAlerts", "Integrations", "Timeline")
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         params = self.build_dict_from_items(
             request_params,
             scope=scope
@@ -101,29 +106,33 @@ class AlertsAPI(SearchEndpoint):
 
     def search(self,
                json=None):
+        """A method to search Alerts objects.
+
+        Args:
+          json: A dictionary containing the necessary search parameters.
+        (timeFilter, filters, returns)
+        
+        :return response json (Default value = None)
+
+        Returns:
+
         """
-        A method to search Alerts objects.
-
-        :param json: A dictionary containing the necessary search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
         return super().search(json=json)
 
     def comment(self,
                 id,
                 comment):
-        """
-        A method to comment on an Alerts object.
+        """A method to comment on an Alerts object.
 
-        :param id: A string representing the object ID.
-        :param comment: A string representing the comment to post.
-
+        Args:
+          id: A string representing the object ID.
+          comment: A string representing the comment to post.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         json = self.build_dict_from_items(
             comment=comment
         )
@@ -136,21 +145,23 @@ class AlertsAPI(SearchEndpoint):
               id,
               reason,
               comment=None):
+        """A method to close an Alerts object.
+
+        Args:
+          id: A string representing the object ID.
+          reason: An integer representing the close reason.
+        0: Other
+        1: False positive
+        2: Not enough information
+        3: Malicious and have resolution in place
+        4: Expected because of routine testing
+          comment: A string representing the comment to post.
+        
+        :return response json (Default value = None)
+
+        Returns:
+
         """
-        A method to close an Alerts object.
-
-        :param id: A string representing the object ID.
-        :param reason: An integer representing the close reason.
-            0: Other
-            1: False positive
-            2: Not enough information
-            3: Malicious and have resolution in place
-            4: Expected because of routine testing
-        :param comment: A string representing the comment to post.
-
-        :return response json
-        """
-
         json = self.build_dict_from_items(
             reason=reason,
             comment=comment

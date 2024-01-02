@@ -6,6 +6,9 @@ Welcome to Lacework Python SDK's documentation!
     :maxdepth: 5
 
     auto/modules
+        :members:
+        :no-private-members:
+        :inherited-members: create, delete, update, search, get
 
 
 Indices and tables

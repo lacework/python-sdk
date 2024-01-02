@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework AuditLogs API wrapper.
-"""
+"""Lacework AuditLogs API wrapper."""
 
 from laceworksdk.api.base_endpoint import BaseEndpoint
 
@@ -9,31 +7,36 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 class AuditLogsAPI(BaseEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the AuditLogsAPI object.
+        """Initializes the AuditLogsAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
         :return AuditLogsAPI object.
-        """
 
+        Returns:
+
+        """
         super().__init__(session, "AuditLogs")
 
     def get(self,
             start_time=None,
             end_time=None,
             **request_params):
-        """
-        A method to get AuditLogs objects.
+        """A method to get AuditLogs objects.
 
-        :param start_time: A "%Y-%m-%dT%H:%M:%SZ" structured timestamp to begin from.
-        :param end_time: A "%Y-%m-%dT%H:%M:%S%Z" structured timestamp to end at.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          start_time: A "%Y-%m-%dT%H:%M:%SZ" structured timestamp to begin from. (Default value = None)
+          end_time: A "%Y-%m-%dT%H:%M:%S%Z" structured timestamp to end at. (Default value = None)
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         params = self.build_dict_from_items(
             request_params,
             start_time=start_time,
@@ -46,15 +49,17 @@ class AuditLogsAPI(BaseEndpoint):
 
     def search(self,
                json=None):
+        """A method to search AuditLogs objects.
+
+        Args:
+          json: A dictionary containing the necessary search parameters.
+        (timeFilter, filters, returns)
+        
+        :return response json (Default value = None)
+
+        Returns:
+
         """
-        A method to search AuditLogs objects.
-
-        :param json: A dictionary containing the necessary search parameters.
-            (timeFilter, filters, returns)
-
-        :return response json
-        """
-
         response = self._session.post(self.build_url(action="search"), json=json)
 
         return response.json()

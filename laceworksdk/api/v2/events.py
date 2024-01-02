@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Events API wrapper.
-"""
+"""Lacework Events API wrapper."""
 
 from laceworksdk.api.search_endpoint import SearchEndpoint
 
@@ -9,12 +7,14 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 class EventsAPI(SearchEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the EventsAPI object.
+        """Initializes the EventsAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
-        :return EventsAPI object.
+        Returns:
+            EventsAPI object.
+
         """
         super().__init__(session, "Events")
 
@@ -24,17 +24,19 @@ class EventsAPI(SearchEndpoint):
             end_time=None,
             limit=None,
             **request_params):
-        """
-        A method to get Event details
+        """A method to get Event details.
 
-        :param event_id: An integer representing the Event ID to retrieve.
-        :param start_time: A "%Y-%m-%dT%H:%M:%S%z" structured timestamp to begin from.
-        :param end_time: A "%Y-%m-%dT%H:%M:%S%z" structured timestamp to end at.
-        :param limit: An integer representing the number of Alerts to return.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
+        Args:
+          event_id: An integer representing the Event ID to retrieve. (Default value = None)
+          start_time: A "%Y-%m-%dT%H:%M:%S%z" structured timestamp to begin from. (Default value = None)
+          end_time: A "%Y-%m-%dT%H:%M:%S%z" structured timestamp to end at. (Default value = None)
+          limit: An integer representing the number of Alerts to return. (Default value = None)
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
 
-        :return response json
+        Returns:
+            response json
+
         """
         params = self.build_dict_from_items(
             request_params,
@@ -78,16 +80,16 @@ class EventsAPI(SearchEndpoint):
     def get_details(self,
                     event_id,
                     **request_params):
+        """A method to get the Event Details for the specified Event ID.
+
+        Args:
+          event_id: An integer representing the Event ID to retrieve.
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+
+        Returns:
+            response json
         """
-        A method to get the Event Details for the specified Event ID.
-
-        :param event_id: An integer representing the Event ID to retrieve.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return response json
-        """
-
         params = self.build_dict_from_items(
             request_params,
         )

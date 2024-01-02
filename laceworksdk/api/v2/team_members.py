@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework TeamMembers API wrapper.
-"""
+"""Lacework TeamMembers API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
@@ -9,14 +7,16 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 class TeamMembersAPI(CrudEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the TeamMembersAPI object.
+        """Initializes the TeamMembersAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
         :return TeamMembersAPI object.
-        """
 
+        Returns:
+
+        """
         super().__init__(session, "TeamMembers")
 
     def create(self,
@@ -28,32 +28,35 @@ class TeamMembersAPI(CrudEndpoint):
                admin_role_accounts=None,
                user_role_accounts=None,
                **request_params):
-        """
-        A method to create a new TeamMembers object.
+        """A method to create a new TeamMembers object.
 
-        :param user_name: A string representing the email address of the user.
-        :param user_enabled: A boolean/integer representing whether the object is enabled.
-            (0 or 1)
-        :param props: An object containing object configuration
-            obj:
-                :param firstName: The first name of the team member.
-                :param lastName: The last name of the team member.
-                :param company: The company of the team member.
-                :param accountAdmin: A boolean representing if the team member is an account admin.
-        :param org_admin: A boolean representing if the object is an organization admin.
-            (Organization-level Access Required)
-        :param org_user: A boolean representing if the object is an organization user.
-            (Organization-level Access Required)
-        :param admin_role_accounts: A list of strings representing accounts where the object is an admin.
-            (Organization-level Access Required)
-        :param user_role_accounts: A list of strings representing accounts where the object is a user.
-            (Organization-level Access Required)
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          user_name: A string representing the email address of the user.
+          user_enabled: A boolean/integer representing whether the object is enabled.
+        (0 or 1)
+          props: An object containing object configuration
+        obj:
+          firstName: The first name of the team member.
+          lastName: The last name of the team member.
+          company: The company of the team member.
+          accountAdmin: A boolean representing if the team member is an account admin.
+          org_admin: A boolean representing if the object is an organization admin.
+        (Organization-level Access Required) (Default value = None)
+          org_user: A boolean representing if the object is an organization user.
+        (Organization-level Access Required) (Default value = None)
+          admin_role_accounts: A list of strings representing accounts where the object is an admin.
+        (Organization-level Access Required) (Default value = None)
+          user_role_accounts: A list of strings representing accounts where the object is a user.
+        (Organization-level Access Required) (Default value = None)
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         return super().create(
             user_name=user_name,
             user_enabled=int(bool(user_enabled)),
@@ -66,25 +69,29 @@ class TeamMembersAPI(CrudEndpoint):
         )
 
     def get(self, guid=None):
+        """A method to get TeamMembers objects.
+
+        Args:
+          guid: A string representing the object GUID.
+        
+        :return response json (Default value = None)
+
+        Returns:
+
         """
-        A method to get TeamMembers objects.
-
-        :param guid: A string representing the object GUID.
-
-        :return response json
-        """
-
         return super().get(id=guid)
 
     def get_by_guid(self, guid):
-        """
-        A method to get a TeamMembers object by GUID.
+        """A method to get a TeamMembers object by GUID.
 
-        :param guid: A string representing the object GUID.
-
+        Args:
+          guid: A string representing the object GUID.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         return self.get(guid=guid)
 
     def update(self,
@@ -97,33 +104,36 @@ class TeamMembersAPI(CrudEndpoint):
                admin_role_accounts=None,
                user_role_accounts=None,
                **request_params):
-        """
-        A method to update a TeamMembers object.
+        """A method to update a TeamMembers object.
 
-        :param guid: A string representing the object GUID.
-        :param user_name: A string representing the email address of the object.
-        :param user_enabled: A boolean/integer representing whether the object is enabled.
-            (0 or 1)
-        :param props: An object containing object configuration
-            obj:
-                :param firstName: The first name of the team member.
-                :param lastName: The last name of the team member.
-                :param company: The company of the team member.
-                :param accountAdmin: A boolean representing if the team member is an account admin.
-        :param org_admin: A boolean representing if the object is an organization admin.
-            (Organization-level Access Required)
-        :param org_user: A boolean representing if the object is an organization user.
-            (Organization-level Access Required)
-        :param admin_role_accounts: A list of strings representing accounts where the object is an admin.
-            (Organization-level Access Required)
-        :param user_role_accounts: A list of strings representing accounts where the object is a user.
-            (Organization-level Access Required)
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          guid: A string representing the object GUID.
+          user_name: A string representing the email address of the object. (Default value = None)
+          user_enabled: A boolean/integer representing whether the object is enabled.
+        (0 or 1) (Default value = None)
+          props: An object containing object configuration
+        obj: (Default value = None)
+          firstName: The first name of the team member.
+          lastName: The last name of the team member.
+          company: The company of the team member.
+          accountAdmin: A boolean representing if the team member is an account admin.
+          org_admin: A boolean representing if the object is an organization admin.
+        (Organization-level Access Required) (Default value = None)
+          org_user: A boolean representing if the object is an organization user.
+        (Organization-level Access Required) (Default value = None)
+          admin_role_accounts: A list of strings representing accounts where the object is an admin.
+        (Organization-level Access Required) (Default value = None)
+          user_role_accounts: A list of strings representing accounts where the object is a user.
+        (Organization-level Access Required) (Default value = None)
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         if user_enabled is not None:
             user_enabled = int(bool(user_enabled))
 
@@ -141,12 +151,14 @@ class TeamMembersAPI(CrudEndpoint):
 
     def delete(self,
                guid):
-        """
-        A method to delete a TeamMembers object.
+        """A method to delete a TeamMembers object.
 
-        :param guid: A string representing the object GUID.
-
+        Args:
+          guid: A string representing the object GUID.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         return super().delete(id=guid)

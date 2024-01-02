@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Entities API wrapper.
-"""
+"""Lacework Entities API wrapper."""
 
 from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
 class EntitiesAPI:
     """A class used to represent the Entities API endpoint.
-
+    
     The Entities API endpoint is simply a parent for different types of
     entities that can be queried.
-
-    Attributes
+    
+    Attributes:
     ----------
     applications:
         A ApplicationsAPI instance.
@@ -42,17 +40,16 @@ class EntitiesAPI:
         A ProcessesAPI instance.
     users:
         A UsersAPI instance.
+
     """
 
     def __init__(self, session):
-        """
-        Initializes the EntitiesAPI object.
+        """Initializes the EntitiesAPI object.
 
         :param session: An instance of the HttpSession class
 
         :return EntitiesAPI object.
         """
-
         super().__init__()
         self._base_path = "Entities"
 
@@ -74,8 +71,8 @@ class EntitiesAPI:
 
 class ApplicationsAPI(SearchEndpoint):
     """A class used to represent the Applications API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Applications objects.
@@ -85,8 +82,8 @@ class ApplicationsAPI(SearchEndpoint):
 
 class CommandLinesAPI(SearchEndpoint):
     """A class used to represent the Command Lines API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search CommandLines objects.
@@ -96,8 +93,8 @@ class CommandLinesAPI(SearchEndpoint):
 
 class ContainersAPI(SearchEndpoint):
     """A class used to represent the Containers API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Containers objects.
@@ -107,8 +104,8 @@ class ContainersAPI(SearchEndpoint):
 
 class FilesAPI(SearchEndpoint):
     """A class used to represent the Files API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Files objects.
@@ -118,8 +115,8 @@ class FilesAPI(SearchEndpoint):
 
 class ImagesAPI(SearchEndpoint):
     """A class used to represent the Images API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Images objects.
@@ -129,8 +126,8 @@ class ImagesAPI(SearchEndpoint):
 
 class InternalIPAddressesAPI(SearchEndpoint):
     """A class used to represent the Internal IP Addresses API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search InternalIPAddresses objects.
@@ -140,8 +137,8 @@ class InternalIPAddressesAPI(SearchEndpoint):
 
 class K8sPodsAPI(SearchEndpoint):
     """A class used to represent the K8s Pods API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search K8sPods objects.
@@ -151,8 +148,8 @@ class K8sPodsAPI(SearchEndpoint):
 
 class MachinesAPI(SearchEndpoint):
     """A class used to represent the Machines API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Machines objects.
@@ -162,8 +159,8 @@ class MachinesAPI(SearchEndpoint):
 
 class MachineDetailsAPI(SearchEndpoint):
     """A class used to represent the Machine Details API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search MachineDetails objects.
@@ -173,8 +170,8 @@ class MachineDetailsAPI(SearchEndpoint):
 
 class NetworkInterfacesAPI(SearchEndpoint):
     """A class used to represent the Network Interfaces API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search NetworkInterfaces objects.
@@ -184,8 +181,8 @@ class NetworkInterfacesAPI(SearchEndpoint):
 
 class NewFileHashesAPI(SearchEndpoint):
     """A class used to represent the New File Hashes API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search NewFileHashes objects.
@@ -195,8 +192,8 @@ class NewFileHashesAPI(SearchEndpoint):
 
 class PackagesAPI(SearchEndpoint):
     """A class used to represent the Packages API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Packages objects.
@@ -206,8 +203,8 @@ class PackagesAPI(SearchEndpoint):
 
 class ProcessesAPI(SearchEndpoint):
     """A class used to represent the Processes API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Processes objects.
@@ -217,8 +214,8 @@ class ProcessesAPI(SearchEndpoint):
 
 class UsersAPI(SearchEndpoint):
     """A class used to represent the Users API endpoint.
-
-    Methods
+    
+    Methods:
     -------
     search(json=None)
         A method to search Users objects.

@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework UserGroups API wrapper (Experimental).
-"""
+"""Lacework UserGroups API wrapper (Experimental)."""
 
 from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
 class UserGroupsAPI(BaseEndpoint):
+    """ """
     def __init__(self, session):
         super().__init__(session, "UserGroups")
 
@@ -20,23 +19,29 @@ class UserGroupsAPI(BaseEndpoint):
         return response.json()
 
     def add_users(self, guid, user_guids):
-        """
-        (Experimental API) A method to add users to existing UserGroup object.
+        """(Experimental API) A method to add users to existing UserGroup object.
 
-        :param guid: A string representing the GUID of the UserGroup to modify.
-        :param user_guids: An array of user guids to add to the UserGroup object.
-
+        Args:
+          guid: A string representing the GUID of the UserGroup to modify.
+          user_guids: An array of user guids to add to the UserGroup object.
+        
         :return response json
+
+        Returns:
+
         """
         return self.__modify_members(guid, user_guids, "addUsers")
 
     def remove_users(self, guid, user_guids):
-        """
-        (Experimental API) A method to remove users from an existing UserGroup object.
+        """(Experimental API) A method to remove users from an existing UserGroup object.
 
-        :param guid: A string representing the GUID of the UserGroup object to modify.
-        :param user_guids: An array of user guids to add to the UserGroup object.
-
+        Args:
+          guid: A string representing the GUID of the UserGroup object to modify.
+          user_guids: An array of user guids to add to the UserGroup object.
+        
         :return response json
+
+        Returns:
+
         """
         return self.__modify_members(guid, user_guids, "removeUsers")

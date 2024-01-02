@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Activities API wrapper.
-"""
+"""Lacework Activities API wrapper."""
 
 from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
 class ActivitiesAPI:
-    """A class used to represent the Activities API endpoint.
+    """A class used to represent the `Activities API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities>`_
 
-    The Activities API endpoint is simply a parent for different types of
+    Get information about network activities detected through the Lacework agent.
+
+    The Activities API endpoint is a parent for different types of
     activities that can be queried.
-
-    Attributes
+    
+    Attributes:
     ----------
     changed_files:
         A ChangedFilesAPI instance.
@@ -22,16 +22,18 @@ class ActivitiesAPI:
         A DnsAPI instance.
     user_logins:
         A UserLoginsAPI instance.
+
     """
 
     def __init__(self, session):
         """Initializes the ActivitiesAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+            session(HttpSession): An instance of the HttpSession class
 
-        :return ActivitiesAPI object.
+        Return:
+            ActivitiesAPI object.
         """
-
         super().__init__()
         self._base_path = "Activities"
 
@@ -42,44 +44,57 @@ class ActivitiesAPI:
 
 
 class ChangedFilesAPI(SearchEndpoint):
-    """A class used to represent the Changed Files API endpoint.
+    """A class used to represent the `Changed Files API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1ChangedFiles~1search/post>`_
 
-    Methods
+    Search for changed files in your environment
+    
+    Methods:
     -------
     search(json=None)
         A method to search ChangedFiles objects.
+
     """
     RESOURCE = "ChangedFiles"
 
 
 class ConnectionsAPI(SearchEndpoint):
-    """A class used to represent the Connections API endpoint.
+    """A class used to represent the `Connections API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1Connections~1search/post>`_
 
-    Methods
+    Search for connections in your environment.
+    
+    Methods:
     -------
     search(json=None)
         A method to search Connections objects.
+
     """
     RESOURCE = "Connections"
 
 
 class DnsAPI(SearchEndpoint):
-    """A class used to represent the DNS Lookup API endpoint.
+    """A class used to represent the `DNS Lookup API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1DNSs~1search/post>`_
 
-    Methods
+
+    Search for DNS summaries in your environment.
+
+    Methods:
     -------
     search(json=None)
         A method to search DNS lookup objects.
+
     """
     RESOURCE = "DNSs"
 
 
 class UserLoginsAPI(SearchEndpoint):
-    """A class used to represent the UserLogins API endpoint.
+    """A class used to represent the `UserLogins API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1UserLogins~1search/post>`_
 
-    Methods
+    Search for user logins in your environment.
+
+    Methods:
     -------
     search(json=None)
         A method to search UserLogins objects.
+    
     """
     RESOURCE = "UserLogins"

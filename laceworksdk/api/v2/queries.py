@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Queries API wrapper.
-"""
+"""Lacework Queries API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
@@ -9,14 +7,16 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 class QueriesAPI(CrudEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the QueriesAPI object.
+        """Initializes the QueriesAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
         :return QueriesAPI object.
-        """
 
+        Returns:
+
+        """
         super().__init__(session, "Queries")
 
     def create(self,
@@ -24,20 +24,23 @@ class QueriesAPI(CrudEndpoint):
                query_text,
                evaluator_id=None,
                **request_params):
-        """
-        A method to create a new Queries object.
+        """A method to create a new Queries object.
 
-        :param query_id: A string representing the object query ID.
-        :param query_text: A string representing the object query text.
-        :param evaluator_id: A string representing the evaluator in which the
-                query is to be run. This is an optional parameter, with the
-                default behaviour of omitting the value while sending the API call.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          query_id: A string representing the object query ID.
+          query_text: A string representing the object query text.
+          evaluator_id: A string representing the evaluator in which the
+        query is to be run. This is an optional parameter, with the
+        default behaviour of omitting the value while sending the API call.
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         return super().create(
             query_id=query_id,
             query_text=query_text,
@@ -47,26 +50,30 @@ class QueriesAPI(CrudEndpoint):
 
     def get(self,
             query_id=None):
+        """A method to get Queries objects.
+
+        Args:
+          query_id: A string representing the object query ID.
+        
+        :return response json (Default value = None)
+
+        Returns:
+
         """
-        A method to get Queries objects.
-
-        :param query_id: A string representing the object query ID.
-
-        :return response json
-        """
-
         return super().get(id=query_id)
 
     def get_by_id(self,
                   query_id):
-        """
-        A method to get a Queries object by query ID.
+        """A method to get a Queries object by query ID.
 
-        :param query_id: A string representing the object query ID.
-
+        Args:
+          query_id: A string representing the object query ID.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         return self.get(query_id=query_id)
 
     def execute(self,
@@ -74,17 +81,19 @@ class QueriesAPI(CrudEndpoint):
                 query_id=None,
                 query_text=None,
                 arguments={}):
+        """A method to execute a Queries object.
+
+        Args:
+          evaluator_id: A string representing the evaluator in which the query object is to be run. (Default value = None)
+          query_id: A string representing the object query ID. (Default value = None)
+          query_text: A string representing the object query text. (Default value = None)
+          arguments: A dictionary of key/value pairs to be used as arguments in the query object.
+        
+        :return response json (Default value = {})
+
+        Returns:
+
         """
-        A method to execute a Queries object.
-
-        :param evaluator_id: A string representing the evaluator in which the query object is to be run.
-        :param query_id: A string representing the object query ID.
-        :param query_text: A string representing the object query text.
-        :param arguments: A dictionary of key/value pairs to be used as arguments in the query object.
-
-        :return response json
-        """
-
         json = {
             "arguments": []
         }
@@ -110,15 +119,17 @@ class QueriesAPI(CrudEndpoint):
     def execute_by_id(self,
                       query_id,
                       arguments={}):
+        """A method to execute a Queries object by query ID.
+
+        Args:
+          query_id: A string representing the object query ID.
+          arguments: A dictionary of key/value pairs to be used as arguments in the query object.
+        
+        :return response json (Default value = {})
+
+        Returns:
+
         """
-        A method to execute a Queries object by query ID.
-
-        :param query_id: A string representing the object query ID.
-        :param arguments: A dictionary of key/value pairs to be used as arguments in the query object.
-
-        :return response json
-        """
-
         json = {
             "arguments": []
         }
@@ -137,17 +148,20 @@ class QueriesAPI(CrudEndpoint):
                  query_text,
                  evaluator_id=None,
                  **request_params):
-        """
-        A method to validate a Queries object.
+        """A method to validate a Queries object.
 
-        :param query_text: A string representing the object query text.
-        :param evaluator_id: A string representing the evaluator in which the
-                query is to be run. Optional parameter, defaults to omitting
-                the evaluator from the validation request.
-
+        Args:
+          query_text: A string representing the object query text.
+          evaluator_id: A string representing the evaluator in which the
+        query is to be run. Optional parameter, defaults to omitting
+        the evaluator from the validation request.
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         json = self.build_dict_from_items(
             request_params,
             query_text=query_text,
@@ -162,17 +176,20 @@ class QueriesAPI(CrudEndpoint):
                query_id,
                query_text,
                **request_params):
-        """
-        A method to update a Queries object.
+        """A method to update a Queries object.
 
-        :param query_id: A string representing the object query ID.
-        :param query_text: A string representing the object query text.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          query_id: A string representing the object query ID.
+          query_text: A string representing the object query text.
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          **request_params: 
 
+        Returns:
+
+        """
         return super().update(
             id=query_id,
             query_text=query_text,
@@ -181,12 +198,14 @@ class QueriesAPI(CrudEndpoint):
 
     def delete(self,
                query_id):
-        """
-        A method to delete a Queries object.
+        """A method to delete a Queries object.
 
-        :param query_id: A string representing the object query ID.
-
+        Args:
+          query_id: A string representing the object query ID.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         return super().delete(id=query_id)

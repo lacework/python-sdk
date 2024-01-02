@@ -1,88 +1,101 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework AgentAccessTokens API wrapper.
-"""
+"""Lacework AgentAccessTokens API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
 
 class AgentAccessTokensAPI(CrudEndpoint):
+    """A class used to represent the `Agent Access Tokens API endpoint <https://docs.lacework.net/api/v2/docs/#tag/AgentAccessTokens>`_
+
+    To connect to the Lacework instance, Lacework agents require an agent access token.
+    """
 
     def __init__(self, session):
-        """
-        Initializes the AgentAccessTokensAPI object.
+        """Initializes the AgentAccessTokensAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session(HttpSession): An instance of the HttpSession class
 
-        :return AgentAccessTokensAPI object.
+        Returns:
+            AgentAccessTokensAPI object.
+
         """
-        
         super().__init__(session, "AgentAccessTokens")
 
-
     def create(self,
-               alias=None,
-               enabled=True,
+               alias,
+               enabled,
+               props=None,
                **request_params):
+        """A method to create a new agent access token.
+
+        Args:
+          alias(str): A string representing the name you wish to give to the created token.
+          enabled(bool|int): A boolean/integer representing whether the token is enabled.
+          props(dict, optional): A dict containing optional values for the following fields:\n
+                                - description(str, optional): a description of the token\n
+                                - os(str, optional): the operating system\n
+                                - subscription(str, optional): The subscription level of the token. Valid values are:\n
+                                                    - "standard"\n
+                                                    - "professional"\n
+                                                    - "enterprise"\n
+
+        Returns:
+            response(dict): a JSON object containing info regarding the new access token
         """
-        A method to create a new AgentAccessTokens object.
-
-        :param alias: A string representing the object alias.
-        :param enabled: A boolean/integer representing whether the object is enabled.
-            (0 or 1)
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return response json
-        """
-
         return super().create(
             token_alias=alias,
             token_enabled=int(bool(enabled)),
+            props=props,
             **request_params
         )
 
     def get_by_id(self,
                   id):
+        """A method to get an agent access token by its ID.
+
+        Args:
+          id(str): A string representing the object ID.
+
+        Returns:
+            response(dict): a JSON object containing info regarding the requested access token
+
         """
-        A method to get an AgentAccessTokens object by ID.
-
-        :param id: A string representing the object ID.
-
-        :return response json
-        """
-
         return self.get(id=id)
 
     def update(self,
                id,
                token_enabled=None,
+               props=None,
                **request_params):
+        """A method to update an agent access token.
+
+        Args:
+          id(str): A string representing the object ID.
+          enabled(bool|int, optional): A boolean/integer representing whether the object is enabled.
+          props(dict, optional): A dict containing optional values for the following fields:\n
+                                - description(str, optional): a description of the token\n
+                                - os(str, optional): the operating system\n
+                                - subscription(str, optional): The subscription level of the token. Valid values are:\n
+                                                    - "standard"\n
+                                                    - "professional"\n
+                                                    - "enterprise"\n
+
+        Returns:
+            response(dict): a JSON object containing info for the updated access token.
+
         """
-        A method to update an AgentAccessTokens object.
-
-        :param id: A string representing the object ID.
-        :param alias: A string representing the object alias.
-        :param enabled: A boolean/integer representing whether the object is enabled.
-            (0 or 1)
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return response json
-        """
-
         if token_enabled is not None:
             token_enabled = int(bool(token_enabled))
 
         return super().update(
             id=id,
             token_enabled=token_enabled,
+            props=props,
             **request_params
         )
 
     def delete(self):
         """
-        A method to 'pass' when attempting to delete an AgentAccessToken object.
-
         Lacework does not currently allow for agent access tokens to be deleted.
         """

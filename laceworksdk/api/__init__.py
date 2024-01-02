@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework API wrappers.
-"""
+"""Lacework API wrappers."""
 
 import os
 
@@ -60,9 +58,7 @@ load_dotenv()
 
 
 class LaceworkClient:
-    """
-    Lacework API wrapper for Python.
-    """
+    """Lacework API wrapper for Python."""
 
     def __init__(self,
                  account=None,
@@ -72,8 +68,7 @@ class LaceworkClient:
                  instance=None,
                  base_domain=None,
                  profile=None):
-        """
-        Initializes the Lacework Client object.
+        """Initializes the Lacework Client object.
 
         Order of operation is:
             1. Parameters passed in via the init function (flags).
@@ -82,7 +77,6 @@ class LaceworkClient:
 
         :return LaceworkClient object.
         """
-
         # Attempt to use Environment Variables
         self._account = account or instance or os.getenv(
             LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE)
@@ -173,24 +167,16 @@ class LaceworkClient:
 
     @property
     def subaccount(self):
-        """
-        Returns the value of the session's subaccount.
-        """
+        """Returns the value of the session's subaccount."""
         return self._session.subaccount
 
     def set_org_level_access(self, org_level_access):
-        """
-        A method to set whether the client should use organization-level API calls.
-        """
-
+        """A method to set whether the client should use organization-level API calls."""
         if org_level_access is True:
             self._session._org_level_access = True
         else:
             self._session._org_level_access = False
 
     def set_subaccount(self, subaccount):
-        """
-        A method to update the subaccount the client should use for API calls.
-        """
-
+        """A method to update the subaccount the client should use for API calls."""
         self._session.subaccount = subaccount

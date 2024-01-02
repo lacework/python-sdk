@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework UserProfile API wrapper.
-"""
+"""Lacework UserProfile API wrapper."""
 
 from laceworksdk.api.base_endpoint import BaseEndpoint
 
@@ -9,23 +7,28 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 class UserProfileAPI(BaseEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the UserProfileAPI object.
+        """Initializes the UserProfileAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
         :return UserProfileAPI object.
-        """
 
+        Returns:
+
+        """
         super().__init__(session, "UserProfile")
 
     def get(self):
-        """
-        A method to get UserProfile object.
-
+        """A method to get UserProfile object.
+        
         :return response json
-        """
 
+        Args:
+
+        Returns:
+
+        """
         response = self._session.get(self.build_url())
 
         return response.json()

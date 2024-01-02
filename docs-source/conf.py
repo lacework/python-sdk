@@ -28,6 +28,9 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.githubpages',
     'sphinx.ext.napoleon']
 
+autodoc_default_options = {"members": True, "show-inheritance": True}
+autosummary_generate = True
+autodoc_inherit_docstrings = True
 # Napoleon settings
 napoleon_google_docstring = True
 napoleon_numpy_docstring = True

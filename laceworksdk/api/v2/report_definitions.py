@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework ReportDefinitions API wrapper.
-"""
+"""Lacework ReportDefinitions API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
@@ -9,14 +7,16 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 class ReportDefinitionsAPI(CrudEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the ReportDefinitionsAPI object.
+        """Initializes the ReportDefinitionsAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
         :return ReportDefinitionsAPI object.
-        """
 
+        Returns:
+
+        """
         super().__init__(session, "ReportDefinitions")
 
     def create(self,
@@ -29,38 +29,42 @@ class ReportDefinitionsAPI(CrudEndpoint):
                distribution_type,
                frequency,
                **request_params):
-        """
-        A method to create a new ReportDefinitions object.
+        """A method to create a new ReportDefinitions object.
 
-        :param report_name: A string representing the name of the report definition.
-        :param report_type: A string representing the type of the report definition.
-        :param sub_report_name: A string representing the sub-type of the report definition.
-            ("AWS", "GCP", "Azure")
-        :param report_definition: An object representing the the report definition.
-            obj:
-                :param sections: An array of objects representing the sections of the report definition.
-                    :param category: A string representing the section's category.
-                    :param title: A string representing the section's title.
-                    :param policies: An array of strings representing the section's policies.
-                :param overrides: An array of objects representing the overrides of the report definition.
-                    :param title: A string representing the policy's title.
-                    :param policy: A string representing the policy ID.
-        :param props: An object representing metadata about the report definition.
-            obj:
-                :param engine: A string representing the evaluation engine used for the report.
-                :param integrations: An array of strings representing integrations (e.g. AWS Account IDs)
-                :param resource_groups: An array of strings representing resource group IDs.
-        :param alert_channels: An array of strings representing the alert channels for report distribution.
-        :param distribution_type: A string representing the report format.
-            ("csv", "html", "pdf")
-        :param frequency: A string representing the frequency of report distribution.
-            ("daily", "weekly")
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          report_name: A string representing the name of the report definition.
+          report_type: A string representing the type of the report definition.
+          sub_report_name: A string representing the sub-type of the report definition.
+        ("AWS", "GCP", "Azure")
+          report_definition: An object representing the the report definition.
+        obj:
+          sections: An array of objects representing the sections of the report definition.
+          category: A string representing the section's category.
+          title: A string representing the section's title.
+          policies: An array of strings representing the section's policies.
+          overrides: An array of objects representing the overrides of the report definition.
+          title: A string representing the policy's title.
+          policy: A string representing the policy ID.
+          props: An object representing metadata about the report definition.
+        obj:
+          engine: A string representing the evaluation engine used for the report.
+          integrations: An array of strings representing integrations (e.g. AWS Account IDs)
+          resource_groups: An array of strings representing resource group IDs.
+          alert_channels: An array of strings representing the alert channels for report distribution.
+          distribution_type: A string representing the report format.
+        ("csv", "html", "pdf")
+          frequency: A string representing the frequency of report distribution.
+        ("daily", "weekly")
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          sub_report_type: 
+          **request_params: 
 
+        Returns:
+
+        """
         return super().create(
             report_name=report_name,
             report_type=report_type,
@@ -75,33 +79,42 @@ class ReportDefinitionsAPI(CrudEndpoint):
 
     def get(self,
             id=None):
+        """A method to get ReportDefinitions objects.
+
+        Args:
+          id: A string representing the object ID.
+        
+        :return response json (Default value = None)
+
+        Returns:
+
         """
-        A method to get ReportDefinitions objects.
-
-        :param id: A string representing the object ID.
-
-        :return response json
-        """
-
         return super().get(id=id)
 
     def get_by_id(self,
                   id):
-        """
-        A method to get a ReportDefinitions object by ID.
+        """A method to get a ReportDefinitions object by ID.
 
-        :param id: A string representing the object ID.
-
+        Args:
+          id: A string representing the object ID.
+        
         :return response json
-        """
 
+        Returns:
+
+        """
         return self.get(id=id)
 
     def search(self, **request_params):
-        """
-        A method to 'pass' when attempting to search ReportDefinitions objects.
-
+        """A method to 'pass' when attempting to search ReportDefinitions objects.
+        
         Search functionality is not yet implemented for Alert Profiles.
+
+        Args:
+          **request_params: 
+
+        Returns:
+
         """
         pass
 
@@ -117,41 +130,45 @@ class ReportDefinitionsAPI(CrudEndpoint):
                frequency=None,
                update_type=None,
                **request_params):
-        """
-        A method to update an ReportDefinitions object.
+        """A method to update an ReportDefinitions object.
 
-        :param id: A string representing the object ID.
-        :param report_name: A string representing the name of the report definition.
-        :param report_type: A string representing the type of the report definition.
-        :param sub_report_name: A string representing the sub-type of the report definition.
-            ("AWS", "GCP", "Azure")
-        :param report_definition: An object representing the the report definition.
-            obj:
-                :param sections: An array of objects representing the sections of the report definition.
-                    :param category: A string representing the section's category.
-                    :param title: A string representing the section's title.
-                    :param policies: An array of strings representing the section's policies.
-                :param overrides: An array of objects representing the overrides of the report definition.
-                    :param title: A string representing the policy's title.
-                    :param policy: A string representing the policy ID.
-        :param props: An object representing metadata about the report definition.
-            obj:
-                :param engine: A string representing the evaluation engine used for the report.
-                :param integrations: An array of strings representing integrations (e.g. AWS Account IDs)
-                :param resource_groups: An array of strings representing resource group IDs.
-        :param alert_channels: An array of strings representing the alert channels for report distribution.
-        :param distribution_type: A string representing the report format.
-            ("csv", "html", "pdf")
-        :param frequency: A string representing the frequency of report distribution.
-            ("daily", "weekly")
-        :param update_type: A string representing the type of update for the report definition.
-            ("Update", "Revert")
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
+        Args:
+          id: A string representing the object ID.
+          report_name: A string representing the name of the report definition.
+          report_type: A string representing the type of the report definition.
+          sub_report_name: A string representing the sub-type of the report definition.
+        ("AWS", "GCP", "Azure")
+          report_definition: An object representing the the report definition.
+        obj:
+          sections: An array of objects representing the sections of the report definition.
+          category: A string representing the section's category.
+          title: A string representing the section's title.
+          policies: An array of strings representing the section's policies.
+          overrides: An array of objects representing the overrides of the report definition.
+          title: A string representing the policy's title.
+          policy: A string representing the policy ID.
+          props: An object representing metadata about the report definition.
+        obj: (Default value = None)
+          engine: A string representing the evaluation engine used for the report.
+          integrations: An array of strings representing integrations (e.g. AWS Account IDs)
+          resource_groups: An array of strings representing resource group IDs.
+          alert_channels: An array of strings representing the alert channels for report distribution. (Default value = None)
+          distribution_type: A string representing the report format.
+        ("csv", "html", "pdf") (Default value = None)
+          frequency: A string representing the frequency of report distribution.
+        ("daily", "weekly") (Default value = None)
+          update_type: A string representing the type of update for the report definition.
+        ("Update", "Revert") (Default value = None)
+          request_params: Additional request parameters.
+        (provides support for parameters that may be added in the future)
+        
         :return response json
-        """
+          sub_report_type: 
+          **request_params: 
 
+        Returns:
+
+        """
         json = self.build_dict_from_items(
             report_name=report_name,
             report_type=report_type,
@@ -171,12 +188,15 @@ class ReportDefinitionsAPI(CrudEndpoint):
 
     def delete(self,
                id):
-        """
-        A method to delete a ReportDefinitions object.
+        """A method to delete a ReportDefinitions object.
 
-        :param guid: A string representing the object ID.
-
+        Args:
+          guid: A string representing the object ID.
+        
         :return response json
-        """
+          id: 
 
+        Returns:
+
+        """
         return super().delete(id=id)

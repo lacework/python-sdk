@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework DataExportRules API wrapper.
-"""
+"""Lacework DataExportRules API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
@@ -9,14 +7,16 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 class DataExportRulesAPI(CrudEndpoint):
 
     def __init__(self, session):
-        """
-        Initializes the DataExportRulesAPI object.
+        """Initializes the DataExportRulesAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+          session: An instance of the HttpSession class
 
         :return DataExportRulesAPI object.
-        """
 
+        Returns:
+
+        """
         super().__init__(session, "DataExportRules")
 
     def create(self,
@@ -24,21 +24,21 @@ class DataExportRulesAPI(CrudEndpoint):
                filters,
                intg_guid_list,
                **request_params):
-        """
-        A method to create a new DataExportRules object.
+        """A method to create a new DataExportRules object.
 
         Args:
-            type(str): A string representing the type of rule to be added.
-            filters(dict): A dictionary containing the name(string), description(string), enabled(bool), and
-                           profile_version(list[string]) fields.
-            intg_guid_list(str): A list of strings representing the guids of the alert channels to use (s3 only).
-            request_params(any): Additional request parameters.
-            (provides support for parameters that may be added in the future)
+          type: str
+          filters: dict
+          profile_version: list
+          intg_guid_list: str
+          request_params: any
+          provides: support for parameters that may be added in the future
+          **request_params: 
 
-        Return:
-            response(json)
+        Returns:
+          response(json)
+
         """
-
         return super().create(
             filters=self._format_filters(filters),
             type=type,
@@ -48,34 +48,28 @@ class DataExportRulesAPI(CrudEndpoint):
 
     def get(self,
             guid=None):
-        """
-        A method to get DataExportRules objects.
+        """A method to get DataExportRules objects.
 
         Args:
+          guid: str (Default value = None)
 
-            guid(str): A string representing the object GUID.
+        Returns:
+          response(json)
 
-
-        Return:
-             response(json)
         """
-
         return super().get(id=guid)
 
     def get_by_guid(self,
                     guid):
-        """
-        A method to get an DataExportRules object by GUID.
+        """A method to get an DataExportRules object by GUID.
 
         Args:
+          guid: str
 
-            guid(str): A string representing the object GUID.
+        Returns:
+          response(json)
 
-
-        Return:
-             response(json)
         """
-
         return self.get(guid=guid)
 
     def update(self,
@@ -84,22 +78,22 @@ class DataExportRulesAPI(CrudEndpoint):
                intg_guid_list=None,
                type=None,
                **request_params):
-        """
-        A method to update an existing DataExportRules object.
+        """A method to update an existing DataExportRules object.
 
         Args:
-            guid(str): A string representing the object GUID.
-            type(str): A string representing the type of rule.
-            filters(dict): A dictionary containing the name(string), description(string), enabled(bool), and
-                           profile_version(list[string]) fields.
-            intg_guid_list(str): A list of strings representing the guids of the alert channels to use (s3 only).
-            request_params(any): Additional request parameters.
-            (provides support for parameters that may be added in the future)
+          guid: str
+          type: str (Default value = None)
+          filters: dict (Default value = None)
+          profile_version: list
+          intg_guid_list: str (Default value = None)
+          request_params: any
+          provides: support for parameters that may be added in the future
+          **request_params: 
 
-        Return:
-            response(json)
+        Returns:
+          response(json)
+
         """
-
         return super().update(
             id=guid,
             filters=self._format_filters(filters),
@@ -110,14 +104,13 @@ class DataExportRulesAPI(CrudEndpoint):
 
     def delete(self,
                guid):
-        """
-        A method to delete a DataExportRules object.
+        """A method to delete a DataExportRules object.
 
         Args:
-            guid(str): A string representing the object GUID.
+          guid: str
 
-        Return:
-            response(json)
+        Returns:
+          response(json)
+
         """
-
         return super().delete(id=guid)
