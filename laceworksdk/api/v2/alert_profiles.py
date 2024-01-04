@@ -3,6 +3,7 @@
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
+
 class AlertProfilesAPI(CrudEndpoint):
     """A class used to represent the `Alert Profiles API endpoint <https://docs.lacework.net/api/v2/docs/#tag/AlertProfiles>`_
 
@@ -12,10 +13,10 @@ class AlertProfilesAPI(CrudEndpoint):
         """Initializes the AlertProfilesAPI object.
 
         Args:
-          session(HttpSession): An instance of the HttpSession class
+            session (HttpSession): An instance of the HttpSession class
 
         Returns:
-            response(AlertProfilesAPI): returns an AlertProfilesAPI object
+            AlertProfilesAPI: returns an AlertProfilesAPI object
         """
         super().__init__(session, "AlertProfiles")
 
@@ -27,17 +28,17 @@ class AlertProfilesAPI(CrudEndpoint):
         """A method to create a new AlertProfiles object.
 
         Args:
-          alert_profile_id(str): A unique ID to name the new alert profile
-          extends(str):The base alert profile object.
-          alerts(list of dicts): A list of dictionaries containing alert details to create. Alert fields are:\n
+          alert_profile_id (str): A unique ID to name the new alert profile
+          extends (str):The base alert profile object.
+          alerts (list of dict): A list of dictionaries containing alert details to create. Alert fields are:
 
-              - name(str): The name of the alert. \n
-              - eventName(str): The name to show in Event Triage.\n
-              - description(str): The description to show in Event Triage.\n
-              - subject(str): The subject to show in the Event Dossier. \n
+              - name (str): The name of the alert.
+              - eventName (str): The name to show in Event Triage.
+              - description (str): The description to show in Event Triage.
+              - subject (str): The subject to show in the Event Dossier.
 
         Returns:
-            response(dict): A JSON object containing the created Alert Profile
+            dict: A JSON object containing the created Alert Profile
 
         """
         return super().create(
@@ -52,10 +53,10 @@ class AlertProfilesAPI(CrudEndpoint):
         """A method to get AlertProfiles objects.
 
         Args:
-          id(str): A string representing the alert profile ID.
+          id (str): A string representing the alert profile ID.
 
         Returns:
-            response(dict): a JSON object containing the returned alert profile(s)
+            dict: The returned alert profile(s)
         """
         return super().get(id=id)
 
@@ -64,10 +65,10 @@ class AlertProfilesAPI(CrudEndpoint):
         """A method to get an AlertProfiles object by ID.
 
         Args:
-          id(str): A string representing the alert profile ID.
+          id (str): A string representing the alert profile ID.
 
         Returns:
-            response(dict): a JSON object containing the returned alert profile(s)
+            dict: The returned alert profile(s)
         """
         return self.get(id=id)
 
@@ -84,16 +85,16 @@ class AlertProfilesAPI(CrudEndpoint):
         """A method to update an AlertProfiles object.
 
         Args:
-          id(str): A string representing the object ID.
-          alerts(list of dicts): A list of dictionaries containing alert details to update. Alert fields are:\n
+          id (str): A string representing the object ID.
+          alerts (list of dicts): A list of dictionaries containing alert details to update. Alert fields are:
 
-              - name(str): The name of the alert. \n
-              - eventName(str): The name to show in Event Triage.\n
-              - description(str): The description to show in Event Triage.\n
-              - subject(str): The subject to show in the Event Dossier. \n
+              - name (str): The name of the alert.
+              - eventName (str): The name to show in Event Triage.
+              - description (str): The description to show in Event Triage.
+              - subject (str): The subject to show in the Event Dossier.
 
         Returns:
-            response(dict): A JSON object containing the updated Alert Profile
+            dict: The updated Alert Profile
         """
         return super().update(
             id=id,
@@ -106,9 +107,9 @@ class AlertProfilesAPI(CrudEndpoint):
         """A method to delete an AlertProfiles object.
 
         Args:
-          guid(str): A string representing the alert profile ID.
+            id (str): A string representing the alert profile ID.
 
         Returns:
-            response(requests.models.Response): a Requests response object containing the response code
+            requests.models.Response: a Requests response object containing the response code
         """
         return super().delete(id=id)

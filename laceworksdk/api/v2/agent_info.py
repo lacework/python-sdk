@@ -13,9 +13,9 @@ class AgentInfoAPI(SearchEndpoint):
         """Initializes the AgentInfo API object.
 
         Args:
-          session(HttpSession): An instance of the HttpSession class
+          session (HttpSession): An instance of the HttpSession class
 
         Returns:
-            response(AgentInfoAPI): an AgentInfoAPI object.
+            AgentInfoAPI: an AgentInfoAPI object.
         """
         super().__init__(session, "AgentInfo")

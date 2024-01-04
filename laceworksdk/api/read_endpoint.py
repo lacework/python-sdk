@@ -17,9 +17,9 @@ class ReadEndpoint(BaseEndpoint):
         Initialize the ReadEndpoint Class.
 
         Args:
-            session(HttpSession): An instance of the HttpSession class.
-            object_type(str): The Lacework object type to use.
-            endpoint_root(str, optional): The URL endpoint root to use.
+            session (HttpSession): An instance of the HttpSession class.
+            object_type (str): The Lacework object type to use.
+            endpoint_root (str, optional): The URL endpoint root to use.
         """
         super().__init__(session, object_type, endpoint_root)
 
@@ -27,12 +27,12 @@ class ReadEndpoint(BaseEndpoint):
         """A method to get objects.
 
         Args:
-          id(str): A string representing the object ID.
-          resource(str): The Lacework API resource type to get.
-          request_params(any): A dictionary of parameters to add to the request.
+          id (str): A string representing the object ID.
+          resource (str): The Lacework API resource type to get.
+          request_params (any): A dictionary of parameters to add to the request.
 
         Returns:
-            response json
+            dict: the requested o
         """
 
         if not resource and self.RESOURCE:

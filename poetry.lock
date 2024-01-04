@@ -12,6 +12,17 @@ files = [
 ]
 
 [[package]]
+name = "anyascii"
+version = "0.3.2"
+description = "Unicode to ASCII transliteration"
+optional = false
+python-versions = ">=3.3"
+files = [
+    {file = "anyascii-0.3.2-py3-none-any.whl", hash = "sha256:3b3beef6fc43d9036d3b0529050b0c48bfad8bc960e9e562d7223cfb94fe45d4"},
+    {file = "anyascii-0.3.2.tar.gz", hash = "sha256:9d5d32ef844fe225b8bc7cba7f950534fae4da27a9bf3a6bea2cb0ea46ce4730"},
+]
+
+[[package]]
 name = "argcomplete"
 version = "2.0.6"
 description = "Bash tab completion for argparse"
@@ -25,6 +36,20 @@ files = [
 [package.extras]
 lint = ["flake8", "mypy"]
 test = ["coverage", "flake8", "mypy", "pexpect", "wheel"]
+
+[[package]]
+name = "astroid"
+version = "3.0.2"
+description = "An abstract syntax tree for Python with inference support."
+optional = false
+python-versions = ">=3.8.0"
+files = [
+    {file = "astroid-3.0.2-py3-none-any.whl", hash = "sha256:d6e62862355f60e716164082d6b4b041d38e2a8cf1c7cd953ded5108bac8ff5c"},
+    {file = "astroid-3.0.2.tar.gz", hash = "sha256:4a61cf0a59097c7bb52689b0fd63717cd2a8a14dc9f1eee97b82d814881c8c91"},
+]
+
+[package.dependencies]
+typing-extensions = {version = ">=4.0.0", markers = "python_version < \"3.11\""}
 
 [[package]]
 name = "autopep8"
@@ -904,6 +929,30 @@ lint = ["docutils-stubs", "flake8 (>=3.5.0)", "flake8-simplify", "isort", "mypy 
 test = ["cython (>=3.0)", "filelock", "html5lib", "pytest (>=4.6)", "setuptools (>=67.0)"]
 
 [[package]]
+name = "sphinx-autoapi"
+version = "3.0.0"
+description = "Sphinx API documentation generator"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "sphinx-autoapi-3.0.0.tar.gz", hash = "sha256:09ebd674a32b44467222b0fb8a917b97c89523f20dbf05b52cb8a3f0e15714de"},
+    {file = "sphinx_autoapi-3.0.0-py2.py3-none-any.whl", hash = "sha256:ea207793cba1feff7b2ded0e29364f2995a4d157303a98603cee0ce94cea2688"},
+]
+
+[package.dependencies]
+anyascii = "*"
+astroid = [
+    {version = ">=2.7", markers = "python_version < \"3.12\""},
+    {version = ">=3.0.0a1", markers = "python_version >= \"3.12\""},
+]
+Jinja2 = "*"
+PyYAML = "*"
+sphinx = ">=6.1.0"
+
+[package.extras]
+docs = ["furo", "sphinx", "sphinx-design"]
+
+[[package]]
 name = "sphinx-rtd-theme"
 version = "2.0.0"
 description = "Read the Docs theme for Sphinx"
@@ -1199,6 +1248,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<4"
-
-content-hash = "47f0c4c4488fe0a6aee0d7252d0947d7fc766a37950c783cd2c8950fed04fbf7"
-
+content-hash = "cc9a18bc078350fd215980100d6bd5f4c4653a162b215819c28aee16db679e6b"

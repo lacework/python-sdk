@@ -14,10 +14,10 @@ class AgentAccessTokensAPI(CrudEndpoint):
         """Initializes the AgentAccessTokensAPI object.
 
         Args:
-          session(HttpSession): An instance of the HttpSession class
+          session (HttpSession): An instance of the HttpSession class
 
         Returns:
-            AgentAccessTokensAPI object.
+            AgentAccessTokensAPI: An  AgentAccessTokensAPI object.
 
         """
         super().__init__(session, "AgentAccessTokens")
@@ -30,18 +30,16 @@ class AgentAccessTokensAPI(CrudEndpoint):
         """A method to create a new agent access token.
 
         Args:
-          alias(str): A string representing the name you wish to give to the created token.
-          enabled(bool|int): A boolean/integer representing whether the token is enabled.
-          props(dict, optional): A dict containing optional values for the following fields:\n
-                                - description(str, optional): a description of the token\n
-                                - os(str, optional): the operating system\n
-                                - subscription(str, optional): The subscription level of the token. Valid values are:\n
-                                                    - "standard"\n
-                                                    - "professional"\n
-                                                    - "enterprise"\n
+          alias (str): A string representing the name you wish to give to the created token.
+          enabled (bool|int): A boolean/integer representing whether the token is enabled.
+          props (dict, optional): A dict containing optional values for the following fields:
+                                - description(str, optional): a description of the token
+                                - os(str, optional): the operating system
+                                - subscription(str, optional): The subscription level of the token. Valid values are:
+                                "standard", "professional", "enterprise"
 
         Returns:
-            response(dict): a JSON object containing info regarding the new access token
+            dict: The new access token
         """
         return super().create(
             token_alias=alias,
@@ -55,10 +53,10 @@ class AgentAccessTokensAPI(CrudEndpoint):
         """A method to get an agent access token by its ID.
 
         Args:
-          id(str): A string representing the object ID.
+          id (str): A string representing the object ID.
 
         Returns:
-            response(dict): a JSON object containing info regarding the requested access token
+            dict: a JSON object containing info regarding the requested access token
 
         """
         return self.get(id=id)
@@ -71,18 +69,16 @@ class AgentAccessTokensAPI(CrudEndpoint):
         """A method to update an agent access token.
 
         Args:
-          id(str): A string representing the object ID.
-          enabled(bool|int, optional): A boolean/integer representing whether the object is enabled.
-          props(dict, optional): A dict containing optional values for the following fields:\n
-                                - description(str, optional): a description of the token\n
-                                - os(str, optional): the operating system\n
-                                - subscription(str, optional): The subscription level of the token. Valid values are:\n
-                                                    - "standard"\n
-                                                    - "professional"\n
-                                                    - "enterprise"\n
+          id (str): A string representing the object ID.
+          enabled (bool|int, optional): A boolean/integer representing whether the object is enabled.
+          props (dict, optional): A dict containing optional values for the following fields:\n
 
+                                - description (str, optional): a description of the token
+                                - os (str, optional): the operating system
+                                - subscription (str, optional): The subscription level of the token. Valid values are:
+                                "standard", "professional", "enterprise"
         Returns:
-            response(dict): a JSON object containing info for the updated access token.
+            dict: The updated access token.
 
         """
         if token_enabled is not None:

@@ -5,17 +5,20 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 
 
 class AlertRulesAPI(CrudEndpoint):
+    """A class used to represent the `Alert Rules API endpoint <https://docs.lacework.net/api/v2/docs/#tag/AlertRules>`_
 
+    Lacework combines alert channels and alert rules to provide a flexible method for routing alerts. For alert
+    channels, you define information about where to send alerts, such as to Jira, Slack, or email. For alert rules,
+    you define information about which alert types to send, such as critical and high severity compliance alerts.
+    """
     def __init__(self, session):
         """Initializes the AlertRulesAPI object.
 
         Args:
-          session: An instance of the HttpSession class
-
-        :return AlertRulesAPI object.
+          session (HttpSession): An instance of the HttpSession class
 
         Returns:
-
+            AlertRulesAPI: returns an AlertRulesAPI object
         """
         super().__init__(session, "AlertRules")
 
@@ -24,31 +27,15 @@ class AlertRulesAPI(CrudEndpoint):
                filters,
                intg_guid_list,
                **request_params):
-        """A method to create a new AlertRules object.
+        """A method to create new Alert Rules.
 
         Args:
-          type: A string representing the type of the object.
-        ('Event')
-          filters: A filter object for the object configuration.
-        obj:
-          name: A string representing the object name.
-          description: A string representing the object description.
-          enabled: A boolean/integer representing whether the object is enabled.
-        (0 or 1)
-          resourceGroups: A list of resource groups to define for the object.
-          eventCategory: A list of event categories to define for the object.
-        ("Compliance", "App", "Cloud", "File", "Machine", "User", "Platform", "K8sActivity")
-          severity: A list of alert severities to define for the object.
-        (1, 2, 3, 4, 5)
-          intg_guid_list: A list of integration GUIDs representing the alert channels to use.
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
-        
-        :return response json
-          **request_params: 
+            type (str): The type of the alert rule. Valid values are: "Event"
+            filters (dict): The alert rule definition. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertRules/paths/~1api~1v2~1AlertRules/post>`_ for valid values.
+            intg_guid_list (list of str): A list of GUIDs representing the alert channels to use.
 
         Returns:
-
+            dict: The new rule.
         """
         return super().create(
             type=type,
@@ -62,11 +49,10 @@ class AlertRulesAPI(CrudEndpoint):
         """A method to get AlertRules objects.
 
         Args:
-          guid: A string representing the object GUID.
-        
-        :return response json (Default value = None)
+            guid (str): The alert rule GUID to retrieve.
 
         Returns:
+            dict: The alert rule(s)
 
         """
         return super().get(id=guid)
@@ -76,46 +62,28 @@ class AlertRulesAPI(CrudEndpoint):
         """A method to get an AlertRules object by GUID.
 
         Args:
-          guid: A string representing the object GUID.
-        
-        :return response json
+            guid (str): The alert rule GUID.
 
         Returns:
+            dict: The alert rule
 
         """
         return self.get(guid=guid)
 
     def update(self,
                guid,
-               type=None,
                filters=None,
                intg_guid_list=None,
                **request_params):
         """A method to update an AlertRules object.
 
         Args:
-          guid: A string representing the object GUID.
-          type: A string representing the type of the object.
-        ('Event') (Default value = None)
-          filters: A filter object for the object configuration.
-        obj: (Default value = None)
-          name: A string representing the object name.
-          description: A string representing the object description.
-          enabled: A boolean/integer representing whether the object is enabled.
-        (0 or 1)
-          resourceGroups: A list of resource groups to define for the object.
-          eventCategory: A list of event categories to define for the object.
-        ("Compliance", "App", "Cloud", "File", "Machine", "User", "Platform", "K8sActivity")
-          severity: A list of alert severities to define for the object.
-        (1, 2, 3, 4, 5)
-          intg_guid_list: A list of integration GUIDs representing the alert channels to use. (Default value = None)
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
-        
-        :return response json
-          **request_params: 
+            guid (str): The Alert Rule GUID you wish to update.
+            filters (dict, optional): The alert rule definition. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertRules/paths/~1api~1v2~1AlertRules~1%7BmcGuid%7D/patch>`_ for valid values.
+            intg_guid_list (list of str, optional): A list of GUIDs representing the alert channels to use.
 
         Returns:
+            dict: The updated alert rule
 
         """
         return super().update(
@@ -131,11 +99,10 @@ class AlertRulesAPI(CrudEndpoint):
         """A method to delete an AlertRules object.
 
         Args:
-          guid: A string representing the object GUID.
-        
-        :return response json
+            guid (str): The alert rule GUID.
 
         Returns:
+            requests.models.Response: a Requests response object containing the response code
 
         """
         return super().delete(id=guid)

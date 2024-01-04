@@ -17,9 +17,9 @@ class SearchEndpoint(BaseEndpoint):
         Initialize the SearchEndpoint class.
 
         Args:
-            session(HttpSession): An instance of the HttpSession class.
-            object_type(str): The Lacework object type to use.
-            endpoint_root(str, optional): The URL endpoint root to use.
+            session (HttpSession): An instance of the HttpSession class.
+            object_type (str): The Lacework object type to use.
+            endpoint_root (str, optional): The URL endpoint root to use.
         """
         super().__init__(session, object_type, endpoint_root)
 
@@ -30,9 +30,9 @@ class SearchEndpoint(BaseEndpoint):
         depending on the operation you are using.
 
         Args:
-          json(list of dicts): A list of dictionaries containing the desired search parameters: \n
-            - field(str): The name of the data field to which the condition applies\n
-            - expression(str): The comparison operator for the filter condition. Valid values are:\n
+          json (list of dicts): A list of dictionaries containing the desired search parameters: \n
+            - field (str): The name of the data field to which the condition applies\n
+            - expression (str): The comparison operator for the filter condition. Valid values are:\n
                 - "eq"\n
                 - "ne"\n
                 - "in"\n
@@ -48,14 +48,15 @@ class SearchEndpoint(BaseEndpoint):
                 - "lt"\n
                 - "le"\n
                 - "between"\n
-            - value(str, optional):  The value that the condition checks for in the specified field. Use this attribute
+            - value (str, optional):  The value that the condition checks for in the specified field. Use this attribute
              when using an operator that requires a single value.\n
-            - values(list of str, optional): The values that the condition checks for in the specified field. Use this
+            - values (list of str, optional): The values that the condition checks for in the specified field. Use this
             attribute when using an operator that requires multiple values.\n
 
-        Returns:
-            a generator which yields a page of objects at a time as returned by the Lacework API.
+        Yields:
+            dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.
         """
+
         if not resource and self.RESOURCE:
             resource = self.RESOURCE
 

@@ -16,7 +16,7 @@ class AlertChannelsAPI(CrudEndpoint):
           session(HttpSession): An instance of the HttpSession class
 
         Returns:
-            response(AlertChannelsAPI): an AlertChannelsAPI object.
+            AlertChannelsAPI: an AlertChannelsAPI object.
         """
         super().__init__(session, "AlertChannels")
 
@@ -29,13 +29,13 @@ class AlertChannelsAPI(CrudEndpoint):
         """A method to create a new AlertChannels object.
 
         Args:
-          name(str): The name of the alert channel you wish to create.
-          type(str): The type of alert channel you wish to create. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
-          enabled(bool|int): A boolean/integer representing whether the object is enabled. (0 or 1)
-          data(dict): A JSON object matching the schema for the specified type. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
+          name (str): The name of the alert channel you wish to create.
+          type (str): The type of alert channel you wish to create. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
+          enabled (bool|int): A boolean/integer representing whether the object is enabled. (0 or 1)
+          data (dict): A dict matching the schema for the specified type. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
 
         Returns:
-            response(dict): a json object containing the new alert channel info.
+            dict: The new alert channel
         """
         return super().create(
             name=name,
@@ -51,11 +51,11 @@ class AlertChannelsAPI(CrudEndpoint):
         """A method to get all Alert Channels, optionally filtered by guid and/or type.
 
         Args:
-          guid(str, optional): The alert channel GUID.
-          type(str, optional): A string representing the alert channel type.
+            guid (str, optional): The alert channel GUID.
+            type (str, optional): A string representing the alert channel type.
 
         Returns:
-            response(dict): a json object containing the channel(s) requested.
+            dict: The channel(s) requested.
 
         """
         return super().get(
@@ -68,10 +68,10 @@ class AlertChannelsAPI(CrudEndpoint):
         """A method to get AlertChannels objects by GUID.
 
         Args:
-          guid(str): The alert channel GUID.
+            guid (str): The alert channel GUID.
 
         Returns:
-            response(dict): a json object containing the channel(s) requested.
+            dict: The channel(s) requested.
         """
         return self.get(guid=guid)
 
@@ -80,10 +80,10 @@ class AlertChannelsAPI(CrudEndpoint):
         """A method to get AlertChannels objects by type.
 
         Args:
-          type(str): The alert channel type to return
+          type (str): The alert channel type to return
 
         Returns:
-            response(dict): a json object containing the channel(s) requested.
+            dict: The channel(s) requested.
         """
         return self.get(type=type)
 
@@ -97,14 +97,14 @@ class AlertChannelsAPI(CrudEndpoint):
         """A method to update an AlertChannels object.
 
         Args:
-          guid(str): The guild of the alert channel to update.
-          name(str): The name of the alert channel you wish to update.
-          type(str): The type of alert channel you wish to update. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
-          enabled(bool|int): A boolean/integer representing whether the object is enabled. (0 or 1)
-          data(dict): A JSON object matching the schema for the specified type. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
+            guid (str): The guild of the alert channel to update.
+            name (str): The name of the alert channel you wish to update.
+            type (str): The type of alert channel you wish to update. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
+            enabled (bool|int): A boolean/integer representing whether the object is enabled. (0 or 1)
+            data (dict): A dict matching the schema for the specified type. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
 
         Returns:
-            response(dict): a json object containing the updated alert channel info.
+            dict: The updated alert channel info.
         """
 
         if enabled is not None:
@@ -124,10 +124,10 @@ class AlertChannelsAPI(CrudEndpoint):
         """A method to delete an AlertChannels object.
 
         Args:
-          guid(str): A string representing the object GUID.
+            guid (str): A string representing the object GUID.
 
         Returns:
-            response(requests.models.Response): a Requests response object containing the response code
+            requests.models.Response: a Requests response object containing the response code
         """
         return super().delete(id=guid)
 
@@ -136,10 +136,10 @@ class AlertChannelsAPI(CrudEndpoint):
         """A method to test an AlertChannels object.
 
         Args:
-          guid(str): A string representing the object GUID.
+            guid (str): A string representing the object GUID.
 
         Returns:
-            response(requests.models.Response): a Requests response object containing the response code
+            requests.models.Response: a Requests response object containing the response code
         """
         response = self._session.post(self.build_url(resource=guid, action="test"))
 

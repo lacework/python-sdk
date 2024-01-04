@@ -15,9 +15,9 @@ class BaseEndpoint:
         Initialize the BaseEndpoint class.
 
         Args:
-            session(HttpSession): An instance of the HttpSession class.
-            object_type(str): The Lacework object type to use.
-            endpoint_root(str, optional): The URL endpoint root to use.
+            session (HttpSession): An instance of the HttpSession class.
+            object_type (str): The Lacework object type to use.
+            endpoint_root (str, optional): The URL endpoint root to use.
         """
         super().__init__()
         self._session = session
@@ -28,11 +28,11 @@ class BaseEndpoint:
         """A method to build a dictionary based on inputs, pruning items that are None.
 
         Args:
-          *dicts: 
-          **items: 
+          dicts (dict): Some number of dictionaries the join together
+          items (any): Some number of keyword items to add to the joined dicts
 
         Returns:
-          A single dict built from the input.
+          dict: A single dict built from the input.
 
         """
         dict_list = list(dicts)
@@ -48,12 +48,13 @@ class BaseEndpoint:
         """Builds the URL to use based on the endpoint path, resource, type, and ID.
 
         Args:
-          id(str): A string representing the ID of an object to use in the URL
-          resource(str): A string representing the type of resource to append to the URL
-          action(str): A string representing the type of action to append to the URL (Default value = None)
+          id (str): A string representing the ID of an object to use in the URL
+          resource (str): A string representing the type of resource to append to the URL
+          action (str): A string representing the type of action to append to the URL (Default value = None)
 
         Returns:
-            json
+            str: a formatted URL
+
         """
         result = f"{self._endpoint_root}/{self._object_type}"
 
@@ -75,10 +76,10 @@ class BaseEndpoint:
         assume that the value is already in lowerCamelCase format.
 
         Args:
-          param_name(str): the name of the parameter you want to convert to lowerCamelCase
+          param_name (str): the name of the parameter you want to convert to lowerCamelCase
 
         Returns:
-            string(str): the converted string.
+            str: the converted string.
         """
         words = param_name.split("_")
         first_word = words[0]
@@ -94,11 +95,11 @@ class BaseEndpoint:
         """Iteratively process a dictionary to convert it to expected JSON.
 
         Args:
-          dictionary(dict): a dictionary
-          existing_keys(list): a list of keys to append to
+          dictionary (dict): a dictionary
+          existing_keys (list): a list of keys to append to
 
         Returns:
-          result(dict): A single dictionary of lowerCamelCase key/value pairs.
+          dict: A single dictionary of lowerCamelCase key/value pairs.
 
         Raises:
           KeyError: In case there is a duplicate key name in the dictionary.
@@ -128,10 +129,10 @@ class BaseEndpoint:
         """Get the schema for the current object type.
 
         Args:
-          subtype:  (Default value = None)
+          subtype (str):  subtype of object for which to retrieve schema
 
         Returns:
-            response json
+            dict: JSON object containing object schema
         """
         if subtype:
             url = f"/api/v2/schemas/{self._object_type}/{subtype}"
@@ -150,11 +151,6 @@ class BaseEndpoint:
     def validate_json(self, json, subtype=None):
         """TODO: A method to validate the provided JSON based on the schema of the current object.
 
-        Args:
-          json: 
-          subtype:  (Default value = None)
-
-        Returns:
 
         """
         schema = self._get_schema(subtype)

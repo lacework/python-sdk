@@ -5,16 +5,18 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 
 
 class CloudAccountsAPI(CrudEndpoint):
+    """A class used to represent the `Cloud Accounts API endpoint <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts>`_
 
+    Cloud accounts are integrations between Lacework and cloud providers such as Amazon Web Services, Microsoft Azure, and Google Cloud Platform.
+    """
     def __init__(self, session):
         """Initializes the CloudAccountsAPI object.
 
         Args:
-          session: An instance of the HttpSession class
-
-        :return CloudAccountsAPI object.
+          session (HttpSession): An instance of the HttpSession class
 
         Returns:
+            CloudAccountsAPI: An instance of this class
 
         """
         super().__init__(session, "CloudAccounts")
@@ -25,21 +27,17 @@ class CloudAccountsAPI(CrudEndpoint):
                enabled,
                data,
                **request_params):
-        """A method to create a new CloudAccounts object.
+        """A method to create a new cloud accounts integration.
 
         Args:
-          name: A string representing the object name.
-          type: A string representing the object type.
-          enabled: A boolean/integer representing whether the object is enabled.
-        (0 or 1)
-          data: A JSON object matching the schema for the specified type.
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
-        
-        :return response json
-          **request_params: 
+          name (str): The name of the integration to create.
+          type (str): The type of the integration. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts/paths/~1api~1v2~1CloudAccounts/post>`_ for valid values.
+          enabled (bool|int): Whether the object is enabled.
+          data (dict): The defintion of the new integration to create. Note this changes depending on the value of the "type" field.
+          See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts/paths/~1api~1v2~1CloudAccounts/post>`_ for valid values.
 
         Returns:
+            dict: Details of the newly created cloud account integration.
 
         """
         return super().create(
@@ -53,44 +51,38 @@ class CloudAccountsAPI(CrudEndpoint):
     def get(self,
             guid=None,
             type=None):
-        """A method to get CloudAccounts objects.
+        """A method to get cloud account integrations. Using no args will get all integrations.
 
         Args:
-          guid: A string representing the object GUID. (Default value = None)
-          type: A string representing the object type.
-        
-        :return response json (Default value = None)
+          guid (str, optional): The GUID of the integration to retrieve.
+          type (str, optional): The type of the integration(s) to retrieve. Valid types are: "AwsCfg", "AwsCtSqs", "AwsEksAudit", "AwsUsGovCfg", "AwsUsGovCtSqs", "AzureAlSeq", "AzureCfg", "GcpAtSes", "GcpCfg"
 
         Returns:
-
+            dict: The details of the requested integration(s)
         """
         return super().get(id=guid, resource=type)
 
     def get_by_guid(self,
                     guid):
-        """A method to get CloudAccounts objects by GUID.
+        """A method to get a cloud account integration by its GUID.
 
         Args:
-          guid: A string representing the object GUID.
-        
-        :return response json
+          guid (str): The GUID of the integration to retrieve.
 
         Returns:
-
+            dict: The details of the requested integration.
         """
         return self.get(guid=guid)
 
     def get_by_type(self,
                     type):
-        """A method to get CloudAccounts objects by type.
+        """A method to get cloud account integration(s) by type.
 
         Args:
-          type: A string representing the object type.
+            type (str, optional): The type of the integration(s) to retrieve. Valid types are: "AwsCfg", "AwsCtSqs", "AwsEksAudit", "AwsUsGovCfg", "AwsUsGovCtSqs", "AzureAlSeq", "AzureCfg", "GcpAtSes", "GcpCfg"
         
-        :return response json
-
         Returns:
-
+            dict: The details of the requested integration(s)
         """
         return self.get(type=type)
 
@@ -104,19 +96,15 @@ class CloudAccountsAPI(CrudEndpoint):
         """A method to update an CloudAccounts object.
 
         Args:
-          guid: A string representing the object GUID.
-          name: A string representing the object name. (Default value = None)
-          type: A string representing the object type. (Default value = None)
-          enabled: A boolean/integer representing whether the object is enabled.
-        (0 or 1) (Default value = None)
-          data: A JSON object matching the schema for the specified type. (Default value = None)
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
-        
-        :return response json
-          **request_params: 
+          guid (str): The GUID of the integration to update.
+          name (str, optional): The integration name.
+          type (str): The type of the integration. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts/paths/~1api~1v2~1CloudAccounts/post>`_ for valid values.
+          enabled (bool|int): Whether the object is enabled.
+          data (dict): The defintion of the new integration to create. Note this changes depending on the value of the "type" field.
+          See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts/paths/~1api~1v2~1CloudAccounts/post>`_ for valid values.
 
         Returns:
+            dict: The updated details for the integration specified.
 
         """
         if enabled is not None:
@@ -133,14 +121,12 @@ class CloudAccountsAPI(CrudEndpoint):
 
     def delete(self,
                guid):
-        """A method to delete an CloudAccounts object.
+        """A method to delete a cloud account integration.
 
         Args:
-          guid: A string representing the object GUID.
-        
-        :return response json
+          guid (str): The integration GUID to delete.
 
         Returns:
-
+            requests.models.Response: a Requests response object containing the response code
         """
         return super().delete(id=guid)
