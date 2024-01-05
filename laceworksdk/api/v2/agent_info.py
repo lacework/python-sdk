@@ -9,6 +9,7 @@ class AgentInfoAPI(SearchEndpoint):
 
     View and verify information about all agents.
     """
+
     def __init__(self, session):
         """Initializes the AgentInfo API object.
 

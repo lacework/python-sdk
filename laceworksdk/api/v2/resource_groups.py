@@ -7,7 +7,7 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 class ResourceGroupsAPI(CrudEndpoint):
     """A class used to represent the `Resource Groups API endpoint <https://docs.lacework.net/api/v2/docs/#tag/ResourceGroups>`_
 
-   Resource groups provide a way to categorize Lacework-identifiable assets.
+    Resource groups provide a way to categorize Lacework-identifiable assets.
     """
 
     def __init__(self, session):
@@ -21,12 +21,7 @@ class ResourceGroupsAPI(CrudEndpoint):
         """
         super().__init__(session, "ResourceGroups")
 
-    def create(self,
-               resource_name,
-               resource_type,
-               enabled,
-               props,
-               **request_params):
+    def create(self, resource_name, resource_type, enabled, props, **request_params):
         """A method to create a new ResourceGroups object.
 
         Args:
@@ -37,6 +32,7 @@ class ResourceGroupsAPI(CrudEndpoint):
           props (dict): The new resource group's properties. The format varies based on the value of the type arg. \
           See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/ResourceGroups/paths/~1api~1v2~1ResourceGroups/post>`_ \
           for valid fields.
+          request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
             dict: The newly created resource group
@@ -48,11 +44,10 @@ class ResourceGroupsAPI(CrudEndpoint):
             resource_type=resource_type,
             enabled=int(bool(enabled)),
             props=props,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            guid=None):
+    def get(self, guid=None):
         """A method to get resource groups. Using no args will get all resource groups.
 
         Args:
@@ -64,8 +59,7 @@ class ResourceGroupsAPI(CrudEndpoint):
         """
         return super().get(id=guid)
 
-    def get_by_guid(self,
-                    guid):
+    def get_by_guid(self, guid):
         """A method to get resource groups by GUID.
 
         Args:
@@ -77,13 +71,15 @@ class ResourceGroupsAPI(CrudEndpoint):
         """
         return self.get(guid=guid)
 
-    def update(self,
-               guid,
-               resource_name=None,
-               resource_type=None,
-               enabled=None,
-               props=None,
-               **request_params):
+    def update(
+        self,
+        guid,
+        resource_name=None,
+        resource_type=None,
+        enabled=None,
+        props=None,
+        **request_params,
+    ):
         """A method to update an ResourceGroups object.
 
         Args:
@@ -95,6 +91,7 @@ class ResourceGroupsAPI(CrudEndpoint):
           props (dict, optional): The new resource group's properties. The format varies based on the value of the type arg. \
           See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/ResourceGroups/paths/~1api~1v2~1ResourceGroups~1%7BresourceGuid%7D/patch>`_ \
           for valid fields.
+          request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
             dict: The newly created resource group
@@ -109,11 +106,10 @@ class ResourceGroupsAPI(CrudEndpoint):
             resource_type=resource_type,
             enabled=enabled,
             props=props,
-            **request_params
+            **request_params,
         )
 
-    def delete(self,
-               guid):
+    def delete(self, guid):
         """A method to delete a resource groups.
 
         Args:

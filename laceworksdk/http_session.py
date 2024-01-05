@@ -15,7 +15,7 @@ from laceworksdk import version
 from laceworksdk.config import (
     DEFAULT_ACCESS_TOKEN_EXPIRATION,
     DEFAULT_SUCCESS_RESPONSE_CODES,
-    RATE_LIMIT_RESPONSE_CODE
+    RATE_LIMIT_RESPONSE_CODE,
 )
 from laceworksdk.exceptions import ApiError, MalformedResponse, RateLimitError
 
@@ -32,14 +32,14 @@ class HttpSession:
 
     def __init__(self, account, subaccount, api_key, api_secret, base_domain):
         """
-        Initializes the HttpSession object.
+            Initializes the HttpSession object.
 
-    Args:
-        account (str): a Lacework Account name
-        subaccount (str): a Lacework Sub-account name
-        api_key (str): a Lacework API Key
-        api_secret (str): a Lacework API Secret
-        base_domain (str): a Lacework Domain (defaults to "lacework.net")
+        Args:
+            account (str): a Lacework Account name
+            subaccount (str): a Lacework Sub-account name
+            api_key (str): a Lacework API Key
+            api_secret (str): a Lacework API Secret
+            base_domain (str): a Lacework Domain (defaults to "lacework.net")
 
         Returns:
             HttpSession: An instance of this class
@@ -63,11 +63,13 @@ class HttpSession:
         # Get an access token
         self._check_access_token()
 
-    def _retry_session(self,
-                       retries=3,
-                       backoff_factor=0.3,
-                       status_forcelist=(500, 502, 503, 504),
-                       allowed_methods=None):
+    def _retry_session(
+        self,
+        retries=3,
+        backoff_factor=0.3,
+        status_forcelist=(500, 502, 503, 504),
+        allowed_methods=None,
+    ):
         """
         A method to set up automatic retries on HTTP requests that fail.
         """
@@ -81,7 +83,7 @@ class HttpSession:
             backoff_factor=backoff_factor,
             status_forcelist=status_forcelist,
             allowed_methods=allowed_methods,
-            raise_on_status=False
+            raise_on_status=False,
         )
 
         # Build the adapter with the retry criteria
@@ -98,15 +100,18 @@ class HttpSession:
         A method to check the validity of the access token.
         """
 
-        if self._access_token is None or self._access_token_expiry < datetime.now(timezone.utc):
-
+        if self._access_token is None or self._access_token_expiry < datetime.now(
+            timezone.utc
+        ):
             response = self._get_access_token()
 
             # Parse and restructure the returned date (necessary for Python 3.6)
             expiry_date = response.json()["expiresAt"].replace("Z", "+0000")
 
             # Update the access token and expiration
-            self._access_token_expiry = datetime.strptime(expiry_date, "%Y-%m-%dT%H:%M:%S.%f%z")
+            self._access_token_expiry = datetime.strptime(
+                expiry_date, "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             self._access_token = response.json()["token"]
 
     def _check_response_code(self, response, expected_response_codes):
@@ -155,14 +160,11 @@ class HttpSession:
         headers = {
             "X-LW-UAKS": self._api_secret,
             "Content-Type": "application/json",
-            "User-Agent": f"laceworksdk-python-client/{version}"
+            "User-Agent": f"laceworksdk-python-client/{version}",
         }
 
         # Build the access token request data
-        data = {
-            "keyId": self._api_key,
-            "expiryTime": DEFAULT_ACCESS_TOKEN_EXPIRATION
-        }
+        data = {"keyId": self._api_key, "expiryTime": DEFAULT_ACCESS_TOKEN_EXPIRATION}
 
         response = None
 
@@ -195,7 +197,9 @@ class HttpSession:
         headers = self._session.headers
 
         headers["Authorization"] = f"Bearer {self._access_token}"
-        headers["Org-Access"] = "true" if self._org_level_access or org_access else "false"
+        headers["Org-Access"] = (
+            "true" if self._org_level_access or org_access else "false"
+        )
         headers["User-Agent"] = f"laceworksdk-python-client/{version}"
 
         if self._subaccount:
@@ -210,13 +214,11 @@ class HttpSession:
         A method to abstract building requests to Lacework.
 
         Args:
-
             method (str): The HTTP request method ("GET", "POST", ...)
             uri (str): The URI of the API endpoint
             kwargs (Any): passed on to the requests package
 
         Returns:
-
             requests.models.Response: a Requests response object
 
         Raises:
@@ -236,10 +238,14 @@ class HttpSession:
         logger.info(f"{method} request to URI: {uri}")
 
         if "/api/v2/TeamUsers" in uri:
-            logger.warning("TeamUsers APIs is currently experimental and subject to change")
+            logger.warning(
+                "TeamUsers APIs is currently experimental and subject to change"
+            )
 
         if "/api/v2/UserGroups" in uri:
-            logger.warning("UserGroups API is currently experimental and subject to change")
+            logger.warning(
+                "UserGroups API is currently experimental and subject to change"
+            )
 
         # Check for 'org' - if True, make an organization-level API call
         # TODO: Remove this on v1.0 release - this is done for back compat
@@ -339,9 +345,13 @@ class HttpSession:
 
             try:
                 response_json = response.json()
-                next_page = response_json.get("paging", {}).get("urls", {}).get("nextPage")
+                next_page = (
+                    response_json.get("paging", {}).get("urls", {}).get("nextPage")
+                )
             except json.JSONDecodeError:
-                logger.error("Failed to decode response from Lacework as JSON.", exc_info=True)
+                logger.error(
+                    "Failed to decode response from Lacework as JSON.", exc_info=True
+                )
                 logger.debug(f"Response text: {response.text}")
                 next_page = None
 
@@ -450,7 +460,8 @@ class HttpSession:
         return response
 
     def delete(self, uri, data=None, json=None, **kwargs):
-        """
+        """A method to build a DELETE request to interact with Lacework.
+
         Args:
             uri (str): uri to send the HTTP POST request to
             data (Any) : data to be sent in the body of the request

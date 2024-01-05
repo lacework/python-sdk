@@ -7,8 +7,8 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 class ReportsAPI(BaseEndpoint):
     """A class used to represent the `Reports API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Reports>`_
 
-   Lacework combines details about non-compliant resources that are in violation into reports. You must configure at
-   least one cloud integration with AWS, Azure, or GCP to receive these reports.
+    Lacework combines details about non-compliant resources that are in violation into reports. You must configure at
+    least one cloud integration with AWS, Azure, or GCP to receive these reports.
     """
 
     def __init__(self, session):
@@ -22,12 +22,14 @@ class ReportsAPI(BaseEndpoint):
         """
         super().__init__(session, "Reports")
 
-    def get(self,
-            primary_query_id=None,
-            secondary_query_id=None,
-            format=None,
-            report_type=None,
-            **request_params):
+    def get(
+        self,
+        primary_query_id=None,
+        secondary_query_id=None,
+        format=None,
+        report_type=None,
+        **request_params,
+    ):
         """A method to get Reports objects.
 
         Args:
@@ -36,6 +38,7 @@ class ReportsAPI(BaseEndpoint):
           format (str, optional): The format of the report. Valid values: "csv", "html", "json", "pdf"
           report_type (str): The type of the report. See `available reports <https://docs.lacework.net/console/compliance-frameworks>`_ for a list of report types.\
           Valid values are in the "API Format" column.
+          request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
             dict: The details of the report
@@ -46,7 +49,7 @@ class ReportsAPI(BaseEndpoint):
             secondary_query_id=secondary_query_id,
             format=format,
             report_type=report_type,
-            **request_params
+            **request_params,
         )
 
         response = self._session.get(self.build_url(), params=params)

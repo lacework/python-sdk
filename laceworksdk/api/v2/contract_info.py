@@ -9,6 +9,7 @@ class ContractInfoAPI(BaseEndpoint):
 
     Get Lacework contract information.
     """
+
     def __init__(self, session):
         """Initializes the ContractInfoAPI object.
 
@@ -21,17 +22,15 @@ class ContractInfoAPI(BaseEndpoint):
         """
         super().__init__(session, "ContractInfo")
 
-    def get(self,
-            **request_params):
+    def get(self, **request_params):
         """A method to get contract info
 
         Returns:
             dict: Contract info for the lacework instance.
+            request_params (dict, optional): Use to pass any additional parameters the API
 
         """
-        params = self.build_dict_from_items(
-            request_params
-        )
+        params = self.build_dict_from_items(request_params)
 
         response = self._session.get(self.build_url(), params=params)
 

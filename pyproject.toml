@@ -59,6 +59,13 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff.lint]
 select = ["D"]
+ignore = ["D200", "D212", "D105", "D202", "D301", "D415"  ]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+docstring-code-format = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

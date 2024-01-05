@@ -9,6 +9,7 @@ class AlertProfilesAPI(CrudEndpoint):
 
     An alert profile is a set of metadata that defines how your LQL queries get consumed into events and alerts.
     """
+
     def __init__(self, session):
         """Initializes the AlertProfilesAPI object.
 
@@ -20,11 +21,7 @@ class AlertProfilesAPI(CrudEndpoint):
         """
         super().__init__(session, "AlertProfiles")
 
-    def create(self,
-               alert_profile_id,
-               alerts,
-               extends,
-               **request_params):
+    def create(self, alert_profile_id, alerts, extends, **request_params):
         """A method to create a new AlertProfiles object.
 
         Args:
@@ -37,6 +34,8 @@ class AlertProfilesAPI(CrudEndpoint):
               - description (str): The description to show in Event Triage.
               - subject (str): The subject to show in the Event Dossier.
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
         Returns:
             dict: A JSON object containing the created Alert Profile
 
@@ -45,11 +44,10 @@ class AlertProfilesAPI(CrudEndpoint):
             alert_profile_id=alert_profile_id,
             alerts=alerts,
             extends=extends,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            id=None):
+    def get(self, id=None):
         """A method to get AlertProfiles objects.
 
         Args:
@@ -60,8 +58,7 @@ class AlertProfilesAPI(CrudEndpoint):
         """
         return super().get(id=id)
 
-    def get_by_id(self,
-                  id):
+    def get_by_id(self, id):
         """A method to get an AlertProfiles object by ID.
 
         Args:
@@ -78,10 +75,7 @@ class AlertProfilesAPI(CrudEndpoint):
         """
         pass
 
-    def update(self,
-               id,
-               alerts=None,
-               **request_params):
+    def update(self, id, alerts=None, **request_params):
         """A method to update an AlertProfiles object.
 
         Args:
@@ -93,17 +87,14 @@ class AlertProfilesAPI(CrudEndpoint):
               - description (str): The description to show in Event Triage.
               - subject (str): The subject to show in the Event Dossier.
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
         Returns:
             dict: The updated Alert Profile
         """
-        return super().update(
-            id=id,
-            alerts=alerts,
-            **request_params
-        )
+        return super().update(id=id, alerts=alerts, **request_params)
 
-    def delete(self,
-               id):
+    def delete(self, id):
         """A method to delete an AlertProfiles object.
 
         Args:

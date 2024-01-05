@@ -10,6 +10,7 @@ class PoliciesAPI(CrudEndpoint):
     Policies are a mechanism used to add annotated metadata to queries for improving the context of alerts, reports,
     and information displayed in the Lacework Console. You can fully customize policies.
     """
+
     def __init__(self, session):
         """Initializes the PoliciesAPI object.
 
@@ -22,20 +23,22 @@ class PoliciesAPI(CrudEndpoint):
         """
         super().__init__(session, "Policies")
 
-    def create(self,
-               policy_type,
-               query_id,
-               enabled,
-               title,
-               description,
-               remediation,
-               severity,
-               alert_enabled,
-               alert_profile,
-               limit=1000,
-               eval_frequency=None,
-               tags=[],
-               **request_params):
+    def create(
+        self,
+        policy_type,
+        query_id,
+        enabled,
+        title,
+        description,
+        remediation,
+        severity,
+        alert_enabled,
+        alert_profile,
+        limit=1000,
+        eval_frequency=None,
+        tags=[],
+        **request_params,
+    ):
         """A method to create a new Policies object.
 
         Args:
@@ -53,6 +56,7 @@ class PoliciesAPI(CrudEndpoint):
           tags (list of str): A list of policy tags
           eval_frequency (str, optional, deprecated): A string representing the frequency in which to evaluate the \
           object. Valid values are: "Hourly", "Daily"
+          request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
           dict: The newly created policy.
@@ -71,11 +75,10 @@ class PoliciesAPI(CrudEndpoint):
             tags=tags,
             limit=limit,
             eval_frequency=eval_frequency,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            policy_id=None):
+    def get(self, policy_id=None):
         """A method to get Policies objects. Using no args will get all policies.
 
         Args:
@@ -87,8 +90,7 @@ class PoliciesAPI(CrudEndpoint):
         """
         return super().get(id=policy_id)
 
-    def get_by_id(self,
-                  policy_id):
+    def get_by_id(self, policy_id):
         """A method to get a Policies object by policy ID.
 
         Args:
@@ -100,21 +102,23 @@ class PoliciesAPI(CrudEndpoint):
         """
         return self.get(policy_id=policy_id)
 
-    def update(self,  # noqa: C901
-               policy_id,
-               policy_type=None,
-               query_id=None,
-               enabled=None,
-               title=None,
-               description=None,
-               remediation=None,
-               severity=None,
-               alert_enabled=None,
-               alert_profile=None,
-               limit=None,
-               tags=[],
-               eval_frequency=None,
-               **request_params):
+    def update(
+        self,  # noqa: C901
+        policy_id,
+        policy_type=None,
+        query_id=None,
+        enabled=None,
+        title=None,
+        description=None,
+        remediation=None,
+        severity=None,
+        alert_enabled=None,
+        alert_profile=None,
+        limit=None,
+        tags=[],
+        eval_frequency=None,
+        **request_params,
+    ):
         """A method to update a Lacework Query Language (LQL) policy.
 
         Args:
@@ -133,6 +137,7 @@ class PoliciesAPI(CrudEndpoint):
           tags (list of str, optional): A list of policy tags
           eval_frequency (str, optional, deprecated): A string representing the frequency in which to evaluate the \
           object. Valid values are: "Hourly", "Daily"
+          request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
           dict: The newly created policy.
@@ -158,11 +163,10 @@ class PoliciesAPI(CrudEndpoint):
             limit=limit,
             tags=tags,
             eval_frequency=eval_frequency,
-            **request_params
+            **request_params,
         )
 
-    def bulk_update(self,
-                    json):
+    def bulk_update(self, json):
         """A method to update Policy objects in bulk.
 
         Args:
@@ -179,8 +183,7 @@ class PoliciesAPI(CrudEndpoint):
 
         return response.json()
 
-    def delete(self,
-               policy_id):
+    def delete(self, policy_id):
         """A method to delete a policy.
 
         Args:

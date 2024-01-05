@@ -9,6 +9,7 @@ class PolicyExceptionsAPI(CrudEndpoint):
 
     Policy exceptions are a mechanism used to maintain the policies but allow you to circumvent one or more restrictions.
     """
+
     def __init__(self, session):
         """Initializes the PolicyExceptionsAPI object.
 
@@ -21,11 +22,7 @@ class PolicyExceptionsAPI(CrudEndpoint):
         """
         super().__init__(session, "Exceptions")
 
-    def create(self,
-               policy_id,
-               description,
-               constraints,
-               **request_params):
+    def create(self, policy_id, description, constraints, **request_params):
         """A method to create a new Exceptions object.
 
         Args:
@@ -36,24 +33,22 @@ class PolicyExceptionsAPI(CrudEndpoint):
               'accountIds', 'resourceNames', 'regionNames' and 'resourceTags'
               - field_values (list of str): Constraint values
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
         Returns:
             dict: The created policy exception
 
         """
-        params = self.build_dict_from_items(
-            policy_id=policy_id
-        )
+        params = self.build_dict_from_items(policy_id=policy_id)
 
         return super().create(
             params=params,
             description=description,
             constraints=constraints,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            exception_id=None,
-            policy_id=None):
+    def get(self, exception_id=None, policy_id=None):
         """A method to get Exceptions objects.
 
         Args:
@@ -66,9 +61,7 @@ class PolicyExceptionsAPI(CrudEndpoint):
         """
         return super().get(id=exception_id, policy_id=policy_id)
 
-    def get_by_id(self,
-                  exception_id,
-                  policy_id):
+    def get_by_id(self, exception_id, policy_id):
         """A method to get a Exceptions object by policy ID.
 
         Args:
@@ -79,17 +72,16 @@ class PolicyExceptionsAPI(CrudEndpoint):
             dict: The requested exception(s)
 
         """
-        return self.get(
-            exception_id=exception_id,
-            policy_id=policy_id
-        )
+        return self.get(exception_id=exception_id, policy_id=policy_id)
 
-    def update(self,
-               exception_id,
-               policy_id,
-               description=None,
-               constraints=None,
-               **request_params):
+    def update(
+        self,
+        exception_id,
+        policy_id,
+        description=None,
+        constraints=None,
+        **request_params,
+    ):
         """A method to create a new Exceptions object.
 
         Args:
@@ -101,25 +93,23 @@ class PolicyExceptionsAPI(CrudEndpoint):
               'accountIds', 'resourceNames', 'regionNames' and 'resourceTags'
               - field_values (list of str): Constraint values
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
         Returns:
             dict: The updated policy exception
 
         """
-        params = self.build_dict_from_items(
-            policy_id=policy_id
-        )
+        params = self.build_dict_from_items(policy_id=policy_id)
 
         return super().update(
             id=exception_id,
             params=params,
             description=description,
             constraints=constraints,
-            **request_params
+            **request_params,
         )
 
-    def delete(self,
-               exception_id,
-               policy_id):
+    def delete(self, exception_id, policy_id):
         """A method to delete a policy xception
 
         Args:
@@ -129,8 +119,6 @@ class PolicyExceptionsAPI(CrudEndpoint):
         Returns:
             requests.models.Response: a Requests response object containing the response code
         """
-        params = self.build_dict_from_items(
-            policy_id=policy_id
-        )
+        params = self.build_dict_from_items(policy_id=policy_id)
 
         return super().delete(id=exception_id, params=params)

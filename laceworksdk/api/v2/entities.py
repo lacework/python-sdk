@@ -6,10 +6,10 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 
 class EntitiesAPI:
     """A class used to represent the `Entities API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Entities>`_
-    
+
     The Entities API endpoint is simply a parent for different types of
     entities that can be queried.
-    
+
     Attributes:
     ----------
     applications:
@@ -60,7 +60,9 @@ class EntitiesAPI:
         self.containers = self.ContainersAPI(session, self._base_path)
         self.files = self.FilesAPI(session, self._base_path)
         self.images = self.ImagesAPI(session, self._base_path)
-        self.internal_ip_addresses = self.InternalIPAddressesAPI(session, self._base_path)
+        self.internal_ip_addresses = self.InternalIPAddressesAPI(
+            session, self._base_path
+        )
         self.k8s_pods = self.K8sPodsAPI(session, self._base_path)
         self.machines = self.MachinesAPI(session, self._base_path)
         self.machine_details = self.MachineDetailsAPI(session, self._base_path)
@@ -78,6 +80,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search Applications objects.
         """
+
         RESOURCE = "Applications"
 
     class CommandLinesAPI(SearchEndpoint):
@@ -88,6 +91,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search CommandLines objects.
         """
+
         RESOURCE = "CommandLines"
 
     class ContainersAPI(SearchEndpoint):
@@ -98,6 +102,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search Containers objects.
         """
+
         RESOURCE = "Containers"
 
     class FilesAPI(SearchEndpoint):
@@ -108,6 +113,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search Files objects.
         """
+
         RESOURCE = "Files"
 
     class ImagesAPI(SearchEndpoint):
@@ -118,6 +124,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search Images objects.
         """
+
         RESOURCE = "Images"
 
     class InternalIPAddressesAPI(SearchEndpoint):
@@ -128,6 +135,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search InternalIPAddresses objects.
         """
+
         RESOURCE = "InternalIPAddresses"
 
     class K8sPodsAPI(SearchEndpoint):
@@ -138,6 +146,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search K8sPods objects.
         """
+
         RESOURCE = "K8sPods"
 
     class MachinesAPI(SearchEndpoint):
@@ -148,6 +157,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search Machines objects.
         """
+
         RESOURCE = "Machines"
 
     class MachineDetailsAPI(SearchEndpoint):
@@ -158,6 +168,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search MachineDetails objects.
         """
+
         RESOURCE = "MachineDetails"
 
     class NetworkInterfacesAPI(SearchEndpoint):
@@ -168,6 +179,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search NetworkInterfaces objects.
         """
+
         RESOURCE = "NetworkInterfaces"
 
     class NewFileHashesAPI(SearchEndpoint):
@@ -178,6 +190,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search NewFileHashes objects.
         """
+
         RESOURCE = "NewFileHashes"
 
     class PackagesAPI(SearchEndpoint):
@@ -188,6 +201,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search Packages objects.
         """
+
         RESOURCE = "Packages"
 
     class ProcessesAPI(SearchEndpoint):
@@ -198,6 +212,7 @@ class EntitiesAPI:
         search(json=None)
             A method to search Processes objects.
         """
+
         RESOURCE = "Processes"
 
     class UsersAPI(SearchEndpoint):
@@ -208,4 +223,5 @@ class EntitiesAPI:
         search(json=None)
             A method to search Users objects.
         """
+
         RESOURCE = "Users"

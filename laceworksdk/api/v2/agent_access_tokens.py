@@ -22,11 +22,7 @@ class AgentAccessTokensAPI(CrudEndpoint):
         """
         super().__init__(session, "AgentAccessTokens")
 
-    def create(self,
-               alias,
-               enabled,
-               props=None,
-               **request_params):
+    def create(self, alias, enabled, props=None, **request_params):
         """A method to create a new agent access token.
 
         Args:
@@ -37,6 +33,7 @@ class AgentAccessTokensAPI(CrudEndpoint):
                                 - os(str, optional): the operating system
                                 - subscription(str, optional): The subscription level of the token. Valid values are:
                                 "standard", "professional", "enterprise"
+          request_params (dict): Use to pass any additional parameters the API
 
         Returns:
             dict: The new access token
@@ -45,11 +42,10 @@ class AgentAccessTokensAPI(CrudEndpoint):
             token_alias=alias,
             token_enabled=int(bool(enabled)),
             props=props,
-            **request_params
+            **request_params,
         )
 
-    def get_by_id(self,
-                  id):
+    def get_by_id(self, id):
         """A method to get an agent access token by its ID.
 
         Args:
@@ -61,22 +57,21 @@ class AgentAccessTokensAPI(CrudEndpoint):
         """
         return self.get(id=id)
 
-    def update(self,
-               id,
-               token_enabled=None,
-               props=None,
-               **request_params):
+    def update(self, id, token_enabled=None, props=None, **request_params):
         """A method to update an agent access token.
 
         Args:
           id (str): A string representing the object ID.
-          enabled (bool|int, optional): A boolean/integer representing whether the object is enabled.
+          token_enabled (bool|int, optional): A boolean/integer representing whether the object is enabled.
           props (dict, optional): A dict containing optional values for the following fields:\n
 
                                 - description (str, optional): a description of the token
                                 - os (str, optional): the operating system
                                 - subscription (str, optional): The subscription level of the token. Valid values are:
                                 "standard", "professional", "enterprise"
+
+          request_params (dict): Use to pass any additional parameters the API
+
         Returns:
             dict: The updated access token.
 
@@ -85,10 +80,7 @@ class AgentAccessTokensAPI(CrudEndpoint):
             token_enabled = int(bool(token_enabled))
 
         return super().update(
-            id=id,
-            token_enabled=token_enabled,
-            props=props,
-            **request_params
+            id=id, token_enabled=token_enabled, props=props, **request_params
         )
 
     def delete(self):

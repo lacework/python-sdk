@@ -5,13 +5,13 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
 class UserGroupsAPI(BaseEndpoint):
-    """A class used to represent the `User Groups API endpoint <https://docs.lacework.net/api/v2/docs/#tag/UserGroups>`_
+    """A class used to represent the `User Groups API endpoint <https://docs.lacework.net/api/v2/docs/#tag/UserGroups>`_ .
 
     A user group associates Lacework service and standard users with specific permissions in Lacework.
     """
+
     def __init__(self, session):
-        """
-        Initialize the UserGroupsAPI object
+        """Initialize the UserGroupsAPI object.
 
         Args:
           session(HttpSession): An instance of the HttpSession class
@@ -26,7 +26,9 @@ class UserGroupsAPI(BaseEndpoint):
             user_guids=user_guids,
         )
 
-        response = self._session.post(self.build_url(resource=guid, action=action), json=json, params=None)
+        response = self._session.post(
+            self.build_url(resource=guid, action=action), json=json, params=None
+        )
 
         return response.json()
 
@@ -48,7 +50,7 @@ class UserGroupsAPI(BaseEndpoint):
         Args:
           guid (str): The GUID of the UserGroup object to modify.
           user_guids (list of str): An array of user guids to remove from the user group
-        
+
         Returns:
             dict: The modified results
 

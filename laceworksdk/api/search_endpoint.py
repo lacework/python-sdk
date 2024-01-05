@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+"""The base search class for the Lacework Python SDK"""
 from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
@@ -9,10 +9,7 @@ class SearchEndpoint(BaseEndpoint):
     # If defined, this is the resource used in the URL path
     RESOURCE = ""
 
-    def __init__(self,
-                 session,
-                 object_type,
-                 endpoint_root="/api/v2"):
+    def __init__(self, session, object_type, endpoint_root="/api/v2"):
         """
         Initialize the SearchEndpoint class.
 
@@ -24,8 +21,9 @@ class SearchEndpoint(BaseEndpoint):
         super().__init__(session, object_type, endpoint_root)
 
     def search(self, json=None, resource=None, **kwargs):
-        """A method to search objects. See the API documentation for this API endpoint for valid fields to search
-        against.
+        """A method to search objects.
+
+        See the API documentation for this API endpoint for valid fields to search against.
 
         NOTE: While the "value" and "values" fields are marked as "optional" you must use one of them,
         depending on the operation you are using.
@@ -40,6 +38,8 @@ class SearchEndpoint(BaseEndpoint):
              when using an operator that requires a single value.
             - values (list of str, optional): The values that the condition checks for in the specified field. Use this \
             attribute when using an operator that requires multiple values.
+          resource (str): The Lacework API resource to search (Example: "AlertChannels")
+          kwargs (any, optional): Pass additional params with this
 
         Yields:
             dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.
@@ -48,14 +48,18 @@ class SearchEndpoint(BaseEndpoint):
         if not resource and self.RESOURCE:
             resource = self.RESOURCE
 
-        response = self._session.post(self.build_url(resource=resource, action="search"), json=json)
+        response = self._session.post(
+            self.build_url(resource=resource, action="search"), json=json
+        )
 
         while True:
             response_json = response.json()
             yield response_json
 
             try:
-                next_page = response_json.get("paging", {}).get("urls", {}).get("nextPage")
+                next_page = (
+                    response_json.get("paging", {}).get("urls", {}).get("nextPage")
+                )
             except Exception:
                 next_page = None
 

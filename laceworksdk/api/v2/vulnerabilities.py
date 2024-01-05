@@ -6,13 +6,13 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
 class VulnerabilitiesAPI:
-    """A class used to represent the `Vulnerabilities API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Vulnerabilities>`_
-    
+    """A class used to represent the `Vulnerabilities API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Vulnerabilities>`_ .
+
     The Vulnerabilities API endpoint is a parent for different types of
     vulnerabilities that can be queried.  Due to namespace overlap with the v1
     API, this class is a subclass of VulnerabilityAPI to expose those methods
     and provide backwards compatibility.
-    
+
     Attributes:
     ----------
     containers:
@@ -45,62 +45,61 @@ class VulnerabilitiesAPI:
 
     class ContainerVulnerabilitiesAPI(SearchEndpoint):
         """A class used to represent the Container Vulnerabilities API endpoint."""
+
         RESOURCE = "Containers"
 
-        def scan(self,
-                 registry,
-                 repository,
-                 tag,
-                 **request_params):
+        def scan(self, registry, repository, tag, **request_params):
             """A method to issue Container Vulnerability scans.
 
             Args:
               registry (str): The container registry to use.
               repository (str): The container repository to use.
               tag (str): The container tag to use.
+              request_params (dict, optional): Use to pass any additional parameters the API
 
             Returns:
                 dict: The status of the requested scan
             """
 
             json = self.build_dict_from_items(
-                **request_params,
-                registry=registry,
-                repository=repository,
-                tag=tag
+                **request_params, registry=registry, repository=repository, tag=tag
             )
 
-            response = self._session.post(self.build_url(resource="Containers", action="scan"), json=json)
+            response = self._session.post(
+                self.build_url(resource="Containers", action="scan"), json=json
+            )
 
             return response.json()
 
-        def status(self,
-                   request_id):
+        def status(self, request_id):
             """A method to get the status of a Container Vulnerability scan.
 
             Args:
-              rquest_id (str): The request ID of the container scan
+              request_id (str): The request ID of the container scan
 
             Returns:
                 dict: The status of the requested scan
             """
             if request_id is None or len(request_id) == 0:
-                raise ValueError("The value 'request_id' must be a valid container scan request ID.")
+                raise ValueError(
+                    "The value 'request_id' must be a valid container scan request ID."
+                )
 
-            response = self._session.get(self.build_url(id=request_id, resource="Containers", action="scan"))
+            response = self._session.get(
+                self.build_url(id=request_id, resource="Containers", action="scan")
+            )
 
             return response.json()
 
     class HostVulnerabilitiesAPI(SearchEndpoint):
         """A class used to represent the Host Vulnerabilities API endpoint."""
+
         RESOURCE = "Hosts"
 
     class SoftwarePackagesAPI(BaseEndpoint):
         """A class used to represent the Software Packages API endpoint."""
 
-        def scan(self,
-                 os_pkg_info_list,
-                 **request_params):
+        def scan(self, os_pkg_info_list, **request_params):
             """A method to initiate a software package vulnerability scan.
 
             Args:
@@ -112,16 +111,19 @@ class VulnerabilitiesAPI:
                   - pkg (str): The name of the software package.
                   - pkgVer (str): The verion of the software package.
 
+              request_params (dict, optional): Use to pass any additional parameters the API
+
             Returns:
                 dict: The resulting vulnerability data
 
             """
 
             json = self.build_dict_from_items(
-                **request_params,
-                os_pkg_info_list=os_pkg_info_list
+                **request_params, os_pkg_info_list=os_pkg_info_list
             )
 
-            response = self._session.post(self.build_url(resource="SoftwarePackages", action="scan"), json=json)
+            response = self._session.post(
+                self.build_url(resource="SoftwarePackages", action="scan"), json=json
+            )
 
             return response.json()

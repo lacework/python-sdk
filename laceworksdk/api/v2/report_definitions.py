@@ -10,6 +10,7 @@ class ReportDefinitionsAPI(CrudEndpoint):
     A report definition contains data retrieval and layout information for a report. Lacework provides endpoints to\
     create a report definition, to list all definitions, and to update or delete a definition.
     """
+
     def __init__(self, session):
         """Initializes the ReportDefinitionsAPI object.
 
@@ -23,12 +24,14 @@ class ReportDefinitionsAPI(CrudEndpoint):
 
         super().__init__(session, "ReportDefinitions")
 
-    def create(self,
-               report_name,
-               report_type,
-               sub_report_type,
-               report_definition,
-               **request_params):
+    def create(
+        self,
+        report_name,
+        report_type,
+        sub_report_type,
+        report_definition,
+        **request_params,
+    ):
         """A method to create a new report definition.
 
         Args:
@@ -44,6 +47,8 @@ class ReportDefinitionsAPI(CrudEndpoint):
                 - title (str): The section's title.
                 - policies (list of str): A list strings representing the section's policies.
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
         Returns:
             dict: The created report definition
 
@@ -53,11 +58,10 @@ class ReportDefinitionsAPI(CrudEndpoint):
             report_type=report_type,
             sub_report_type=sub_report_type,
             report_definition=report_definition,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            id=None):
+    def get(self, id=None):
         """A method to get report definitions. Using no args will get all report definitions.
 
         Args:
@@ -69,8 +73,7 @@ class ReportDefinitionsAPI(CrudEndpoint):
         """
         return super().get(id=id)
 
-    def get_by_id(self,
-                  id):
+    def get_by_id(self, id):
         """A method to get a report definition by ID.
 
         Args:
@@ -82,18 +85,14 @@ class ReportDefinitionsAPI(CrudEndpoint):
         """
         return self.get(id=id)
 
-    def search(self, **request_params):
+    def search(self):
         """A method to 'pass' when attempting to search ReportDefinitions objects.
-        
+
         Search functionality is not yet implemented for Alert Profiles.
         """
         pass
 
-    def update(self,
-               id,
-               report_name,
-               report_definition,
-               **request_params):
+    def update(self, id, report_name, report_definition, **request_params):
         """A method to update a report definition.
 
         Args:
@@ -108,21 +107,22 @@ class ReportDefinitionsAPI(CrudEndpoint):
                 - title (str): The section's title.
                 - policies (list of str): A list strings representing the section's policies.
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
         Returns:
             dict: The updated report definition
         """
         json = self.build_dict_from_items(
             report_name=report_name,
             report_definition=report_definition,
-            **request_params
+            **request_params,
         )
 
         response = self._session.patch(self.build_url(id=id), json=json)
 
         return response.json()
 
-    def delete(self,
-               id):
+    def delete(self, id):
         """A method to delete a report definition.
 
         Args:

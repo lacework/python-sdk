@@ -9,6 +9,7 @@ class EventsAPI(SearchEndpoint):
 
     View and verify the evidence or observation details of individual events.
     """
+
     def __init__(self, session):
         """Initializes the EventsAPI object.
 

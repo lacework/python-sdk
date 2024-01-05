@@ -11,6 +11,7 @@ class ReportRulesAPI(CrudEndpoint):
     rules, you define information about which reports to send. For alert channels, you define where to send reports\
     such as to Jira, Slack, or email.
     """
+
     def __init__(self, session):
         """Initializes the ReportRulesAPI object.
 
@@ -23,12 +24,9 @@ class ReportRulesAPI(CrudEndpoint):
         """
         super().__init__(session, "ReportRules")
 
-    def create(self,
-               type,
-               filters,
-               intg_guid_list,
-               report_notification_types,
-               **request_params):
+    def create(
+        self, type, filters, intg_guid_list, report_notification_types, **request_params
+    ):
         """A method to create a new report rule.
 
         Args:
@@ -56,6 +54,8 @@ class ReportRulesAPI(CrudEndpoint):
               "openShiftComplianceEvents", "pci", "platformEvents", "soc", "awsSocRev2", "trendReport", "awsPciDss321", "awsNist80053Rev5",
               "awsSoc2", "awsNist800171Rev2", "awsNistCsf", "awsCmmc102", "awsHipaa", "awsIso270012013"
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
 
         Returns:
             dict: The created report rule
@@ -65,11 +65,10 @@ class ReportRulesAPI(CrudEndpoint):
             filters=self._format_filters(filters),
             intg_guid_list=intg_guid_list,
             report_notification_types=report_notification_types,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            guid=None):
+    def get(self, guid=None):
         """A method to get ReportRules objects. Using no args will get all report rules.
 
         Args:
@@ -81,8 +80,7 @@ class ReportRulesAPI(CrudEndpoint):
         """
         return super().get(id=guid)
 
-    def get_by_guid(self,
-                    guid):
+    def get_by_guid(self, guid):
         """A method to get a report rule by GUID.
 
         Args:
@@ -95,13 +93,14 @@ class ReportRulesAPI(CrudEndpoint):
         """
         return self.get(guid=guid)
 
-    def update(self,
-               guid,
-               type=None,
-               filters=None,
-               intg_guid_list=None,
-               report_notification_types=None,
-               **request_params):
+    def update(
+        self,
+        guid,
+        filters=None,
+        intg_guid_list=None,
+        report_notification_types=None,
+        **request_params,
+    ):
         """A method to update a ReportRules object.
 
         Args:
@@ -129,21 +128,20 @@ class ReportRulesAPI(CrudEndpoint):
               "openShiftComplianceEvents", "pci", "platformEvents", "soc", "awsSocRev2", "trendReport", "awsPciDss321", "awsNist80053Rev5",
               "awsSoc2", "awsNist800171Rev2", "awsNistCsf", "awsCmmc102", "awsHipaa", "awsIso270012013"
 
+          request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
             dict: The created report rule
         """
         return super().update(
             id=guid,
-            type=type,
             filters=self._format_filters(filters),
             intg_guid_list=intg_guid_list,
             report_notification_types=report_notification_types,
-            **request_params
+            **request_params,
         )
 
-    def delete(self,
-               guid):
+    def delete(self, guid):
         """A method to delete a report rule.
 
         Args:

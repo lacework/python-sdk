@@ -11,6 +11,7 @@ class DataExportRulesAPI(CrudEndpoint):
     choice. You can extend Lacework processed/normalized data to report/visualize alone or combine with other
     business/security data to get insights and make meaningful business decisions.
     """
+
     def __init__(self, session):
         """Initializes the DataExportRulesAPI object.
 
@@ -23,11 +24,7 @@ class DataExportRulesAPI(CrudEndpoint):
         """
         super().__init__(session, "DataExportRules")
 
-    def create(self,
-               type,
-               filters,
-               intg_guid_list,
-               **request_params):
+    def create(self, type, filters, intg_guid_list, **request_params):
         """A method to create a new DataExportRules object.
 
         Args:
@@ -40,6 +37,8 @@ class DataExportRulesAPI(CrudEndpoint):
               - description (str, optional): The description of the export rule
               - profileVersions (list of str, optional): A list of profile versions
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
         Returns:
           dict: The created data export rule
 
@@ -48,11 +47,10 @@ class DataExportRulesAPI(CrudEndpoint):
             filters=self._format_filters(filters),
             type=type,
             intg_guid_list=intg_guid_list,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            guid=None):
+    def get(self, guid=None):
         """A method to get data export rules. Using no args will get all rules.
 
         Args:
@@ -64,8 +62,7 @@ class DataExportRulesAPI(CrudEndpoint):
         """
         return super().get(id=guid)
 
-    def get_by_guid(self,
-                    guid):
+    def get_by_guid(self, guid):
         """A method to get an DataExportRules object by GUID.
 
         Args:
@@ -77,12 +74,9 @@ class DataExportRulesAPI(CrudEndpoint):
         """
         return self.get(guid=guid)
 
-    def update(self,
-               guid,
-               filters=None,
-               intg_guid_list=None,
-               type=None,
-               **request_params):
+    def update(
+        self, guid, filters=None, intg_guid_list=None, **request_params
+    ):
         """A method to update an existing DataExportRules object.
 
         Args:
@@ -95,6 +89,8 @@ class DataExportRulesAPI(CrudEndpoint):
               - description (str, optional): The description of the export rule
               - profileVersions (list of str, optional): A list of profile versions
 
+          request_params (dict, optional): Use to pass any additional parameters the API
+
         Returns:
           dict: The updated data export rule
 
@@ -102,15 +98,12 @@ class DataExportRulesAPI(CrudEndpoint):
         return super().update(
             id=guid,
             filters=self._format_filters(filters),
-            type=type,
             intg_guid_list=intg_guid_list,
-            **request_params
+            **request_params,
         )
 
-    def delete(self,
-               guid):
+    def delete(self, guid):
         """A method to delete a data export rule.
-
 
         Args:
           guid (str): The GUID of the data export rule to delete

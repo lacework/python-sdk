@@ -26,15 +26,13 @@ class DatasourcesAPI(BaseEndpoint):
     def get(self):
         """A method to get Datasources.
 
-
         Returns:
             dict: All datasources
         """
         response = self._session.get(self.build_url())
         return response.json()
 
-    def get_datasource(self,
-                       datasource):
+    def get_datasource(self, datasource):
         """A method to get the schema for a particular datasource.
 
         Args:
@@ -56,12 +54,10 @@ class DatasourcesAPI(BaseEndpoint):
         return_sources = []
         data_sources = response_json.get("data", [])
         for data_source in data_sources:
-            description = data_source.get(
-                "description", self._DEFAULT_DESCRIPTION)
+            description = data_source.get("description", self._DEFAULT_DESCRIPTION)
             if description == "None":
                 description = self._DEFAULT_DESCRIPTION
 
-            return_sources.append(
-                (data_source.get("name", "No name"), description))
+            return_sources.append((data_source.get("name", "No name"), description))
 
         return return_sources

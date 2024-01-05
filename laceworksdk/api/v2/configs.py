@@ -11,7 +11,7 @@ class ConfigsAPI:
     Get information about compliance configurations.
 
     The Configs API endpoint is a parent for different types of configs that can be queried.
-    
+
     Attributes:
         compliance_evaluations (ComplianceEvaluationsAPI):  A ComplianceEvaluationsAPI instance.
         azure_subscriptions (AzureSubscriptions): An AzureSubscriptions instance.
@@ -30,29 +30,28 @@ class ConfigsAPI:
         super().__init__()
         self._base_path = "Configs"
 
-        self.azure_subscriptions = AzureSubscriptions(session, self._base_path)
-        self.compliance_evaluations = ComplianceEvaluationsAPI(session, self._base_path)
-        self.gcp_projects = GcpProjects(session, self._base_path)
+        self.azure_subscriptions = self.AzureSubscriptions(session, self._base_path)
+        self.compliance_evaluations = self.ComplianceEvaluationsAPI(session, self._base_path)
+        self.gcp_projects = self.GcpProjects(session, self._base_path)
 
 
-class AzureSubscriptions(ReadEndpoint):
-    """A class used to represent the Azure Subscriptions API endpoint.
+    class AzureSubscriptions(ReadEndpoint):
+        """A class used to represent the Azure Subscriptions API endpoint.
 
-    Get a list of Azure subscription IDs for an entire account or for a specific Azure tenant.
+        Get a list of Azure subscription IDs for an entire account or for a specific Azure tenant.
 
-    """
-    RESOURCE = "AzureSubscriptions"
+        """
 
-
-class GcpProjects(ReadEndpoint):
-    """A class used to represent the GCP Projects API endpoint.
-
-    """
-    RESOURCE = "GcpProjects"
+        RESOURCE = "AzureSubscriptions"
 
 
-class ComplianceEvaluationsAPI(SearchEndpoint):
-    """A class used to represent the Compliance Evaluations API endpoint.
+    class GcpProjects(ReadEndpoint):
+        """A class used to represent the GCP Projects API endpoint."""
 
-    """
-    RESOURCE = "ComplianceEvaluations"
+        RESOURCE = "GcpProjects"
+
+
+    class ComplianceEvaluationsAPI(SearchEndpoint):
+        """A class used to represent the Compliance Evaluations API endpoint."""
+
+        RESOURCE = "ComplianceEvaluations"

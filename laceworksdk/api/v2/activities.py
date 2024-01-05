@@ -11,7 +11,7 @@ class ActivitiesAPI:
 
     The Activities API endpoint is a parent for different types of
     activities that can be queried.
-    
+
     Attributes:
     ----------
     changed_files:
@@ -42,35 +42,34 @@ class ActivitiesAPI:
         self.dns = self.DnsAPI(session, self._base_path)
         self.user_logins = self.UserLoginsAPI(session, self._base_path)
 
-
     class ChangedFilesAPI(SearchEndpoint):
         """A class used to represent the `Changed Files API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1ChangedFiles~1search/post>`_
 
         Search for changed files in your environment
         """
-        RESOURCE = "ChangedFiles"
 
+        RESOURCE = "ChangedFiles"
 
     class ConnectionsAPI(SearchEndpoint):
         """A class used to represent the `Connections API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1Connections~1search/post>`_
 
         Search for connections in your environment.
         """
-        RESOURCE = "Connections"
 
+        RESOURCE = "Connections"
 
     class DnsAPI(SearchEndpoint):
         """A class used to represent the `DNS Lookup API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1DNSs~1search/post>`_
 
-
         Search for DNS summaries in your environment.
         """
-        RESOURCE = "DNSs"
 
+        RESOURCE = "DNSs"
 
     class UserLoginsAPI(SearchEndpoint):
         """A class used to represent the `UserLogins API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1UserLogins~1search/post>`_
 
         Search for user logins in your environment.
         """
+
         RESOURCE = "UserLogins"

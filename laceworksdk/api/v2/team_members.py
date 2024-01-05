@@ -27,15 +27,17 @@ class TeamMembersAPI(CrudEndpoint):
         """
         super().__init__(session, "TeamMembers")
 
-    def create(self,
-               user_name,
-               user_enabled,
-               props,
-               org_admin=None,
-               org_user=None,
-               admin_role_accounts=None,
-               user_role_accounts=None,
-               **request_params):
+    def create(
+        self,
+        user_name,
+        user_enabled,
+        props,
+        org_admin=None,
+        org_user=None,
+        admin_role_accounts=None,
+        user_role_accounts=None,
+        **request_params,
+    ):
         """A method to create a new team member.
 
         Args:
@@ -55,6 +57,7 @@ class TeamMembersAPI(CrudEndpoint):
           Required)
           user_role_accounts (list of str): A list of where the team member is a user. (Organization-level \
           Access Required)
+          request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
             dict: The newly created team member.
@@ -69,7 +72,7 @@ class TeamMembersAPI(CrudEndpoint):
             org_user=org_user,
             admin_role_accounts=admin_role_accounts,
             user_role_accounts=user_role_accounts,
-            **request_params
+            **request_params,
         )
 
     def get(self, guid=None):
@@ -89,23 +92,25 @@ class TeamMembersAPI(CrudEndpoint):
 
         Args:
           guid (str): The GUID of the team member to get.
-        
+
         Returns:
             dict: The requested team member
 
         """
         return self.get(guid=guid)
 
-    def update(self,
-               guid,
-               user_name=None,
-               user_enabled=None,
-               props=None,
-               org_admin=None,
-               org_user=None,
-               admin_role_accounts=None,
-               user_role_accounts=None,
-               **request_params):
+    def update(
+        self,
+        guid,
+        user_name=None,
+        user_enabled=None,
+        props=None,
+        org_admin=None,
+        org_user=None,
+        admin_role_accounts=None,
+        user_role_accounts=None,
+        **request_params,
+    ):
         """A method to update a TeamMembers object.
 
         Args:
@@ -126,6 +131,7 @@ class TeamMembersAPI(CrudEndpoint):
           Required)
           user_role_accounts (list of str): A list of where the team member is a user. (Organization-level \
           Access Required)
+          request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
             dict: The updated team member.
@@ -143,16 +149,15 @@ class TeamMembersAPI(CrudEndpoint):
             org_user=org_user,
             admin_role_accounts=admin_role_accounts,
             user_role_accounts=user_role_accounts,
-            **request_params
+            **request_params,
         )
 
-    def delete(self,
-               guid):
+    def delete(self, guid):
         """A method to delete a team member.
 
         Args:
           guid (str): The GUID of the team member to delete
-        
+
         Returns:
             requests.models.Response: a Requests response object containing the response code
 

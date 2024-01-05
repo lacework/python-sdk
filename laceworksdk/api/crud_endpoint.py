@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-
+"""Lacework API wrapper."""
 from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
 class CrudEndpoint(BaseEndpoint):
     """A class used to implement CRUD create/read/update/delete functionality for Lacework API Endpoints."""
 
-    def __init__(self,
-                 session,
-                 object_type,
-                 endpoint_root="/api/v2"):
+    def __init__(self, session, object_type, endpoint_root="/api/v2"):
         """
         Initialize the CRUDEndpoint Class.
 
@@ -24,7 +21,6 @@ class CrudEndpoint(BaseEndpoint):
         """A method to create a new object.
 
         Args:
-
           params (any):  Parameters
           request_params (any): Request parameters.
 
@@ -32,9 +28,7 @@ class CrudEndpoint(BaseEndpoint):
             dict: JSON containing the new object info
 
         """
-        json = self.build_dict_from_items(
-            request_params
-        )
+        json = self.build_dict_from_items(request_params)
 
         response = self._session.post(self.build_url(), json=json, params=params)
 
@@ -51,17 +45,18 @@ class CrudEndpoint(BaseEndpoint):
         Returns:
             dict: JSON containing the retrieved object(s)
         """
-        params = self.build_dict_from_items(
-            request_params
-        )
+        params = self.build_dict_from_items(request_params)
 
-        response = self._session.get(self.build_url(id=id, resource=resource), params=params)
+        response = self._session.get(
+            self.build_url(id=id, resource=resource), params=params
+        )
 
         return response.json()
 
-    def search(self, json=None, **kwargs):
-        """A method to search objects. See the API documentation for this API endpoint for valid fields to search
-        against.
+    def search(self, json=None):
+        """A method to search objects.
+
+        See the API documentation for this API endpoint for valid fields to search against.
 
         NOTE: While the "value" and "values" fields are marked as "optional" you must use one of them,
         depending on the operation you are using.
@@ -77,6 +72,8 @@ class CrudEndpoint(BaseEndpoint):
             - values (list of str, optional): The values that the condition checks for in the specified field. Use this \
             attribute when using an operator that requires multiple values.
 
+
+
         Yields:
             dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.
         """
@@ -90,15 +87,13 @@ class CrudEndpoint(BaseEndpoint):
         Args:
           id (str): A string representing the object ID.
           params (any):  parameters
-          request_params (any): request parameters
+          request_params (dict): Use to pass any additional parameters the API
 
         Returns:
             dict: JSON containing the updated object info
 
         """
-        json = self.build_dict_from_items(
-            request_params
-        )
+        json = self.build_dict_from_items(request_params)
 
         response = self._session.patch(self.build_url(id=id), json=json, params=params)
 
@@ -118,8 +113,7 @@ class CrudEndpoint(BaseEndpoint):
 
         return response
 
-    def _format_filters(self,
-                        filters):
+    def _format_filters(self, filters):
         """A method to properly format the filters object.
 
         Args:

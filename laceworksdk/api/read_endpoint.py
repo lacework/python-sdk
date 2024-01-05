@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+"""The base read class for the Lacework Python SDK"""
 from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
@@ -9,10 +9,7 @@ class ReadEndpoint(BaseEndpoint):
     # If defined, this is the resource used in the URL path
     RESOURCE = ""
 
-    def __init__(self,
-                 session,
-                 object_type,
-                 endpoint_root="/api/v2"):
+    def __init__(self, session, object_type, endpoint_root="/api/v2"):
         """
         Initialize the ReadEndpoint Class.
 
@@ -29,7 +26,7 @@ class ReadEndpoint(BaseEndpoint):
         Args:
           id (str): A string representing the object ID.
           resource (str): The Lacework API resource type to get.
-          request_params (any): A dictionary of parameters to add to the request.
+          request_params (dict): Use to pass any additional parameters the API
 
         Returns:
             dict: the requested o
@@ -38,10 +35,10 @@ class ReadEndpoint(BaseEndpoint):
         if not resource and self.RESOURCE:
             resource = self.RESOURCE
 
-        params = self.build_dict_from_items(
-            request_params
-        )
+        params = self.build_dict_from_items(request_params)
 
-        response = self._session.get(self.build_url(id=id, resource=resource), params=params)
+        response = self._session.get(
+            self.build_url(id=id, resource=resource), params=params
+        )
 
         return response.json()

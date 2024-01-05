@@ -9,6 +9,7 @@ class OrganizationInfoAPI(BaseEndpoint):
 
     Return information about whether the Lacework account is an organization account and, if it is, what the organization account URL is.
     """
+
     def __init__(self, session):
         """Initializes the OrganizationInfoAPI object.
 

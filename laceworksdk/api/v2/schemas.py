@@ -21,9 +21,7 @@ class SchemasAPI(BaseEndpoint):
         """
         super().__init__(session, "schemas")
 
-    def get(self,
-            type=None,
-            subtype=None):
+    def get(self, type=None, subtype=None):
         """A method to get schema objects. Using no args will get all schemas.
 
         Args:
@@ -42,12 +40,10 @@ class SchemasAPI(BaseEndpoint):
 
         return response.json()
 
-    def get_by_subtype(self,
-                       type,
-                       subtype):
+    def get_by_subtype(self, type, subtype):
         """A method to fetch a specific subtype schema.
         
-                Args:
+        Args:
           type (str): The schema type to retrieve. Valid values are any API resource listed in the Lacework API\
           `documentation <https://docs.lacework.net/api/v2/docs/>`_ .Examples include "AlertChannels", "CloudAccounts", \
           "AgentAccessTokens", etc..

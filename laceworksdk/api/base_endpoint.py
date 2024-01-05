@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
+"""Lacework API wrapper."""
 
 class BaseEndpoint:
     """A class used to implement base functionality for Lacework API Endpoints."""
 
-    KEY_CONVERSION_EXCLUDES = [
-        "integration_mappings"
-    ]
+    KEY_CONVERSION_EXCLUDES = ["integration_mappings"]
 
-    def __init__(self,
-                 session,
-                 object_type,
-                 endpoint_root="/api/v2"):
+    def __init__(self, session, object_type, endpoint_root="/api/v2"):
         """
         Initialize the BaseEndpoint class.
 
@@ -40,7 +36,10 @@ class BaseEndpoint:
         result = {}
 
         for dictionary in dict_list:
-            result = {**result, **self._convert_dictionary(dictionary, list(result.keys()))}
+            result = {
+                **result,
+                **self._convert_dictionary(dictionary, list(result.keys())),
+            }
 
         return result
 
@@ -70,7 +69,7 @@ class BaseEndpoint:
     @staticmethod
     def _convert_lower_camel_case(param_name):
         """Convert a Pythonic variable name to lowerCamelCase.
-        
+
         This function will take an underscored parameter name like 'query_text' and convert it
         to lowerCamelCase of 'queryText'.  If a parameter with no underscores is provided, it will
         assume that the value is already in lowerCamelCase format.
@@ -149,10 +148,7 @@ class BaseEndpoint:
         return self._session
 
     def validate_json(self, json, subtype=None):
-        """TODO: A method to validate the provided JSON based on the schema of the current object.
-
-
-        """
+        """TODO: A method to validate the provided JSON based on the schema of the current object."""
         schema = self._get_schema(subtype)
 
         # TODO: perform validation here

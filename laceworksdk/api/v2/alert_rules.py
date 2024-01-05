@@ -11,6 +11,7 @@ class AlertRulesAPI(CrudEndpoint):
     channels, you define information about where to send alerts, such as to Jira, Slack, or email. For alert rules,
     you define information about which alert types to send, such as critical and high severity compliance alerts.
     """
+
     def __init__(self, session):
         """Initializes the AlertRulesAPI object.
 
@@ -22,17 +23,15 @@ class AlertRulesAPI(CrudEndpoint):
         """
         super().__init__(session, "AlertRules")
 
-    def create(self,
-               type,
-               filters,
-               intg_guid_list,
-               **request_params):
+    def create(self, type, filters, intg_guid_list, **request_params):
         """A method to create new Alert Rules.
 
         Args:
             type (str): The type of the alert rule. Valid values are: "Event"
             filters (dict): The alert rule definition. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertRules/paths/~1api~1v2~1AlertRules/post>`_ for valid values.
             intg_guid_list (list of str): A list of GUIDs representing the alert channels to use.
+
+            request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
             dict: The new rule.
@@ -41,11 +40,10 @@ class AlertRulesAPI(CrudEndpoint):
             type=type,
             filters=self._format_filters(filters),
             intg_guid_list=intg_guid_list,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            guid=None):
+    def get(self, guid=None):
         """A method to get AlertRules objects.
 
         Args:
@@ -57,8 +55,7 @@ class AlertRulesAPI(CrudEndpoint):
         """
         return super().get(id=guid)
 
-    def get_by_guid(self,
-                    guid):
+    def get_by_guid(self, guid):
         """A method to get an AlertRules object by GUID.
 
         Args:
@@ -70,17 +67,14 @@ class AlertRulesAPI(CrudEndpoint):
         """
         return self.get(guid=guid)
 
-    def update(self,
-               guid,
-               filters=None,
-               intg_guid_list=None,
-               **request_params):
+    def update(self, guid, filters=None, intg_guid_list=None, **request_params):
         """A method to update an AlertRules object.
 
         Args:
             guid (str): The Alert Rule GUID you wish to update.
             filters (dict, optional): The alert rule definition. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertRules/paths/~1api~1v2~1AlertRules~1%7BmcGuid%7D/patch>`_ for valid values.
             intg_guid_list (list of str, optional): A list of GUIDs representing the alert channels to use.
+            request_params (dict, optional): Use to pass any additional parameters the API
 
         Returns:
             dict: The updated alert rule
@@ -90,11 +84,10 @@ class AlertRulesAPI(CrudEndpoint):
             id=guid,
             filters=self._format_filters(filters),
             intg_guid_list=intg_guid_list,
-            **request_params
+            **request_params,
         )
 
-    def delete(self,
-               guid):
+    def delete(self, guid):
         """A method to delete an AlertRules object.
 
         Args:

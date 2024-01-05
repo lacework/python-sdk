@@ -9,6 +9,7 @@ class InventoryAPI(SearchEndpoint):
 
     View and monitor in-use cloud resources' risk, compliance, and configuration changes.
     """
+
     def __init__(self, session):
         """Initializes the Inventory API object.
 
@@ -21,9 +22,7 @@ class InventoryAPI(SearchEndpoint):
         """
         super().__init__(session, "Inventory")
 
-    def scan(self,
-             csp,
-             **request_params):
+    def scan(self, csp):
         """A method to trigger a resource inventory scan.
 
         Args:
@@ -33,16 +32,13 @@ class InventoryAPI(SearchEndpoint):
             dict: Status of scan
 
         """
-        params = self.build_dict_from_items(
-            csp=csp
-        )
+        params = self.build_dict_from_items(csp=csp)
 
         response = self._session.post(self.build_url(action="scan"), params=params)
 
         return response.json()
 
-    def status(self,
-               csp):
+    def status(self, csp):
         """A method to get the status of a Resource Inventory scan.
 
         Args:
@@ -52,9 +48,7 @@ class InventoryAPI(SearchEndpoint):
             dict: Status of scan
 
         """
-        params = self.build_dict_from_items(
-            csp=csp
-        )
+        params = self.build_dict_from_items(csp=csp)
 
         response = self._session.get(self.build_url(action="scan"), params=params)
 
