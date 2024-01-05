@@ -33,7 +33,7 @@ class CloudAccountsAPI(CrudEndpoint):
           name (str): The name of the integration to create.
           type (str): The type of the integration. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts/paths/~1api~1v2~1CloudAccounts/post>`_ for valid values.
           enabled (bool|int): Whether the object is enabled.
-          data (dict): The defintion of the new integration to create. Note this changes depending on the value of the "type" field.
+          data (dict): The definition of the new integration to create. Note this changes depending on the value of the "type" field. \
           See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts/paths/~1api~1v2~1CloudAccounts/post>`_ for valid values.
 
         Returns:
@@ -55,7 +55,8 @@ class CloudAccountsAPI(CrudEndpoint):
 
         Args:
           guid (str, optional): The GUID of the integration to retrieve.
-          type (str, optional): The type of the integration(s) to retrieve. Valid types are: "AwsCfg", "AwsCtSqs", "AwsEksAudit", "AwsUsGovCfg", "AwsUsGovCtSqs", "AzureAlSeq", "AzureCfg", "GcpAtSes", "GcpCfg"
+          type (str, optional): The type of the integration(s) to retrieve. Valid types are: "AwsCfg", "AwsCtSqs", \
+          "AwsEksAudit", "AwsUsGovCfg", "AwsUsGovCtSqs", "AzureAlSeq", "AzureCfg", "GcpAtSes", "GcpCfg"
 
         Returns:
             dict: The details of the requested integration(s)
@@ -79,7 +80,8 @@ class CloudAccountsAPI(CrudEndpoint):
         """A method to get cloud account integration(s) by type.
 
         Args:
-            type (str, optional): The type of the integration(s) to retrieve. Valid types are: "AwsCfg", "AwsCtSqs", "AwsEksAudit", "AwsUsGovCfg", "AwsUsGovCtSqs", "AzureAlSeq", "AzureCfg", "GcpAtSes", "GcpCfg"
+            type (str, optional): The type of the integration(s) to retrieve. Valid types are: "AwsCfg", "AwsCtSqs",\
+             "AwsEksAudit", "AwsUsGovCfg", "AwsUsGovCtSqs", "AzureAlSeq", "AzureCfg", "GcpAtSes", "GcpCfg"
         
         Returns:
             dict: The details of the requested integration(s)
@@ -100,7 +102,7 @@ class CloudAccountsAPI(CrudEndpoint):
           name (str, optional): The integration name.
           type (str): The type of the integration. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts/paths/~1api~1v2~1CloudAccounts/post>`_ for valid values.
           enabled (bool|int): Whether the object is enabled.
-          data (dict): The defintion of the new integration to create. Note this changes depending on the value of the "type" field.
+          data (dict): The definition of the new integration to create. Note this changes depending on the value of the "type" field. \
           See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/CloudAccounts/paths/~1api~1v2~1CloudAccounts/post>`_ for valid values.
 
         Returns:

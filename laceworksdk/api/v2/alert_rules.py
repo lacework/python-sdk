@@ -88,7 +88,6 @@ class AlertRulesAPI(CrudEndpoint):
         """
         return super().update(
             id=guid,
-            type=type,
             filters=self._format_filters(filters),
             intg_guid_list=intg_guid_list,
             **request_params

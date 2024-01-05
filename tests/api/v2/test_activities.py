@@ -7,9 +7,9 @@ import pytest
 
 from laceworksdk.api.v2.activities import (
     ActivitiesAPI,
-    ChangedFilesAPI,
-    DnsAPI,
-    UserLoginsAPI
+    # ChangedFilesAPI,
+    # DnsAPI,
+    # UserLoginsAPI
 )
 from tests.api.test_search_endpoint import SearchEndpoint
 
@@ -25,7 +25,7 @@ class TestActivitiesEndpoint(SearchEndpoint):
 
     OBJECT_TYPE = ActivitiesAPI
     OBJECT_MAP = {
-        "changed_files": ChangedFilesAPI,
-        "dns": DnsAPI,
-        "user_logins": UserLoginsAPI
+        "changed_files": ActivitiesAPI.ChangedFilesAPI,
+        "dns": ActivitiesAPI.DnsAPI,
+        "user_logins": ActivitiesAPI.UserLoginsAPI
     }

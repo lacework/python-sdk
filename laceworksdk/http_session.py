@@ -34,13 +34,15 @@ class HttpSession:
         """
         Initializes the HttpSession object.
 
-        :param account: a Lacework Account name
-        :param subaccount: a Lacework Sub-account name
-        :param api_key: a Lacework API Key
-        :param api_secret: a Lacework API Secret
-        :param base_domain: a Lacework Domain (defaults to "lacework.net")
+    Args:
+        account (str): a Lacework Account name
+        subaccount (str): a Lacework Sub-account name
+        api_key (str): a Lacework API Key
+        api_secret (str): a Lacework API Secret
+        base_domain (str): a Lacework Domain (defaults to "lacework.net")
 
-        :return HttpSession object.
+        Returns:
+            HttpSession: An instance of this class
         """
 
         super().__init__()
@@ -141,7 +143,8 @@ class HttpSession:
         """
         A method to fetch a new access token from Lacework.
 
-        :return requests response
+        Returns:
+            str: a Lacework API access token
         """
 
         logger.info("Creating Access Token in Lacework...")
@@ -184,7 +187,8 @@ class HttpSession:
         """
         A method to build the HTTP request headers for Lacework.
 
-        :param org_access: boolean representing whether the request should be performed at the Organization level
+        Args:
+            org_access (bool): Whether the request should be performed at the Organization level
         """
 
         # Build the request headers
@@ -205,13 +209,18 @@ class HttpSession:
         """
         A method to abstract building requests to Lacework.
 
-        :param method: string representing the HTTP request method ("GET", "POST", ...)
-        :param uri: string representing the URI of the API endpoint
-        :param kwargs: passed on to the requests package
+        Args:
 
-        :return: response json
+            method (str): The HTTP request method ("GET", "POST", ...)
+            uri (str): The URI of the API endpoint
+            kwargs (Any): passed on to the requests package
 
-        :raises: ApiError if anything but expected response code is returned
+        Returns:
+
+            requests.models.Response: a Requests response object
+
+        Raises:
+             ApiError if anything but expected response code is returned
         """
 
         self._check_access_token()
@@ -290,13 +299,16 @@ class HttpSession:
         """
         A method to build a GET request to interact with Lacework.
 
-        :param uri: uri to send the HTTP GET request to
-        :param params: dict of parameters for the HTTP request
-        :param kwargs: passed on to the requests package
+        Args:
+            uri (str): uri to send the HTTP GET request to
+            params (dict): parameters for the HTTP request
+            kwargs (Any): passed on to the requests package
 
-        :return: response json
+        Returns:
+            requests.models.Response: a Requests response object
 
-        :raises: ApiError if anything but expected response code is returned
+        Raises:
+             ApiError if anything but expected response code is returned
         """
 
         # Perform a GET request
@@ -308,13 +320,16 @@ class HttpSession:
         """
         A method to build a GET request that yields pages of data returned by Lacework.
 
-        :param uri: uri to send the initial HTTP GET request to
-        :param params: dict of parameters for the HTTP request
-        :param kwargs: passed on to the requests package
+        Args:
+            uri (str): uri to send the HTTP GET request to
+            params (dict): parameters for the HTTP request
+            kwargs (Any): passed on to the requests package
 
-        :return: a generator that yields pages of data
+        Yields:
+             Generator: a generator that yields pages of data
 
-        :raises: ApiError if anything but expected response code is returned
+        Raises:
+             ApiError if anything but expected response code is returned
         """
 
         response = self.get(uri, params=params, **kwargs)
@@ -339,15 +354,17 @@ class HttpSession:
         """
         A method to build a GET request that yields individual objects as returned by Lacework.
 
-        :param uri: uri to send the initial HTTP GET request to
-        :param params: dict of parameters for the HTTP request
-        :param kwargs: passed on to the requests package
+        Args:
+            uri (str): uri to send the HTTP GET request to
+            params (dict): parameters for the HTTP request
+            kwargs (Any): passed on to the requests package
 
-        :return: a generator that yields individual objects from pages of data
+        Yields:
+             Generator: a generator that yields pages of data
 
-        :raises: ApiError if anything but expected response code is returned
-        :raises: MalformedResponse if the returned response does not contain a
-                top-level dictionary with an "data" key.
+        Raises:
+             ApiError if anything but expected response code is returned
+             MalformedResponse if the returned response does not contain a top-level dictionary with an "data" key.
         """
 
         # Get generator for pages of JSON data
@@ -370,14 +387,17 @@ class HttpSession:
         """
         A method to build a PATCH request to interact with Lacework.
 
-        :param uri: uri to send the HTTP POST request to
-        :param data: data to be sent in the body of the request
-        :param json: data to be sent in JSON format in the body of the request
-        :param kwargs: passed on to the requests package
+        Args:
+            uri (str): uri to send the HTTP POST request to
+            data (Any) : data to be sent in the body of the request
+            json (dict): data to be sent in JSON format in the body of the request
+            kwargs (Any): passed on to the requests package
 
-        :return: response json
+        Returns:
+            requests.models.Response: a Requests response object
 
-        :raises: ApiError if anything but expected response code is returned
+        Raises:
+             ApiError if anything but expected response code is returned
         """
 
         # Perform a PATCH request
@@ -389,14 +409,17 @@ class HttpSession:
         """
         A method to build a POST request to interact with Lacework.
 
-        :param uri: uri to send the HTTP POST request to
-        :param data: data to be sent in the body of the request
-        :param json: data to be sent in JSON format in the body of the request
-        :param kwargs: passed on to the requests package
+        Args:
+            uri (str): uri to send the HTTP POST request to
+            data (Any) : data to be sent in the body of the request
+            json (dict): data to be sent in JSON format in the body of the request
+            kwargs (Any): passed on to the requests package
 
-        :return: response json
+        Returns:
+            requests.models.Response: a Requests response object
 
-        :raises: ApiError if anything but expected response code is returned
+        Raises:
+             ApiError if anything but expected response code is returned
         """
 
         # Perform a POST request
@@ -408,14 +431,17 @@ class HttpSession:
         """
         A method to build a PUT request to interact with Lacework.
 
-        :param uri: uri to send the HTTP POST request to
-        :param data: data to be sent in the body of the request
-        :param json: data to be sent in JSON format in the body of the request
-        :param kwargs: passed on to the requests package
+        Args:
+            uri (str): uri to send the HTTP POST request to
+            data (Any) : data to be sent in the body of the request
+            json (dict): data to be sent in JSON format in the body of the request
+            kwargs (Any): passed on to the requests package
 
-        :return: response json
+        Returns:
+            requests.models.Response: a Requests response object
 
-        :raises: ApiError if anything but expected response code is returned
+        Raises:
+             ApiError if anything but expected response code is returned
         """
 
         # Perform a PUT request
@@ -425,16 +451,17 @@ class HttpSession:
 
     def delete(self, uri, data=None, json=None, **kwargs):
         """
-        A method to build a DELETE request to interact with Lacework.
+        Args:
+            uri (str): uri to send the HTTP POST request to
+            data (Any) : data to be sent in the body of the request
+            json (dict): data to be sent in JSON format in the body of the request
+            kwargs (Any): passed on to the requests package
 
-        :param uri: uri to send the http DELETE request to
-        :param data: data to be sent in the body of the request
-        :param json: data to be sent in JSON format in the body of the request
-        :param kwargs: passed on to the requests package
+        Returns:
+            requests.models.Response: a Requests response object
 
-        :response: reponse json
-
-        :raises: ApiError if anything but expected response code is returned
+        Raises:
+             ApiError if anything but expected response code is returned
         """
 
         # Perform a DELETE request

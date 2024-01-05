@@ -5,17 +5,19 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 
 
 class ResourceGroupsAPI(CrudEndpoint):
+    """A class used to represent the `Resource Groups API endpoint <https://docs.lacework.net/api/v2/docs/#tag/ResourceGroups>`_
+
+   Resource groups provide a way to categorize Lacework-identifiable assets.
+    """
 
     def __init__(self, session):
         """Initializes the ResourceGroupsAPI object.
 
         Args:
-          session: An instance of the HttpSession class
-
-        :return ResourceGroupsAPI object.
+          session(HttpSession): An instance of the HttpSession class
 
         Returns:
-
+            ResourceGroupsAPI: An instance of this class
         """
         super().__init__(session, "ResourceGroups")
 
@@ -28,20 +30,19 @@ class ResourceGroupsAPI(CrudEndpoint):
         """A method to create a new ResourceGroups object.
 
         Args:
-          resource_name: A string representing the object name.
-          resource_type: A string representing the object type.
-          enabled: A boolean/integer representing whether the object is enabled.
-        (0 or 1)
-          props: A JSON object matching the schema for the specified type.
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
-        
-        :return response json
-          **request_params: 
+          resource_name (str): The resource group name.
+          resource_type (str): The resource group type. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/ResourceGroups/paths/~1api~1v2~1ResourceGroups/post>`_ \
+          for a list of types.
+          enabled (bool|int): Whether the object is enabled.
+          props (dict): The new resource group's properties. The format varies based on the value of the type arg. \
+          See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/ResourceGroups/paths/~1api~1v2~1ResourceGroups/post>`_ \
+          for valid fields.
 
         Returns:
+            dict: The newly created resource group
 
         """
+
         return super().create(
             resource_name=resource_name,
             resource_type=resource_type,
@@ -52,28 +53,26 @@ class ResourceGroupsAPI(CrudEndpoint):
 
     def get(self,
             guid=None):
-        """A method to get ResourceGroups objects.
+        """A method to get resource groups. Using no args will get all resource groups.
 
         Args:
-          guid: A string representing the object GUID.
-        
-        :return response json (Default value = None)
+          guid (str, optional): The GUID of the resource group to get.
 
         Returns:
+            dict: The requested resource group(s)
 
         """
         return super().get(id=guid)
 
     def get_by_guid(self,
                     guid):
-        """A method to get ResourceGroups objects by GUID.
+        """A method to get resource groups by GUID.
 
         Args:
-          guid: A string representing the object GUID.
-        
-        :return response json
+          guid (str): The GUID of the resource group to get.
 
         Returns:
+            dict: The requested resource group(s)
 
         """
         return self.get(guid=guid)
@@ -88,19 +87,17 @@ class ResourceGroupsAPI(CrudEndpoint):
         """A method to update an ResourceGroups object.
 
         Args:
-          guid: A string representing the object GUID.
-          resource_name: A string representing the object name. (Default value = None)
-          resource_type: A string representing the object type. (Default value = None)
-          enabled: A boolean/integer representing whether the object is enabled.
-        (0 or 1) (Default value = None)
-          props: A JSON object matching the schema for the specified type. (Default value = None)
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
-        
-        :return response json
-          **request_params: 
+          guid (str): A string representing the object GUID.
+          resource_name (str, optional): The resource group name.
+          resource_type (str, optional): The resource group type. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/ResourceGroups/paths/~1api~1v2~1ResourceGroups~1%7BresourceGuid%7D/patch>`_ \
+          for a list of types.
+          enabled (bool|int, optional): Whether the object is enabled.
+          props (dict, optional): The new resource group's properties. The format varies based on the value of the type arg. \
+          See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/ResourceGroups/paths/~1api~1v2~1ResourceGroups~1%7BresourceGuid%7D/patch>`_ \
+          for valid fields.
 
         Returns:
+            dict: The newly created resource group
 
         """
         if enabled is not None:
@@ -117,14 +114,13 @@ class ResourceGroupsAPI(CrudEndpoint):
 
     def delete(self,
                guid):
-        """A method to delete a ResourceGroups object.
+        """A method to delete a resource groups.
 
         Args:
-          guid: A string representing the object GUID.
-        
-        :return response json
+          guid (str): The GUID of the resource group to delete.
 
         Returns:
+            requests.models.Response: a Requests response object containing the response code
 
         """
         return super().delete(id=guid)

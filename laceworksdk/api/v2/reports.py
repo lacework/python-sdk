@@ -5,17 +5,20 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
 class ReportsAPI(BaseEndpoint):
+    """A class used to represent the `Reports API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Reports>`_
+
+   Lacework combines details about non-compliant resources that are in violation into reports. You must configure at
+   least one cloud integration with AWS, Azure, or GCP to receive these reports.
+    """
 
     def __init__(self, session):
         """Initializes the ReportsAPI object.
 
         Args:
-          session: An instance of the HttpSession class
-
-        :return ReportsAPI object.
+          session(HttpSession): An instance of the HttpSession class
 
         Returns:
-
+            ReportsAPI: An instance of this class
         """
         super().__init__(session, "Reports")
 
@@ -23,44 +26,26 @@ class ReportsAPI(BaseEndpoint):
             primary_query_id=None,
             secondary_query_id=None,
             format=None,
-            type=None,
-            report_name=None,
             report_type=None,
-            template_name=None,
-            latest=None,
             **request_params):
         """A method to get Reports objects.
 
         Args:
-          primary_query_id: The primary ID that is used to fetch the report.
-        (AWS Account ID or Azure Tenant ID) (Default value = None)
-          secondary_query_id: The secondary ID that is used to fetch the report.
-        (GCP Project ID or Azure Subscription ID) (Default value = None)
-          format: The format of the report.
-        ("csv", "html", "json", "pdf") (Default value = None)
-          type: The type of the report. (Default value = None)
-          report_name: The name of the report definition to use when generating the report. (Default value = None)
-          report_type: The type of the report definition to use when generating the report. (Default value = None)
-          template_name: The name of the template to be used for the report. (Default value = None)
-          latest: A boolean representing whether to retreive the latest report. (Default value = None)
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
-        
-        :return response json
-          **request_params: 
+          primary_query_id (str): The primary ID that is used to fetch the report. (AWS Account ID or Azure Tenant ID)
+          secondary_query_id (str): The secondary ID that is used to fetch the report. (GCP Project ID or Azure Subscription ID)
+          format (str, optional): The format of the report. Valid values: "csv", "html", "json", "pdf"
+          report_type (str): The type of the report. See `available reports <https://docs.lacework.net/console/compliance-frameworks>`_ for a list of report types.\
+          Valid values are in the "API Format" column.
 
         Returns:
-
+            dict: The details of the report
         """
+
         params = self.build_dict_from_items(
             primary_query_id=primary_query_id,
             secondary_query_id=secondary_query_id,
             format=format,
-            type=type,
-            report_name=report_name,
             report_type=report_type,
-            template_name=template_name,
-            latest=latest,
             **request_params
         )
 

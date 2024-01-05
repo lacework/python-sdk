@@ -24,7 +24,8 @@ class SearchEndpoint(BaseEndpoint):
         super().__init__(session, object_type, endpoint_root)
 
     def search(self, json=None, resource=None, **kwargs):
-        """A method to search objects.\n
+        """A method to search objects. See the API documentation for this API endpoint for valid fields to search
+        against.
 
         NOTE: While the "value" and "values" fields are marked as "optional" you must use one of them,
         depending on the operation you are using.
@@ -33,25 +34,12 @@ class SearchEndpoint(BaseEndpoint):
           json (list of dicts): A list of dictionaries containing the desired search parameters: \n
             - field (str): The name of the data field to which the condition applies\n
             - expression (str): The comparison operator for the filter condition. Valid values are:\n
-                - "eq"\n
-                - "ne"\n
-                - "in"\n
-                - "not_in"\n
-                - "like"\n
-                - "ilike"\n
-                - "not_like"\n
-                - "not_ilike"\n
-                - "not_rlike"\n
-                - "rlike"\n
-                - "gt"\n
-                - "ge"\n
-                - "lt"\n
-                - "le"\n
-                - "between"\n
-            - value (str, optional):  The value that the condition checks for in the specified field. Use this attribute
-             when using an operator that requires a single value.\n
-            - values (list of str, optional): The values that the condition checks for in the specified field. Use this
-            attribute when using an operator that requires multiple values.\n
+                "eq", "ne", "in", "not_in", "like", "ilike", "not_like", "not_ilike", "not_rlike", "rlike", "gt", "ge", \
+                "lt", "le", "between"
+            - value (str, optional):  The value that the condition checks for in the specified field. Use this attribute \
+             when using an operator that requires a single value.
+            - values (list of str, optional): The values that the condition checks for in the specified field. Use this \
+            attribute when using an operator that requires multiple values.
 
         Yields:
             dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.

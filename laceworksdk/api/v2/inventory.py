@@ -5,15 +5,18 @@ from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
 class InventoryAPI(SearchEndpoint):
+    """A class used to represent the `Inventory API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Inventory>`_
 
+    View and monitor in-use cloud resources' risk, compliance, and configuration changes.
+    """
     def __init__(self, session):
         """Initializes the Inventory API object.
 
         Args:
-          session: An instance of the HttpSession class
+          session (HttpSession): An instance of the HttpSession class
 
         Returns:
-            InventoryAPI object.
+            InventoryAPI: An instance of this class.
 
         """
         super().__init__(session, "Inventory")
@@ -21,15 +24,13 @@ class InventoryAPI(SearchEndpoint):
     def scan(self,
              csp,
              **request_params):
-        """A method to issue Resource Inventory scans.
+        """A method to trigger a resource inventory scan.
 
         Args:
-          csp: A string representing the cloud service provider to run the scan on (i.e. AWS, Azure, GCP).
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
+          csp (string): The cloud service provider to run the scan on. Valid values are: "AWS" "Azure" "GCP"
 
         Returns:
-            response json
+            dict: Status of scan
 
         """
         params = self.build_dict_from_items(
@@ -45,10 +46,10 @@ class InventoryAPI(SearchEndpoint):
         """A method to get the status of a Resource Inventory scan.
 
         Args:
-          csp: A string representing the cloud service provider retrieve the scan status from (i.e. AWS, Azure, GCP).
+          csp (string): The cloud service provider to run the scan on. Valid values are: "AWS" "Azure" "GCP"
 
         Returns:
-            response json
+            dict: Status of scan
 
         """
         params = self.build_dict_from_items(

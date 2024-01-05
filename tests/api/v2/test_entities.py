@@ -7,20 +7,6 @@ import pytest
 
 from laceworksdk.api.v2.entities import (
     EntitiesAPI,
-    ApplicationsAPI,
-    CommandLinesAPI,
-    ContainersAPI,
-    FilesAPI,
-    ImagesAPI,
-    InternalIPAddressesAPI,
-    K8sPodsAPI,
-    MachinesAPI,
-    MachineDetailsAPI,
-    NetworkInterfacesAPI,
-    NewFileHashesAPI,
-    PackagesAPI,
-    ProcessesAPI,
-    UsersAPI
 )
 from tests.api.test_search_endpoint import SearchEndpoint
 
@@ -36,18 +22,18 @@ class TestEntitiesEndpoint(SearchEndpoint):
 
     OBJECT_TYPE = EntitiesAPI
     OBJECT_MAP = {
-        "applications": ApplicationsAPI,
-        "command_lines": CommandLinesAPI,
-        "containers": ContainersAPI,
-        "files": FilesAPI,
-        "images": ImagesAPI,
-        "internal_ip_addresses": InternalIPAddressesAPI,
-        "k8s_pods": K8sPodsAPI,
-        "machines": MachinesAPI,
-        "machine_details": MachineDetailsAPI,
-        "network_interfaces": NetworkInterfacesAPI,
-        "new_file_hashes": NewFileHashesAPI,
-        "packages": PackagesAPI,
-        "processes": ProcessesAPI,
-        "users": UsersAPI
+        "applications": EntitiesAPI.ApplicationsAPI,
+        "command_lines": EntitiesAPI.CommandLinesAPI,
+        "containers": EntitiesAPI.ContainersAPI,
+        "files": EntitiesAPI.FilesAPI,
+        "images": EntitiesAPI.ImagesAPI,
+        "internal_ip_addresses": EntitiesAPI.InternalIPAddressesAPI,
+        "k8s_pods": EntitiesAPI.K8sPodsAPI,
+        "machines": EntitiesAPI.MachinesAPI,
+        "machine_details": EntitiesAPI.MachineDetailsAPI,
+        "network_interfaces": EntitiesAPI.NetworkInterfacesAPI,
+        "new_file_hashes": EntitiesAPI.NewFileHashesAPI,
+        "packages": EntitiesAPI.PackagesAPI,
+        "processes": EntitiesAPI.ProcessesAPI,
+        "users": EntitiesAPI.UsersAPI
     }

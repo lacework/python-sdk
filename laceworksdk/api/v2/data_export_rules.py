@@ -5,16 +5,20 @@ from laceworksdk.api.crud_endpoint import CrudEndpoint
 
 
 class DataExportRulesAPI(CrudEndpoint):
+    """A class used to represent the `Data Export Rules API endpoint <https://docs.lacework.net/api/v2/docs/#tag/DataExportRules>`_
 
+    S3 data export allows you to export data collected from your Lacework account and send it to an S3 bucket of your
+    choice. You can extend Lacework processed/normalized data to report/visualize alone or combine with other
+    business/security data to get insights and make meaningful business decisions.
+    """
     def __init__(self, session):
         """Initializes the DataExportRulesAPI object.
 
         Args:
-          session: An instance of the HttpSession class
-
-        :return DataExportRulesAPI object.
+          session(HttpSession): An instance of the HttpSession class
 
         Returns:
+            DataExportRulesAPI: An instance of this class.
 
         """
         super().__init__(session, "DataExportRules")
@@ -27,16 +31,17 @@ class DataExportRulesAPI(CrudEndpoint):
         """A method to create a new DataExportRules object.
 
         Args:
-          type: str
-          filters: dict
-          profile_version: list
-          intg_guid_list: str
-          request_params: any
-          provides: support for parameters that may be added in the future
-          **request_params: 
+          type (str): The type of data export rule to create. Valid values are:  "Dataexport"
+          intg_guid_list (list of str): The guids of the alert channels for the rule to use
+          filters (dict): A dict containing the fields needed to define the rule. fields are:
+
+              - name (str): The name of the alert
+              - enabled (bool|int): Whether the export rule is enabled
+              - description (str, optional): The description of the export rule
+              - profileVersions (list of str, optional): A list of profile versions
 
         Returns:
-          response(json)
+          dict: The created data export rule
 
         """
         return super().create(
@@ -48,13 +53,13 @@ class DataExportRulesAPI(CrudEndpoint):
 
     def get(self,
             guid=None):
-        """A method to get DataExportRules objects.
+        """A method to get data export rules. Using no args will get all rules.
 
         Args:
-          guid: str (Default value = None)
+          guid (str, optional): The guid of the rule to get.
 
         Returns:
-          response(json)
+          dict: The requested data export rule(s)
 
         """
         return super().get(id=guid)
@@ -64,10 +69,10 @@ class DataExportRulesAPI(CrudEndpoint):
         """A method to get an DataExportRules object by GUID.
 
         Args:
-          guid: str
+          guid (str): The guid of the rule to get.
 
         Returns:
-          response(json)
+          dict: The requested data export rule
 
         """
         return self.get(guid=guid)
@@ -81,17 +86,17 @@ class DataExportRulesAPI(CrudEndpoint):
         """A method to update an existing DataExportRules object.
 
         Args:
-          guid: str
-          type: str (Default value = None)
-          filters: dict (Default value = None)
-          profile_version: list
-          intg_guid_list: str (Default value = None)
-          request_params: any
-          provides: support for parameters that may be added in the future
-          **request_params: 
+          guid (str): The guid of the export rule to update
+          intg_guid_list (list of str): The guids of the alert channels for the rule to use
+          filters (dict): A dict containing the fields needed to define the rule. fields are:
+
+              - name (str, optional): The name of the alert
+              - enabled (bool|int, optional): Whether the export rule is enabled
+              - description (str, optional): The description of the export rule
+              - profileVersions (list of str, optional): A list of profile versions
 
         Returns:
-          response(json)
+          dict: The updated data export rule
 
         """
         return super().update(
@@ -104,13 +109,14 @@ class DataExportRulesAPI(CrudEndpoint):
 
     def delete(self,
                guid):
-        """A method to delete a DataExportRules object.
+        """A method to delete a data export rule.
+
 
         Args:
-          guid: str
+          guid (str): The GUID of the data export rule to delete
 
         Returns:
-          response(json)
+            requests.models.Response: a Requests response object containing the response code
 
         """
         return super().delete(id=guid)

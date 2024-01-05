@@ -37,64 +37,40 @@ class ActivitiesAPI:
         super().__init__()
         self._base_path = "Activities"
 
-        self.changed_files = ChangedFilesAPI(session, self._base_path)
-        self.connections = ConnectionsAPI(session, self._base_path)
-        self.dns = DnsAPI(session, self._base_path)
-        self.user_logins = UserLoginsAPI(session, self._base_path)
+        self.changed_files = self.ChangedFilesAPI(session, self._base_path)
+        self.connections = self.ConnectionsAPI(session, self._base_path)
+        self.dns = self.DnsAPI(session, self._base_path)
+        self.user_logins = self.UserLoginsAPI(session, self._base_path)
 
 
-class ChangedFilesAPI(SearchEndpoint):
-    """A class used to represent the `Changed Files API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1ChangedFiles~1search/post>`_
+    class ChangedFilesAPI(SearchEndpoint):
+        """A class used to represent the `Changed Files API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1ChangedFiles~1search/post>`_
 
-    Search for changed files in your environment
-    
-    Methods:
-    -------
-    search(json=None)
-        A method to search ChangedFiles objects.
-
-    """
-    RESOURCE = "ChangedFiles"
+        Search for changed files in your environment
+        """
+        RESOURCE = "ChangedFiles"
 
 
-class ConnectionsAPI(SearchEndpoint):
-    """A class used to represent the `Connections API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1Connections~1search/post>`_
+    class ConnectionsAPI(SearchEndpoint):
+        """A class used to represent the `Connections API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1Connections~1search/post>`_
 
-    Search for connections in your environment.
-    
-    Methods:
-    -------
-    search(json=None)
-        A method to search Connections objects.
-
-    """
-    RESOURCE = "Connections"
+        Search for connections in your environment.
+        """
+        RESOURCE = "Connections"
 
 
-class DnsAPI(SearchEndpoint):
-    """A class used to represent the `DNS Lookup API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1DNSs~1search/post>`_
+    class DnsAPI(SearchEndpoint):
+        """A class used to represent the `DNS Lookup API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1DNSs~1search/post>`_
 
 
-    Search for DNS summaries in your environment.
-
-    Methods:
-    -------
-    search(json=None)
-        A method to search DNS lookup objects.
-
-    """
-    RESOURCE = "DNSs"
+        Search for DNS summaries in your environment.
+        """
+        RESOURCE = "DNSs"
 
 
-class UserLoginsAPI(SearchEndpoint):
-    """A class used to represent the `UserLogins API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1UserLogins~1search/post>`_
+    class UserLoginsAPI(SearchEndpoint):
+        """A class used to represent the `UserLogins API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Activities/paths/~1api~1v2~1Activities~1UserLogins~1search/post>`_
 
-    Search for user logins in your environment.
-
-    Methods:
-    -------
-    search(json=None)
-        A method to search UserLogins objects.
-    
-    """
-    RESOURCE = "UserLogins"
+        Search for user logins in your environment.
+        """
+        RESOURCE = "UserLogins"

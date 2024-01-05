@@ -6,9 +6,6 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import pytest
 
 from laceworksdk.api.v2.vulnerabilities import (
-    ContainerVulnerabilitiesAPI,
-    HostVulnerabilitiesAPI,
-    SoftwarePackagesAPI,
     VulnerabilitiesAPI
 )
 from tests.api.test_search_endpoint import SearchEndpoint
@@ -25,8 +22,8 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
 
     OBJECT_TYPE = VulnerabilitiesAPI
     OBJECT_MAP = {
-        "containers": ContainerVulnerabilitiesAPI,
-        "hosts": HostVulnerabilitiesAPI
+        "containers": VulnerabilitiesAPI.ContainerVulnerabilitiesAPI,
+        "hosts": VulnerabilitiesAPI.HostVulnerabilitiesAPI
     }
 
     def test_vulnerabilities_containers_api_scan(self, api_object, request):
@@ -55,7 +52,7 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
                 assert "status" in response["data"].keys()
 
     def test_vulnerabilities_packages_api_object_creation(api, api_object):
-        assert isinstance(api_object.packages, SoftwarePackagesAPI)
+        assert isinstance(api_object.packages, VulnerabilitiesAPI.SoftwarePackagesAPI)
 
     def test_vulnerabilities_packages_api_scan(api, api_object):
         response = api_object.packages.scan(os_pkg_info_list=[{

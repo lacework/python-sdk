@@ -5,32 +5,28 @@ from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
 class ContractInfoAPI(BaseEndpoint):
+    """A class used to represent the `Contract Info API endpoint <https://docs.lacework.net/api/v2/docs/#tag/ContractInfo>`_
 
+    Get Lacework contract information.
+    """
     def __init__(self, session):
         """Initializes the ContractInfoAPI object.
 
         Args:
-          session: An instance of the HttpSession class
-
-        :return ContractInfoAPI object.
+          session(HttpSession): An instance of the HttpSession class
 
         Returns:
+            ContractInfoAPI: An instance of this class.
 
         """
         super().__init__(session, "ContractInfo")
 
     def get(self,
             **request_params):
-        """A method to get ContractInfo objects.
-
-        Args:
-          request_params: Additional request parameters.
-        (provides support for parameters that may be added in the future)
-        
-        :return response json
-          **request_params: 
+        """A method to get contract info
 
         Returns:
+            dict: Contract info for the lacework instance.
 
         """
         params = self.build_dict_from_items(
