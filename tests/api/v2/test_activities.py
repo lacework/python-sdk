@@ -6,10 +6,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import pytest
 
 from laceworksdk.api.v2.activities import (
-    ActivitiesAPI,
-    # ChangedFilesAPI,
-    # DnsAPI,
-    # UserLoginsAPI
+    ActivitiesAPI
 )
 from tests.api.test_search_endpoint import SearchEndpoint
 
