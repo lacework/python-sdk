@@ -4,7 +4,7 @@ Lacework Python SDK Usage
 
 The Lacework Python SDK closely mirrors the `Lacework API <https://docs.lacework.net/api/v2/docs/>`_
 in structure. The main class of the SDK is ``LaceworkClient`` which has attributes representing
-the various resources/endpoints of the Lacework API. Depending on the resource these attributes
+the various resources/endpoints of the Lacework API. Depending on the resource, these attributes
 will have some combination of CRUD and search methods, though a few have other unique methods.
 You can read about the various attributes and methods of the SDK `here <https://lacework.github.io/python-sdk/autoapi/laceworksdk/index.html>`_.
 
@@ -30,7 +30,7 @@ Example 2: Searching for an Alert
 ---------------------------------
 
 This example leverages the ``alerts`` `attribute <https://lacework.github.io/python-sdk/autoapi/laceworksdk/api/v2/alerts/index.html>`_
-to find all CRITICAL alerts that occured in the last 24 hours.
+to find all ``Critical`` alerts that occured in the last 24 hours.
 
 ..  code-block:: python
     :caption: Searching for an Alert
