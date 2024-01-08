@@ -13,6 +13,7 @@ this library aims to expose all publicly available APIs. For example, the follow
 fetch events, fetch host vulnerabilities, and fetch container vulnerabilities. The latest version of the SDK supports
 expressive searches as enabled by v2 of the Lacework APIs.
 
+For more information read the [documentation](https://lacework.github.io/python-sdk/)
 ```python
 from laceworksdk import LaceworkClient
 
