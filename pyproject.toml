@@ -31,6 +31,7 @@ bleach = ">=4.1.0"
 urllib3 = ">=1.26.15"
 importlib-metadata = ">=4.2"
 
+
 [tool.poetry.group.dev.dependencies]
 autopep8 = "^1.7"
 flake8 = "^5.0.4"
@@ -46,6 +47,7 @@ types-urllib3 = "^1.26"
 pre-commit = "^2.21.0"
 commitizen = "^2.42.1"
 sphinx = {version = "^7.2.6", python = ">=3.9,<4"}
+sphinx-autoapi = {version = "^3.0.0",  python = ">=3.9,<4"}
 sphinx-rtd-theme = {version = "^2.0.0", python = ">=3.9,<4"}
 poethepoet = "^0.24.1"
 
@@ -57,6 +59,13 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff.lint]
 select = ["D"]
+ignore = ["D200", "D212", "D105", "D202", "D301", "D415"  ]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+docstring-code-format = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
@@ -77,6 +86,7 @@ test        = "pytest -v --order-scope=class -m 'not ci_exempt and not flaky_tes
 flaky_test  = "pytest -m 'flaky_test' tests"
 lint        = "flake8 . --exclude 'jupyter' --count --select=E9,F63,F7,F82 --show-source --statistics"
 lint-docstrings = "ruff check laceworksdk/"
-docs-clean.shell  = "rm -r docs-source/auto; rm -r docs/*"
-docs-build.shell  = "sphinx-apidoc -e -f -d 5 -o docs-source/auto laceworksdk && sphinx-build -M html docs-source docs"
-docs        = ["docs-clean", "docs-build"]
+docs-clean.shell  = "rm -r docs-source/auto; rm -r docs/doctrees; rm -r docs/html"
+docs-build.shell  = "sphinx-build -M html docs-source docs"
+docs.sequence = ["docs-clean", "docs-build"]
+docs.ignore_fail = "return_zero"

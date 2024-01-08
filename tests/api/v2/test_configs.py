@@ -7,9 +7,6 @@ import pytest
 
 from laceworksdk.api.v2.configs import (
     ConfigsAPI,
-    ComplianceEvaluationsAPI,
-    AzureSubscriptions,
-    GcpProjects
 )
 from tests.api.test_read_endpoint import ReadEndpoint
 from tests.api.test_search_endpoint import SearchEndpoint
@@ -26,7 +23,7 @@ class TestConfigsEndpoint(SearchEndpoint):
 
     OBJECT_TYPE = ConfigsAPI
     OBJECT_MAP = {
-        "compliance_evaluations": ComplianceEvaluationsAPI,
+        "compliance_evaluations": ConfigsAPI.ComplianceEvaluationsAPI,
     }
 
     @pytest.mark.parametrize("dataset", ["AwsCompliance", "AzureCompliance", "GcpCompliance"])
@@ -39,8 +36,8 @@ class TestConfigsLookups(ReadEndpoint):
 
     OBJECT_TYPE = ConfigsAPI
     OBJECT_MAP = {
-        "azure_subscriptions": AzureSubscriptions,
-        "gcp_projects": GcpProjects
+        "azure_subscriptions": ConfigsAPI.AzureSubscriptions,
+        "gcp_projects": ConfigsAPI.GcpProjects
     }
 
     def test_api_search(self, api_object):

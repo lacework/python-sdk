@@ -1,129 +1,100 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework AlertRules API wrapper.
-"""
+"""Lacework AlertRules API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
 
 class AlertRulesAPI(CrudEndpoint):
+    """A class used to represent the `Alert Rules API endpoint <https://docs.lacework.net/api/v2/docs/#tag/AlertRules>`_
+
+    Lacework combines alert channels and alert rules to provide a flexible method for routing alerts. For alert
+    channels, you define information about where to send alerts, such as to Jira, Slack, or email. For alert rules,
+    you define information about which alert types to send, such as critical and high severity compliance alerts.
+    """
 
     def __init__(self, session):
+        """Initializes the AlertRulesAPI object.
+
+        Args:
+          session (HttpSession): An instance of the HttpSession class
+
+        Returns:
+            AlertRulesAPI: returns an AlertRulesAPI object
         """
-        Initializes the AlertRulesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return AlertRulesAPI object.
-        """
-
         super().__init__(session, "AlertRules")
 
-    def create(self,
-               type,
-               filters,
-               intg_guid_list,
-               **request_params):
+    def create(self, type, filters, intg_guid_list, **request_params):
+        """A method to create new Alert Rules.
+
+        Args:
+            type (str): The type of the alert rule. Valid values are: "Event"
+            filters (dict): The alert rule definition. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertRules/paths/~1api~1v2~1AlertRules/post>`_ for valid values.
+            intg_guid_list (list of str): A list of GUIDs representing the alert channels to use.
+
+            request_params (dict, optional): Use to pass any additional parameters the API
+
+        Returns:
+            dict: The new rule.
         """
-        A method to create a new AlertRules object.
-
-        :param type: A string representing the type of the object.
-            ('Event')
-        :param filters: A filter object for the object configuration.
-            obj:
-                :param name: A string representing the object name.
-                :param description: A string representing the object description.
-                :param enabled: A boolean/integer representing whether the object is enabled.
-                    (0 or 1)
-                :param resourceGroups: A list of resource groups to define for the object.
-                :param eventCategory: A list of event categories to define for the object.
-                    ("Compliance", "App", "Cloud", "File", "Machine", "User", "Platform", "K8sActivity")
-                :param severity: A list of alert severities to define for the object.
-                    (1, 2, 3, 4, 5)
-        :param intg_guid_list: A list of integration GUIDs representing the alert channels to use.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return response json
-        """
-
         return super().create(
             type=type,
             filters=self._format_filters(filters),
             intg_guid_list=intg_guid_list,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            guid=None):
+    def get(self, guid=None):
+        """A method to get AlertRules objects.
+
+        Args:
+            guid (str): The alert rule GUID to retrieve.
+
+        Returns:
+            dict: The alert rule(s)
+
         """
-        A method to get AlertRules objects.
-
-        :param guid: A string representing the object GUID.
-
-        :return response json
-        """
-
         return super().get(id=guid)
 
-    def get_by_guid(self,
-                    guid):
+    def get_by_guid(self, guid):
+        """A method to get an AlertRules object by GUID.
+
+        Args:
+            guid (str): The alert rule GUID.
+
+        Returns:
+            dict: The alert rule
+
         """
-        A method to get an AlertRules object by GUID.
-
-        :param guid: A string representing the object GUID.
-
-        :return response json
-        """
-
         return self.get(guid=guid)
 
-    def update(self,
-               guid,
-               type=None,
-               filters=None,
-               intg_guid_list=None,
-               **request_params):
+    def update(self, guid, filters=None, intg_guid_list=None, **request_params):
+        """A method to update an AlertRules object.
+
+        Args:
+            guid (str): The Alert Rule GUID you wish to update.
+            filters (dict, optional): The alert rule definition. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertRules/paths/~1api~1v2~1AlertRules~1%7BmcGuid%7D/patch>`_ for valid values.
+            intg_guid_list (list of str, optional): A list of GUIDs representing the alert channels to use.
+            request_params (dict, optional): Use to pass any additional parameters the API
+
+        Returns:
+            dict: The updated alert rule
+
         """
-        A method to update an AlertRules object.
-
-        :param guid: A string representing the object GUID.
-        :param type: A string representing the type of the object.
-            ('Event')
-        :param filters: A filter object for the object configuration.
-            obj:
-                :param name: A string representing the object name.
-                :param description: A string representing the object description.
-                :param enabled: A boolean/integer representing whether the object is enabled.
-                    (0 or 1)
-                :param resourceGroups: A list of resource groups to define for the object.
-                :param eventCategory: A list of event categories to define for the object.
-                    ("Compliance", "App", "Cloud", "File", "Machine", "User", "Platform", "K8sActivity")
-                :param severity: A list of alert severities to define for the object.
-                    (1, 2, 3, 4, 5)
-        :param intg_guid_list: A list of integration GUIDs representing the alert channels to use.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return response json
-        """
-
         return super().update(
             id=guid,
-            type=type,
             filters=self._format_filters(filters),
             intg_guid_list=intg_guid_list,
-            **request_params
+            **request_params,
         )
 
-    def delete(self,
-               guid):
+    def delete(self, guid):
+        """A method to delete an AlertRules object.
+
+        Args:
+            guid (str): The alert rule GUID.
+
+        Returns:
+            requests.models.Response: a Requests response object containing the response code
+
         """
-        A method to delete an AlertRules object.
-
-        :param guid: A string representing the object GUID.
-
-        :return response json
-        """
-
         return super().delete(id=guid)

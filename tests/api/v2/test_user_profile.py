@@ -33,3 +33,7 @@ class TestUserProfile(BaseEndpoint):
 
         for item in response["data"]:
             assert keys.issubset(item.keys())
+
+    def test_api_get_subaccount(self, api_object):
+        response = api_object.get(account_name="tech-ally")
+        assert "data" in response

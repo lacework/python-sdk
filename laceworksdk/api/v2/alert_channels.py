@@ -1,149 +1,126 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework AlertChannels API wrapper.
-"""
+"""Lacework AlertChannels API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
 
 class AlertChannelsAPI(CrudEndpoint):
+    """A class used to represent the `Alert Channels API endpoint <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels>`_
+
+    Lacework combines alert channels with alert rules or report rules to provide a flexible method for routing alerts and reports.
+    """
 
     def __init__(self, session):
+        """Initializes the AlertChannelsAPI object.
+
+        Args:
+          session(HttpSession): An instance of the HttpSession class
+
+        Returns:
+            AlertChannelsAPI: an AlertChannelsAPI object.
         """
-        Initializes the AlertChannelsAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return AlertChannelsAPI object.
-        """
-
         super().__init__(session, "AlertChannels")
 
-    def create(self,
-               name,
-               type,
-               enabled,
-               data,
-               **request_params):
+    def create(self, name, type, enabled, data, **request_params):
+        """A method to create a new AlertChannels object.
+
+        Args:
+          name (str): The name of the alert channel you wish to create.
+          type (str): The type of alert channel you wish to create. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
+          enabled (bool|int): A boolean/integer representing whether the object is enabled. (0 or 1)
+          data (dict): A dict matching the schema for the specified type. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
+          request_params (dict, optional): Use to pass any additional parameters the API
+
+        Returns:
+            dict: The new alert channel
         """
-        A method to create a new AlertChannels object.
-
-        :param name: A string representing the object name.
-        :param type: A string representing the object type.
-        :param enabled: A boolean/integer representing whether the object is enabled.
-            (0 or 1)
-        :param data: A JSON object matching the schema for the specified type.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return response json
-        """
-
         return super().create(
             name=name,
             type=type,
             enabled=int(bool(enabled)),
             data=data,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            guid=None,
-            type=None):
+    def get(self, guid=None, type=None):
+        """A method to get all Alert Channels, optionally filtered by guid and/or type.
+
+        Args:
+            guid (str, optional): The alert channel GUID.
+            type (str, optional): A string representing the alert channel type.
+
+        Returns:
+            dict: The channel(s) requested.
+
         """
-        A method to get AlertChannels objects.
+        return super().get(id=guid, resource=type)
 
-        :param guid: A string representing the object GUID.
-        :param type: A string representing the object type.
+    def get_by_guid(self, guid):
+        """A method to get AlertChannels objects by GUID.
 
-        :return response json
+        Args:
+            guid (str): The alert channel GUID.
+
+        Returns:
+            dict: The channel(s) requested.
         """
-
-        return super().get(
-            id=guid,
-            resource=type
-        )
-
-    def get_by_guid(self,
-                    guid):
-        """
-        A method to get AlertChannels objects by GUID.
-
-        :param guid: A string representing the object GUID.
-
-        :return response json
-        """
-
         return self.get(guid=guid)
 
-    def get_by_type(self,
-                    type):
+    def get_by_type(self, type):
+        """A method to get AlertChannels objects by type.
+
+        Args:
+          type (str): The alert channel type to return
+
+        Returns:
+            dict: The channel(s) requested.
         """
-        A method to get AlertChannels objects by type.
-
-        :param type: A string representing the object type.
-
-        :return response json
-        """
-
         return self.get(type=type)
 
-    def update(self,
-               guid,
-               name=None,
-               type=None,
-               enabled=None,
-               data=None,
-               **request_params):
-        """
-        A method to update an AlertChannels object.
+    def update(
+        self, guid, name=None, type=None, enabled=None, data=None, **request_params
+    ):
+        """A method to update an AlertChannels object.
 
-        :param guid: A string representing the object GUID.
-        :param name: A string representing the object name.
-        :param type: A string representing the object type.
-        :param enabled: A boolean/integer representing whether the object is enabled.
-            (0 or 1)
-        :param data: A JSON object matching the schema for the specified type.
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
+        Args:
+            guid (str): The guild of the alert channel to update.
+            name (str): The name of the alert channel you wish to update.
+            type (str): The type of alert channel you wish to update. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
+            enabled (bool|int): A boolean/integer representing whether the object is enabled. (0 or 1)
+            data (dict): A dict matching the schema for the specified type. See the `API docs <https://docs.lacework.net/api/v2/docs/#tag/AlertChannels/paths/~1api~1v2~1AlertChannels/post>`_ for valid values.
+            request_params (dict, optional): Use to pass any additional parameters the API
 
-        :return response json
+        Returns:
+            dict: The updated alert channel info.
         """
 
         if enabled is not None:
             enabled = int(bool(enabled))
 
         return super().update(
-            id=guid,
-            name=name,
-            type=type,
-            enabled=enabled,
-            data=data,
-            **request_params
+            id=guid, name=name, type=type, enabled=enabled, data=data, **request_params
         )
 
-    def delete(self,
-               guid):
+    def delete(self, guid):
+        """A method to delete an AlertChannels object.
+
+        Args:
+            guid (str): A string representing the object GUID.
+
+        Returns:
+            requests.models.Response: a Requests response object containing the response code
         """
-        A method to delete an AlertChannels object.
-
-        :param guid: A string representing the object GUID.
-
-        :return response json
-        """
-
         return super().delete(id=guid)
 
-    def test(self,
-             guid):
+    def test(self, guid):
+        """A method to test an AlertChannels object.
+
+        Args:
+            guid (str): A string representing the object GUID.
+
+        Returns:
+            requests.models.Response: a Requests response object containing the response code
         """
-        A method to test an AlertChannels object.
-
-        :param guid: A string representing the object GUID.
-
-        :return response json
-        """
-
         response = self._session.post(self.build_url(resource=guid, action="test"))
 
         return response

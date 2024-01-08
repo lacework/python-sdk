@@ -37,22 +37,16 @@ class TestReports(BaseEndpoint):
             response = api_object.get(
                 primary_query_id=aws_account,
                 format="json",
-                type="COMPLIANCE",
                 report_type="AWS_SOC_Rev2",
-                template_name="DEFAULT",
-                latest=True
             )
             assert "data" in response.keys()
 
     @pytest.mark.flaky_test
-    def test_api_get_aws_soc2_html(self, api_object, aws_account):
+    def test_api_get_aws_CIS14_html(self, api_object, aws_account):
         if aws_account:
             response = api_object.get(
                 primary_query_id=aws_account,
                 format="html",
-                type="COMPLIANCE",
-                report_type="AWS_SOC_Rev2",
-                template_name="DEFAULT",
-                latest=True
+                report_type="AWS_CIS_14",
             )
             assert "<!DOCTYPE html>".encode("utf-8") in response

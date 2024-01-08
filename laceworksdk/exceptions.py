@@ -14,16 +14,19 @@ class LaceworkSDKException(Exception):
     """
     Base class for all lacework package exceptions.
     """
+
     pass
 
 
 class ApiError(LaceworkSDKException):
     """
     Errors returned in response to requests sent to the Lacework APIs.
+
     Several data attributes are available for inspection.
     """
 
     def __init__(self, response):
+        """Create an instance of the APIError class."""
         assert isinstance(response, requests.Response)
 
         # Extended exception attributes
@@ -41,8 +44,7 @@ class ApiError(LaceworkSDKException):
 
         self.details = None
         """The parsed JSON details from the API response."""
-        if "application/json" in \
-                self.response.headers.get("Content-Type", "").lower():
+        if "application/json" in self.response.headers.get("Content-Type", "").lower():
             try:
                 self.details = self.response.json()
             except ValueError:
@@ -74,6 +76,7 @@ class ApiError(LaceworkSDKException):
 
 class MalformedResponse(LaceworkSDKException):
     """Raised when a malformed response is received from Lacework."""
+
     pass
 
 
@@ -82,4 +85,5 @@ class RateLimitError(ApiError):
 
     Raised when a rate-limit exceeded message is received and the request **will not** be retried.
     """
+
     pass

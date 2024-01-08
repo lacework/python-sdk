@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework API wrappers.
-"""
+"""Lacework API wrappers."""
 
 import os
 
@@ -53,27 +51,26 @@ from laceworksdk.config import (
     LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE,
     LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE,
     LACEWORK_API_CONFIG_SECTION_ENVIRONMENT_VARIABLE,
-    LACEWORK_CLI_CONFIG_RELATIVE_PATH
+    LACEWORK_CLI_CONFIG_RELATIVE_PATH,
 )
 
 load_dotenv()
 
 
 class LaceworkClient:
-    """
-    Lacework API wrapper for Python.
-    """
+    """Lacework API wrapper for Python."""
 
-    def __init__(self,
-                 account=None,
-                 subaccount=None,
-                 api_key=None,
-                 api_secret=None,
-                 instance=None,
-                 base_domain=None,
-                 profile=None):
-        """
-        Initializes the Lacework Client object.
+    def __init__(
+        self,
+        account=None,
+        subaccount=None,
+        api_key=None,
+        api_secret=None,
+        instance=None,
+        base_domain=None,
+        profile=None,
+    ):
+        """Initializes the Lacework Client object.
 
         Order of operation is:
             1. Parameters passed in via the init function (flags).
@@ -82,26 +79,31 @@ class LaceworkClient:
 
         :return LaceworkClient object.
         """
-
         # Attempt to use Environment Variables
-        self._account = account or instance or os.getenv(
-            LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE)
+        self._account = (
+            account or instance or os.getenv(LACEWORK_ACCOUNT_ENVIRONMENT_VARIABLE)
+        )
         self._subaccount = subaccount or os.getenv(
-            LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE)
-        self._api_key = api_key or os.getenv(
-            LACEWORK_API_KEY_ENVIRONMENT_VARIABLE)
+            LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE
+        )
+        self._api_key = api_key or os.getenv(LACEWORK_API_KEY_ENVIRONMENT_VARIABLE)
         self._api_secret = api_secret or os.getenv(
-            LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE)
-        self._base_domain = base_domain or os.getenv(
-            LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE
-        ) or DEFAULT_BASE_DOMAIN
+            LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE
+        )
+        self._base_domain = (
+            base_domain
+            or os.getenv(LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE)
+            or DEFAULT_BASE_DOMAIN
+        )
 
         config_file_path = os.path.join(
-            os.path.expanduser("~"), LACEWORK_CLI_CONFIG_RELATIVE_PATH)
+            os.path.expanduser("~"), LACEWORK_CLI_CONFIG_RELATIVE_PATH
+        )
 
         if os.path.isfile(config_file_path):
             profile = profile or os.getenv(
-                LACEWORK_API_CONFIG_SECTION_ENVIRONMENT_VARIABLE, "default")
+                LACEWORK_API_CONFIG_SECTION_ENVIRONMENT_VARIABLE, "default"
+            )
             config_obj = configparser.ConfigParser()
             config_obj.read([config_file_path])
             if config_obj.has_section(profile):
@@ -124,7 +126,7 @@ class LaceworkClient:
 
         domain_string = f".{self._base_domain}"
         if self._account.endswith(domain_string):
-            self._account = self._account[:-len(domain_string)]
+            self._account = self._account[: -len(domain_string)]
 
         # Create an HttpSession instance
         self._session = HttpSession(
@@ -132,7 +134,7 @@ class LaceworkClient:
             self._subaccount,
             self._api_key,
             self._api_secret,
-            self._base_domain
+            self._base_domain,
         )
 
         # API Wrappers
@@ -173,24 +175,16 @@ class LaceworkClient:
 
     @property
     def subaccount(self):
-        """
-        Returns the value of the session's subaccount.
-        """
+        """Returns the value of the session's subaccount."""
         return self._session.subaccount
 
     def set_org_level_access(self, org_level_access):
-        """
-        A method to set whether the client should use organization-level API calls.
-        """
-
+        """A method to set whether the client should use organization-level API calls."""
         if org_level_access is True:
             self._session._org_level_access = True
         else:
             self._session._org_level_access = False
 
     def set_subaccount(self, subaccount):
-        """
-        A method to update the subaccount the client should use for API calls.
-        """
-
+        """A method to update the subaccount the client should use for API calls."""
         self._session.subaccount = subaccount

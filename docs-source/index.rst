@@ -5,7 +5,10 @@ Welcome to Lacework Python SDK's documentation!
 .. toctree::
     :maxdepth: 5
 
-    auto/modules
+
+    autoapi/index
+
+
 
 
 Indices and tables

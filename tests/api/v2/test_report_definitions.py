@@ -40,27 +40,11 @@ def api_object_create_body(random_text, aws_resource_group_guid, email_alert_cha
                     "category": "1",
                     "title": "Critical policies collection",
                     "policies": [
-                        "AWS_CIS_1_1"
+                        "lacework-global-31"
                     ]
                 }
-            ],
-            "overrides": [
-                {
-                    "title": "Non `root` user authentication violation",
-                    "policy": "AWS_CIS_1_1"
-                }
             ]
-        },
-        "props": {
-            "resourceGroups": [
-                aws_resource_group_guid
-            ]
-        },
-        "alert_channels": [
-            email_alert_channel_guid
-        ],
-        "distribution_type": "pdf",
-        "frequency": "daily"
+        }
     }
 
 
@@ -68,27 +52,17 @@ def api_object_create_body(random_text, aws_resource_group_guid, email_alert_cha
 def api_object_update_body(random_text):
     return {
         "report_name": f"Test_{random_text}_Report",
-        "report_type": "COMPLIANCE",
-        "sub_report_type": "AWS",
         "report_definition": {
             "sections": [
                 {
                     "category": "1",
                     "title": "Critical policies collection",
                     "policies": [
-                        "AWS_CIS_1_1"
+                        "lacework-global-31"
                     ]
                 }
-            ],
-            "overrides": [
-                {
-                    "title": "Non `root` user authentication violation",
-                    "policy": "AWS_CIS_1_1"
-                }
             ]
-        },
-        "frequency": "weekly",
-        "update_type": "Update"
+        }
     }
 
 

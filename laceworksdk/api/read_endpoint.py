@@ -1,46 +1,44 @@
 # -*- coding: utf-8 -*-
-
+"""The base read class for the Lacework Python SDK"""
 from laceworksdk.api.base_endpoint import BaseEndpoint
 
 
 class ReadEndpoint(BaseEndpoint):
-    """
-    A class used to implement Read functionality for Lacework API Endpoints
-    """
+    """A class used to implement Read functionality for Lacework API Endpoints."""
 
     # If defined, this is the resource used in the URL path
     RESOURCE = ""
 
-    def __init__(self,
-                 session,
-                 object_type,
-                 endpoint_root="/api/v2"):
+    def __init__(self, session, object_type, endpoint_root="/api/v2"):
         """
-        :param session: An instance of the HttpSession class.
-        :param object_type: The Lacework object type to use.
-        :param endpoint_root: The URL endpoint root to use.
-        """
+        Initialize the ReadEndpoint Class.
 
+        Args:
+            session (HttpSession): An instance of the HttpSession class.
+            object_type (str): The Lacework object type to use.
+            endpoint_root (str, optional): The URL endpoint root to use.
+        """
         super().__init__(session, object_type, endpoint_root)
 
     def get(self, id=None, resource=None, **request_params):
-        """
-        A method to get objects.
+        """A method to get objects.
 
-        :param guid: A string representing the object ID.
-        :param type: A string representing the object resource type.
-        :param request_params: A dictionary of parameters to add to the request.
+        Args:
+          id (str): A string representing the object ID.
+          resource (str): The Lacework API resource type to get.
+          request_params (dict): Use to pass any additional parameters the API
 
-        :return response json
+        Returns:
+            dict: the requested o
         """
 
         if not resource and self.RESOURCE:
             resource = self.RESOURCE
 
-        params = self.build_dict_from_items(
-            request_params
-        )
+        params = self.build_dict_from_items(request_params)
 
-        response = self._session.get(self.build_url(id=id, resource=resource), params=params)
+        response = self._session.get(
+            self.build_url(id=id, resource=resource), params=params
+        )
 
         return response.json()

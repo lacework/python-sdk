@@ -1,73 +1,67 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Policies API wrapper.
-"""
+"""Lacework Policies API wrapper."""
 
 from laceworksdk.api.crud_endpoint import CrudEndpoint
 
 
 class PoliciesAPI(CrudEndpoint):
+    """A class used to represent the `Policies API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Policies>`_
+
+    Policies are a mechanism used to add annotated metadata to queries for improving the context of alerts, reports,
+    and information displayed in the Lacework Console. You can fully customize policies.
+    """
 
     def __init__(self, session):
+        """Initializes the PoliciesAPI object.
+
+        Args:
+          session (HttpSession): An instance of the HttpSession class
+
+        Returns:
+            PoliciesAPI: An instance of this class
+
         """
-        Initializes the PoliciesAPI object.
-
-        :param session: An instance of the HttpSession class
-
-        :return PoliciesAPI object.
-        """
-
         super().__init__(session, "Policies")
 
-    def create(self,
-               policy_type,
-               query_id,
-               enabled,
-               title,
-               description,
-               remediation,
-               severity,
-               alert_enabled,
-               alert_profile,
-               evaluator_id=None,
-               limit=None,
-               eval_frequency=None,
-               **request_params):
+    def create(
+        self,
+        policy_type,
+        query_id,
+        enabled,
+        title,
+        description,
+        remediation,
+        severity,
+        alert_enabled,
+        alert_profile,
+        limit=1000,
+        eval_frequency=None,
+        tags=[],
+        **request_params,
+    ):
+        """A method to create a new Policies object.
+
+        Args:
+          policy_type (str, optional): The policy type. Valid values are: "Violation"
+          query_id (str): The policy query ID.
+          enabled (bool): Whether the policy is enabled.
+          title (str): The policy title.
+          description (str): The policy description.
+          remediation (str): The remediation strategy for the object.
+          severity (str): A string representing the object severity. Valid values are :\
+          "info", "low", "medium", "high", "critical"
+          alert_enabled (bool): A boolean representing whether alerting is enabled.
+          alert_profile (str, optional): A string representing the alert profile.
+          limit (int, optional): An integer representing the number of results to return. (Default value = 1000)
+          tags (list of str): A list of policy tags
+          eval_frequency (str, optional, deprecated): A string representing the frequency in which to evaluate the \
+          object. Valid values are: "Hourly", "Daily"
+          request_params (dict, optional): Use to pass any additional parameters the API
+
+        Returns:
+          dict: The newly created policy.
+
         """
-        A method to create a new Policies object.
-
-        :param policy_type: A string representing the object policy type.
-        :type policy_type: str
-        :param query_id: A string representing the object query ID.
-        :type query_id: str
-        :param enabled: A boolean representing whether the object is enabled.
-        :type enabled: bool
-        :param title: A string representing the object title.
-        :type title: str
-        :param description: A string representing the object description.
-        :type description: str
-        :param remediation: A string representing the remediation strategy for the object.
-        :type remediation: str
-        :param severity: A string representing the object severity.
-            ("info", "low", "medium", "high", "critical")
-        :type severity: str
-        :param alert_enabled: A boolean representing whether alerting is enabled.
-        :type alert_enabled: bool
-        :param alert_profile: A string representing the alert profile.
-        :type alert_profile: str
-        :param evaluator_id: A string representing the evaluator in which the object is to be run.
-        :type evaluator_id: str
-        :param limit: An integer representing the number of results to return.
-        :type limit: int
-        :param eval_frequency: A string representing the frequency in which to evaluate the object.
-            ("Hourly", "Daily")
-        :type eval_frequency: str
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return: response json
-        """
-
         return super().create(
             policy_type=policy_type,
             query_id=query_id,
@@ -78,87 +72,77 @@ class PoliciesAPI(CrudEndpoint):
             severity=severity,
             alert_enabled=alert_enabled,
             alert_profile=alert_profile,
-            evaluator_id=evaluator_id,
+            tags=tags,
             limit=limit,
             eval_frequency=eval_frequency,
-            **request_params
+            **request_params,
         )
 
-    def get(self,
-            policy_id=None):
+    def get(self, policy_id=None):
+        """A method to get Policies objects. Using no args will get all policies.
+
+        Args:
+          policy_id (str, optional): A string representing the object policy ID.
+
+        Returns:
+          dict: The requested policies
+
         """
-        A method to get Policies objects.
-
-        :param policy_id: A string representing the object policy ID.
-        :type policy_id: str
-
-        :return: response json
-        """
-
         return super().get(id=policy_id)
 
-    def get_by_id(self,
-                  policy_id):
+    def get_by_id(self, policy_id):
+        """A method to get a Policies object by policy ID.
+
+        Args:
+          policy_id(str): A string representing the object policy ID.
+
+        Returns:
+          dict: The requested policy
+
         """
-        A method to get a Policies object by policy ID.
-
-        :param policy_id: A string representing the object policy ID.
-        :type policy_id: str
-
-        :return: response json
-        """
-
         return self.get(policy_id=policy_id)
 
-    def update(self,  # noqa: C901
-               policy_id,
-               policy_type=None,
-               query_id=None,
-               enabled=None,
-               title=None,
-               description=None,
-               remediation=None,
-               severity=None,
-               alert_enabled=None,
-               alert_profile=None,
-               limit=None,
-               eval_frequency=None,
-               **request_params):
+    def update(
+        self,  # noqa: C901
+        policy_id,
+        policy_type=None,
+        query_id=None,
+        enabled=None,
+        title=None,
+        description=None,
+        remediation=None,
+        severity=None,
+        alert_enabled=None,
+        alert_profile=None,
+        limit=None,
+        tags=[],
+        eval_frequency=None,
+        **request_params,
+    ):
+        """A method to update a Lacework Query Language (LQL) policy.
+
+        Args:
+          policy_id(str): A string representing the object policy ID.
+          policy_type (str, optional): The policy type. Valid values are: "Violation"
+          query_id (str, optional): The policy query ID.
+          enabled (bool, optional): Whether the policy is enabled.
+          title (str, optional): The policy title.
+          description (str, optional): The policy description.
+          remediation (str, optional): The remediation strategy for the object.
+          severity (str, optional): A string representing the object severity. Valid values are :\
+          "info", "low", "medium", "high", "critical"
+          alert_enabled (bool, optional): A boolean representing whether alerting is enabled.
+          alert_profile (str, optional): A string representing the alert profile.
+          limit (int, optional): An integer representing the number of results to return. (Default value = 1000)
+          tags (list of str, optional): A list of policy tags
+          eval_frequency (str, optional, deprecated): A string representing the frequency in which to evaluate the \
+          object. Valid values are: "Hourly", "Daily"
+          request_params (dict, optional): Use to pass any additional parameters the API
+
+        Returns:
+          dict: The newly created policy.
+
         """
-        A method to update a Lacework Query Language (LQL) policy.
-
-        :param policy_id: A string representing the object policy ID.
-        :type policy_id: str
-        :param policy_type: A string representing the object policy type.
-        :type policy_type: str
-        :param query_id: A string representing the object query ID.
-        :type query_id: str
-        :param enabled: A boolean representing whether the object is enabled.
-        :type enabled: bool
-        :param title: A string representing the object title.
-        :type title: str
-        :param description: A string representing the object description.
-        :type description: str
-        :param remediation: A string representing the remediation strategy for the object.
-        :type remediation: str
-        :param severity: A string representing the object severity.
-            ("info", "low", "medium", "high", "critical")
-        :type severity: str
-        :param alert_enabled: A boolean representing whether alerting is enabled.
-        :type alert_enabled: bool
-        :param alert_profile: A string representing the alert profile.
-        :type alert_profile: str
-        :param limit: An integer representing the number of results to return.
-        :type limit: int
-        :param eval_frequency: A string representing the frequency in which to evaluate the object.
-            ("Hourly", "Daily")
-        :type eval_frequency: str
-        :param request_params: Additional request parameters.
-            (provides support for parameters that may be added in the future)
-
-        :return: response json
-        """
-
         if enabled is not None:
             enabled = bool(enabled)
 
@@ -177,39 +161,36 @@ class PoliciesAPI(CrudEndpoint):
             alert_enabled=alert_enabled,
             alert_profile=alert_profile,
             limit=limit,
+            tags=tags,
             eval_frequency=eval_frequency,
-            **request_params
+            **request_params,
         )
 
-    def bulk_update(self,
-                    json):
+    def bulk_update(self, json):
+        """A method to update Policy objects in bulk.
+
+        Args:
+          json (list of dicts): A list of dictionaries containing policy configuration.
+              - policyId (str): The ID of the policy.
+              - enabled (bool): The status of the policy.
+              - severity (str): The severity of the policy. Valid values: "info", "low", "medium", "high", "critical"
+
+        Returns:
+          dict: The updated policies.
+
         """
-        A method to update Policy objects in bulk
-
-        :param json: A list of JSON objects containing policy configuration.
-        :type json: list(dict(str, Any))
-            obj:
-                :param policyId: A string representing the ID of the policy.
-                :param enabled: A boolean representing the status of the policy.
-                :param severity: A string representing the severity of the policy.
-                    ("info", "low", "medium", "high", "critical")
-
-        :return: response json
-        """
-
         response = self._session.patch(self.build_url(), json=json)
 
         return response.json()
 
-    def delete(self,
-               policy_id):
+    def delete(self, policy_id):
+        """A method to delete a policy.
+
+        Args:
+          policy_id (str): A string representing the policy ID.
+
+        Returns:
+            requests.models.Response: a Requests response object containing the response code
+
         """
-        A method to delete a Policies object.
-
-        :param policy_id: A string representing the object policy ID.
-        :type policy_id: str
-
-        :return: response json
-        """
-
         return super().delete(id=policy_id)

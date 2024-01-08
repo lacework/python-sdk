@@ -1,70 +1,57 @@
 # -*- coding: utf-8 -*-
-"""
-Lacework Configs API wrapper.
-"""
+"""Lacework Configs API wrapper."""
 
 from laceworksdk.api.read_endpoint import ReadEndpoint
 from laceworksdk.api.search_endpoint import SearchEndpoint
 
 
 class ConfigsAPI:
-    """A class used to represent the Configs API endpoint.
+    """A class used to represent the `Configs API endpoint <https://docs.lacework.net/api/v2/docs/#tag/Configs>`_
 
-    The Configs API endpoint is simply a parent for different types of
-    configs that can be queried.
+    Get information about compliance configurations.
 
-    Attributes
-    ----------
-    compliance_evaluations:
-        A ComplianceEvaluationsAPI instance.
+    The Configs API endpoint is a parent for different types of configs that can be queried.
+
+    Attributes:
+        compliance_evaluations (ComplianceEvaluationsAPI):  A ComplianceEvaluationsAPI instance.
+        azure_subscriptions (AzureSubscriptions): An AzureSubscriptions instance.
+        gcp_projects (GcpProjects): A GcpProjects instance.
     """
 
     def __init__(self, session):
         """Initializes the ConfigsAPI object.
 
-        :param session: An instance of the HttpSession class
+        Args:
+            session (HttpSession): An instance of the HttpSession class
 
-        :return ConfigsAPI object.
+        Returns:
+            ConfigsAPI: An instance of this class..
         """
-
         super().__init__()
         self._base_path = "Configs"
 
-        self.azure_subscriptions = AzureSubscriptions(session, self._base_path)
-        self.compliance_evaluations = ComplianceEvaluationsAPI(session, self._base_path)
-        self.gcp_projects = GcpProjects(session, self._base_path)
+        self.azure_subscriptions = self.AzureSubscriptions(session, self._base_path)
+        self.compliance_evaluations = self.ComplianceEvaluationsAPI(session, self._base_path)
+        self.gcp_projects = self.GcpProjects(session, self._base_path)
 
 
-class AzureSubscriptions(ReadEndpoint):
-    """A class used to represent the Azure Subscriptions API endpoint.
+    class AzureSubscriptions(ReadEndpoint):
+        """A class used to represent the Azure Subscriptions API endpoint.
 
-    Methods
-    -------
-    get(request_params=None)
-        A method to get AzureSubscription objects.
-        (tenantId is an optional parameter)
-    """
-    RESOURCE = "AzureSubscriptions"
+        Get a list of Azure subscription IDs for an entire account or for a specific Azure tenant.
+
+        """
+
+        RESOURCE = "AzureSubscriptions"
 
 
-class GcpProjects(ReadEndpoint):
-    """A class used to represent the GCP Projects API endpoint.
+    class GcpProjects(ReadEndpoint):
+        """A class used to represent the GCP Projects API endpoint."""
 
-    Methods
-    -------
-    get(request_params=None)
-        A method to get GcpProjects objects.
-        (orgId is an optional parameter)
-    """
-    RESOURCE = "GcpProjects"
+        RESOURCE = "GcpProjects"
 
 
-class ComplianceEvaluationsAPI(SearchEndpoint):
-    """A class used to represent the Compliance Evaluations API endpoint.
+    class ComplianceEvaluationsAPI(SearchEndpoint):
+        """A class used to represent the Compliance Evaluations API endpoint."""
 
-    Methods
-    -------
-    search(json=None)
-        A method to search ComplianceEvaluations objects.
-    """
-    RESOURCE = "ComplianceEvaluations"
+        RESOURCE = "ComplianceEvaluations"

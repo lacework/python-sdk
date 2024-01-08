@@ -5,7 +5,7 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../laceworksdk'))
+#sys.path.insert(0, os.path.abspath('../laceworksdk'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -17,23 +17,32 @@ author = 'Jon Stewart, Tim MacDonald'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc',
-    'sphinx.ext.doctest',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages',
-    'sphinx.ext.napoleon']
+extensions = ['sphinx.ext.napoleon',
+              'sphinx.ext.autodoc',
+              'autoapi.extension',
+              'sphinx.ext.doctest',
+              'sphinx.ext.todo',
+              'sphinx.ext.viewcode',
+              'sphinx.ext.githubpages']
 
+autoapi_dirs = ['../laceworksdk']
+autoapi_type = "python"
+autoapi_options = [
+    "members",
+    "show-inheritance",
+    "show-module-summary",
+    "imported-members",
+    "inherited-members",
+    "no-private-members"
+]
+autodoc_default_options = {"members": True, "show-inheritance": True}
+autodoc_inherit_docstrings = True
 # Napoleon settings
 napoleon_google_docstring = True
-napoleon_numpy_docstring = True
+napoleon_numpy_docstring = False
 napoleon_include_init_with_doc = True
-napoleon_include_private_with_doc = True
-napoleon_include_special_with_doc = True
+napoleon_include_private_with_doc = False
+napoleon_include_special_with_doc = False
 napoleon_use_admonition_for_examples = False
 napoleon_use_admonition_for_notes = False
 napoleon_use_admonition_for_references = False
@@ -65,3 +74,4 @@ html_theme_options = {
     'includehidden': False,
     'titles_only': False
 }
+
