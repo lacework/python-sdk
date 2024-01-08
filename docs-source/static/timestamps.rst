@@ -3,17 +3,17 @@ Lacework Python SDK Timestamp Generation
 ========================================
 
 For all "search" methods Lacework requires ``start_time`` and ``end_time`` arguments which
-are used to specify the search window. Additionally some "get" methods also require them.
+are used to specify the search window. Additionally, some "get" methods also require them.
 These must be specified as strings in the following format:
 
     ``"%Y-%m-%dT%H:%M:%S%z"``
 
-For example:
+Example:
 
     ``"2024-01-08T22:34:10+0000"``
 
-You are free to generate these strings however you like but you may find it useful to
-use the following function (or something similar.)
+You are free to generate these strings however you like, but you may find it useful to
+use the following function (or something similar).
 
 ..  code-block::
     :caption: Timestamp Generation Function
