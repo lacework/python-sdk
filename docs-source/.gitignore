@@ -2,4 +2,5 @@
 !.gitignore
 !conf.py
 !index.rst
+!static/
 
