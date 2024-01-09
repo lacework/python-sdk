@@ -33,6 +33,6 @@ class UserProfileAPI(BaseEndpoint):
             dict: Details of the requested sub-account(s)
 
         """
-        response = self._session.get(self.build_url(), params=account_name)
+        response = self._session.get(self._build_url(), params=account_name)
 
         return response.json()

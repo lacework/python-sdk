@@ -49,7 +49,7 @@ class SearchEndpoint(BaseEndpoint):
             resource = self.RESOURCE
 
         response = self._session.post(
-            self.build_url(resource=resource, action="search"), json=json
+            self._build_url(resource=resource, action="search"), json=json
         )
 
         while True:

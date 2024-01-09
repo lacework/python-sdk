@@ -61,12 +61,12 @@ class VulnerabilitiesAPI:
                 dict: The status of the requested scan
             """
 
-            json = self.build_dict_from_items(
+            json = self._build_dict_from_items(
                 **request_params, registry=registry, repository=repository, tag=tag
             )
 
             response = self._session.post(
-                self.build_url(resource="Containers", action="scan"), json=json
+                self._build_url(resource="Containers", action="scan"), json=json
             )
 
             return response.json()
@@ -86,7 +86,7 @@ class VulnerabilitiesAPI:
                 )
 
             response = self._session.get(
-                self.build_url(id=request_id, resource="Containers", action="scan")
+                self._build_url(id=request_id, resource="Containers", action="scan")
             )
 
             return response.json()
@@ -118,12 +118,12 @@ class VulnerabilitiesAPI:
 
             """
 
-            json = self.build_dict_from_items(
+            json = self._build_dict_from_items(
                 **request_params, os_pkg_info_list=os_pkg_info_list
             )
 
             response = self._session.post(
-                self.build_url(resource="SoftwarePackages", action="scan"), json=json
+                self._build_url(resource="SoftwarePackages", action="scan"), json=json
             )
 
             return response.json()

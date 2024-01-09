@@ -35,10 +35,10 @@ class ReadEndpoint(BaseEndpoint):
         if not resource and self.RESOURCE:
             resource = self.RESOURCE
 
-        params = self.build_dict_from_items(request_params)
+        params = self._build_dict_from_items(request_params)
 
         response = self._session.get(
-            self.build_url(id=id, resource=resource), params=params
+            self._build_url(id=id, resource=resource), params=params
         )
 
         return response.json()

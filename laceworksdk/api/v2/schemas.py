@@ -36,7 +36,7 @@ class SchemasAPI(BaseEndpoint):
             dict: The requested schema
 
         """
-        response = self._session.get(self.build_url(id=subtype, resource=type))
+        response = self._session.get(self._build_url(id=subtype, resource=type))
 
         return response.json()
 

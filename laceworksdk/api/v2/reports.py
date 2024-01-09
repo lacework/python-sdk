@@ -44,7 +44,7 @@ class ReportsAPI(BaseEndpoint):
             dict: The details of the report
         """
 
-        params = self.build_dict_from_items(
+        params = self._build_dict_from_items(
             primary_query_id=primary_query_id,
             secondary_query_id=secondary_query_id,
             format=format,
@@ -52,7 +52,7 @@ class ReportsAPI(BaseEndpoint):
             **request_params,
         )
 
-        response = self._session.get(self.build_url(), params=params)
+        response = self._session.get(self._build_url(), params=params)
 
         if format == "json":
             return response.json()

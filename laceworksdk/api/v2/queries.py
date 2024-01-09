@@ -93,7 +93,7 @@ class QueriesAPI(CrudEndpoint):
         for key, value in arguments.items():
             json["arguments"].append({"name": key, "value": value})
 
-        response = self._session.post(self.build_url(action="execute"), json=json)
+        response = self._session.post(self._build_url(action="execute"), json=json)
 
         return response.json()
 
@@ -113,7 +113,7 @@ class QueriesAPI(CrudEndpoint):
             json["arguments"].append({"name": key, "value": value})
 
         response = self._session.post(
-            self.build_url(resource=query_id, action="execute"), json=json
+            self._build_url(resource=query_id, action="execute"), json=json
         )
 
         return response.json()
@@ -129,11 +129,11 @@ class QueriesAPI(CrudEndpoint):
         Returns:
             dict: Validation Results
         """
-        json = self.build_dict_from_items(
+        json = self._build_dict_from_items(
             request_params, query_text=query_text, evaluator_id=evaluator_id
         )
 
-        response = self._session.post(self.build_url(action="validate"), json=json)
+        response = self._session.post(self._build_url(action="validate"), json=json)
 
         return response.json()
 

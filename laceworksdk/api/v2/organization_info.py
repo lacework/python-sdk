@@ -29,6 +29,6 @@ class OrganizationInfoAPI(BaseEndpoint):
             dict: Organization info
 
         """
-        response = self._session.get(self.build_url())
+        response = self._session.get(self._build_url())
 
         return response.json()

@@ -30,8 +30,8 @@ class ContractInfoAPI(BaseEndpoint):
             request_params (dict, optional): Use to pass any additional parameters the API
 
         """
-        params = self.build_dict_from_items(request_params)
+        params = self._build_dict_from_items(request_params)
 
-        response = self._session.get(self.build_url(), params=params)
+        response = self._session.get(self._build_url(), params=params)
 
         return response.json()

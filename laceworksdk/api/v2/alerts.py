@@ -35,11 +35,11 @@ class AlertsAPI(SearchEndpoint):
           dict: The requested alert(s)
 
         """
-        params = self.build_dict_from_items(
+        params = self._build_dict_from_items(
             request_params, start_time=start_time, end_time=end_time
         )
 
-        response = self._session.get(self.build_url(), params=params)
+        response = self._session.get(self._build_url(), params=params)
 
         return_data = {"data": []}
         current_rows = 0
@@ -84,9 +84,9 @@ class AlertsAPI(SearchEndpoint):
         Returns:
             dict: The requested alert details.
         """
-        params = self.build_dict_from_items(request_params, scope=scope)
+        params = self._build_dict_from_items(request_params, scope=scope)
 
-        response = self._session.get(self.build_url(id=id), params=params)
+        response = self._session.get(self._build_url(id=id), params=params)
 
         return response.json()
 
@@ -101,10 +101,10 @@ class AlertsAPI(SearchEndpoint):
             dict: The posted comment
 
         """
-        json = self.build_dict_from_items(comment=comment)
+        json = self._build_dict_from_items(comment=comment)
 
         response = self._session.post(
-            self.build_url(resource=id, action="comment"), json=json
+            self._build_url(resource=id, action="comment"), json=json
         )
 
         return response.json()
@@ -120,10 +120,10 @@ class AlertsAPI(SearchEndpoint):
         Returns:
             requests.models.Response: a Requests response object containing the response code
         """
-        json = self.build_dict_from_items(reason=reason, comment=comment)
+        json = self._build_dict_from_items(reason=reason, comment=comment)
 
         response = self._session.post(
-            self.build_url(resource=id, action="close"), json=json
+            self._build_url(resource=id, action="close"), json=json
         )
 
         return response.json()

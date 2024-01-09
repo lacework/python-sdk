@@ -179,7 +179,7 @@ class PoliciesAPI(CrudEndpoint):
           dict: The updated policies.
 
         """
-        response = self._session.patch(self.build_url(), json=json)
+        response = self._session.patch(self._build_url(), json=json)
 
         return response.json()
 

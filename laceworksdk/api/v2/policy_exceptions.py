@@ -39,7 +39,7 @@ class PolicyExceptionsAPI(CrudEndpoint):
             dict: The created policy exception
 
         """
-        params = self.build_dict_from_items(policy_id=policy_id)
+        params = self._build_dict_from_items(policy_id=policy_id)
 
         return super().create(
             params=params,
@@ -99,7 +99,7 @@ class PolicyExceptionsAPI(CrudEndpoint):
             dict: The updated policy exception
 
         """
-        params = self.build_dict_from_items(policy_id=policy_id)
+        params = self._build_dict_from_items(policy_id=policy_id)
 
         return super().update(
             id=exception_id,
@@ -119,6 +119,6 @@ class PolicyExceptionsAPI(CrudEndpoint):
         Returns:
             requests.models.Response: a Requests response object containing the response code
         """
-        params = self.build_dict_from_items(policy_id=policy_id)
+        params = self._build_dict_from_items(policy_id=policy_id)
 
         return super().delete(id=exception_id, params=params)

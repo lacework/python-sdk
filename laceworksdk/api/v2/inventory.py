@@ -32,9 +32,9 @@ class InventoryAPI(SearchEndpoint):
             dict: Status of scan
 
         """
-        params = self.build_dict_from_items(csp=csp)
+        params = self._build_dict_from_items(csp=csp)
 
-        response = self._session.post(self.build_url(action="scan"), params=params)
+        response = self._session.post(self._build_url(action="scan"), params=params)
 
         return response.json()
 
@@ -48,8 +48,8 @@ class InventoryAPI(SearchEndpoint):
             dict: Status of scan
 
         """
-        params = self.build_dict_from_items(csp=csp)
+        params = self._build_dict_from_items(csp=csp)
 
-        response = self._session.get(self.build_url(action="scan"), params=params)
+        response = self._session.get(self._build_url(action="scan"), params=params)
 
         return response.json()

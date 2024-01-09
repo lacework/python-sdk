@@ -34,11 +34,11 @@ class CloudActivitiesAPI(BaseEndpoint):
             dict: The requested cloud activity data.
 
         """
-        params = self.build_dict_from_items(
+        params = self._build_dict_from_items(
             request_params, start_time=start_time, end_time=end_time
         )
 
-        response = self._session.get(self.build_url(), params=params)
+        response = self._session.get(self._build_url(), params=params)
 
         return response.json()
 
@@ -57,11 +57,11 @@ class CloudActivitiesAPI(BaseEndpoint):
         Yields:
             dict: a generator which yields a dict of cloud activities.
         """
-        params = self.build_dict_from_items(
+        params = self._build_dict_from_items(
             request_params, start_time=start_time, end_time=end_time
         )
 
-        for page in self._session.get_pages(self.build_url(), params=params):
+        for page in self._session.get_pages(self._build_url(), params=params):
             yield page.json()
 
     def get_data_items(self, start_time=None, end_time=None, **request_params):
@@ -79,13 +79,13 @@ class CloudActivitiesAPI(BaseEndpoint):
         Yields:
             dict: a generator which yields multipe dicts of cloud activities.
         """
-        params = self.build_dict_from_items(
+        params = self._build_dict_from_items(
             request_params,
             start_time=start_time,
             end_time=end_time,
         )
 
-        for item in self._session.get_data_items(self.build_url(), params=params):
+        for item in self._session.get_data_items(self._build_url(), params=params):
             yield item
 
     def search(self, json=None):
@@ -106,5 +106,5 @@ class CloudActivitiesAPI(BaseEndpoint):
              dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.
         """
 
-        response = self._session.post(self.build_url(action="search"), json=json)
+        response = self._session.post(self._build_url(action="search"), json=json)
         return response.json()
