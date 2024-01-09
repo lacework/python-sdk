@@ -27,7 +27,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install
+          poetry check
+          poetry lock --no-update
+          poetry install --verbose
 
       - run: poetry run poe docs
 

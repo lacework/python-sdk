@@ -22,7 +22,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install
+          poetry check
+          poetry lock --no-update
+          poetry install --verbose
 
       - name: Build and publish
         env:

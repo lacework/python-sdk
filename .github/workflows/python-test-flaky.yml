@@ -28,16 +28,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install
-#          python -m pip install --upgrade pip
-#          python -m pip install flake8 flake8-quotes pytest pytest-rerunfailures
-#          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-#          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
-#          if [ -f jupyter/requirements.txt ]; then pip install -r jupyter/requirements.txt; fi
-#
-#      - name: Run setup.py
-#        run: |
-#          python setup.py --version
+          poetry check
+          poetry lock --no-update
+          poetry install --verbose
 
       - name: Test SDK with flaky tests
         run: |
