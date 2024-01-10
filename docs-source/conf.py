@@ -5,13 +5,15 @@
 
 import os
 import sys
+
+
 #sys.path.insert(0, os.path.abspath('../laceworksdk'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Lacework Python SDK'
-copyright = '2023, Lacework'
+copyright = '2024, Lacework'
 author = 'Jon Stewart, Tim MacDonald'
 
 # -- General configuration ---------------------------------------------------

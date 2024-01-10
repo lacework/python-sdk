@@ -112,13 +112,13 @@ class ReportDefinitionsAPI(CrudEndpoint):
         Returns:
             dict: The updated report definition
         """
-        json = self.build_dict_from_items(
+        json = self._build_dict_from_items(
             report_name=report_name,
             report_definition=report_definition,
             **request_params,
         )
 
-        response = self._session.patch(self.build_url(id=id), json=json)
+        response = self._session.patch(self._build_url(id=id), json=json)
 
         return response.json()
 

@@ -32,11 +32,11 @@ class AuditLogsAPI(BaseEndpoint):
         Returns:
             dict: The audit logs for the requested time period.
         """
-        params = self.build_dict_from_items(
+        params = self._build_dict_from_items(
             request_params, start_time=start_time, end_time=end_time
         )
 
-        response = self._session.get(self.build_url(), params=params)
+        response = self._session.get(self._build_url(), params=params)
 
         return response.json()
 
@@ -63,5 +63,5 @@ class AuditLogsAPI(BaseEndpoint):
             dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.
         """
 
-        response = self._session.post(self.build_url(action="search"), json=json)
+        response = self._session.post(self._build_url(action="search"), json=json)
         return response.json()

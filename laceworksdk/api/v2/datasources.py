@@ -29,7 +29,7 @@ class DatasourcesAPI(BaseEndpoint):
         Returns:
             dict: All datasources
         """
-        response = self._session.get(self.build_url())
+        response = self._session.get(self._build_url())
         return response.json()
 
     def get_datasource(self, datasource):
@@ -41,7 +41,7 @@ class DatasourcesAPI(BaseEndpoint):
         Returns:
             dict: The datasource schema.
         """
-        return self._session.get(self.build_url(resource=datasource)).json()
+        return self._session.get(self._build_url(resource=datasource)).json()
 
     def list_data_sources(self):
         """A method to list the datasources that are available.

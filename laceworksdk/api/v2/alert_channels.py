@@ -121,6 +121,6 @@ class AlertChannelsAPI(CrudEndpoint):
         Returns:
             requests.models.Response: a Requests response object containing the response code
         """
-        response = self._session.post(self.build_url(resource=guid, action="test"))
+        response = self._session.post(self._build_url(resource=guid, action="test"))
 
         return response

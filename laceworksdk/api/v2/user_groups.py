@@ -22,12 +22,12 @@ class UserGroupsAPI(BaseEndpoint):
         super().__init__(session, "UserGroups")
 
     def __modify_members(self, guid, user_guids, action):
-        json = self.build_dict_from_items(
+        json = self._build_dict_from_items(
             user_guids=user_guids,
         )
 
         response = self._session.post(
-            self.build_url(resource=guid, action=action), json=json, params=None
+            self._build_url(resource=guid, action=action), json=json, params=None
         )
 
         return response.json()

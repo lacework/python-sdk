@@ -28,9 +28,9 @@ class CrudEndpoint(BaseEndpoint):
             dict: JSON containing the new object info
 
         """
-        json = self.build_dict_from_items(request_params)
+        json = self._build_dict_from_items(request_params)
 
-        response = self._session.post(self.build_url(), json=json, params=params)
+        response = self._session.post(self._build_url(), json=json, params=params)
 
         return response.json()
 
@@ -45,10 +45,10 @@ class CrudEndpoint(BaseEndpoint):
         Returns:
             dict: JSON containing the retrieved object(s)
         """
-        params = self.build_dict_from_items(request_params)
+        params = self._build_dict_from_items(request_params)
 
         response = self._session.get(
-            self.build_url(id=id, resource=resource), params=params
+            self._build_url(id=id, resource=resource), params=params
         )
 
         return response.json()
@@ -77,7 +77,7 @@ class CrudEndpoint(BaseEndpoint):
         Yields:
             dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.
         """
-        response = self._session.post(self.build_url(action="search"), json=json)
+        response = self._session.post(self._build_url(action="search"), json=json)
 
         return response.json()
 
@@ -93,9 +93,9 @@ class CrudEndpoint(BaseEndpoint):
             dict: JSON containing the updated object info
 
         """
-        json = self.build_dict_from_items(request_params)
+        json = self._build_dict_from_items(request_params)
 
-        response = self._session.patch(self.build_url(id=id), json=json, params=params)
+        response = self._session.patch(self._build_url(id=id), json=json, params=params)
 
         return response.json()
 
@@ -109,7 +109,7 @@ class CrudEndpoint(BaseEndpoint):
         Returns:
             requests.models.Response: a Requests response object containing the response code
         """
-        response = self._session.delete(self.build_url(id=id), params=params)
+        response = self._session.delete(self._build_url(id=id), params=params)
 
         return response
 

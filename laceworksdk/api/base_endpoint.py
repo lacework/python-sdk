@@ -20,7 +20,7 @@ class BaseEndpoint:
         self._object_type = object_type
         self._endpoint_root = endpoint_root
 
-    def build_dict_from_items(self, *dicts, **items):
+    def _build_dict_from_items(self, *dicts, **items):
         """A method to build a dictionary based on inputs, pruning items that are None.
 
         Args:
@@ -43,7 +43,7 @@ class BaseEndpoint:
 
         return result
 
-    def build_url(self, id=None, resource=None, action=None):
+    def _build_url(self, id=None, resource=None, action=None):
         """Builds the URL to use based on the endpoint path, resource, type, and ID.
 
         Args:
@@ -147,7 +147,7 @@ class BaseEndpoint:
         """Get the :class:`HttpSession` instance the object is using."""
         return self._session
 
-    def validate_json(self, json, subtype=None):
+    def _validate_json(self, json, subtype=None):
         """TODO: A method to validate the provided JSON based on the schema of the current object."""
         schema = self._get_schema(subtype)
 
