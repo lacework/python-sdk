@@ -20,7 +20,7 @@ class SearchEndpoint(BaseEndpoint):
         """
         super().__init__(session, object_type, endpoint_root)
 
-    def search(self, json=None, resource=None, **kwargs):
+    def search(self, json=None, resource=None):
         """A method to search objects.
 
         See the API documentation for this API endpoint for valid fields to search against.
@@ -29,17 +29,24 @@ class SearchEndpoint(BaseEndpoint):
         depending on the operation you are using.
 
         Args:
-          json (list of dicts): A list of dictionaries containing the desired search parameters: \n
-            - field (str): The name of the data field to which the condition applies\n
-            - expression (str): The comparison operator for the filter condition. Valid values are:\n
+          json (dict): The desired search parameters: \n
+            - timeFilter (dict, optional): A dict containing the time frame for the search:\n
+                - startTime (str): The start time for the search
+                - endTime (str): The end time for the search
+
+            - filters (list of dict, optional): Filters based on field contents:\n
+                - field (str): The name of the data field to which the condition applies\n
+                - expression (str): The comparison operator for the filter condition. Valid values are:\n
+
                 "eq", "ne", "in", "not_in", "like", "ilike", "not_like", "not_ilike", "not_rlike", "rlike", "gt", "ge", \
-                "lt", "le", "between"
-            - value (str, optional):  The value that the condition checks for in the specified field. Use this attribute \
-             when using an operator that requires a single value.
-            - values (list of str, optional): The values that the condition checks for in the specified field. Use this \
-            attribute when using an operator that requires multiple values.
+                "lt", "le", "between"\n
+
+                - value (str, optional):  The value that the condition checks for in the specified field. Use this attribute \
+                when using an operator that requires a single value.
+                - values (list of str, optional): The values that the condition checks for in the specified field. Use this \
+                attribute when using an operator that requires multiple values.
+            - returns (list of str, optional): The fields to return
           resource (str): The Lacework API resource to search (Example: "AlertChannels")
-          kwargs (any, optional): Pass additional params with this
 
         Yields:
             dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.
@@ -64,6 +71,6 @@ class SearchEndpoint(BaseEndpoint):
                 next_page = None
 
             if next_page:
-                response = self._session.get(next_page, **kwargs)
+                response = self._session.get(next_page)
             else:
                 break
