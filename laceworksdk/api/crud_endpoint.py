@@ -62,20 +62,26 @@ class CrudEndpoint(BaseEndpoint):
         depending on the operation you are using.
 
         Args:
-          json (list of dicts): A list of dictionaries containing the desired search parameters: \n
-            - field (str): The name of the data field to which the condition applies\n
-            - expression (str): The comparison operator for the filter condition. Valid values are:\n
+          json (dict): The desired search parameters: \n
+            - timeFilter (dict, optional): A dict containing the time frame for the search:\n
+                - startTime (str): The start time for the search
+                - endTime (str): The end time for the search
+
+            - filters (list of dict, optional): Filters based on field contents:\n
+                - field (str): The name of the data field to which the condition applies\n
+                - expression (str): The comparison operator for the filter condition. Valid values are:\n
+
                 "eq", "ne", "in", "not_in", "like", "ilike", "not_like", "not_ilike", "not_rlike", "rlike", "gt", "ge", \
-                "lt", "le", "between"
-            - value (str, optional):  The value that the condition checks for in the specified field. Use this attribute \
-             when using an operator that requires a single value.
-            - values (list of str, optional): The values that the condition checks for in the specified field. Use this \
-            attribute when using an operator that requires multiple values.
+                "lt", "le", "between"\n
 
+                - value (str, optional):  The value that the condition checks for in the specified field. Use this attribute \
+                when using an operator that requires a single value.
+                - values (list of str, optional): The values that the condition checks for in the specified field. Use this \
+                attribute when using an operator that requires multiple values.
+            - returns (list of str, optional): The fields to return
 
-
-        Yields:
-            dict: returns a generator which yields a page of objects at a time as returned by the Lacework API.
+        Returns:
+            dict: returns a dict containing the search results
         """
         response = self._session.post(self._build_url(action="search"), json=json)
 
