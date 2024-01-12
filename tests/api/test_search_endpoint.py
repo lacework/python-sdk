@@ -11,7 +11,7 @@ class SearchEndpoint:
     OBJECT_TYPE = None
     OBJECT_MAP = {}
 
-    DAY_DELTA = 1
+    DAY_DELTA = 4
     MAX_PAGES = 2
 
     def test_object_creation(self, api_object):
