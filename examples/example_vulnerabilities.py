@@ -28,6 +28,7 @@ if __name__ == "__main__":
 
     # Host
 
+    # This yields a generator
     host_vulns = lacework_client.vulnerabilities.hosts.search(json={
         "timeFilter": {
             "startTime": start_time,
@@ -35,6 +36,8 @@ if __name__ == "__main__":
         }
     })
 
+    # get the first page of data from the generator using "next" and print it
+    print(next(host_vulns)['data'])
     # Containers
 
     container_vulns = lacework_client.vulnerabilities.containers.search({
@@ -43,3 +46,9 @@ if __name__ == "__main__":
             "endTime": end_time
         }
     })
+
+    # iterate through the generator but let's stop at the first page so we don't have to see all the container vulns
+    for page in container_vulns:
+        print(page['data'])
+        # we wouldn't normally break here but for this example there's no reason to retrieve all the pages
+        break

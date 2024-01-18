@@ -29,12 +29,12 @@ if __name__ == "__main__":
     query_response = lacework_client.queries.create(
         evaluator_id="Cloudtrail",
         query_id=QUERY_ID,
-        query_text="""{{
-            source {{CloudTrailRawEvents e}}
-            filter {{EVENT_SOURCE = 'iam.amazonaws.com' AND
-                     EVENT:userIdentity.name::String NOT LIKE 'Terraform-Service-Acct'}}
-            return distinct {{EVENT_NAME, EVENT}}
-            }}
+        query_text="""{
+            source {CloudTrailRawEvents e}
+            filter {EVENT_SOURCE = 'iam.amazonaws.com' AND
+                     EVENT:userIdentity.name::String NOT LIKE 'Terraform-Service-Acct'}
+            return distinct {EVENT_NAME, EVENT}
+            }
         """
     )
 

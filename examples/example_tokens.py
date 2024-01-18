@@ -24,4 +24,4 @@ if __name__ == "__main__":
     agent_api_tokens = lacework_client.agent_access_tokens.get()
 
     # Get specified Agent Access Token
-    api_token = lacework_client.agent_access_tokens.get_by_id(random.choice(agent_api_tokens["data"])["ACCESS_TOKEN"])
+    api_token = lacework_client.agent_access_tokens.get_by_id(random.choice(agent_api_tokens["data"])["accessToken"])

@@ -27,13 +27,13 @@ if __name__ == "__main__":
     # Cloud Activities API
 
     # Get Cloud Activities
-    lacework_client.cloud_activities.get()
+    cloud_activities_default_scope = lacework_client.cloud_activities.get()
 
     # Get Cloud Activities by date range
-    lacework_client.cloud_activities.get(start_time=start_time, end_time=end_time)
+    cloud_activities_time_scope = lacework_client.cloud_activities.get(start_time=start_time, end_time=end_time)
 
     # Search Cloud Activities
-    lacework_client.cloud_activities.search(json={
+    cloud_activities_field_scope = lacework_client.cloud_activities.search(json={
         "timeFilter": {
             "startTime": start_time,
             "endTime": end_time

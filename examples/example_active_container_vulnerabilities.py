@@ -28,9 +28,10 @@ if __name__ == "__main__":
 
     # Get active image IDs
     active_containers = lacework_client.entities.containers.search(
-        start_time=start_time,
-        end_time=end_time,
         json={
+            "timefilter":
+                {"starTime": start_time,
+                 "endTime": end_time},
             "returns": [
                 "imageId"
             ]
@@ -45,9 +46,12 @@ if __name__ == "__main__":
     # Vulnerabilities API
 
     active_container_vulns = lacework_client.vulnerabilities.containers.search(
-        start_time=start_time,
-        end_time=end_time,
         json={
+            "timefilter":
+                {
+                    "starTime": start_time,
+                    "endTime": end_time
+                },
             "filters": [
                 {
                     "field": "imageId",
