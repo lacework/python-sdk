@@ -31,4 +31,4 @@ if __name__ == "__main__":
     alerts = lacework_client.alerts.get(start_time=start_time, end_time=end_time)
 
     # Get alert details for specified ID
-    alert_details = lacework_client.alerts.get_details(random.choice(alerts["data"])["alertId"])
+    alert_details = lacework_client.alerts.get_details(random.choice(alerts["data"])["alertId"], "Details")

@@ -27,13 +27,13 @@ if __name__ == "__main__":
     # Audit Logs API
 
     # Get Audit Logs
-    lacework_client.audit_logs.get()
+    default_scope_logs = lacework_client.audit_logs.get()
 
     # Get Audit Logs by date range
-    lacework_client.audit_logs.get(start_time=start_time, end_time=end_time)
+    time_scope_logs = lacework_client.audit_logs.get(start_time=start_time, end_time=end_time)
 
     # Search Audit Logs
-    lacework_client.audit_logs.search(json={
+    username_scope_logs = lacework_client.audit_logs.search(json={
         "timeFilter": {
             "startTime": start_time,
             "endTime": end_time

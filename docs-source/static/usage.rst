@@ -92,6 +92,8 @@ Once it has a valid AWS account integration it uses this to pull a CIS 1.4 repor
 
     from laceworksdk import LaceworkClient
 
+    lw = LaceworkClient(profile="default")
+
     # Get a list of accounts
     accounts = lw.cloud_accounts.get()['data']
 
