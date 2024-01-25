@@ -33,7 +33,7 @@ def api_object_create_body(random_text):
         "description": f"Test Policy Exception {random_text}",
         "constraints": [
             {
-                "fieldKey": "resourceLabel",
+                "fieldKey": "resourceTags",
                 "fieldValues": [
                     {"key": "TestKey", "value": "TestValue"}
                 ]
@@ -48,7 +48,7 @@ def api_object_update_body(random_text):
         "description": f"Test Policy Exception {random_text} (Updated)",
         "constraints": [
             {
-                "fieldKey": "resourceLabel",
+                "fieldKey": "resourceTags",
                 "fieldValues": [
                     {"key": "TestKey", "value": "UpdatedTestValue"}
                 ]
