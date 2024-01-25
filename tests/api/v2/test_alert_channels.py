@@ -56,7 +56,6 @@ class TestAlertChannels(CrudEndpoint):
     def test_api_get_by_type(self, api_object):
         self._get_object_classifier_test(api_object, "type")
 
-    @pytest.mark.flaky_test
     def test_api_test(self, api_object):
         response = api_object.search(json={
             "filters": [
@@ -80,6 +79,8 @@ class TestAlertChannels(CrudEndpoint):
 @pytest.mark.parametrize("api_object", [pytest.lazy_fixture("api_object_org")])
 class TestAlertChannelsOrg(TestAlertChannels):
 
+    @pytest.mark.flaky(reruns=10)   # Because sometimes it tries to get deets for the test object that was just deleted
+                                    # by the TestAlertChannels class
     @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object):
         self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)

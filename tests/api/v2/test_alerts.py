@@ -6,7 +6,7 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 import pytest
 
 from unittest import TestCase
-
+from urllib.error import HTTPError
 from laceworksdk.api.v2.alerts import AlertsAPI
 from tests.api.test_read_endpoint import ReadEndpoint
 
@@ -27,7 +27,8 @@ def open_alerts_filter():
     }
 
 
-@pytest.mark.flaky_test
+#@pytest.mark.flaky_test
+
 class TestAlerts(ReadEndpoint):
 
     OBJECT_ID_NAME = "alertId"
@@ -58,8 +59,10 @@ class TestAlerts(ReadEndpoint):
         with tester.assertRaises(KeyError):
             api_object.get(start_time=start_time, startTime=start_time, endTime=end_time)
 
+    @pytest.mark.flaky(reruns=10)   # Because not all scopes are available for all alerts, causing it to fail randomly
     @pytest.mark.parametrize("scope", OBJECT_SCOPES)
     def test_get_details(self, api_object, scope):
+
         guid = self._get_random_object(api_object, self.OBJECT_ID_NAME)
         response = api_object.get_details(guid, scope)
         assert "data" in response.keys()
