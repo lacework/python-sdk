@@ -1,4 +1,4 @@
-name: Run Python Flaky Tests
+name: Run Python Quarantine Tests
 
 on:
   schedule:
@@ -32,9 +32,9 @@ jobs:
           poetry lock --no-update
           poetry install --verbose
 
-      - name: Test SDK with flaky tests
+      - name: Test SDK quarantine tests
         run: |
-          poetry run poe flaky_test
+          poetry run poe quarantine_test
         env:
           LW_ACCOUNT: ${{ secrets.LW_ACCOUNT }}
           LW_SUBACCOUNT: ${{ secrets.LW_SUBACCOUNT }}

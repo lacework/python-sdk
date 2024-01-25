@@ -27,8 +27,6 @@ def open_alerts_filter():
     }
 
 
-#@pytest.mark.flaky_test
-
 class TestAlerts(ReadEndpoint):
 
     OBJECT_ID_NAME = "alertId"

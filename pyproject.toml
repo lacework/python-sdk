@@ -75,7 +75,7 @@ convention = "google"
 [tool.pytest.ini_options]
 markers = [
     "ci_exempt: mark a test as exempt from CI.",
-    "flaky_test: mark a test as potentially flaky.",
+    "quarantine_test: quarantine a test until it's fixed.",
   ]
 addopts = [
     "--ignore=tests/api/v2/test_policies.py",
@@ -83,8 +83,8 @@ addopts = [
   ]
 
 [tool.poe.tasks]
-test        = "pytest -v --order-scope=class -m 'not ci_exempt and not flaky_test' tests/api/v2"
-flaky_test  = "pytest -m 'flaky_test' tests"
+test        = "pytest -v --order-scope=class -m 'not ci_exempt and not quarantine_test' tests/api/v2"
+quarantine_test  = "pytest -m 'quarantine_test' tests"
 lint        = "flake8 . --exclude 'jupyter' --count --select=E9,F63,F7,F82 --show-source --statistics"
 lint-docstrings = "ruff check laceworksdk/"
 docs-clean.shell  = "rm -r docs-source/auto; rm -r docs/doctrees; rm -r docs/html"
