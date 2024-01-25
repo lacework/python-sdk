@@ -21,7 +21,7 @@ class TestContractInfo(BaseEndpoint):
     OBJECT_ID_NAME = "alertId"
     OBJECT_TYPE = ContractInfoAPI
 
-    @pytest.mark.flaky_test
+    @pytest.mark.quarantine_test     # Bug in API as of 1/25/24 RAIN-50089
     def test_api_get(self, api_object):
         response = api_object.get()
         assert "data" in response.keys()

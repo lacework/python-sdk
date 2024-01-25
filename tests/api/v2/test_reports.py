@@ -41,8 +41,7 @@ class TestReports(BaseEndpoint):
             )
             assert "data" in response.keys()
 
-    @pytest.mark.flaky_test
-    def test_api_get_aws_CIS14_html(self, api_object, aws_account):
+    def test_api_get_aws_cis14_html(self, api_object, aws_account):
         if aws_account:
             response = api_object.get(
                 primary_query_id=aws_account,

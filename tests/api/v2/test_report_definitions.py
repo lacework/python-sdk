@@ -66,7 +66,6 @@ def api_object_update_body(random_text):
     }
 
 
-@pytest.mark.flaky_test
 class TestReportDefinitions(CrudEndpoint):
 
     OBJECT_ID_NAME = "reportDefinitionGuid"
