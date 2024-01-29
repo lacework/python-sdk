@@ -8,17 +8,7 @@ Jupyter notebook environment.
 The purpose of this library is to simplify using the Lacework SDK in a Jupyter notebook environment. This allows
 users to more easily work with the output of all API calls to the SDK in a notebook environment.
 
-To get a data frame with the events within a time range one can simply write this code:
-
-```
-import laceworkjupyter
-
-with laceworkjupyter.LaceworkHelper() as lw:
-    client = lw.get_client()
-    df = client.events.get_for_date_range('2021-08-25T00:00:00', '2021-08-27T23:59:23')
-```
-
-And to get events from the last 5 days:
+To get a data frame with medium based severity alerts within a time range one can simply write this code:
 
 ```
 import laceworkjupyter
@@ -27,7 +17,12 @@ with laceworkjupyter.LaceworkHelper() as lw:
     client = lw.get_client()
     start_time, end_time = lw.parse_date_offset('LAST 5 DAYS')
 
-    df = client.events.get_for_date_range(start_time=start_time, end_time=end_time)
+    df = client.alerts.search({
+        'timeFilter': { 'startTime': start_date, 'endTime': end_date},
+        'filters': [
+            {'field': 'severity', 'expression': 'eq', 'value': 'Medium'}
+        ]
+    })
 ```
 
 ## Requirements

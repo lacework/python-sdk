@@ -32,15 +32,13 @@ def get_client(
 
 
 @manager.register_feature
-def get_evidence_from_event_id(event_id, client=None, minutes=10, ctx=None):
+def get_events_from_alert(alert_id, client=None, ctx=None):
     """
-    Return a data frame with the attached evidence from a single event.
+    Return a data frame with the attached events from a single alert.
 
-    :param str event_id: The ID of the event.
+    :param str alert_id: The ID of the alert.
     :param client: Optional client object, defaults to using the client
         that is stored in the context, or by fetching a default client.
-    :param int minutes: Optional number of minutes around the event
-        to gather the evidence details, defaults to 10 minutes.
     :return: A pandas DataFrame with the evidence associated with the event.
     """
     if not client:
@@ -49,29 +47,4 @@ def get_evidence_from_event_id(event_id, client=None, minutes=10, ctx=None):
         if not client:
             client = get_client()
 
-    events = client.events.get_details(event_id)
-
-    if events.empty:
-        return pd.DataFrame()
-
-    event = events.iloc[0]
-    start_time = datetime.datetime.strptime(event.START_TIME, DATE_FORMAT)
-    end_time = datetime.datetime.strptime(event.END_TIME, DATE_FORMAT)
-
-    time_delta = datetime.timedelta(minutes=minutes)
-
-    start_time -= time_delta
-    end_time += time_delta
-
-    search_filter = {
-        'timeFilter': {
-            'startTime': start_time.strftime(DATE_FORMAT),
-            'endTime': end_time.strftime(DATE_FORMAT)
-        },
-        'filters': [{
-            'field': 'id',
-            'expression': 'eq',
-            'value': event_id
-        }],
-    }
-    return client.events.search(json=search_filter)
+    return client.alerts.get_details(alert_id, scope='Events')
