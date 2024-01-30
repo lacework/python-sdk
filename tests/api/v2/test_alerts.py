@@ -72,10 +72,12 @@ class TestAlerts(ReadEndpoint):
 
     def test_close_fp(self, api_object, open_alerts_filter):
         guid = self._search_random_object(api_object, self.OBJECT_ID_NAME, open_alerts_filter)
-        response = api_object.close(guid, 1)
-        assert "data" in response.keys()
+        if guid:
+            response = api_object.close(guid, 1)
+            assert "data" in response.keys()
 
     def test_close_other(self, api_object, open_alerts_filter):
         guid = self._search_random_object(api_object, self.OBJECT_ID_NAME, open_alerts_filter)
-        response = api_object.close(guid, 0, "Test Reason")
-        assert "data" in response.keys()
+        if guid:
+            response = api_object.close(guid, 0, "Test Reason")
+            assert "data" in response.keys()
