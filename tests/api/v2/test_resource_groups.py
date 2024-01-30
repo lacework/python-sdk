@@ -4,7 +4,6 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 """
 
 import pytest
-import random
 from laceworksdk.api.v2.resource_groups import ResourceGroupsAPI
 from tests.api.test_crud_endpoint import CrudEndpoint
 
