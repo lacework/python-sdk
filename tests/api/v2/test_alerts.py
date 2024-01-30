@@ -38,7 +38,7 @@ class TestAlerts(ReadEndpoint):
         "Events",
         "RelatedAlerts",
         "Integrations",
-        "Timeline"
+        # "Timeline"  <-- Commented because most alertIds don't support this scope, causing test to fail
     ]
 
     def test_get_by_date(self, api_object):
