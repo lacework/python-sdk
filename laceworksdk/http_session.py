@@ -160,7 +160,7 @@ class HttpSession:
         headers = {
             "X-LW-UAKS": self._api_secret,
             "Content-Type": "application/json",
-            "User-Agent": f"laceworksdk-python-client/{version}",
+            "User-Agent": f"laceworksdk-python-client/{version('laceworksdk')}",
         }
 
         # Build the access token request data
@@ -200,7 +200,7 @@ class HttpSession:
         headers["Org-Access"] = (
             "true" if self._org_level_access or org_access else "false"
         )
-        headers["User-Agent"] = f"laceworksdk-python-client/{version}"
+        headers["User-Agent"] = f"laceworksdk-python-client/{version('laceworksdk')}"
 
         if self._subaccount:
             headers["Account-Name"] = self._subaccount
