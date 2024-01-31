@@ -4,7 +4,6 @@ Test suite for the community-developed Python SDK for interacting with Lacework 
 """
 
 import pytest
-
 from laceworksdk.api.v2.resource_groups import ResourceGroupsAPI
 from tests.api.test_crud_endpoint import CrudEndpoint
 
@@ -47,7 +46,15 @@ class TestResourceGroups(CrudEndpoint):
     OBJECT_TYPE = ResourceGroupsAPI
     OBJECT_PARAM_EXCEPTIONS = ["props"]
 
-    @pytest.mark.flaky(reruns=10)   # Because test sometimes grabs an object without a "resourceGuid" field
     @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object):
-        self._get_object_classifier_test(api_object, "guid", self.OBJECT_ID_NAME)
+        response = api_object.get()
+        guid = None
+        if len(response["data"]) > 0:
+            for entry in response['data']:
+                if self.OBJECT_ID_NAME in entry:
+                    guid = entry[self.OBJECT_ID_NAME]
+        if guid:
+            response = api_object.get_by_guid(guid)
+            assert "data" in response.keys()
+            assert response["data"]['resourceGuid'] == guid
