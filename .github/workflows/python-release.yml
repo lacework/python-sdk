@@ -25,6 +25,10 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Install poetry
+      run: |
+        pipx install poetry
+
     - name: Python Semantic Major Release
       if: ${{ inputs.bump_major == 'true' }}
       uses: python-semantic-release/python-semantic-release@master
