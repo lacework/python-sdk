@@ -29,15 +29,35 @@ jobs:
       run: |
         pipx install poetry
 
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+        cache: 'poetry'
+
+    - name: Install dependencies
+      run: |
+        poetry check
+        poetry lock --no-update
+        poetry install --verbose
+
     - name: Python Semantic Major Release
       if: ${{ inputs.bump_major == 'true' }}
-      uses: python-semantic-release/python-semantic-release@master
-      with:
-        force: "major"
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "action@github.com"
+        semantic-release version --major
+        semantic-release publish -D commit_author="github-actions <action@github.com>"
+      env:
+        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
 
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
-      uses: python-semantic-release/python-semantic-release@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "action@github.com"
+        semantic-release version
+        semantic-release publish -D commit_author="github-actions <action@github.com>"
+      env:
+        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
