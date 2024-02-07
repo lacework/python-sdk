@@ -44,8 +44,7 @@ jobs:
     - name: Python Semantic Major Release
       if: ${{ inputs.bump_major == 'true' }}
       run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "action@github.com"
+        git config --global user.name "lacework-releng"
         semantic-release version --major
         semantic-release publish -D commit_author="github-actions <action@github.com>"
       env:
@@ -55,8 +54,7 @@ jobs:
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
       run: |
-        git config --global user.name "github-actions"
-        git config --global user.email "action@github.com"
+        git config --global user.name "lacework-releng"
         semantic-release version
         semantic-release publish -D commit_author="github-actions <action@github.com>"
       env:
