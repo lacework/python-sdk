@@ -29,15 +29,36 @@ jobs:
       run: |
         pipx install poetry
 
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+        cache: 'poetry'
+
+    - name: Install dependencies
+      run: |
+        poetry check
+        poetry lock --no-update
+        poetry install --verbose
+
     - name: Python Semantic Major Release
       if: ${{ inputs.bump_major == 'true' }}
-      uses: python-semantic-release/python-semantic-release@master
-      with:
-        force: "major"
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.name "tech-ally"
+        git config --global user.email tech-ally@lacework.net
+        semantic-release version --major
+        semantic-release publish
+      env:
+        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        PyPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
+
 
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
-      uses: python-semantic-release/python-semantic-release@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.name "tech-ally"
+        git config --global user.email tech-ally@lacework.net
+        semantic-release publish
+      env:
+        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        PyPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
