@@ -50,8 +50,6 @@ jobs:
         poetry run semantic-release publish
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PyPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
-
 
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
@@ -61,4 +59,3 @@ jobs:
         poetry run semantic-release publish
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PyPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
