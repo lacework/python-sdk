@@ -44,7 +44,7 @@ jobs:
     - name: Python Semantic Major Release
       if: ${{ inputs.bump_major == 'true' }}
       run: |
-        git config --global user.name "tech-ally (Technology Alliances at Lacework Inc.)"
+        git config --global user.name "tech-ally"
         git config --global user.email tech-ally@lacework.net
         semantic-release version --major
         semantic-release publish -D commit_author="tech-ally <tech-ally@lacework.net>"
@@ -56,7 +56,7 @@ jobs:
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
       run: |
-        git config --global user.name "tech-ally (Technology Alliances at Lacework Inc.)"
+        git config --global user.name "tech-ally"
         git config --global user.email tech-ally@lacework.net
         semantic-release publish -D commit_author="tech-ally <tech-ally@lacework.net>"
       env:
