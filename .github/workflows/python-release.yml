@@ -47,7 +47,7 @@ jobs:
         git config --global user.name "tech-ally"
         git config --global user.email tech-ally@lacework.net
         semantic-release version --major
-        semantic-release publish -D commit_author="tech-ally <tech-ally@lacework.net>"
+        semantic-release publish
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PyPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
@@ -58,7 +58,7 @@ jobs:
       run: |
         git config --global user.name "tech-ally"
         git config --global user.email tech-ally@lacework.net
-        semantic-release publish -D commit_author="tech-ally <tech-ally@lacework.net>"
+        semantic-release publish
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PyPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
