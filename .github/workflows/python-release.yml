@@ -64,6 +64,7 @@ jobs:
         git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
         git config commit.gpgsign true
         git config --global tag.gpgSign true
+        poetry run semantic-release version
         poetry run semantic-release publish
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
