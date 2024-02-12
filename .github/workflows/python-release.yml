@@ -44,21 +44,26 @@ jobs:
     - name: Python Semantic Major Release
       if: ${{ inputs.bump_major == 'true' }}
       run: |
-        git config --global user.name "tech-ally"
+        git config --global user.name "Lacework Inc."
         git config --global user.email tech-ally@lacework.net
-        semantic-release version --major
-        semantic-release publish
+        echo "${{ secrets.GPG_SECRET_KEY }}" | base64 --decode | gpg --import --no-tty --batch --yes
+        git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
+        git config commit.gpgsign true
+        git config --global tag.gpgSign true
+        poetry run semantic-release version --major
+        poetry run semantic-release publish
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PyPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
-
 
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
       run: |
-        git config --global user.name "tech-ally"
+        git config --global user.name "Lacework Inc."
         git config --global user.email tech-ally@lacework.net
-        semantic-release publish
+        echo "${{ secrets.GPG_SECRET_KEY }}" | base64 --decode | gpg --import --no-tty --batch --yes
+        git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
+        git config commit.gpgsign true
+        git config --global tag.gpgSign true
+        poetry run semantic-release publish
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PyPI_TOKEN: ${{secrets.PYPI_PASSWORD}}
