@@ -57,7 +57,7 @@ jobs:
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
       run: |
-        git config --global user.name "tech-ally"
+        git config --global user.name "Lacework Inc."
         git config --global user.email tech-ally@lacework.net
         echo "${{ secrets.GPG_SECRET_KEY }}" | base64 --decode | gpg --import --no-tty --batch --yes
         git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
