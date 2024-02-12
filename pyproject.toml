@@ -140,7 +140,7 @@ autoescape = true
 
 [tool.semantic_release.commit_author]
 env = "GIT_COMMIT_AUTHOR"
-default = "semantic-release <semantic-release>"
+default = "Lacework Inc. <tech-ally@lacework.net>"
 
 [tool.semantic_release.commit_parser_options]
 allowed_tags = ["build", "chore", "ci", "docs", "feat", "fix", "perf", "style", "refactor", "test"]
