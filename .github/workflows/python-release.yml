@@ -46,6 +46,9 @@ jobs:
       run: |
         git config --global user.name "tech-ally"
         git config --global user.email tech-ally@lacework.net
+        echo "${{ GPG_SECRET_KEY }}" | base64 --decode | gpg --import --no-tty --batch --yes
+        git config --global user.signingkey ${{ GPG_SIGNING_KEY }}
+        git config commit.gpgsign true
         poetry run semantic-release version --major
         poetry run semantic-release publish
       env:
@@ -56,6 +59,9 @@ jobs:
       run: |
         git config --global user.name "tech-ally"
         git config --global user.email tech-ally@lacework.net
+        echo "${{ GPG_SECRET_KEY }}" | base64 --decode | gpg --import --no-tty --batch --yes
+        git config --global user.signingkey ${{ GPG_SIGNING_KEY }}
+        git config commit.gpgsign true
         poetry run semantic-release publish
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
