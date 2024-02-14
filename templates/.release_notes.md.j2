@@ -3,10 +3,9 @@
 ## 🚀 Features
 
 {% for type_, commits in release["elements"] | dictsort %}
-
 {%- if type_ == "feature" %}
 {% for commit in commits %}
-* {{ commit.descriptions[0] }} by {{commit.commit.author.name}} in [`{{ commit.short_hash }}`]({{ commit.hexsha | commit_hash_url }})
+* ({{type_}}):{{ commit.descriptions[0] }} by {{commit.commit.author.name}} in [`{{ commit.short_hash }}`]
 {%- endfor %}{% endif %}{% endfor %}
 
 ## 🐛 Bug Fixes
@@ -14,13 +13,13 @@
 {% for type_, commits in release["elements"] | dictsort %}
 {%- if type_ == "fix" %}
 {% for commit in commits %}
-* {{ commit.descriptions[0] }} by {{commit.commit.author.name}} in [`{{ commit.short_hash }}`]({{ commit.hexsha | commit_hash_url }})
+* ({{type_}}):{{ commit.descriptions[0] }} by {{commit.commit.author.name}} in [`{{ commit.short_hash }}`]
 {%- endfor %}{% endif %}{% endfor %}
 
 ## 🧰 Maintenance
 
 {% for type_, commits in release["elements"] | dictsort %}
-{%- if type_ in ["chore", "ci", "documentation", "refactor", "test", "unknown"] %}
+{%- if type_ in ["chore", "ci", "documentation", "refactor", "test"] %}
 {% for commit in commits %}
-* {{ commit.descriptions[0] }} by {{commit.commit.author.name}} in [`{{ commit.short_hash }}`]({{ commit.hexsha | commit_hash_url }})
+* ({{type_}}):{{ commit.descriptions[0] }} by {{commit.commit.author.name}} in [`{{ commit.short_hash }}`]
 {%- endfor %}{% endif %}{% endfor %}
