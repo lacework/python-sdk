@@ -53,7 +53,7 @@ jobs:
         git config --global tag.gpgSign true
         poetry run semantic-release version --major --no-commit
         poetry run semantic-release publish
-        poetry publish --build --username $PYPI_USERNAME --password $PYPI_PASSWORD
+        poetry publish -vvv --username $PYPI_USERNAME --password $PYPI_PASSWORD
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PYPI_USERNAME: __token__
@@ -70,7 +70,7 @@ jobs:
         git config --global tag.gpgSign true
         poetry run semantic-release version --no-commit
         poetry run semantic-release publish
-        poetry publish --build --username $PYPI_USERNAME --password $PYPI_PASSWORD
+        poetry publish -vvv --username $PYPI_USERNAME --password $PYPI_PASSWORD
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PYPI_USERNAME: __token__
