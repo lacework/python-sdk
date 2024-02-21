@@ -75,6 +75,7 @@ class TestPolicyExceptions(CrudEndpoint):
 
         request.config.cache.set(self.OBJECT_ID_NAME, response["data"][self.OBJECT_ID_NAME])
 
+    @pytest.mark.flaky(reruns=10)   # Because sometimes this attempts to get an object that has just been deleted
     @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object, policy_id, policy_exception_id):
         response = api_object.get(policy_exception_id, policy_id)
