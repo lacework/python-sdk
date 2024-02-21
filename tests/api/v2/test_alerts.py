@@ -70,12 +70,14 @@ class TestAlerts(ReadEndpoint):
         response = api_object.comment(guid, "Test Comment")
         assert "data" in response.keys()
 
+    @pytest.mark.flaky(reruns=10)   # Because sometimes this attempts to close an  alert that isn't allowed
     def test_close_fp(self, api_object, open_alerts_filter):
         guid = self._search_random_object(api_object, self.OBJECT_ID_NAME, open_alerts_filter)
         if guid:
             response = api_object.close(guid, 1)
             assert "data" in response.keys()
 
+    @pytest.mark.flaky(reruns=10)   # Because sometimes this attempts to close an  alert that isn't allowed
     def test_close_other(self, api_object, open_alerts_filter):
         guid = self._search_random_object(api_object, self.OBJECT_ID_NAME, open_alerts_filter)
         if guid:

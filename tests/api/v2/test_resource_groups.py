@@ -46,6 +46,7 @@ class TestResourceGroups(CrudEndpoint):
     OBJECT_TYPE = ResourceGroupsAPI
     OBJECT_PARAM_EXCEPTIONS = ["props"]
 
+    @pytest.mark.flaky(reruns=10)   # Because sometimes this attempts to get an object that has just been deleted
     @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object):
         response = api_object.get()
