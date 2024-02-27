@@ -24,7 +24,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        persist-credentials: false
+        token: ${{ secrets.TOKEN }}
 
     - name: Install poetry
       run: |
@@ -51,13 +51,8 @@ jobs:
         git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
         git config commit.gpgsign true
         git config --global tag.gpgSign true
-        poetry run semantic-release version --major --no-commit
+        poetry run semantic-release version --major
         poetry run semantic-release publish
-        poetry publish -vvv --username $PYPI_USERNAME --password $PYPI_PASSWORD
-      env:
-        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PYPI_USERNAME: __token__
-        PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
@@ -68,10 +63,12 @@ jobs:
         git config --global user.signingkey ${{ secrets.GPG_SIGNING_KEY }}
         git config commit.gpgsign true
         git config --global tag.gpgSign true
-        poetry run semantic-release version --no-commit
+        poetry run semantic-release version
         poetry run semantic-release publish
+
+    - name: Publish to PyPi
+      run: |
         poetry publish -vvv --username $PYPI_USERNAME --password $PYPI_PASSWORD
       env:
-        GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PYPI_USERNAME: __token__
         PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
