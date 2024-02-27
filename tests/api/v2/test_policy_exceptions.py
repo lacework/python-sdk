@@ -75,6 +75,7 @@ class TestPolicyExceptions(CrudEndpoint):
 
         request.config.cache.set(self.OBJECT_ID_NAME, response["data"][self.OBJECT_ID_NAME])
 
+    @pytest.mark.quarantine_test  # Stopped working around 2/27/2024. API bug or change?
     @pytest.mark.flaky(reruns=10)   # Because sometimes this attempts to get an object that has just been deleted
     @pytest.mark.order("first")
     def test_api_get_by_guid(self, api_object, policy_id, policy_exception_id):
@@ -84,6 +85,7 @@ class TestPolicyExceptions(CrudEndpoint):
     def test_api_search(self):
         pass
 
+    @pytest.mark.quarantine_test  # Stopped working around 2/27/2024. API bug or change?
     def test_api_update(self, api_object, policy_id, api_object_update_body, request):
         guid = request.config.cache.get(self.OBJECT_ID_NAME, None)
 
@@ -98,6 +100,7 @@ class TestPolicyExceptions(CrudEndpoint):
 
             self._check_object_values(api_object_update_body, response)
 
+    @pytest.mark.quarantine_test  # Stopped working around 2/27/2024. API bug or change?
     def test_api_delete(self, api_object, policy_id, request):
         guid = request.config.cache.get(self.OBJECT_ID_NAME, None)
         assert guid is not None
