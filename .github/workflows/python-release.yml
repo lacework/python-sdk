@@ -53,6 +53,9 @@ jobs:
         git config --global tag.gpgSign true
         poetry run semantic-release version --major
         poetry run semantic-release publish
+      env:
+        GH_TOKEN: ${{secrets.TOKEN}}
+
 
     - name: Python Semantic Release
       if: ${{ inputs.bump_major == 'false' }}
@@ -65,6 +68,9 @@ jobs:
         git config --global tag.gpgSign true
         poetry run semantic-release version
         poetry run semantic-release publish
+      env:
+        GH_TOKEN: ${{secrets.TOKEN}}
+
 
     - name: Publish to PyPi
       run: |
