@@ -69,7 +69,7 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
         }])
         assert "data" in response.keys()
     
-     def test_vulnerabilities_image_summary_search(api, api_object):
+    def test_vulnerabilities_image_summary_search(api, api_object):
         json = 
             {
                 "timeFilter": {
