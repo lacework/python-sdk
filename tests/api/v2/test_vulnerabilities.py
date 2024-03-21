@@ -70,15 +70,14 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
         assert "data" in response.keys()
     
     def test_vulnerabilities_image_summary_search(api, api_object):
-        json = 
-            {
-                "timeFilter": {
-                    "startTime": "2024-03-17T00:00:00Z",
-                    "endTime":   "2024-03-18T08:00:00Z"
-                },
-                "filters" : [
-                    {"field": "ndvContainers", "expression": "gt", "value": 0}
-                    ]
-            }
+        json = {
+            "timeFilter": {
+                "startTime": "2024-03-17T00:00:00Z",
+                "endTime":   "2024-03-18T08:00:00Z"
+            },
+            "filters" : [
+                {"field": "ndvContainers", "expression": "gt", "value": 0}
+            ]
+        }
         response = api_object.ImageSummary.search(json)
         assert "data" in response.keys()
