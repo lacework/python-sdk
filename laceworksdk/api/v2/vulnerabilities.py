@@ -42,6 +42,7 @@ class VulnerabilitiesAPI:
         self.containers = self.ContainerVulnerabilitiesAPI(session, self._base_path)
         self.hosts = self.HostVulnerabilitiesAPI(session, self._base_path)
         self.packages = self.SoftwarePackagesAPI(session, self._base_path)
+        self.imageSummary = self.ImageSummaryVulnerabilitiesAPI(session, self._base_path)
 
     class ContainerVulnerabilitiesAPI(SearchEndpoint):
         """A class used to represent the Container Vulnerabilities API endpoint."""

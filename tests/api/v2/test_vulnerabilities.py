@@ -79,5 +79,5 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
                 {"field": "ndvContainers", "expression": "gt", "value": 0}
             ]
         }
-        response = api_object.ImageSummary.search(json)
+        response = api_object.imageSummary.search(json)
         assert "imageId" in response.keys()
