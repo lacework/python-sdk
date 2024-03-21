@@ -80,4 +80,4 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
             ]
         }
         response = api_object.ImageSummary.search(json)
-        assert "data" in response.keys()
+        assert "imageId" in response.keys()
