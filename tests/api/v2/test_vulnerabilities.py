@@ -24,7 +24,7 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
     OBJECT_MAP = {
         "containers": VulnerabilitiesAPI.ContainerVulnerabilitiesAPI,
         "hosts": VulnerabilitiesAPI.HostVulnerabilitiesAPI,
-        "ImageSummary": VulnerabilitiesAPI.ImageSummaryVulnerabilitiesAPI
+        "imageSummary": VulnerabilitiesAPI.ImageSummaryVulnerabilitiesAPI
     }
 
     def test_vulnerabilities_containers_api_scan(self, api_object, request):
