@@ -23,7 +23,8 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
     OBJECT_TYPE = VulnerabilitiesAPI
     OBJECT_MAP = {
         "containers": VulnerabilitiesAPI.ContainerVulnerabilitiesAPI,
-        "hosts": VulnerabilitiesAPI.HostVulnerabilitiesAPI
+        "hosts": VulnerabilitiesAPI.HostVulnerabilitiesAPI,
+        "ImageSummary": VulnerabilitiesAPI.ImageSummaryVulnerabilitiesAPI
     }
 
     def test_vulnerabilities_containers_api_scan(self, api_object, request):
@@ -66,4 +67,8 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
             "pkg": "openssl",
             "pkgVer": "1.1.1-1ubuntu2.1~20.04"
         }])
+        assert "data" in response.keys()
+    
+     def test_vulnerabilities_image_summary_search(api, api_object):
+        response = api_object.ImageSummary.search()
         assert "data" in response.keys()

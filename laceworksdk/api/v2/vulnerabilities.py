@@ -90,6 +90,33 @@ class VulnerabilitiesAPI:
             )
 
             return response.json()
+    
+    class ImageSummaryVulnerabilitiesAPI(SearchEndpoint):
+        """A class used to represent the Container Vulnerabilities API endpoint."""
+
+        RESOURCE = "ImageSummary"
+
+        def search(self, **request_params):
+            """A method to issue Container Vulnerability scans.
+
+            Args:
+              request_params (dict, optional): Use to pass any additional parameters the API
+
+            Returns:
+                dict: The status of the requested scan
+            """
+
+            json = self._build_dict_from_items(
+                **request_params
+            )
+
+            response = self._session.post(
+                self._build_url(resource="ImageSummary", action="search"), json=json
+            )
+
+            return response.json()
+
+
 
     class HostVulnerabilitiesAPI(SearchEndpoint):
         """A class used to represent the Host Vulnerabilities API endpoint."""
