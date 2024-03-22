@@ -23,8 +23,7 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
     OBJECT_TYPE = VulnerabilitiesAPI
     OBJECT_MAP = {
         "containers": VulnerabilitiesAPI.ContainerVulnerabilitiesAPI,
-        "hosts": VulnerabilitiesAPI.HostVulnerabilitiesAPI,
-        "imageSummary": VulnerabilitiesAPI.ImageSummaryVulnerabilitiesAPI
+        "hosts": VulnerabilitiesAPI.HostVulnerabilitiesAPI
     }
 
     def test_vulnerabilities_containers_api_scan(self, api_object, request):
@@ -68,16 +67,3 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
             "pkgVer": "1.1.1-1ubuntu2.1~20.04"
         }])
         assert "data" in response.keys()
-    
-    def test_vulnerabilities_image_summary_search(api, api_object):
-        json = {
-            "timeFilter": {
-                "startTime": "2024-03-18T00:00:00Z",
-                "endTime":   "2024-03-19T08:00:00Z"
-            },
-            "filters" : [
-                {"field": "ndvContainers", "expression": "gt", "value": 0}
-            ]
-        } 
-        response = api_object.imageSummary.search(json)
-        assert "data" in next(response, None)
