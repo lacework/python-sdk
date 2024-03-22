@@ -42,6 +42,7 @@ class VulnerabilitiesAPI:
         self.containers = self.ContainerVulnerabilitiesAPI(session, self._base_path)
         self.hosts = self.HostVulnerabilitiesAPI(session, self._base_path)
         self.packages = self.SoftwarePackagesAPI(session, self._base_path)
+        self.imageSummary = self.ImageSummaryVulnerabilitiesAPI(session, self._base_path)
 
     class ContainerVulnerabilitiesAPI(SearchEndpoint):
         """A class used to represent the Container Vulnerabilities API endpoint."""
@@ -90,6 +91,12 @@ class VulnerabilitiesAPI:
             )
 
             return response.json()
+    
+    class ImageSummaryVulnerabilitiesAPI(SearchEndpoint):
+        """A class used to represent the ImageSummary Vulnerabilities API endpoint."""
+
+        RESOURCE = "ImageSummary" 
+
 
     class HostVulnerabilitiesAPI(SearchEndpoint):
         """A class used to represent the Host Vulnerabilities API endpoint."""
