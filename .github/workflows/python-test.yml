@@ -56,7 +56,7 @@ jobs:
           LW_API_SECRET: ${{ secrets.LW_API_SECRET }}
           LW_BASE_DOMAIN: ${{ secrets.LW_BASE_DOMAIN }}
       - name: Report Status
-        if: github.ref_name == 'main'
+        if: contains(github.ref, "main")
         uses: ravsamhq/notify-slack-action@v2
         with:
           status: ${{ job.status }}
