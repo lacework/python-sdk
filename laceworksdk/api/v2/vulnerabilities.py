@@ -95,7 +95,7 @@ class VulnerabilitiesAPI:
     class ImageSummaryVulnerabilitiesAPI(SearchEndpoint):
         """A class used to represent the ImageSummary Vulnerabilities API endpoint."""
 
-        RESOURCE = "ImageSummary"
+        RESOURCE = "ImageSummary" 
 
 
     class HostVulnerabilitiesAPI(SearchEndpoint):

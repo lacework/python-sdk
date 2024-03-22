@@ -78,6 +78,6 @@ class TestVulnerabilitesEndpoint(SearchEndpoint):
             "filters" : [
                 {"field": "ndvContainers", "expression": "gt", "value": 0}
             ]
-        } 
+        }
         response = api_object.imageSummary.search(json)
         assert "data" in next(response, None)
