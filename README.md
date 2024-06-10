@@ -78,7 +78,7 @@ To generate API credentials, you'll need to do the following in Lacework:
 ## Environment Variables
 
 If you wish to configure the LaceworkClient instance using environment variables, this module honors the same
-variables used by the Lacework CLI. The `account`, `subaccount`, `api_key`, `api_secret`, and `profile` parameters
+variables used by the Lacework CLI. The `account`, `subaccount`, `api_key`, `api_secret`, `api_token`, and `profile` parameters
 can all be configured as specified below.
 
 | Environment Variable | Description                                                          | Required |
@@ -86,8 +86,12 @@ can all be configured as specified below.
 | `LW_PROFILE`         | Lacework CLI profile to use (configured at ~/.lacework.toml)         |    N     |
 | `LW_ACCOUNT`         | Lacework account/organization domain (i.e. `<account>`.lacework.net) |    Y     |
 | `LW_SUBACCOUNT`      | Lacework sub-account                                                 |    N     |
-| `LW_API_KEY`         | Lacework API Access Key                                              |    Y     |
-| `LW_API_SECRET`      | Lacework API Access Secret                                           |    Y     |
+| `LW_API_KEY`         | Lacework API Access Key                                              |    N     |
+| `LW_API_SECRET`      | Lacework API Access Secret                                           |    N     |
+| `LW_API_TOKEN`       | Lacework API Token (alternative to key and secret)                   |    N     |
+
+NOTE: To authenticate with the Lacework API you must specify either a key and secret OR a token. If you specify both the 
+token will be used. 
 
 ## Installation
 

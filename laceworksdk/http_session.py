@@ -30,7 +30,7 @@ class HttpSession:
     _access_token = None
     _access_token_expiry = None
 
-    def __init__(self, account, subaccount, api_key, api_secret, base_domain):
+    def __init__(self, account, subaccount, api_key, api_secret, base_domain, api_token=None):
         """
             Initializes the HttpSession object.
 
@@ -40,6 +40,7 @@ class HttpSession:
             api_key (str): a Lacework API Key
             api_secret (str): a Lacework API Secret
             base_domain (str): a Lacework Domain (defaults to "lacework.net")
+            api_token (str): a Lacework API token (instead of key and secret)
 
         Returns:
             HttpSession: An instance of this class
@@ -59,7 +60,7 @@ class HttpSession:
         self._account = account
         self._subaccount = subaccount
         self._org_level_access = False
-
+        self._access_token = api_token
         # Get an access token
         self._check_access_token()
 
@@ -99,8 +100,11 @@ class HttpSession:
         """
         A method to check the validity of the access token.
         """
-
-        if self._access_token is None or self._access_token_expiry < datetime.now(
+        if self._access_token and self._access_token_expiry is None:
+            # This catches the case that the user has provided an access token instead of 
+            # key and secret. We cannot know the expiry date so we simply return
+            return
+        elif self._access_token is None or self._access_token_expiry < datetime.now(
             timezone.utc
         ):
             response = self._get_access_token()
