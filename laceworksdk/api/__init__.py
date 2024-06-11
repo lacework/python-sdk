@@ -49,6 +49,7 @@ from laceworksdk.config import (
     LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE,
     LACEWORK_API_KEY_ENVIRONMENT_VARIABLE,
     LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE,
+    LACEWORK_API_TOKEN_ENVIRONMENT_VARIABLE,
     LACEWORK_API_BASE_DOMAIN_ENVIRONMENT_VARIABLE,
     LACEWORK_API_CONFIG_SECTION_ENVIRONMENT_VARIABLE,
     LACEWORK_CLI_CONFIG_RELATIVE_PATH,
@@ -66,6 +67,7 @@ class LaceworkClient:
         subaccount=None,
         api_key=None,
         api_secret=None,
+        api_token=None,
         instance=None,
         base_domain=None,
         profile=None,
@@ -86,6 +88,7 @@ class LaceworkClient:
         self._subaccount = subaccount or os.getenv(
             LACEWORK_SUBACCOUNT_ENVIRONMENT_VARIABLE
         )
+        self._api_token = api_token or os.getenv(LACEWORK_API_TOKEN_ENVIRONMENT_VARIABLE)
         self._api_key = api_key or os.getenv(LACEWORK_API_KEY_ENVIRONMENT_VARIABLE)
         self._api_secret = api_secret or os.getenv(
             LACEWORK_API_SECRET_ENVIRONMENT_VARIABLE
@@ -135,6 +138,7 @@ class LaceworkClient:
             self._api_key,
             self._api_secret,
             self._base_domain,
+            api_token=self._api_token
         )
 
         # API Wrappers
