@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "laceworksdk"
-version = "4.0.0"
+version = "4.1.0"
 description = "Community-developed Python SDK for the Lacework APIs"
 authors = ["Lacework"]
 maintainers = ["Tim MacDonald <tim.macdonald@lacework.net>"]
